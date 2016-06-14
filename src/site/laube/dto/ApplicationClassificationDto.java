@@ -4,9 +4,9 @@ import site.laube.dto.temporary.CompanyDto;
 import site.laube.utility.LaubeUtility;
 
 /**
- * Dtoクラスはフレームワークとデータベースの受け渡し用メッセージクラスです。<br>
- * 申請分類を管理するクラスです。<br>
- * 全ての申請書はいづれかの申請分類に紐づきます。<br>
+ * Dto class is the message class for the delivery of the framework and the database.<br>
+ * The class that manages the application classification master.<br>
+ * All of the application form is linked to any of the application classification.<br>
  *
  * @version    1.0.0
  * @since      Class deprecated in Release 1.0.0
@@ -15,117 +15,118 @@ import site.laube.utility.LaubeUtility;
 public class ApplicationClassificationDto extends CompanyDto {
 
 	/**
-	 * シリアルバージョンIDを管理します。<br>
+	 * to manage the serial version ID. <br>
 	 */
 	private static final long serialVersionUID = 5380706709408812768L;
 
 	/**
-	 * 申請分類コードを管理します。<br>
+	 * to manage the application classification code. <br>
 	 */
 	private String applicationClassificationCode = null;
 
 	/**
-	 * 申請分類名を管理します。<br>
+	 * to manage the application classification name. <br>
 	 */
 	private String applicationClassificationName = null;
 
 	/**
-	 * 表示序列を管理します。<br>
+	 * to manage the sort order. <br>
 	 */
 	private int sortOrder;
 
 	/**
-	 * 管理部門コードを管理します。<br>
-	 * 管理部門と同じ部署の社員は全ての社員の申請書を代理申請できるようになります。<br>
+	 * to manage the management unit code. <br>
+	 * Employees of the same department and the management department will be able to proxy application the application
+	 * of all of the employees.<br>
 	 */
 	private String managementUnitCode = null;
 
 	/**
-	 * 管理部門名を管理します。<br>
+	 * to manage the management unit name. <br>
 	 */
 	private String managementUnitName = null;
 
 	/**
-	 * 申請分類コードを設定します。<br>
-	 * @param applicationClassificationCode 申請分類コード
+	 * set the application classification code.<br>
+	 * @param applicationClassificationCode application classification code
 	 */
 	public final void setApplicationClassificationCode(final String applicationClassificationCode) {
 		this.applicationClassificationCode = applicationClassificationCode;
 	}
 
 	/**
-	 * 申請分類コードを取得します。<br>
-	 * @return 申請分類コード
+	 * get the application classification code.<br>
+	 * @return application classification code
 	 */
 	public final String getApplicationClassificationCode() {
 		return this.applicationClassificationCode;
 	}
 
 	/**
-	 * 申請分類名を設定します。<br>
-	 * @param applicationClassificationName 申請分類名
+	 * set the application classification name.<br>
+	 * @param applicationClassificationName application classification name
 	 */
 	public final void setApplicationClassificationName(final String applicationClassificationName) {
 		this.applicationClassificationName = applicationClassificationName;
 	}
 
 	/**
-	 * 申請分類名を取得します。<br>
-	 * @return 申請分類名
+	 * get the application classification name.<br>
+	 * @return application classification name
 	 */
 	public final String getApplicationClassificationName() {
 		return this.applicationClassificationName;
 	}
 
 	/**
-	 * 表示序列を設定します。<br>
-	 * @param sortOrder 表示序列
+	 * set the sort order.<br>
+	 * @param sortOrder sort order
 	 */
 	public final void setSortOrder(final int sortOrder) {
 		this.sortOrder = sortOrder;
 	}
 
 	/**
-	 * 表示序列を取得します。<br>
-	 * @return 表示序列
+	 * get the sort order.<br>
+	 * @return sort order
 	 */
 	public final int getSortOrder() {
 		return this.sortOrder;
 	}
 
 	/**
-	 * 管理部門コードを設定します。<br>
-	 * @param managementUnitCode 管理部門コード
+	 * set the management unit code.<br>
+	 * @param managementUnitCode management unit code
 	 */
 	public final void setManagementUnitCode(final String managementUnitCode) {
 		this.managementUnitCode = managementUnitCode;
 	}
 
 	/**
-	 * 管理部門コードを取得します。<br>
-	 * @return 管理部門コード
+	 * get the management unit code.<br>
+	 * @return management unit code
 	 */
 	public final String getManagementUnitCode() {
 		return this.managementUnitCode;
 	}
 
 	/**
-	 * 管理部門名を設定します。<br>
-	 * @param managementUnitName 管理部門名
+	 * set the management unit name.<br>
+	 * @param managementUnitName management unit name
 	 */
 	public final void setManagementUnitName(final String managementUnitName) {
 		this.managementUnitName = managementUnitName;
 	}
 
 	/**
-	 * 管理部門名を取得します。<br>
-	 * @return 管理部門名
+	 * get the management unit name.<br>
+	 * @return management unit name
 	 */
 	public final String getManagementUnitName() {
 		return this.managementUnitName;
 	}
 
-	/* (非 Javadoc)
+	/*
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
