@@ -2,20 +2,22 @@ package site.laube.dto.temporary;
 
 import site.laube.utility.LaubeUtility;
 
-/**
- * Dto class is the message class for the delivery of the framework and database.<br>
- * Super Class of DTO class that holds the unit code / employee number.<br>
- * Minimum of items on the employee master managed by Laube only does not hold.
- * This is the bare minimum of information needed by Laube.
- * If you want to use the Laube by linking to other systems,
- * you need to replace the employee master for Laube in the employee master of the relevant system.
- * If you want to replace, modify the framework is not necessary,
- * only replace the left join in the view table you are using.
+/*
+ * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
- * @version    1.0.0
- * @since      Class deprecated in Release 1.0.0
- * @author     Ryuta Miki of Pocket Soft Co.,Ltd
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 public class UserDto extends UnitDto {
 
 	/**
