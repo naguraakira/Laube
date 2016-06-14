@@ -1,0 +1,637 @@
+package site.laube.model;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import site.laube.dto.LaubeDto;
+import site.laube.dto.ResultDto;
+import site.laube.dto.RoleDto;
+import site.laube.exception.LaubeException;
+import site.laube.modelinterface.RoleModelInterface;
+import site.laube.utility.LaubeUtility;
+
+/**
+ * Model class is a class for manipulating the database.<br>
+ * The class that manages the role master Model.<br>
+ *
+ * @version    1.0.0
+ * @since      Class deprecated in Release 1.0.0
+ * @author     Ryuta Miki of Pocket Soft Co.,Ltd
+ */
+public final class RoleModel extends LaubeModel implements RoleModelInterface {
+
+	/**
+	 * to manage the log object.<br>
+	 */
+	private static Logger log = LoggerFactory.getLogger(RoleModel.class);
+
+	/**
+	 * delete role master (company units)<br>
+	 * remove all of the role the master and the role by the employee master.<br>
+	 * @param companyCode company code
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto delete(final String companyCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "delete Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("DELETE ");
+			sql.append("FROM ");
+			sql.append("wkf_role ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? ");
+
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+			this.preparedStatement.setString(1, companyCode);
+			this.preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				throw new LaubeException(e);
+			}
+		}
+		log.debug("[workflowEngine] " + "delete End" + "[return value]:true");
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		return resultDto;
+    }
+
+	/**
+	 * delete role master (role units)<br>
+	 * remove all of the role the master and the role by the employee master.<br>
+	 * @param companyCode company code
+	 * @param roleCode role code
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto delete(final String companyCode, final String roleCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "delete Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "delete End");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("DELETE ");
+			sql.append("FROM ");
+			sql.append("wkf_role ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("role_code = ? ");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+			this.preparedStatement.setString(1, companyCode);
+			this.preparedStatement.setString(2, roleCode);
+			this.preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "delete End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "delete End");
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "delete End");
+		return resultDto;
+    }
+
+	/**
+	 * register the role master.<br>
+	 * @param roleDto role master
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto insert(final RoleDto roleDto) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "insert Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[roleDto]: " + roleDto);
+
+		ResultDto resultDto = new ResultDto();
+
+		if (roleDto == null) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "insert End");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("INSERT INTO wkf_role ");
+			sql.append("(");
+			sql.append("company_code,");
+			sql.append("role_code,");
+			sql.append("role_name,");
+			sql.append("create_date_time,");
+			sql.append("create_user_id,");
+			sql.append("update_date_time,");
+			sql.append("update_user_id) ");
+			sql.append("VALUES(");
+			sql.append("?,");
+			sql.append("?,");
+			sql.append("?,");
+			sql.append("CURRENT_TIMESTAMP(0),");
+			sql.append("?,");
+			sql.append("CURRENT_TIMESTAMP(0),");
+			sql.append("?);");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+
+			this.preparedStatement.setString( 1, roleDto.getCompanyCode());
+			this.preparedStatement.setString( 2, roleDto.getRoleCode());
+			this.preparedStatement.setString( 3, roleDto.getRoleName());
+			this.preparedStatement.setString( 4, roleDto.getCreateUserId());
+			this.preparedStatement.setString( 5, roleDto.getUpdateUserId());
+			this.preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "insert End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "insert End");
+				throw new LaubeException(e);
+			}
+		}
+		log.debug("[workflowEngine] " + "insert End" + "[return value]:true");
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "insert End");
+		return resultDto;
+	}
+
+	/**
+	 * update the role master.<br>
+	 * @param roleDto role master
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto update(final RoleDto roleDto) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "update Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[roleDto]: " + roleDto);
+
+		ResultDto resultDto = new ResultDto();
+
+		if (roleDto == null) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "update End");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE wkf_role ");
+			sql.append("SET ");
+			sql.append("role_name = ?, ");
+			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
+			sql.append("update_user_id = ? ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("role_code = ?;");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+
+			this.preparedStatement.setString( 1, roleDto.getRoleName());
+			this.preparedStatement.setString( 2, roleDto.getUpdateUserId());
+			this.preparedStatement.setString( 3, roleDto.getCompanyCode());
+			this.preparedStatement.setString( 4, roleDto.getRoleCode());
+			int upCnt = this.preparedStatement.executeUpdate();
+
+			if (upCnt != 1) {
+				log.error("[workflowEngine] It failed to update the application form master.");
+				log.error("[workflowEngine] roleName:" + roleDto.getRoleName());
+				log.error("[workflowEngine] updateUserId:" + roleDto.getUpdateUserId());
+				log.error("[workflowEngine] companyCode:" + roleDto.getCompanyCode());
+				log.error("[workflowEngine] roleCode:" + roleDto.getRoleCode());
+				resultDto.setStatus(false);
+				resultDto.setMessageId("E1003");
+				log.error("[workflowEngine] " + "update End");
+				return resultDto;
+			}
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "update End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "update End");
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "update End");
+		return resultDto;
+	}
+
+	/**
+	 * the appropriate role code checks in use.<br>
+	 * role code and returns true if the is not role by employees master and string.<br>
+	 * @param companyCode company code
+	 * @param roleCode role code
+	 * @return use check
+	 * @exception LaubeException
+	 */
+	@Override
+	public final boolean isOccupied(final String companyCode, final String roleCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "isOccupied Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
+			log.error("[workflowEngine] " + "isOccupied End");
+			return false;
+		}
+
+		RoleUserModel roleUserModel = new RoleUserModel();
+		resultDto = roleUserModel.findByRoleCode(companyCode, roleCode);
+
+		try {
+			if (resultDto == null){
+				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.error("[workflowEngine] " + "isOccupied End");
+				return false;
+			}else{
+				if (resultDto.getResultData() == null) {
+					log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+					log.error("[workflowEngine] " + "isOccupied End");
+					return false;
+				}else{
+					log.error("[workflowEngine] " + "isOccupied End");
+					return true;
+				}
+			}
+
+		} catch (Exception e) {
+			log.error("[workflowEngine] " + "[Exception] " + e);
+			log.error("[workflowEngine] " + "isOccupied End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "isOccupied End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+
+	/**
+	 * search for the role a master at the company code.<br>
+	 * @param companyCode company code
+	 * @return role master
+	 * @exception LaubeException
+	 */
+	@Override
+	public final ResultDto find(final String companyCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "find Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append("company_code, ");
+			sql.append("company_name, ");
+			sql.append("role_code, ");
+			sql.append("role_name ");
+			sql.append("FROM ");
+			sql.append("wkf_view_role ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? ");
+			sql.append("ORDER BY role_code");
+			sql.append(";");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
+			this.preparedStatement.setString(1, companyCode);
+			this.resultSet = this.preparedStatement.executeQuery();
+
+			if (!this.resultSet.first()) {
+				log.debug("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.debug("[workflowEngine] " + "[SQL]");
+				log.debug("[workflowEngine] " + sql.toString());
+				log.debug("[workflowEngine] " + "");
+				log.debug("[workflowEngine] " + "[Extraction condition]");
+				log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+				resultDto.setStatus(true);
+				resultDto.setMessageId("N0001");
+				log.debug("[workflowEngine] " + "find End");
+				return resultDto;
+			}
+
+			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+
+			resultDto.setStatus(true);
+			resultDto.setMessageId("N0001");
+			resultDto.setResultData(resultData);
+			log.debug("[workflowEngine] " + "find End");
+			return resultDto;
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "find End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "find End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+
+	/**
+	 * perform a full match search of role master.<br>
+	 * @param companyCode company code
+	 * @param roleCode role code
+	 * @return role master
+	 * @exception LaubeException
+	 */
+	@Override
+	public final ResultDto findByRoleCode(final String companyCode, final String roleCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "findByRoleCode Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append("company_code, ");
+			sql.append("company_name, ");
+			sql.append("role_code, ");
+			sql.append("role_name ");
+			sql.append("FROM ");
+			sql.append("wkf_view_role ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? ");
+			sql.append("AND role_code = ?");
+			sql.append("ORDER BY role_code");
+			sql.append(";");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
+			this.preparedStatement.setString(1, companyCode);
+			this.preparedStatement.setString(2, roleCode);
+
+			this.resultSet = this.preparedStatement.executeQuery();
+
+			if (!this.resultSet.first()) {
+				log.debug("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.debug("[workflowEngine] " + "[SQL]");
+				log.debug("[workflowEngine] " + sql.toString());
+				log.debug("[workflowEngine] " + "");
+				log.debug("[workflowEngine] " + "[Extraction condition]");
+				log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+				resultDto.setStatus(true);
+				resultDto.setMessageId("N0001");
+				log.debug("[workflowEngine] " + "find End");
+				return resultDto;
+			}
+
+			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+
+			resultDto.setStatus(true);
+			resultDto.setMessageId("N0001");
+			resultDto.setResultData(resultData);
+			log.debug("[workflowEngine] " + "find End");
+			return resultDto;
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "find End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "find End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+
+	/**
+	 * do the fuzzy search of role master.<br>
+	 * @param companyCode company code
+	 * @param roleName role name
+	 * @return role master list
+	 * @exception LaubeException
+	 */
+	@Override
+	public final ResultDto findByRoleName(final String companyCode, final String roleName) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "findByRoleName Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[roleName]: " + roleName);
+
+		ResultDto resultDto = new ResultDto();
+
+		try {
+			boolean isSettingYes = false;
+
+			if (LaubeUtility.isNotEmpty(roleName)){
+				isSettingYes = true;
+			}
+
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append("company_code, ");
+			sql.append("company_name, ");
+			sql.append("role_code, ");
+			sql.append("role_name ");
+			sql.append("FROM ");
+			sql.append("wkf_view_role ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? ");
+
+			if (isSettingYes){
+				sql.append("AND role_name LIKE ?");
+			}
+
+			sql.append("ORDER BY company_cde, role_code");
+			sql.append(";");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
+			this.preparedStatement.setString(1, companyCode);
+
+			if (isSettingYes){
+				this.preparedStatement.setString(2, "%" + roleName + "%");
+			}
+
+			this.resultSet = this.preparedStatement.executeQuery();
+
+			if (!this.resultSet.first()) {
+				log.debug("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.debug("[workflowEngine] " + "[SQL]");
+				log.debug("[workflowEngine] " + sql.toString());
+				log.debug("[workflowEngine] " + "");
+				log.debug("[workflowEngine] " + "[Extraction condition]");
+				log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.debug("[workflowEngine] " + "[roleName]: " + roleName);
+				resultDto.setStatus(true);
+				resultDto.setMessageId("N0001");
+				log.debug("[workflowEngine] " + "find End");
+				return resultDto;
+			}
+
+			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+
+			log.debug("[workflowEngine] " + "find End" + "[return value]:" + resultData);
+			resultDto.setStatus(true);
+			resultDto.setMessageId("N0001");
+			resultDto.setResultData(resultData);
+			log.debug("[workflowEngine] " + "find End");
+			return resultDto;
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "find End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "find End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+}

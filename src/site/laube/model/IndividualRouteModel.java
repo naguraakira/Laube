@@ -1,0 +1,551 @@
+package site.laube.model;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import site.laube.dto.LaubeDto;
+import site.laube.dto.ResultDto;
+import site.laube.dto.RouteDto;
+import site.laube.exception.LaubeException;
+import site.laube.modelinterface.RouteModelInterface;
+import site.laube.utility.LaubeUtility;
+
+/**
+ * Model class is a class for manipulating the database.<br>
+ * the class that manages the individual route master Model.<br>
+ *
+ * @version    1.0.0
+ * @since      Class deprecated in Release 1.0.0
+ * @author     Ryuta Miki of Pocket Soft Co.,Ltd
+ */
+public final class IndividualRouteModel extends RouteModel implements RouteModelInterface {
+
+	/**
+	 * to manage the log object.<br>
+	 */
+	private static Logger log = LoggerFactory.getLogger(IndividualRouteModel.class);
+
+	/**
+	 * removal of the individual route master (company units)<br>
+	 * remove all of the individual route master.<br>
+	 * @param companyCode company code
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto delete(final String companyCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "delete Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if (LaubeUtility.isBlank(companyCode)) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			return resultDto;
+		}
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("DELETE ");
+			sql.append("FROM ");
+			sql.append("wkf_individual_route ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? ");
+
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+			this.preparedStatement.setString(1, companyCode);
+			this.preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "delete End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "delete End");
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "delete End");
+		return resultDto;
+    }
+
+	/**
+	 * removal of the route master (route units)<br>
+	 * remove all of the route master.<br>
+	 * @param companyCode company code
+	 * @param routeCode route code
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto delete(final String companyCode, final String routeCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "delete Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[routeCode]: " + routeCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("DELETE ");
+			sql.append("FROM ");
+			sql.append("wkf_individual_route ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("individual_route_code = ?; ");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+			this.preparedStatement.setString(1, companyCode);
+			this.preparedStatement.setString(2, routeCode);
+			this.preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "delete End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "delete End");
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "delete End");
+		return resultDto;
+	}
+
+	/**
+	 * register the route master.<br>
+	 * @param routeDto route master
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto insert(final RouteDto routeDto) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "insert Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[routeDto]: " + routeDto);
+
+		ResultDto resultDto = new ResultDto();
+
+		if (routeDto == null) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.debug("[workflowEngine] " + "insert End");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("INSERT INTO wkf_individual_route ");
+			sql.append("(");
+			sql.append("company_code,");
+			sql.append("individual_route_code,");
+			sql.append("individual_route_name,");
+			sql.append("create_date_time,");
+			sql.append("create_user_id,");
+			sql.append("update_date_time,");
+			sql.append("update_user_id) ");
+			sql.append("VALUES(");
+			sql.append("?,");
+			sql.append("?,");
+			sql.append("?,");
+			sql.append("CURRENT_TIMESTAMP(0),");
+			sql.append("?,");
+			sql.append("CURRENT_TIMESTAMP(0),");
+			sql.append("?);");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+
+			this.preparedStatement.setString( 1, routeDto.getCompanyCode());
+			this.preparedStatement.setString( 2, routeDto.getRouteCode());
+			this.preparedStatement.setString( 3, routeDto.getRouteName());
+			this.preparedStatement.setString( 4, routeDto.getCreateUserId());
+			this.preparedStatement.setString( 5, routeDto.getUpdateUserId());
+			this.preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.debug("[workflowEngine] " + "insert End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "insert End");
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "insert End");
+		return resultDto;
+	}
+
+	/**
+	 * update the individual route master.<br>
+	 * @param routeDto route master
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto update(final RouteDto routeDto) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "update Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[routeDto]: " + routeDto);
+
+		ResultDto resultDto = new ResultDto();
+
+		if (routeDto == null) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.debug("[workflowEngine] " + "update End");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE wkf_individual_route ");
+			sql.append("SET ");
+			sql.append("individual_route_name = ?, ");
+			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
+			sql.append("update_user_id = ? ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("individual_route_code = ?;");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+
+			this.preparedStatement.setString( 1, routeDto.getRouteName());
+			this.preparedStatement.setString( 2, routeDto.getUpdateUserId());
+			this.preparedStatement.setString( 3, routeDto.getCompanyCode());
+			this.preparedStatement.setString( 4, routeDto.getRouteCode());
+			int upCnt = this.preparedStatement.executeUpdate();
+
+			if (upCnt != 1) {
+				log.error("[workflowEngine] it failed to update the application form master.");
+				log.error("[workflowEngine] routeName:" + routeDto.getRouteName());
+				log.error("[workflowEngine] updateUserId:" + routeDto.getUpdateUserId());
+				log.error("[workflowEngine] companyCode:" + routeDto.getCompanyCode());
+				log.error("[workflowEngine] grouteCode:" + routeDto.getRouteCode());
+				resultDto.setStatus(false);
+				resultDto.setMessageId("E1003");
+				log.error("[workflowEngine] " + "update End");
+				return resultDto;
+			}
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "update End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "update End");
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "update End");
+		return resultDto;
+	}
+
+	/**
+	 * spent check of the individual route master<br>
+	 * if the route is already being used in the application form by the root master, and then return true.<br>
+	 * @param companyCode company code
+	 * @param individualRouteCode individual route code
+	 * @return result
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("static-method")
+	@Override
+	public final boolean isOccupied(final String companyCode, final String individualRouteCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "delete Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[individualRouteCode]: " + individualRouteCode);
+
+		try {
+			ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
+			ResultDto resultDto = applicationFormRouteModel.findByIndividualRouteCode(companyCode, individualRouteCode);
+
+			if (resultDto == null){
+				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.error("[workflowEngine] " + "isOccupied End");
+				throw new LaubeException("the record was not found. Please investigate the cause by referring to the following.");
+			}else{
+				if (resultDto.getResultData() == null) {
+					log.error("[workflowEngine] " + "isOccupied End");
+					return false;
+				}else{
+					log.error("[workflowEngine] " + "isOccupied End");
+					return true;
+				}
+			}
+
+		} catch (Exception e) {
+			log.error("[workflowEngine] " + "[Exception] " + e);
+			log.error("[workflowEngine] " + "isOccupied End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "isOccupied End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+
+	/**
+	 * search the individual route master.<br>
+	 * @param companyCode company code
+	 * @return route master
+	 * @exception LaubeException
+	 */
+	@Override
+	public final ResultDto find(final String companyCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "find Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append("company_code, ");
+			sql.append("company_name, ");
+			sql.append("route_code, ");
+			sql.append("route_name ");
+			sql.append("FROM ");
+			sql.append("wkf_view_individual_route");
+			sql.append(" ");
+			sql.append("WHERE ");
+			sql.append("company_code\" = ? ");
+			sql.append("ORDER BY route_code");
+			sql.append(";");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
+			this.preparedStatement.setString(1, companyCode);
+			this.resultSet = this.preparedStatement.executeQuery();
+
+			if (!this.resultSet.first()) {
+				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.error("[workflowEngine] " + "[SQL]");
+				log.error("[workflowEngine] " + sql.toString());
+				log.error("[workflowEngine] " + "");
+				log.error("[workflowEngine] " + "[Extraction condition]");
+				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
+				resultDto.setStatus(false);
+				resultDto.setMessageId("E1003");
+				log.error("[workflowEngine] " + "find End");
+				return null;
+			}
+
+			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+
+			resultDto.setStatus(true);
+			resultDto.setMessageId("N0001");
+			resultDto.setResultData(resultData);
+			log.debug("[workflowEngine] " + "find End");
+			return resultDto;
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "find End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "find End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+
+	/**
+	 * search the individual route master.<br>
+	 * @param companyCode company code
+	 * @param routeCode route code
+	 * @return route master
+	 * @exception LaubeException
+	 */
+	@Override
+	public final ResultDto find(final String companyCode, final String routeCode) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "find Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.debug("[workflowEngine] " + "[routeCode]: " + routeCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.debug("[workflowEngine] " + "find End");
+			return resultDto;
+		}
+
+		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append("company_code, ");
+			sql.append("company_name, ");
+			sql.append("route_code, ");
+			sql.append("route_name ");
+			sql.append("FROM ");
+			sql.append("wkf_view_individual_route");
+			sql.append(" ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("route_code = ? ");
+			sql.append("ORDER BY \"route_code\"");
+			sql.append(";");
+
+			log.debug("[workflowEngine] SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
+			this.preparedStatement.setString(1, companyCode);
+			this.preparedStatement.setString(2, routeCode);
+			this.resultSet = this.preparedStatement.executeQuery();
+
+			if (!this.resultSet.first()) {
+				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
+				log.error("[workflowEngine] " + "[SQL]");
+				log.error("[workflowEngine] " + sql.toString());
+				log.error("[workflowEngine] " + "");
+				log.error("[workflowEngine] " + "[Extraction condition]");
+				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.error("[workflowEngine] " + "[routeCode]: " + routeCode);
+				resultDto.setStatus(false);
+				resultDto.setMessageId("E1003");
+				log.error("[workflowEngine] " + "find End");
+				return resultDto;
+			}
+
+			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+
+			resultDto.setStatus(true);
+			resultDto.setMessageId("N0001");
+			resultDto.setResultData(resultData);
+			log.debug("[workflowEngine] " + "find End");
+			return resultDto;
+
+		} catch (SQLException e) {
+			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.error("[workflowEngine] " + "find End");
+			throw new LaubeException(e);
+
+		} finally {
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (SQLException e) {
+				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.error("[workflowEngine] " + "find End");
+				throw new LaubeException(e);
+			}
+		}
+	}
+}

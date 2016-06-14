@@ -1,0 +1,28 @@
+-- パーティショニング
+
+CREATE TABLE wkf_application_object_status9( LIKE wkf_application_object INCLUDING DEFAULTS INCLUDING INDEXES, CHECK (status = 9)) INHERITS (wkf_application_object);
+CREATE TABLE wkf_application_object_status1( LIKE wkf_application_object INCLUDING DEFAULTS INCLUDING INDEXES, CHECK (status <> 9)) INHERITS (wkf_application_object);
+
+
+CREATE OR REPLACE FUNCTION wkf_application_object_insert_trigger_func()
+  RETURNS trigger AS
+$BODY$
+  DECLARE
+    child text;
+  BEGIN
+    child := 'wkf_application_object_status' || new.status;
+    EXECUTE 'INSERT INTO ' || child || ' VALUES(($1).*)' USING new;
+    RETURN NULL;
+  END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+
+
+
+CREATE TRIGGER wkf_application_object_insert_trigger
+  BEFORE INSERT
+  ON wkf_application_object
+  FOR EACH ROW
+  EXECUTE PROCEDURE wkf_application_object_insert_trigger_func();

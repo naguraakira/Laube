@@ -1,0 +1,26 @@
+CREATE TABLE wkf_activity_object_status9( LIKE wkf_activity_object INCLUDING DEFAULTS INCLUDING INDEXES, CHECK (activity_status = (2 | 3 | 9))) INHERITS (wkf_activity_object);
+CREATE TABLE wkf_activity_object_status1( LIKE wkf_activity_object INCLUDING DEFAULTS INCLUDING INDEXES, CHECK (activity_status <> (2 | 3 | 9))) INHERITS (wkf_activity_object);
+
+
+CREATE OR REPLACE FUNCTION wkf_activity_object_insert_trigger_func()
+  RETURNS trigger AS
+$BODY$
+  DECLARE
+    child text;
+  BEGIN
+    child := 'wkf_activity_object_status' || new.activity_status;
+    EXECUTE 'INSERT INTO ' || child || ' VALUES(($1).*)' USING new;
+    RETURN NULL;
+  END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+
+
+
+CREATE TRIGGER wkf_activity_object_insert_trigger
+  BEFORE INSERT
+  ON wkf_activity_object
+  FOR EACH ROW
+  EXECUTE PROCEDURE wkf_activity_object_insert_trigger_func();
