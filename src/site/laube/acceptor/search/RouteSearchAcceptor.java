@@ -49,12 +49,12 @@ public final class RouteSearchAcceptor extends SearchSystemAcceptor {
 	private String applicationFormName;
 
 	/**
-	 * 申請分類コードを管理します。<br>
+	 * to manage the application classification code<br>
 	 */
 	private String applicationClassificationCode = null;
 
 	/**
-	 * 申請分類名を管理します。<br>
+	 * to manage the application classification name<br>
 	 */
 	private String applicationClassificationName = null;
 
@@ -150,32 +150,32 @@ public final class RouteSearchAcceptor extends SearchSystemAcceptor {
 	}
 
 	/**
-	 * 申請分類コードを設定します。<br>
-	 * @param applicationClassificationCode 申請分類コード
+	 * set the application classification code.<br>
+	 * @param applicationClassificationCode application classification code
 	 */
 	public final void setApplicationClassificationCode(final String applicationClassificationCode) {
 		this.applicationClassificationCode = applicationClassificationCode;
 	}
 
 	/**
-	 * 申請分類コードを取得します。<br>
-	 * @return 申請分類コード
+	 * get the application classification code.<br>
+	 * @return application classification code
 	 */
 	public final String getApplicationClassificationCode() {
 		return this.applicationClassificationCode;
 	}
 
 	/**
-	 * 申請分類名を設定します。<br>
-	 * @param applicationClassificationName 申請分類名
+	 * set the application classification name.<br>
+	 * @param applicationClassificationName application classification name
 	 */
 	public final void setApplicationClassificationName(final String applicationClassificationName) {
 		this.applicationClassificationName = applicationClassificationName;
 	}
 
 	/**
-	 * 申請分類名を取得します。<br>
-	 * @return 申請分類名
+	 * get the application classification name.<br>
+	 * @return application classification name
 	 */
 	public final String getApplicationClassificationName() {
 		return this.applicationClassificationName;

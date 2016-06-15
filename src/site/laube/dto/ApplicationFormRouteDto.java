@@ -21,137 +21,131 @@ import site.laube.utility.LaubeUtility;
 public final class ApplicationFormRouteDto extends ApplicationFormDto {
 
 	/**
-	 * シリアルバージョンIDを管理します。<br>
+	 * to manage the serial version ID. <br>
 	 */
 	private static final long serialVersionUID = -8336258002631442544L;
 
 	/**
-	 * 部門コードを管理します。<br>
+	 * to manage the unit code. <br>
 	 */
 	private String unitCode;
 
 	/**
-	 * 部門名を管理します。<br>
+	 * to manage the unit name. <br>
 	 */
 	private String unitName;
 
 	/**
-	 * 個別ルートコードを管理します。<br>
+	 * to manage the individual route code. <br>
 	 */
 	private String individualRouteCode;
 
 	/**
-	 * 個別ルート名を管理します。<br>
+	 * to manage the individual route name. <br>
 	 */
 	private String individualRouteName;
 
 	/**
-	 * 共通ルートコードを管理します。<br>
+	 * to manage the common route code. <br>
 	 */
 	private String commonRouteCode;
 
 	/**
-	 * 共通ルート名を管理します。<br>
+	 * to manage the common route name. <br>
 	 */
 	private String commonRouteName;
 
 	/**
-	 * 部門コードを設定します。
-	 * @param unitCode 部門コード
+	 * set the unit code.<br>
+	 * @param unitCode unit code
 	 */
 	public final void setUnitCode(final String unitCode) {
 		this.unitCode = unitCode;
 	}
 
 	/**
-	 * 部門コードを取得します。
-	 *
-	 * @return 部門コード
+	 * get the unit code.<br>
+	 * @return unit code
 	 */
 	public final String getUnitCode() {
 		return this.unitCode;
 	}
 
 	/**
-	 * 部門名を設定します。
-	 * @param unitName 部門名
+	 * set the unit name.<br>
+	 * @param unitCode unit name
 	 */
 	public final void setUnitName(final String unitName) {
 		this.unitName = unitName;
 	}
 
 	/**
-	 * 部門名を取得します。
-	 *
-	 * @return 部門名
+	 * get the unit name.<br>
+	 * @return unit name
 	 */
 	public final String getUnitName() {
 		return this.unitName;
 	}
 
 	/**
-	 * 個別ルートコードを設定します。
-	 * @param individualRouteCode 個別ルートコード
+	 * set the individual route code.<br>
+	 * @param individualRouteCode individual route code
 	 */
 	public final void setIndividualRouteCode(final String individualRouteCode) {
 		this.individualRouteCode = individualRouteCode;
 	}
 
 	/**
-	 * 個別ルートコードを取得します。
-	 *
-	 * @return 個別ルートコード
+	 * get the individual route code.<br>
+	 * @return individual route code
 	 */
 	public final String getIndividualRouteCode() {
 		return this.individualRouteCode;
 	}
 
 	/**
-	 * 個別ルート名を設定します。
-	 * @param individualRouteName 個別ルート名
+	 * set the individual route name.<br>
+	 * @param individualRouteCode individual route name
 	 */
 	public final void setIndividualRouteName(final String individualRouteName) {
 		this.individualRouteName = individualRouteName;
 	}
 
 	/**
-	 * 個別ルート名を取得します。
-	 *
-	 * @return 個別ルート名
+	 * get the individual route name.<br>
+	 * @return individual route name
 	 */
 	public final String getIndividualRouteName() {
 		return this.individualRouteName;
 	}
 
 	/**
-	 * 共通ルートコードを設定します。
-	 * @param commonRouteCode 共通ルートコード
+	 * set the common route code.<br>
+	 * @param commonRouteCode common route code
 	 */
 	public final void setCommonRouteCode(final String commonRouteCode) {
 		this.commonRouteCode = commonRouteCode;
 	}
 
 	/**
-	 * 共通ルートコードを取得します。
-	 *
-	 * @return 共通ルートコード
+	 * get the common route code.<br>
+	 * @return common route code
 	 */
 	public final String getCommonRouteCode() {
 		return this.commonRouteCode;
 	}
 
 	/**
-	 * 共通ルート名を設定します。
-	 * @param commonRouteName 共通ルート名
+	 * set the common route name.<br>
+	 * @param commonRouteName common route name
 	 */
 	public void setCommonRouteName(String commonRouteName) {
 		this.commonRouteName = commonRouteName;
 	}
 
 	/**
-	 * 共通ルート名を取得します。
-	 *
-	 * @return 共通ルート名
+	 * get the common route name.<br>
+	 * @return common route name
 	 */
 	public String getCommonRouteName() {
 		return this.commonRouteName;

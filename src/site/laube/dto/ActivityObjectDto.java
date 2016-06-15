@@ -476,16 +476,16 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	}
 
 	/**
-	 * 申請書の到着日を設定します。<br>
-	 * @param reachingDate 申請書の到着日
+	 * set the reaching date.<br>
+	 * @param reachingDate reaching date
 	 */
 	public void setReachingDate(Timestamp reachingDate) {
 		this.reachingDate = reachingDate;
 	}
 
 	/**
-	 * get the application form the date of arrival.<br>
-	 * @return application form the date of arrival
+	 * get the reaching date.<br>
+	 * @return reaching date
 	 */
 	public Timestamp getReachingDate() {
 		return this.reachingDate;

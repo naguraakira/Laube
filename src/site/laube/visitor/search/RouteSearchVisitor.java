@@ -919,7 +919,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		}
 
 		if (resultDto.getMessageId().equals("N0002")) {
-			// 申請分類別ルートマスタを検索してください。
 			return resultDto;
 		}
 
