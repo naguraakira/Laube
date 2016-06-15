@@ -22,121 +22,116 @@ import site.laube.utility.LaubeUtility;
 public final class DeputyApprovelDto extends UserDto {
 
 	/**
-	 * シリアルバージョンIDを管理します。<br>
+	 * to manage the serial version ID. <br>
 	 */
 	private static final long serialVersionUID = -5313076077453748225L;
 
 	/**
-	 * 代理承認者の会社コードを管理します。<br>
+	 * to manage the deputy approverl company code. <br>
 	 */
 	private String deputyApproverlCompanyCode;
 
 	/**
-	 * 代理承認者の部門コードを管理します。<br>
+	 * to manage the deputy approverl unit code. <br>
 	 */
 	private String deputyApproverlUnitCode;
 
 	/**
-	 * 代理承認者の社員番号を管理します。<br>
+	 * to manage the deputy approverl user code. <br>
 	 */
 	private String deputyApproverlUserCode;
 
 	/**
-	 * 代理承認者の社員名を管理します。<br>
+	 * to manage the deputy approverl user name. <br>
 	 */
 	private String deputyApproverlUserName;
 
 	/**
-	 * 代理承認の理由を管理します。<br>
+	 * to manage the deputy contents. <br>
 	 */
 	private String deputyContents;
 
 	/**
-	 * 代理承認者の会社コードを設定します。<br>
-	 * @param deputyApproverlCompanyCode 代理承認者の会社コード
+	 * set the deputy approverl company code.<br>
+	 * @param deputyApproverlCompanyCode deputy approverl company code
 	 */
 	public final void setDeputyApproverlCompanyCode(final String deputyApproverlCompanyCode) {
 		this.deputyApproverlCompanyCode = deputyApproverlCompanyCode;
 	}
 
 	/**
-	 * 代理承認者の会社コードを取得します。<br>
-	 *
-	 * @return 代理承認者の会社コード
+	 * get the deputy approverl company code.<br>
+	 * @return deputy approverl company code
 	 */
 	public final String getDeputyApproverlCompanyCode() {
 		return this.deputyApproverlCompanyCode;
 	}
 
 	/**
-	 * 代理承認者の部門コードを設定します。<br>
-	 * @param deputyApproverlUnitCode 代理承認者の部門コード
+	 * set the deputy approverl unit code.<br>
+	 * @param deputyApproverlUnitCode deputy approverl unit code
 	 */
 	public final void setDeputyApproverlUnitCode(final String deputyApproverlUnitCode) {
 		this.deputyApproverlUnitCode = deputyApproverlUnitCode;
 	}
 
 	/**
-	 * 代理承認者の部門コードを取得します。<br>
-	 *
-	 * @return 代理承認者の部門コード
+	 * get the deputy approverl unit code.<br>
+	 * @return deputy approverl unit code
 	 */
 	public final String getDeputyApproverlUnitCode() {
 		return this.deputyApproverlUnitCode;
 	}
 
 	/**
-	 * 代理承認者の社員番号を設定します。<br>
-	 * @param deputyApproverlUserCode 代理承認者の社員番号
+	 * set the deputy approverl user code.<br>
+	 * @param deputyApproverlUnitCode deputy approverl user code
 	 */
 	public final void setDeputyApproverlUserCode(final String deputyApproverlUserCode) {
 		this.deputyApproverlUserCode = deputyApproverlUserCode;
 	}
 
 	/**
-	 * 代理承認者の社員番号を取得します。<br>
-	 *
-	 * @return 代理承認者の社員番号
+	 * get the deputy approverl user code.<br>
+	 * @return deputy approverl user code
 	 */
 	public final String getDeputyApproverlUserCode() {
 		return this.deputyApproverlUserCode;
 	}
 
 	/**
-	 * 代理承認者の社員名を設定します。<br>
-	 * @param deputyApproverlUserName 代理承認者の社員名
+	 * set the deputy approverl user name.<br>
+	 * @param deputyApproverlUserName deputy approverl user name
 	 */
 	public final void setDeputyApproverlUserName(final String deputyApproverlUserName) {
 		this.deputyApproverlUserName = deputyApproverlUserName;
 	}
 
 	/**
-	 * 代理承認者の社員名をを取得します。<br>
-	 *
-	 * @return 代理承認者の社員名
+	 * get the deputy approverl user name.<br>
+	 * @return deputy approverl user name
 	 */
 	public final String getDeputyApproverlUserName() {
 		return this.deputyApproverlUserName;
 	}
 
 	/**
-	 * 代理承認の理由を設定します。<br>
-	 * @param deputyContents 代理承認の理由
+	 * set the deputy approverl contents.<br>
+	 * @param deputyApproverlUserName deputy contents
 	 */
 	public final void setDeputyContents(final String deputyContents) {
 		this.deputyContents = deputyContents;
 	}
 
 	/**
-	 * 代理承認者の社員名を取得します。<br>
-	 *
-	 * @return 代理承認者の社員名
+	 * get the deputy approverl contents.<br>
+	 * @return deputy approverl contents
 	 */
 	public final String getDeputyContents() {
 		return this.deputyContents;
 	}
 
-	/* (非 Javadoc)
+	/*
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

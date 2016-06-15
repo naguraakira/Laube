@@ -26,92 +26,90 @@ public final class RoleUserDto extends RoleDto {
 	private static final long serialVersionUID = 6539232413121478335L;
 
 	/**
-	 * 部門コードを管理します。<br>
+	 * to manage the unit code.<br>
 	 */
 	private String unitCode;
 
 	/**
-	 * 部門名を管理します。<br>
+	 * to manage the unit name.<br>
 	 */
 	private String unitName;
 
 	/**
-	 * 社員番号を管理します。<br>
+	 * to manage the user code.<br>
 	 */
 	private String userCode;
 
 	/**
-	 * 社員名を管理します。<br>
+	 * to manage the user name.<br>
 	 */
 	private String userName;
 
 	/**
-	 * 部門コードを設定します。
-	 * @param unitCode 部門コード
+	 * set the unit code.<br>
+	 * @param unitCode unit code
 	 */
 	public final void setUnitCode(final String unitCode) {
 		this.unitCode = unitCode;
 	}
 
 	/**
-	 * 部門コードを取得します。<br>
-	 * @return 部門コード
+	 * get the unit code.<br>
+	 * @return unit code
 	 */
 	public final String getUnitCode() {
 		return this.unitCode;
 	}
 
 	/**
-	 * 部門名を設定します。<br>
-	 * @param unitName 部門名
+	 * set the unit name.<br>
+	 * @param unitCode unit name
 	 */
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
 	}
 
 	/**
-	 * 部門名を取得します。<br>
-	 *
-	 * @return 部門名
+	 * get the unit name.<br>
+	 * @return unit name
 	 */
 	public String getUnitName() {
 		return this.unitName;
 	}
 
 	/**
-	 * 社員番号を設定します。<br>
-	 * @param userCode 社員番号
+	 * set the user code.<br>
+	 * @param userCode user code
 	 */
 	public final void setUserCode(final String userCode) {
 		this.userCode = userCode;
 	}
 
 	/**
-	 * 社員番号を取得します。<br>
-	 * @return 社員番号
+	 * get the user code.<br>
+	 * @return user code
 	 */
 	public final String getUserCode() {
 		return this.userCode;
 	}
 
 	/**
-	 * 社員名を設定します。<br>
-	 * @param userName 社員名
+	 * set the user name.<br>
+	 * @param userCode user name
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
 	/**
-	 * 社員名を取得します。<br>
-	 *
-	 * @return 社員名
+	 * get the user name.<br>
+	 * @return user name
 	 */
 	public String getUserName() {
 		return this.userName;
 	}
 
-	/* (非 Javadoc)
+	/*
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
