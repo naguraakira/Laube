@@ -520,8 +520,8 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 	/**
 	 * search the application form master.<br>
 	 * @param companyCode Company code
-	 * @param applicationFormCode Application code
-	 * @return Application form master
+	 * @param applicationClassificationCode application classification code
+	 * @return ResultDto
 	 * @exception LaubeException
 	 */
 	@SuppressWarnings("nls")

@@ -47,7 +47,7 @@ public class UnitDto extends CompanyDto {
 
 	/**
 	 * set the unit code.<br>
-	 * @param unit code
+	 * @param unitCode unit code
 	 */
 	public final void setUnitCode(final String unitCode) {
 		this.unitCode = unitCode;
@@ -80,7 +80,7 @@ public class UnitDto extends CompanyDto {
 
 	/**
 	 * set the manager code.<br>
-	 * @param manager code
+	 * @param managerCode manager code
 	 */
 	public final void setManagerCode(final String managerCode) {
 		this.managerCode = managerCode;
@@ -96,7 +96,7 @@ public class UnitDto extends CompanyDto {
 
 	/**
 	 * set the manager name.<br>
-	 * @param managerCode manager name
+	 * @param managerName manager name
 	 */
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;

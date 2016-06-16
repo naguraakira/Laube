@@ -149,7 +149,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the route Type.<br>
-	 * @param routeType
+	 * @param routeType route type
 	 */
 	public final void setRouteType(final int routeType) {
 		this.routeType = routeType;
@@ -157,7 +157,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the route Type.<br>
-	 * @param routeType
+	 * @param routeType route type
 	 */
 	public final void setRouteType(final RouteType routeType) {
 
@@ -213,7 +213,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the approval unit Code.<br>
-	 * @param unitCode approval unit Code
+	 * @param approvalUnitCode approval unit Code
 	 */
 	public final void setApprovalUnitCode(final String approvalUnitCode) {
 
@@ -263,7 +263,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the deputy approval Company Code.<br>
-	 * @param deputy approval Company Code
+	 * @param deputyApprovalCompanyCode deputy approval Company Code
 	 */
 	public final void setDeputyApprovalCompanyCode(final String deputyApprovalCompanyCode) {
 
@@ -288,7 +288,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the deputy approval unit Code.<br>
-	 * @param deputy approval unit Code
+	 * @param deputyApprovalUnitCode deputy approval unit Code
 	 */
 	public final void setDeputyApprovalUnitCode(final String deputyApprovalUnitCode) {
 
@@ -313,7 +313,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the deputy approval User Code.<br>
-	 * @param deputy Approval User Code
+	 * @param deputyApprovalUserCode deputy Approval User Code
 	 */
 	public final void setDeputyApprovalUserCode(final String deputyApprovalUserCode) {
 
@@ -338,7 +338,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the deputy approval Comment.<br>
-	 * @param deputy Approval Comment
+	 * @param deputyApprovalComment deputy Approval Comment
 	 */
 	public final void setDeputyApprovalComment(final String deputyApprovalComment) {
 
@@ -399,7 +399,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the party Transit code connector.<br>
-	 * @param partyTransitCodeConnector party Transit code connector
+	 * @param partyTansitCodeConnector party transit code connector
 	 */
 	public final void setPartyTransitCodeConnector(final int partyTansitCodeConnector) {
 		this.partyTansitCodeConnector = partyTansitCodeConnector;

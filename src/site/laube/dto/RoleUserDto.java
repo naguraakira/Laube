@@ -63,7 +63,7 @@ public final class RoleUserDto extends RoleDto {
 
 	/**
 	 * set the unit name.<br>
-	 * @param unitCode unit name
+	 * @param unitName unit name
 	 */
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
@@ -95,7 +95,7 @@ public final class RoleUserDto extends RoleDto {
 
 	/**
 	 * set the user name.<br>
-	 * @param userCode user name
+	 * @param userName user name
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;

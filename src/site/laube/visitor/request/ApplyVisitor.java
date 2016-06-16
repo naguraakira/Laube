@@ -52,7 +52,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 	/**
 	 * Do the application work.<br>
-	 * @param laubeRequestAcceptor
+	 * @param requestSystemAcceptor requests system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

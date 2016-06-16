@@ -354,7 +354,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 	 * Search the appended object.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number
-	 * @return result
+	 * @return ResultDto
 	 * @exception LaubeException
 	 */
 	@SuppressWarnings("nls")

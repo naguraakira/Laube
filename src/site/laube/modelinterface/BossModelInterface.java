@@ -43,8 +43,8 @@ public interface BossModelInterface {
 
 	/**
 	 * register the boss master.<br>
-	 * @param applicationFormDto Application form master
-	 * @return result
+	 * @param bossDto boss dto
+	 * @return ResultDto
 	 * @throws LaubeException
 	 */
 	public abstract ResultDto insert(final BossDto bossDto) throws LaubeException;

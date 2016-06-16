@@ -35,11 +35,10 @@ public interface ActivityObjectModelInterface {
 
 	/**
 	 * register the activity object.<br>
-	 * @param ActivityObjectDto activity object dto
-	 * @return result
+	 * @param activityObjectDto activity object dto
+	 * @return ResultDto
 	 * @throws LaubeException
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
 	public abstract ResultDto insert(final ActivityObjectDto activityObjectDto) throws LaubeException;
 
 	/**
@@ -52,7 +51,7 @@ public interface ActivityObjectModelInterface {
 	public abstract ResultDto update(final ActivityObjectDto activityObjectDto) throws LaubeException;
 
 	/**
-	 * delete the activity object.<<br>
+	 * delete the activity object.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @return result
@@ -62,12 +61,13 @@ public interface ActivityObjectModelInterface {
 	public abstract ResultDto delete(final String companyCode, final int applicationNumber) throws LaubeException;
 
 	/**
-	 * find the activity object.<<br>
+	 * find the activity object.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @param approvalCompanyCode approval company code
 	 * @param approvalUnitCode approval unit code
-	 * @param approvalUserCode approval userCode code
+	 * @param approvalUserCode approval user code
+	 * @param applovalUserStatus apploval user status
 	 * @return result
 	 * @throws LaubeException
 	 */
@@ -75,7 +75,7 @@ public interface ActivityObjectModelInterface {
 	public abstract ResultDto find(final String companyCode, final int applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException;
 
 	/**
-	 * find the activity object by arrival.<<br>
+	 * find the activity object by arrival.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @param approvalCompanyCode approval company code

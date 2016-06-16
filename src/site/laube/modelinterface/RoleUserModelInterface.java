@@ -35,7 +35,7 @@ public interface RoleUserModelInterface {
 
 	/**
 	 * register the role by the employee master.<br>
-	 * @param userRoleDto user role Master
+	 * @param roleUserDto role user dto
 	 * @return result
 	 * @throws LaubeException
 	 */
@@ -43,7 +43,7 @@ public interface RoleUserModelInterface {
 
 	/**
 	 * update the role by the employee master.<br>
-	 * @param userRoleDto user role master
+	 * @param roleUserDto role user dto
 	 * @return result
 	 * @throws LaubeException
 	 */
@@ -52,7 +52,7 @@ public interface RoleUserModelInterface {
 	/**
 	 * search only single item to the appropriate record.<br>
 	 * @param companyCode company code
-	 * @param roleCode    role code
+	 * @param roleName    role name
 	 * @param userCode    user code
 	 * @return role user master
 	 * @exception LaubeException

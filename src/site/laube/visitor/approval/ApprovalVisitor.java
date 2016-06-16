@@ -51,7 +51,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 
 	/**
 	 * Do the application work.<br>
-	 * @param laubeRequestAcceptor
+	 * @param approvalSystemAcceptor approval system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

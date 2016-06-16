@@ -72,7 +72,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 	/**
 	 * Do the application work.<br>
-	 * @param laubeRequestAcceptor
+	 * @param searchSystemAcceptor searchs system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

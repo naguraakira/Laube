@@ -381,7 +381,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 
 	/**
 	 * set the proxy approval reason.<br>
-	 * @param deputyComment deputy comment
+	 * @param deputyApprovalComment deputy approval comment
 	 */
 	public void setDeputyApprovalComment(String deputyApprovalComment) {
 		this.deputyApprovalComment = deputyApprovalComment;
@@ -461,7 +461,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 
 	/**
 	 * set the party Transit code connector.<br>
-	 * @param partyTransitCodeConnector party Transit code connector
+	 * @param partyTansitCodeConnector party Transit code connector
 	 */
 	public final void setPartyTransitCodeConnector(final int partyTansitCodeConnector) {
 		this.partyTansitCodeConnector = partyTansitCodeConnector;

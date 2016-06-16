@@ -22,419 +22,414 @@ import site.laube.utility.LaubeUtility;
 public class ApplicationObjectDto extends CompanyDto {
 
 	/**
-	 * シリアルバージョンIDを管理します。<br>
+	 * to manage the serial version ID. <br>
 	 */
 	private static final long serialVersionUID = -3758242472539403511L;
 
 	/**
-	 * 申請番号を管理します。<br>
+	 * to manage the application number. <br>
 	 */
 	private int applicationNumber;
 
 	/**
-	 * 再申請前の申請番号を管理します。<br>
+	 * to manage the reapplication number. <br>
 	 */
 	private int reapplicationNumber;
 
 	/**
-	 * 申請分類コードを管理します。<br>
+	 * to manage the application classification code. <br>
 	 */
 	private String applicationClassificationCode;
 
 	/**
-	 * 申請分類名を管理します。<br>
+	 * to manage the application classification name. <br>
 	 */
 	private String applicationClassificationName;
 
 	/**
-	 * 申請書コードを管理します。<br>
+	 * to manage the application form code. <br>
 	 */
 	private String applicationFormCode;
 
 	/**
-	 * 申請書名を管理します。<br>
+	 * to manage the application form name. <br>
 	 */
 	private String applicationFormName;
 
 	/**
-	 * 申請者の会社コードを管理します。<br>
+	 * to manage the apply company code. <br>
 	 */
 	private String applyCompanyCode;
 
 	/**
-	 * 申請者の会社名を管理します。<br>
+	 * to manage the apply company name. <br>
 	 */
 	private String applyCompanyName;
 
 	/**
-	 * 申請者の部門コードを管理します。<br>
+	 * to manage the apply unit code. <br>
 	 */
 	private String applyUnitCode;
 
 	/**
-	 * 申請者の部門名を管理します。<br>
+	 * to manage the apply unit name. <br>
 	 */
 	private String applyUnitName;
 
 	/**
-	 * 申請者の社員番号を管理します。<br>
+	 * to manage the apply user code. <br>
 	 */
 	private String applyUserCode;
 
 	/**
-	 * 申請者の社員名を管理します。<br>
+	 * to manage the apply user name. <br>
 	 */
 	private String applyUserName;
 
 	/**
-	 * 代理申請者の会社コードを管理します。<br>
+	 * to manage the deputy apply company code. <br>
 	 */
 	private String deputyApplyCompanyCode;
 
 	/**
-	 * 代理申請者の会社名を管理します。<br>
+	 * to manage the deputy apply company name. <br>
 	 */
 	private String deputyApplyCompanyName;
 
 	/**
-	 * 代理申請者の部門コードを管理します。<br>
+	 * to manage the deputy apply unit code. <br>
 	 */
 	private String deputyApplyUnitCode;
 
 	/**
-	 * 代理申請者の部門名を管理します。<br>
+	 * to manage the deputy apply unit name. <br>
 	 */
 	private String deputyApplyUnitName;
 
 	/**
-	 * 代理申請者の社員番号を管理します。<br>
+	 * to manage the deputy apply user code. <br>
 	 */
 	private String deputyApplyUserCode;
 
 	/**
-	 * 代理申請者の社員名を管理します。<br>
+	 * to manage the deputy apply user name. <br>
 	 */
 	private String deputyApplyUserName;
 
 	/**
-	 * 申請日を管理します。<br>
+	 * to manage the apply date. <br>
 	 */
 	private String applyDate;
 
 	/**
-	 * 申請書の状態を管理します。<br>
+	 * to manage the application status. <br>
 	 */
 	private int applicationStatus;
 
 	/**
-	 * 申請書の状態名を管理します。<br>
+	 * to manage the application status name. <br>
 	 */
 	private String applicationStatusName;
 
 	/**
-	 * 申請番号を設定します。<br>
-	 * @param applicationNumber 申請番号
+	 * set the applicationn number.<br>
+	 * @param applicationNumber applicationn number
 	 */
 	public final void setApplicationNumber(final int applicationNumber) {
 		this.applicationNumber = applicationNumber;
 	}
 
 	/**
-	 * 申請番号を取得します。<br>
-	 *
-	 * @return 申請番号
+	 * get the applicationn number.<br>
+	 * @return applicationn number
 	 */
 	public final int getApplicationNumber() {
 		return this.applicationNumber;
 	}
 
 	/**
-	 * 再申請前の申請番号を設定します。<br>
-	 * @param reApplicationNumber 再申請前の申請番号
+	 * set the reapplicationn number.<br>
+	 * @param reapplicationNumber reapplicationn number
 	 */
 	public final void setReapplicationNumber(final int reapplicationNumber) {
 		this.reapplicationNumber = reapplicationNumber;
 	}
 
 	/**
-	 * 再申請前の申請番号を取得します。<br>
-	 *
-	 * @return 再申請前の申請番号
+	 * get the reapplicationn number.<br>
+	 * @return reapplicationn number
 	 */
 	public final int getReapplicationNumber() {
 		return this.reapplicationNumber;
 	}
 
 	/**
-	 * 申請分類コードを設定します。<br>
-	 * @param applicationClassificationCode 申請分類コード
+	 * set the application classification code.<br>
+	 * @param applicationClassificationCode application classification code
 	 */
 	public final void setApplicationClassificationCode(final String applicationClassificationCode) {
 		this.applicationClassificationCode = applicationClassificationCode;
 	}
 
 	/**
-	 * 申請分類コードを取得します。<br>
-	 * @return 申請分類コード
+	 * get the application classification code.<br>
+	 * @return application classification code
 	 */
 	public final String getApplicationClassificationCode() {
 		return this.applicationClassificationCode;
 	}
 
 	/**
-	 * 申請分類名を設定します。<br>
-	 * @param applicationClassificationName 申請分類名
+	 * set the application classification name.<br>
+	 * @param applicationClassificationName application classification name
 	 */
 	public final void setApplicationClassificationName(final String applicationClassificationName) {
 		this.applicationClassificationName = applicationClassificationName;
 	}
 
 	/**
-	 * 申請分類名を取得します。<br>
-	 * @return 申請分類名
+	 * get the application classification name.<br>
+	 * @return application classification name
 	 */
 	public final String getApplicationClassificationName() {
 		return this.applicationClassificationName;
 	}
 
 	/**
-	 * 申請書コードを設定します。<br>
-	 * @param applicationFormCode 申請書コード
+	 * set the application form code.<br>
+	 * @param applicationFormCode application form code
 	 */
 	public final void setApplicationFormCode(final String applicationFormCode) {
 		this.applicationFormCode = applicationFormCode;
 	}
 
 	/**
-	 * 申請書コードを取得します。<br>
-	 *
-	 * @return 申請書コード
+	 * get the application form code.<br>
+	 * @return application form code
 	 */
 	public final String getApplicationFormCode() {
 		return this.applicationFormCode;
 	}
 
 	/**
-	 * 申請書名を設定します。<br>
-	 * @param applicationFormName 申請書名
+	 * set the application form name.<br>
+	 * @param applicationFormName application form name
 	 */
 	public final void setApplicationFormName(final String applicationFormName) {
 		this.applicationFormName = applicationFormName;
 	}
 
 	/**
-	 * 申請書名を取得します。<br>
-	 *
-	 * @return 申請書名
+	 * get the application form name.<br>
+	 * @return application form name
 	 */
 	public final String getApplicationFormName() {
 		return this.applicationFormName;
 	}
 
 	/**
-	 * 申請者の会社コードを設定します。<br>
-	 * @param applyCompanyCode 申請者の会社コード
+	 * set the apply company code.<br>
+	 * @param applyCompanyCode apply company code
 	 */
 	public final void setApplyCompanyCode(final String applyCompanyCode) {
 		this.applyCompanyCode = applyCompanyCode;
 	}
 
 	/**
-	 * 申請者の会社コードを取得します。<br>
-	 * @return 申請者の会社コード
+	 * get the apply company code.<br>
+	 * @return apply company code
 	 */
 	public final String getApplyCompanyCode() {
 		return this.applyCompanyCode;
 	}
 
 	/**
-	 * 申請者の会社名を設定します。<br>
-	 * @param applyCompanyName 申請者の会社名
+	 * set the apply company name.<br>
+	 * @param applyCompanyName apply company name
 	 */
 	public final void setApplyCompanyName(final String applyCompanyName) {
 		this.applyCompanyName = applyCompanyName;
 	}
 
 	/**
-	 * 申請者の会社名を取得します。<br>
-	 * @return 申請者の会社名
+	 * get the apply company name.<br>
+	 * @return apply company name
 	 */
 	public final String getApplyCompanyName() {
 		return this.applyCompanyName;
 	}
 
 	/**
-	 * 申請者の部門コードを設定します。<br>
-	 * @param applyUnitCode 申請者の部門コード
+	 * set the apply unit code.<br>
+	 * @param applyUnitCode apply unit code
 	 */
 	public final void setApplyUnitCode(final String applyUnitCode) {
 		this.applyUnitCode = applyUnitCode;
 	}
 
 	/**
-	 * 申請者の部門コードを取得します。<br>
-	 * @return 申請者の部門コード
+	 * get the apply unit code.<br>
+	 * @return apply unit code
 	 */
 	public final String getApplyUnitCode() {
 		return this.applyUnitCode;
 	}
 
 	/**
-	 * 申請者の部門名を設定します。<br>
-	 * @param appUnitName 申請者の部門名
+	 * set the apply unit name.<br>
+	 * @param applyUnitName apply unit name
 	 */
 	public final void setApplyUnitName(final String applyUnitName) {
 		this.applyUnitName = applyUnitName;
 	}
 
 	/**
-	 * 申請者の部門名を取得します。<br>
-	 * @return 申請者の部門名
+	 * get the apply unit name.<br>
+	 * @return apply unit name
 	 */
 	public final String getApplyUnitName() {
 		return this.applyUnitName;
 	}
 
 	/**
-	 * 申請者の社員番号を設定します。<br>
-	 * @param appUserCode 申請者の社員番号
+	 * set the apply user code.<br>
+	 * @param applyUserCode apply user code
 	 */
 	public final void setApplyUserCode(final String applyUserCode) {
 		this.applyUserCode = applyUserCode;
 	}
 
 	/**
-	 * 申請者の社員番号を取得します。<br>
-	 * @return 申請者の社員番号
+	 * get the apply user code.<br>
+	 * @return apply user code
 	 */
 	public final String getApplyUserCode() {
 		return this.applyUserCode;
 	}
 
 	/**
-	 * 申請者の社員名を設定します。<br>
-	 * @param appUserName 申請者の社員名
+	 * set the apply user name.<br>
+	 * @param applyUserName apply user name
 	 */
 	public final void setApplyUserName(final String applyUserName) {
 		this.applyUserName = applyUserName;
 	}
 
 	/**
-	 * 申請者の社員名を取得します。<br>
-	 * @return 申請者の社員名
+	 * get the apply user name.<br>
+	 * @return apply user name
 	 */
 	public final String getApplyUserName() {
 		return this.applyUserName;
 	}
 
 	/**
-	 * 代理申請者の会社コードを設定します。<br>
-	 * @param deputyApplyCompanyCode 代理申請者の会社コード
+	 * set the deputy apply company code.<br>
+	 * @param deputyApplyCompanyCode deputy apply company code
 	 */
 	public final void setDeputyApplyCompanyCode(final String deputyApplyCompanyCode) {
 		this.deputyApplyCompanyCode = deputyApplyCompanyCode;
 	}
 
 	/**
-	 * 代理申請者の会社コードを取得します。<br>
-	 * @return 代理申請者の会社コード
+	 * get the deputy apply company code.<br>
+	 * @return deputy apply company code
 	 */
 	public final String getDeputyApplyCompanyCode() {
 		return this.deputyApplyCompanyCode;
 	}
 
 	/**
-	 * 代理申請者の会社名を設定します。<br>
-	 * @param deputyApplyCompanyName 代理申請者の会社名
+	 * set the deputy apply company name.<br>
+	 * @param deputyApplyCompanyName deputy apply company name
 	 */
 	public final void setDeputyApplyCompanyName(final String deputyApplyCompanyName) {
 		this.deputyApplyCompanyName = deputyApplyCompanyName;
 	}
 
 	/**
-	 * 代理申請者の会社名を取得します。<br>
-	 * @return 代理申請者の会社名
+	 * get the deputy apply company name.<br>
+	 * @return deputy apply company name
 	 */
 	public final String getDeputyApplyCompanyName() {
 		return this.deputyApplyCompanyName;
 	}
 
 	/**
-	 * 代理申請者の部門コードを設定します。<br>
-	 * @param deputyApplyUnitCode 代理申請者の部門コード
+	 * set the deputy apply unit code.<br>
+	 * @param deputyApplyUnitCode deputy apply unit code
 	 */
 	public final void setDeputyApplyUnitCode(final String deputyApplyUnitCode) {
 		this.deputyApplyUnitCode = deputyApplyUnitCode;
 	}
 
 	/**
-	 * 代理申請者の部門コードを取得します。<br>
-	 * @return 代理申請者の部門コード
+	 * get the deputy apply unit code.<br>
+	 * @return deputy apply unit code
 	 */
 	public final String getDeputyApplyUnitCode() {
 		return this.deputyApplyUnitCode;
 	}
 
 	/**
-	 * 代理申請者の部門名を設定します。<br>
-	 * @param deputyAppUnitName 代理申請者の部門名
+	 * set the deputy apply unit name.<br>
+	 * @param deputyApplyUnitName deputy apply unit name
 	 */
 	public final void setDeputyApplyUnitName(final String deputyApplyUnitName) {
 		this.deputyApplyUnitName = deputyApplyUnitName;
 	}
 
 	/**
-	 * 代理申請者の部門名を取得します。<br>
-	 * @return 代理申請者の部門名
+	 * get the deputy apply unit name.<br>
+	 * @return deputy apply unit name
 	 */
 	public final String getDeputyApplyUnitName() {
 		return this.deputyApplyUnitName;
 	}
 
 	/**
-	 * 代理申請者の社員番号を設定します。<br>
-	 * @param deputyAppUserCode 代理申請者の社員番号
+	 * set the deputy apply user code.<br>
+	 * @param deputyApplyUserCode deputy apply user code
 	 */
 	public final void setDeputyApplyUserCode(final String deputyApplyUserCode) {
 		this.deputyApplyUserCode = deputyApplyUserCode;
 	}
 
 	/**
-	 * 代理申請者の社員番号を取得します。<br>
-	 * @return 代理申請者の社員番号
+	 * get the deputy apply user code.<br>
+	 * @return deputy apply user code
 	 */
 	public final String getDeputyApplyUserCode() {
 		return this.deputyApplyUserCode;
 	}
 
 	/**
-	 * 代理申請者の社員名を設定します。<br>
-	 * @return 代理申請者の社員名
+	 * get the deputy apply user name.<br>
+	 * @return deputy apply user name
 	 */
 	public final String getDeputyApplyUserName() {
 		return this.deputyApplyUserName;
 	}
 
 	/**
-	 * 代理申請者の社員名を取得します。<br>
-	 * @param deputyAppUserName 代理申請者の社員名
+	 * set the deputy apply user name.<br>
+	 * @param deputyApplyUserName deputy apply user name
 	 */
 	public final void setDeputyApplyUserName(final String deputyApplyUserName) {
 		this.deputyApplyUserName = deputyApplyUserName;
 	}
 
 	/**
-	 * 申請日を設定します。<br>
-	 * @param applyDate 申請日
+	 * set the apply date.<br>
+	 * @param applyDate apply date
 	 */
 	public final void setApplyDate(final String applyDate) {
 		this.applyDate = applyDate;
 	}
 
 	/**
-	 * 申請日を取得します。<br>
-	 *
-	 * @return 申請日
+	 * get the apply date.<br>
+	 * @return apply date
 	 */
 	public final String getApplyDate() {
 
@@ -445,39 +440,38 @@ public class ApplicationObjectDto extends CompanyDto {
 	}
 
 	/**
-	 * 申請書の状態を設定します。<br>
-	 * @param applicationStatus 申請書の状態
+	 * set the application status.<br>
+	 * @param applicationStatus application status
 	 */
 	public final void setApplicationStatus(final int applicationStatus) {
 		this.applicationStatus = applicationStatus;
 	}
 
 	/**
-	 * 申請書の状態を取得します。<br>
-	 *
-	 * @return 申請書の状態
+	 * get the application status.<br>
+	 * @return application status
 	 */
 	public final int getApplicationStatus() {
 		return this.applicationStatus;
 	}
 
 	/**
-	 * 申請書の状態名を設定します。<br>
-	 * @param applicationStatusName 申請書の状態名
+	 * set the application status name.<br>
+	 * @param applicationStatusName application status name
 	 */
 	public void setApplicationStatusName(String applicationStatusName) {
 		this.applicationStatusName = applicationStatusName;
 	}
 
 	/**
-	 * 申請書の状態名を取得します。<br>
-	 * @return applicationStatusName
+	 * get the application status name.<br>
+	 * @return application status name
 	 */
 	public String getApplicationStatusName() {
 		return this.applicationStatusName;
 	}
 
-	/* (非 Javadoc)
+	/*
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

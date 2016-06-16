@@ -148,16 +148,16 @@ public class ApplicationFormDto extends CompanyDto {
 	}
 
 	/**
-	 * Set the pull-up approval flag.<br>
-	 * @param isPpullingFlag pull-up approval flag
+	 * Set the pulling flag.<br>
+	 * @param pullingFlag pulling flag
 	 */
 	public final void setPullingFlag(final boolean pullingFlag) {
 		this.pullingFlag = pullingFlag;
 	}
 
 	/**
-	 * Get the pull-up approval flag.<br>
-	 * @return pull-up approval flag
+	 * Get the pulling flag.<br>
+	 * @return pulling flag
 	 */
 	public final boolean isPpullingFlag() {
 		return this.pullingFlag;

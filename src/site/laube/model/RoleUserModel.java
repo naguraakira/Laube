@@ -110,7 +110,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 
 	/**
 	 * register the role by the employee master.<br>
-	 * @param userRoleDto user role Master
+	 * @param roleUserDto role user dto
 	 * @return result
 	 * @throws LaubeException
 	 */
@@ -190,7 +190,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 
 	/**
 	 * update the role by the employee master.<br>
-	 * @param userRoleDto user role master
+	 * @param roleUserDto role user dto
 	 * @return result
 	 * @throws LaubeException
 	 */

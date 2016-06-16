@@ -218,8 +218,8 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
    }
 
 	/**
-	 * register the activity master.<br>
-	 * @param ActivityDto activity master
+	 * register the activityd dto.<br>
+	 * @param activityDto activityd dto
 	 * @return result
 	 * @throws LaubeException
 	 */
@@ -291,8 +291,8 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	}
 
 	/**
-	 * update the activity master.<br>
-	 * @param ActivityDto activity master
+	 * update the activityd dto.<br>
+	 * @param activityDto activity dto
 	 * @return result
 	 * @throws LaubeException
 	 */

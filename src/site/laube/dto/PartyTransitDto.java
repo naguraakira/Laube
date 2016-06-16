@@ -126,7 +126,7 @@ public class PartyTransitDto extends RouteDto {
 
 	/**
 	 * get the comparison operators.<br>
-	 * @param comparison operator
+	 * @return comparison operator
 	 */
 	public final int getComparisonOperator() {
 		return comparisonOperator;

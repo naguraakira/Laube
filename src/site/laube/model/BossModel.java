@@ -41,7 +41,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * delete the boss master<br>
 	 * remove the application-specific all of the boss master.
 	 * @param companyCode company code
-	 * @return result
+	 * @return ResultDto
 	 * @throws LaubeException
 	 */
 	@Override
@@ -164,8 +164,8 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 	/**
 	 * register the boss master.<br>
-	 * @param applicationFormDto Application form master
-	 * @return result
+	 * @param bossDto boss dto
+	 * @return ResultDto
 	 * @throws LaubeException
 	 */
 	@Override

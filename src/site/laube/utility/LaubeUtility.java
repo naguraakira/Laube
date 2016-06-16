@@ -288,7 +288,7 @@ public final class LaubeUtility implements Serializable {
 	/**
 	 * To encrypt.<br>
 	 * Cryptography: public key cryptography
-	 * @param text Before encryption of string
+	 * @param data Before encryption of string
 	 * @return Encrypted string
 	 * @throws LaubeException
 	 */
@@ -309,7 +309,7 @@ public final class LaubeUtility implements Serializable {
 	/**
 	 * Do the composite.<br>
 	 * Encryption method of encryption with password-based encryption method method (PKCS # 5)
-	 * @param text Before the composite string
+	 * @param data Before the composite string
 	 * @return omposite string
 	 * @throws LaubeException
 	 */
@@ -382,6 +382,7 @@ public final class LaubeUtility implements Serializable {
 	 * Wrapper class for hiding the "org.apache.commons.lang3.builder.ToStringBuilder", which is an external class<br>
 	 * @param strDate yyyy-MM-dd /yyyy/MM/dd / yyyy/MM/dd HH:mm:ss One of a string of the form
 	 * @return After conversion of the value
+	 * @throws LaubeException
 	 */
 	public static final Date parseDate(String strDate) throws LaubeException {
 

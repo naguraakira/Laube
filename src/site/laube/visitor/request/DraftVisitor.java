@@ -52,7 +52,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 
 	/**
 	 * Do the application work.<br>
-	 * @param laubeRequestAcceptor
+	 * @param requestSystemAcceptor request system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

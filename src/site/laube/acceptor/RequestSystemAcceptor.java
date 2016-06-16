@@ -136,7 +136,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 
 	/**
 	 * set the most recent application number.<br>
-	 * @param re applicationNumber most recent application number
+	 * @param reapplicationNumber reapplicationNumber
 	 */
 	public final void setReapplicationNumber(final int reapplicationNumber) {
 		this.reapplicationNumber = reapplicationNumber;
@@ -207,7 +207,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 
 	/**
 	 * set the department code of request.<br>
-	 * @param unitCode department code of request
+	 * @param applyUnitCode apply unit code
 	 */
 	public final void setApplyUnitCode(final String applyUnitCode) {
 		this.applyUnitCode = applyUnitCode;
@@ -223,7 +223,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 
 	/**
 	 * set the employee number of request.<br>
-	 * @param userCode employee number of request
+	 * @param applyUserCode apply user code
 	 */
 	public final void setApplyUserCode(final String applyUserCode) {
 		this.applyUserCode = applyUserCode;
@@ -255,7 +255,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 
 	/**
 	 * set the Department code of the proxy applicant of request.<br>
-	 * @param deputyAppUnitCode Department code of the proxy applicant of request
+	 * @param deputyApplyUnitCode deputy apply unit code
 	 */
 	public final void setDeputyApplyUnitCode(final String deputyApplyUnitCode) {
 		this.deputyApplyUnitCode = deputyApplyUnitCode;
@@ -271,7 +271,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 
 	/**
 	 * set the employee number of the proxy applicant of request.<br>
-	 * @param deputyAppUserCode employee number of the proxy applicant of request
+	 * @param deputyApplyUserCode deputy apply user code
 	 */
 	public final void setDeputyApplyUserCode(final String deputyApplyUserCode) {
 		this.deputyApplyUserCode = deputyApplyUserCode;
@@ -318,7 +318,9 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	}
 
 	/**
-	 * @param laubeRequestSystemVisitor  Visitor class of the request system
+	 * accept
+	 * @param requestSystemVisitor  request system visitor
+	 * @return ResultDto
 	 * @exception LaubeException return the exception
 	 */
 	public final ResultDto accept(final RequestSystemVisitor requestSystemVisitor) throws LaubeException{

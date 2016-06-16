@@ -39,12 +39,9 @@ public final class LaubeController implements Serializable {
 
 	/**
 	 * Make the application-based processing.<br>
-	 * @param laubeRequestSystemAcceptor Application business data
-	 * @param laubeVisitor Pass the visitor.
-	 * The application business can not be passed only visitor class to perform the application business.
-	 * If you pass any other visitor class, an exception occurs.
-	 * @return Processing result
-	 * @throws LaubeException
+	 * @param searchSystemAcceptor search system acceptor
+	 * @param searchSystemVisitor search system visitor
+	 * @return ResultDto
 	 */
 	public final ResultDto doSearch(final SearchSystemAcceptor searchSystemAcceptor,SearchSystemVisitor searchSystemVisitor) {
 
@@ -77,12 +74,9 @@ public final class LaubeController implements Serializable {
 
 	/**
 	 * Make the application-based processing.<br>
-	 * @param laubeRequestSystemAcceptor Application business data
-	 * @param laubeVisitor Pass the visitor.
-	 * The application business can not be passed only visitor class to perform the application business.
-	 * If you pass any other visitor class, an exception occurs.
-	 * @return Processing result
-	 * @throws LaubeException
+	 * @param requestSystemAcceptor request system acceptor
+	 * @param requestSystemVisitor request system visitor
+	 * @return ResultDto
 	 */
 	public final ResultDto doRequest(final RequestSystemAcceptor requestSystemAcceptor,RequestSystemVisitor requestSystemVisitor) {
 
@@ -115,12 +109,9 @@ public final class LaubeController implements Serializable {
 
 	/**
 	 * make the process of approval.<br>
-	 * @param laubeApprovalAcceptor approval business data
-	 * @param laubeVisitor Pass the visitor.
-	 * It does not pass only visitor class to approve business to approval business.
-	 * If you pass any other visitor class, an exception occurs.
-	 * @return Processing result
-	 * @throws LaubeException
+	 * @param approvalAcceptor approval acceptor
+	 * @param approvalSystemVisitor approval system visitor
+	 * @return ResultDto
 	 */
 	public final ResultDto doApproval(final ApprovalSystemAcceptor approvalAcceptor,ApprovalSystemVisitor approvalSystemVisitor) {
 

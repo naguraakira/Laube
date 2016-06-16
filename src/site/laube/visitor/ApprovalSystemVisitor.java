@@ -32,7 +32,7 @@ public abstract class ApprovalSystemVisitor implements LaubeVisitor {
 
 	/**
 	 * do the approval process.<br>
-	 * @param laubeRequestAcceptor acceptor
+	 * @param approvalSystemAcceptor approval system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

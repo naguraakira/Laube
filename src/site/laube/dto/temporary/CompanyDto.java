@@ -54,7 +54,7 @@ public class CompanyDto extends LaubeDto {
 
 	/**
 	 * set the company name.<br>
-	 * @param company name
+	 * @param companyName company name
 	 */
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;

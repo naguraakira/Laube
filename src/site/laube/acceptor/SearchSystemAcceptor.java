@@ -122,32 +122,32 @@ public abstract class SearchSystemAcceptor implements LaubeAcceptor {
 	}
 
 	/**
-	 * set the department code of request.<br>
-	 * @param unitCode department code of request
+	 * set the apply unit code.<br>
+	 * @param applyUnitCode apply unit code
 	 */
 	public final void setApplyUnitCode(final String applyUnitCode) {
 		this.applyUnitCode = applyUnitCode;
 	}
 
 	/**
-	 * get the department code of request.<br>
-	 * @return department code of request
+	 * get the apply unit code.<br>
+	 * @return apply unit code
 	 */
 	public final String getApplyUnitCode() {
 		return this.applyUnitCode;
 	}
 
 	/**
-	 * set the employee number of request.<br>
-	 * @param userCode employee number of request
+	 * set the apply user code.<br>
+	 * @param applyUserCode apply user code
 	 */
 	public final void setApplyUserCode(final String applyUserCode) {
 		this.applyUserCode = applyUserCode;
 	}
 
 	/**
-	 * get the employee number of request.<br>
-	 * @return employee number of request
+	 * get the apply user code.<br>
+	 * @return apply user code
 	 */
 	public final String getApplyUserCode() {
 		return this.applyUserCode;
@@ -170,40 +170,42 @@ public abstract class SearchSystemAcceptor implements LaubeAcceptor {
 	}
 
 	/**
-	 * set the Department code of the proxy applicant of request.<br>
-	 * @param deputyAppUnitCode Department code of the proxy applicant of request
+	 * set the deputy apply unit code.<br>
+	 * @param deputyApplyUnitCode deputy apply unit code
 	 */
 	public final void setDeputyApplyUnitCode(final String deputyApplyUnitCode) {
 		this.deputyApplyUnitCode = deputyApplyUnitCode;
 	}
 
 	/**
-	 * get the Department code of the proxy applicant of request.<br>
-	 * @return Department code of the proxy applicant of request
+	 * get the deputy apply unit code.<br>
+	 * @return deputy apply unit code
 	 */
 	public final String getDeputyApplyUnitCode() {
 		return this.deputyApplyUnitCode;
 	}
 
 	/**
-	 * set the employee number of the proxy applicant of request.<br>
-	 * @param deputyAppUserCode employee number of the proxy applicant of request
+	 * set the deputy apply user code.<br>
+	 * @param deputyApplyUserCode deputy apply user code
 	 */
 	public final void setDeputyApplyUserCode(final String deputyApplyUserCode) {
 		this.deputyApplyUserCode = deputyApplyUserCode;
 	}
 
 	/**
-	 * get the employee number of the proxy applicant of request.<br>
-	 * @return employee number of the proxy applicant of request
+	 * get the deputy apply user code.<br>
+	 * @return deputy apply user code
 	 */
 	public final String getDeputyApplyUserCode() {
 		return this.deputyApplyUserCode;
 	}
 
 	/**
-	 * @param laubeRequestSystemVisitor  Visitor class of the request system
-	 * @exception LaubeException return the exception
+	 * accept
+	 * @param searchSystemVisitor  search system visitor
+	 * @return ResultDto
+	 * @exception LaubeException
 	 */
 	public final ResultDto accept(final SearchSystemVisitor searchSystemVisitor) throws LaubeException{
 

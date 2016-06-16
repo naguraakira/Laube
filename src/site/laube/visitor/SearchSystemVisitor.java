@@ -32,7 +32,7 @@ public abstract class SearchSystemVisitor implements LaubeVisitor {
 
 	/**
 	 * it performs a search-based processing.<br>
-	 * @param SearchtSystemAcceptor  acceptor
+	 * @param searchSystemAcceptor  search system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

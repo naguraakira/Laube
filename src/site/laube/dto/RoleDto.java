@@ -1,7 +1,6 @@
 package site.laube.dto;
 
 import site.laube.dto.temporary.CompanyDto;
-import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -45,7 +44,6 @@ public class RoleDto extends CompanyDto {
 	/**
 	 * set the role code.<br>
 	 * @param roleCode role code
-	 * @throws LaubeException
 	 */
 	public final void setRoleCode(final String roleCode) {
 		this.roleCode = roleCode;
@@ -63,7 +61,6 @@ public class RoleDto extends CompanyDto {
 	/**
 	 * set the role name.<br>
 	 * @param roleName role name
-	 * @throws LaubeException
 	 */
 	public final void setRoleName(final String roleName) {
 		this.roleName = roleName;

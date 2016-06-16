@@ -73,7 +73,7 @@ public final class ApplicationFormRouteDto extends ApplicationFormDto {
 
 	/**
 	 * set the unit name.<br>
-	 * @param unitCode unit name
+	 * @param unitName unit name
 	 */
 	public final void setUnitName(final String unitName) {
 		this.unitName = unitName;
@@ -105,7 +105,7 @@ public final class ApplicationFormRouteDto extends ApplicationFormDto {
 
 	/**
 	 * set the individual route name.<br>
-	 * @param individualRouteCode individual route name
+	 * @param individualRouteName individual route name
 	 */
 	public final void setIndividualRouteName(final String individualRouteName) {
 		this.individualRouteName = individualRouteName;

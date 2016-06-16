@@ -32,7 +32,7 @@ public abstract class RequestSystemVisitor implements LaubeVisitor {
 
 	/**
 	 * make the application-based processing.<br>
-	 * @param RequestSystemAcceptor acceptor
+	 * @param requestSystemAcceptor request system acceptor
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */

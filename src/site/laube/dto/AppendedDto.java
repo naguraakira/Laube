@@ -201,16 +201,16 @@ public final class AppendedDto extends ApplicationObjectDto {
 	}
 
 	/**
-	 * set the attached file attachments date.<br>
-	 * @return approvalDate attached file attachments date
+	 * set the approval date.<br>
+	 * @param approvalDate approval date
 	 */
 	public final void setApprovalDate(Timestamp approvalDate) {
 		this.approvalDate = approvalDate;
 	}
 
 	/**
-	 * get the attached file attachments date.<br>
-	 * @return approvalDate attached file attachments date
+	 * get the approval date.<br>
+	 * @return approval date
 	 */
 	public final Timestamp getApprovalDate() {
 		return this.approvalDate;

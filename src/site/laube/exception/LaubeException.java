@@ -25,7 +25,7 @@ public class LaubeException extends Exception {
 
 	/**
 	 * constractor
-	 * @param exception
+	 * @param e exception
 	 */
 	public LaubeException(Exception e) {
 		super(e);

@@ -41,12 +41,11 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	private static Logger log = LoggerFactory.getLogger(ActivityObjectModel.class);
 
 	/**
-	 * アクティビティオブジェクトを登録します。<br>
-	 * @param ActivityObjectDtos アクティビティオブジェクト
-	 * @return 結果
+	 * register the activity object.<br>
+	 * @param ActivityObjectDtos activity object
+	 * @return result
 	 * @throws LaubeException
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
 	@Override
 	public ResultDto insert(final List<ActivityObjectDto> ActivityObjectDtos) throws LaubeException {
 
@@ -75,8 +74,8 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 	/**
 	 * add the activity object.<br>
-	 * @param ActivityObjectDto activity object
-	 * @return result
+	 * @param activityObjectDto activity object
+	 * @return ResultDto
 	 * @throws LaubeException
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
@@ -232,7 +231,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
 	@Override
 	public final ResultDto update(final ActivityObjectDto activityObjectDto) throws LaubeException {
 
@@ -324,7 +322,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
 	@Override
 	public final ResultDto delete(final String companyCode, final int applicationNumber) throws LaubeException {
 
@@ -362,7 +359,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	}
 
 	/**
-	 * find the activity object by arrival.<<br>
+	 * find the activity object by arrival.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @param approvalCompanyCode approval company code
@@ -371,7 +368,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
 	@Override
 	public final ResultDto find(final String companyCode, final int applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException {
 
@@ -489,7 +485,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	}
 
 	/**
-	 * find the activity object by arrival.<<br>
+	 * find the activity object by arrival.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @param approvalCompanyCode approval company code

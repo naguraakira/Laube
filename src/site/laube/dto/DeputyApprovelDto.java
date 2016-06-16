@@ -85,7 +85,7 @@ public final class DeputyApprovelDto extends UserDto {
 
 	/**
 	 * set the deputy approverl user code.<br>
-	 * @param deputyApproverlUnitCode deputy approverl user code
+	 * @param deputyApproverlUserCode deputy approverl user code
 	 */
 	public final void setDeputyApproverlUserCode(final String deputyApproverlUserCode) {
 		this.deputyApproverlUserCode = deputyApproverlUserCode;
@@ -117,7 +117,7 @@ public final class DeputyApprovelDto extends UserDto {
 
 	/**
 	 * set the deputy approverl contents.<br>
-	 * @param deputyApproverlUserName deputy contents
+	 * @param deputyContents deputy contents
 	 */
 	public final void setDeputyContents(final String deputyContents) {
 		this.deputyContents = deputyContents;

@@ -43,7 +43,7 @@ public interface ActivityModelInterface {
 
 	/**
 	 * register the activity master.<br>
-	 * @param ActivityDto activity master
+	 * @param activityDto activity dto
 	 * @return result
 	 * @throws LaubeException
 	 */
@@ -51,7 +51,7 @@ public interface ActivityModelInterface {
 
 	/**
 	 * update the activity master.<br>
-	 * @param ActivityDto activity master
+	 * @param activityDto activity dto
 	 * @return result
 	 * @throws LaubeException
 	 */

@@ -155,8 +155,8 @@ public class LaubeModel {
 	/**
 	 * set ResultSet to Dto.<br>
 	 *
-	 * @param resultSet ResultSet
-	 * @param workflowDto before data
+	 * @param resultSet result set
+	 * @param wWorkflowDto wWorkflo dto
 	 * @return after data
 	 * @throws LaubeException
 	 */

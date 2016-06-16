@@ -15,8 +15,4 @@ site.laube.utility.type
 site.laube.visitor
 site.laube.visitor.approval
 site.laube.visitor.request
-site.laube.visitor.request.apply
-site.laube.visitor.request.draft
 site.laube.visitor.search
-site.laube.visitor.search.approval
-site.laube.visitor.search.routeSearch

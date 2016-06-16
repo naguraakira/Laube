@@ -192,7 +192,7 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 
 	/**
 	 * set the attachments of approval.<br>
-	 * @param appendedList attachments of approval
+	 * @param appendFileList append file list
 	 */
 	public void setAppendFileList(List<AppendFile> appendFileList) {
 		this.appendFileList = appendFileList;
@@ -255,8 +255,9 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	}
 
 	/**
-	 * @param ApprovalSystemVisitor  Visitor class of the request system
-	 * @exception LaubeException return the exception
+	 * accept
+	 * @param approvalSystemVisitor approval system visitor
+	 * @exception LaubeException
 	 */
 	public final ResultDto accept(final ApprovalSystemVisitor approvalSystemVisitor) throws LaubeException{
 
