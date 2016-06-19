@@ -317,6 +317,176 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	}
 
 	/**
+	 * update the activity object status.<br>
+	 * @param activityObjectDto activity object Dto
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto updateByArrival(final ActivityObjectDto activityObjectDto) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "updateByArrival Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[activityObjectDto]: " + activityObjectDto);
+
+		final ResultDto resultDto = new ResultDto();
+
+		if (activityObjectDto == null) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "updateByArrival End");
+			return resultDto;
+		}
+
+		try {
+			final int    activityStatus = SpecifiedValue.Arrival;
+			final String companyCode = activityObjectDto.getCompanyCode();
+			final int applicationNumber = activityObjectDto.getApplicationNumber();
+			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
+			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
+
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE ");
+			sql.append("wkf_activity_object ");
+			sql.append("SET ");
+			sql.append("reaching_date = CURRENT_TIMESTAMP(0), ");
+			sql.append("activity_status = ?, ");
+			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
+			sql.append("update_user_id = ? ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("application_number = ? AND ");
+			sql.append("approval_company_code = ? AND ");
+			sql.append("approval_user_code = ?;");
+
+			log.debug("[workflowEngine] " + "SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+			this.preparedStatement.setInt   ( 1, activityStatus);
+			this.preparedStatement.setString( 2, approvalUserCode);
+			this.preparedStatement.setString( 3, companyCode);
+			this.preparedStatement.setInt   ( 4, applicationNumber);
+			this.preparedStatement.setString( 5, approvalCompanyCode);
+			this.preparedStatement.setString( 6, approvalUserCode);
+			this.preparedStatement.executeUpdate();
+			resultDto.setResultData(applicationNumber);
+
+		} catch (SQLException se) {
+			log.error("[workflowEngine] " + "updateByArrival End");
+			throw new LaubeException(se);
+
+		} finally {
+
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (Exception e) {
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "updateByArrival End");
+		return resultDto;
+	}
+
+	/**
+	 * update the activity object status.<br>
+	 * @param activityObjectDto activity object Dto
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@Override
+	public final ResultDto updateByAuthorizerApproval(final ActivityObjectDto activityObjectDto) throws LaubeException {
+
+		log.debug("[workflowEngine] " + "updateByAuthorizerApproval Start");
+		log.debug("[workflowEngine] " + "[argument]");
+		log.debug("[workflowEngine] " + "[activityObjectDto]: " + activityObjectDto);
+
+		final ResultDto resultDto = new ResultDto();
+
+		if (activityObjectDto == null) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "updateByAuthorizerApproval End");
+			return resultDto;
+		}
+
+		try {
+			final String deputyApprovalCompanyCode = activityObjectDto.getDeputyApprovalCompanyCode();
+			final String deputyApprovalUserCode = activityObjectDto.getDeputyApprovalUserCode();
+			final String deputyApprovalComment = activityObjectDto.getDeputyApprovalComment();
+			final int    activityStatus = SpecifiedValue.Authorizer_Approval;
+			final String approvalComment = activityObjectDto.getApprovalComment();
+			final String companyCode = activityObjectDto.getCompanyCode();
+			final int applicationNumber = activityObjectDto.getApplicationNumber();
+			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
+			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
+
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE ");
+			sql.append("wkf_activity_object ");
+			sql.append("SET ");
+			sql.append("deputy_approval_company_code = ?, ");
+			sql.append("deputy_approval_user_code = ?, ");
+			sql.append("deputy_approval_comment = ?, ");
+			sql.append("process_date = CURRENT_TIMESTAMP(0), ");
+			sql.append("activity_status = ?, ");
+			sql.append("approval_comment = ?, ");
+			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
+			sql.append("update_user_id = ? ");
+			sql.append("WHERE ");
+			sql.append("company_code = ? AND ");
+			sql.append("application_number = ? AND ");
+			sql.append("approval_company_code = ? AND ");
+			sql.append("approval_user_code = ?;");
+
+			log.debug("[workflowEngine] " + "SQL:" + sql.toString());
+			this.preparedStatement = connection.prepareStatement(sql.toString());
+			this.preparedStatement.setString( 1, deputyApprovalCompanyCode);
+			this.preparedStatement.setString( 2, deputyApprovalUserCode);
+			this.preparedStatement.setString( 3, deputyApprovalComment);
+			this.preparedStatement.setInt   ( 4, activityStatus);
+			this.preparedStatement.setString( 5, approvalComment);
+			this.preparedStatement.setString( 6, approvalUserCode);
+			this.preparedStatement.setString( 7, companyCode);
+			this.preparedStatement.setInt   ( 8, applicationNumber);
+			this.preparedStatement.setString( 9, approvalCompanyCode);
+			this.preparedStatement.setString(10, approvalUserCode);
+			this.preparedStatement.executeUpdate();
+			resultDto.setResultData(applicationNumber);
+
+		} catch (SQLException se) {
+			log.error("[workflowEngine] " + "updateByAuthorizerApproval End");
+			throw new LaubeException(se);
+
+		} finally {
+
+			try {
+				if (this.resultSet != null) {
+					this.resultSet.close();
+					this.resultSet = null;
+				}
+				if (this.preparedStatement != null) {
+					this.preparedStatement.close();
+					this.preparedStatement = null;
+				}
+			} catch (Exception e) {
+				throw new LaubeException(e);
+			}
+		}
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.debug("[workflowEngine] " + "updateByAuthorizerApproval End");
+		return resultDto;
+	}
+
+	/**
 	 * delete the activity object.<br>
 	 * @param applicationNumber application number
 	 * @return result

@@ -51,6 +51,24 @@ public interface ActivityObjectModelInterface {
 	public abstract ResultDto update(final ActivityObjectDto activityObjectDto) throws LaubeException;
 
 	/**
+	 * update the activity object status.<br>
+	 * @param activityObjectDto activity object Dto
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@SuppressWarnings({ "nls", "boxing" })
+	public abstract ResultDto updateByArrival(final ActivityObjectDto activityObjectDto) throws LaubeException;
+
+	/**
+	 * update the activity object status.<br>
+	 * @param activityObjectDto activity object Dto
+	 * @return result
+	 * @throws LaubeException
+	 */
+	@SuppressWarnings({ "nls", "boxing" })
+	public abstract ResultDto updateByAuthorizerApproval(final ActivityObjectDto activityObjectDto) throws LaubeException;
+
+	/**
 	 * delete the activity object.<br>
 	 * @param companyCode company code
 	 * @param applicationNumber application number

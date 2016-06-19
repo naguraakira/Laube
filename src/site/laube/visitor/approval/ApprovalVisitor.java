@@ -23,7 +23,6 @@ import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.modelinterface.AppendedModelInterface;
 import site.laube.modelinterface.DeputyApprovelModelInterface;
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
 import site.laube.visitor.ApprovalSystemVisitor;
 
 /*
@@ -87,7 +86,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			}
 
 			final int applicationNumber = approvalAcceptor.getApplicationNumber();
-			final String approvalDate = approvalAcceptor.getApprovalDate();
+//			final String approvalDate = approvalAcceptor.getApprovalDate();
 			final String companyCode = approvalAcceptor.getCompanyCode();
 			String approvalCompanyCode = approvalAcceptor.getApprovalCompanyCode();
 			String approvalUnitCode = approvalAcceptor.getApprovalUnitCode();
@@ -102,7 +101,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			if ((resultDto == null)||(!resultDto.isSuccess())||(resultDto.getResultData() == null)) {
 				resultDto = new ResultDto();
 				resultDto.setStatus(false);
-				resultDto.setMessageId("Eさささ");
+				resultDto.setMessageId("E1006");
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -113,9 +112,8 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				// it gets the approval record.
 				ActivityObjectDto activityObjectDto = (ActivityObjectDto)activityObjectDtos.get(0);
 				activityObjectDto.setApprovalComment(comment);
-				activityObjectDto.setActivityStatus(SpecifiedValue.Authorizer_Approval);
 				log.debug("[workflowEngine] " + "update the activity object.");
-				resultDto = activityObjectModelInterface.update(activityObjectDto);
+				resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 				if ((resultDto == null)||(!resultDto.isSuccess())) {
 					resultDto = new ResultDto();
@@ -161,12 +159,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 						// it gets the approval record.
 						ActivityObjectDto activityObjectDto = (ActivityObjectDto)activityObjectDtos.get(0);
 						activityObjectDto.setApprovalComment(comment);
-						activityObjectDto.setActivityStatus(SpecifiedValue.Authorizer_Approval);
 						activityObjectDto.setDeputyApprovalCompanyCode(deputyApprovelDto.getCompanyCode());
 						activityObjectDto.setDeputyApprovalUserCode(deputyApprovelDto.getDeputyApproverlUserCode());
 						activityObjectDto.setDeputyApprovalComment(deputyApprovelDto.getDeputyContents());
 						log.debug("[workflowEngine] " + "update the activity object.");
-						resultDto = activityObjectModelInterface.update(activityObjectDto);
+						resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 						if ((resultDto == null)||(!resultDto.isSuccess())) {
 							resultDto = new ResultDto();
