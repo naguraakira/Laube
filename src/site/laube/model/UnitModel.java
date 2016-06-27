@@ -53,7 +53,7 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[unitCode]: " + unitCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
@@ -63,7 +63,7 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("unit_code, ");
@@ -94,7 +94,7 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new UnitDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new UnitDto());
 
 			log.debug("[workflowEngine] " + "find end");
 			resultDto.setStatus(true);

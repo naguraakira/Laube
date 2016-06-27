@@ -54,7 +54,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 		log.info("[workflowEngine] " + "[unitCode]: " + unitCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
@@ -179,7 +179,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[individualRouteCode]: " + individualRouteCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(individualRouteCode))) {
 			resultDto.setStatus(false);
@@ -189,7 +189,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -272,7 +272,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[commonRouteCode]: " + commonRouteCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(commonRouteCode))) {
 			resultDto.setStatus(false);
@@ -282,7 +282,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");

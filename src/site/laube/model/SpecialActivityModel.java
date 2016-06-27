@@ -37,7 +37,7 @@ public final class SpecialActivityModel extends ActivityModel {
 
 		log.info("[workflowEngine] " + "deleteQuery start");
 
-		StringBuffer sql = new StringBuffer();
+		final StringBuffer sql = new StringBuffer();
 		sql.append("DELETE ");
 		sql.append("FROM ");
 		sql.append("wkf_view_application_classification_activity ");
@@ -58,7 +58,7 @@ public final class SpecialActivityModel extends ActivityModel {
 
 		log.info("[workflowEngine] " + "deleteByRouteQuery start");
 
-		StringBuffer sql = new StringBuffer();
+		final StringBuffer sql = new StringBuffer();
 		sql.append("DELETE ");
 		sql.append("FROM ");
 		sql.append("wkf_application_classification_activity ");
@@ -80,7 +80,7 @@ public final class SpecialActivityModel extends ActivityModel {
 
 		log.info("[workflowEngine] " + "insertQuery start");
 
-		StringBuffer sql = new StringBuffer();
+		final StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO wkf_application_classification_activity ");
 		sql.append("(");
 		sql.append("company_code,");
@@ -139,7 +139,7 @@ public final class SpecialActivityModel extends ActivityModel {
 
 		log.info("[workflowEngine] " + "updateQuery start");
 
-		StringBuffer sql = new StringBuffer();
+		final StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE wkf_application_classification_activity ");
 		sql.append("SET ");
 		sql.append("approval_company_code = ?, ");
@@ -176,7 +176,7 @@ public final class SpecialActivityModel extends ActivityModel {
 
 		log.info("[workflowEngine] " + "findByRouteQuery start");
 
-		StringBuffer sql = new StringBuffer();
+		final StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
 		sql.append("company_code, ");
 		sql.append("company_name, ");
@@ -223,7 +223,7 @@ public final class SpecialActivityModel extends ActivityModel {
 
 		log.info("[workflowEngine] " + "findByActivityQuery start");
 
-		StringBuffer sql = new StringBuffer();
+		final StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
 		sql.append("company_code, ");
 		sql.append("company_name, ");

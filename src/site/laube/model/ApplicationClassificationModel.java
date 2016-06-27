@@ -52,7 +52,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)){
 			resultDto.setStatus(false);
@@ -62,7 +62,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_application_classification ");
@@ -115,7 +115,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationClassificationCode]: " + applicationClassificationCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
@@ -125,7 +125,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_application_classification ");
@@ -177,7 +177,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[applicationClassificationDto]: " + applicationClassificationDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (applicationClassificationDto == null) {
 			resultDto.setStatus(false);
@@ -187,7 +187,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_application_classification ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -257,7 +257,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[applicationClassificationDto]: " + applicationClassificationDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (applicationClassificationDto == null) {
 			resultDto.setStatus(false);
@@ -267,7 +267,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_application_classification ");
 			sql.append("SET ");
 			sql.append("application_classification_name = ?, ");
@@ -340,7 +340,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -350,7 +350,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -379,7 +379,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationClassificationDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationClassificationDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -424,7 +424,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationClassificationCode]: " + applicationClassificationCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
@@ -434,7 +434,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -466,7 +466,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationClassificationDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationClassificationDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -509,7 +509,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[specialRouteCode]: " + specialRouteCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(specialRouteCode))) {
 			resultDto.setStatus(false);
@@ -519,7 +519,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -557,7 +557,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

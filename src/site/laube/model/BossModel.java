@@ -62,7 +62,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		try {
 			// deletion processing (company unit)
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_boss ");
@@ -126,7 +126,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_boss ");
@@ -178,7 +178,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[bossDto]: " + bossDto);
 
-		ResultDto resultDto = new ResultDto();
+		final  ResultDto resultDto = new ResultDto();
 
 		if (bossDto == null) {
 			log.error("[workflowEngine] " + "insert end" + "[return value]:false");
@@ -189,7 +189,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_boss ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -268,7 +268,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[bosseDto]: " + bosseDto);
 
-		ResultDto resultDto = new ResultDto();
+		final  ResultDto resultDto = new ResultDto();
 
 		if (bosseDto == null) {
 			log.error("[workflowEngine] " + "update end" + "[return value]:false");
@@ -279,7 +279,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_boss ");
 			sql.append("SET ");
 			sql.append("boss_company_code = ?, ");
@@ -366,8 +366,8 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 
-		ResultDto resultDto = new ResultDto();
-		ArrayList<BossDto> list = new ArrayList<BossDto>();
+		final  ResultDto resultDto = new ResultDto();
+		final  ArrayList<BossDto> list = new ArrayList<BossDto>();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))||(LaubeUtility.isBlank(userCode))) {
 			log.error("[workflowEngine] " + "update end" + "[return value]:false");
@@ -380,7 +380,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		try {
 			boolean hasRecord = false;
 			while(true) {
-				ResultDto r = find(companyCode, unitCode, userCode, applicationFormCode);
+				final  ResultDto r = find(companyCode, unitCode, userCode, applicationFormCode);
 
 				if (r == null){
 					resultDto.setStatus(true);
@@ -394,7 +394,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					return r;
 				}
 
-				ArrayList<BossDto> bossDtos = (ArrayList<BossDto>)(r.getResultData());
+				final  ArrayList<BossDto> bossDtos = (ArrayList<BossDto>)(r.getResultData());
 
 				if (bossDtos == null){
 					resultDto.setStatus(true);
@@ -405,7 +405,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					return resultDto;
 
 				}else{
-					BossDto bossDto = bossDtos.get(0);
+					final  BossDto bossDto = bossDtos.get(0);
 					if (LaubeUtility.isBlank(bossDto.getBossCompanyCode()) || LaubeUtility.isBlank(bossDto.getBossUnitCode()) || LaubeUtility.isBlank(bossDto.getBossUserCode())){
 
 						if (hasRecord) {
@@ -486,7 +486,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
 			if (LaubeUtility.isEmpty(companyCode) || LaubeUtility.isEmpty(unitCode) || LaubeUtility.isEmpty(userCode)){
@@ -578,7 +578,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				}
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new BossDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new BossDto());
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);

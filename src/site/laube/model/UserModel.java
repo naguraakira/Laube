@@ -53,7 +53,7 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
@@ -63,7 +63,7 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("user_code, ");
@@ -94,7 +94,7 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new UserDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new UserDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

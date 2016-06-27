@@ -55,7 +55,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -65,7 +65,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("SELECT * ");
 			sql.append("FROM wkf_view_application_object ");
 			sql.append("WHERE ");
@@ -93,7 +93,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationObjectDto());
+			final  ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationObjectDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -165,7 +165,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			final String createUserID = applicationObjectDto.getCreateUserId();
 			final String updateUserID = applicationObjectDto.getUpdateUserId();
 
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_application_object( ");
 			sql.append("company_code, ");
 			sql.append("application_number, ");
@@ -292,7 +292,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			final int applicationStatus = applicationObjectDto.getApplicationStatus();
 			final String updateUserId = applicationObjectDto.getUpdateUserId();
 
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE ");
 			sql.append("wkf_application_object ");
 			sql.append("SET ");
@@ -377,7 +377,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final  StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("max(application_number) ");
 			sql.append("FROM ");

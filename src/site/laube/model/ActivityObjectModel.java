@@ -123,7 +123,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final String updateUserID = activityObjectDto.getUpdateUserId();
 
 			// cretate sql
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_activity_object( ");
 			sql.append("company_code,");
 			sql.append("application_number,");
@@ -265,7 +265,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
 			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
 
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE ");
 			sql.append("wkf_activity_object ");
 			sql.append("SET ");
@@ -352,7 +352,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
 			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
 
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE ");
 			sql.append("wkf_activity_object ");
 			sql.append("SET ");
@@ -436,7 +436,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
 			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
 
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE ");
 			sql.append("wkf_activity_object ");
 			sql.append("SET ");
@@ -519,7 +519,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		}
 
 		try {
-			String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? AND application_number = ?;";
+			final String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? AND application_number = ?;";
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);
@@ -574,7 +574,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		log.info("[workflowEngine] " + "[approvalUnitCode]: "    + approvalUnitCode);
 		log.info("[workflowEngine] " + "[approvalUserCode]: "    + approvalUserCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isEmpty(applicationNumber))||(LaubeUtility.isBlank(approvalCompanyCode))||(LaubeUtility.isBlank(approvalUnitCode))||(LaubeUtility.isBlank(approvalUserCode))) {
 			resultDto.setStatus(false);
@@ -584,7 +584,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -648,7 +648,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
-			ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityObjectDto());
+			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityObjectDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

@@ -50,7 +50,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -60,7 +60,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_deputy_approvel ");
@@ -112,7 +112,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank((userCode)))) {
 			resultDto.setStatus(false);
@@ -122,7 +122,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_deputy_approvel ");
@@ -174,7 +174,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[deputyApprovelDto]: " + deputyApprovelDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (deputyApprovelDto == null) {
 			resultDto.setStatus(false);
@@ -184,7 +184,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_deputy_approvel ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -263,7 +263,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[deputyApprovelDto]: " + deputyApprovelDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (deputyApprovelDto == null) {
 			resultDto.setStatus(false);
@@ -273,7 +273,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_deputy_approvel ");
 			sql.append("SET ");
 			sql.append("deputy_approverl_company_code = ?, ");
@@ -355,7 +355,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
 			boolean isSettingYes = false;
@@ -367,7 +367,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				return resultDto;
 			}
 
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -415,7 +415,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
 
 			log.debug("[workflowEngine] " + "find end" + "[return value]:" + resultData);
 			resultDto.setStatus(true);
@@ -460,7 +460,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[deputyApproverlUserCode]: " + deputyApproverlUserCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
 			if ((LaubeUtility.isNotEmpty(companyCode))||(LaubeUtility.isNotEmpty(deputyApproverlUserCode))) {
@@ -470,7 +470,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				return resultDto;
 			}
 
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -516,7 +516,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

@@ -51,7 +51,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -60,7 +60,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			return resultDto;
 		}
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_individual_route ");
@@ -113,7 +113,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
@@ -123,7 +123,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_individual_route ");
@@ -175,7 +175,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[routeDto]: " + routeDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (routeDto == null) {
 			resultDto.setStatus(false);
@@ -185,7 +185,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_individual_route ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -252,7 +252,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[routeDto]: " + routeDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (routeDto == null) {
 			resultDto.setStatus(false);
@@ -262,7 +262,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_individual_route ");
 			sql.append("SET ");
 			sql.append("individual_route_name = ?, ");
@@ -336,8 +336,8 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[individualRouteCode]: " + individualRouteCode);
 
 		try {
-			ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
-			ResultDto resultDto = applicationFormRouteModel.findByIndividualRouteCode(companyCode, individualRouteCode);
+			final ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
+			final ResultDto resultDto = applicationFormRouteModel.findByIndividualRouteCode(companyCode, individualRouteCode);
 
 			if (resultDto == null){
 				log.info("[workflowEngine] " + "isOccupied end");
@@ -386,7 +386,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))) {
 			resultDto.setStatus(false);
@@ -396,7 +396,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -428,7 +428,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -472,7 +472,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
@@ -482,7 +482,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -517,7 +517,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

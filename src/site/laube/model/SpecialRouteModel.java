@@ -102,8 +102,8 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
 
 		try {
-			ApplicationClassificationModel applicationClassificationModel = new ApplicationClassificationModel();
-			ResultDto  resultDto = applicationClassificationModel.findBySpecialRouteCode(companyCode, routeCode);
+			final ApplicationClassificationModel applicationClassificationModel = new ApplicationClassificationModel();
+			final ResultDto  resultDto = applicationClassificationModel.findBySpecialRouteCode(companyCode, routeCode);
 
 			if (resultDto == null){
 				log.info("[workflowEngine] " + "isOccupied end");
@@ -152,7 +152,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))) {
 			resultDto.setStatus(false);
@@ -162,7 +162,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -194,7 +194,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -238,7 +238,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 		log.info("[workflowEngine] " + "[companyCode]: "  + companyCode);
 		log.info("[workflowEngine] " + "[routeCode]: "    + routeCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
@@ -248,7 +248,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -282,7 +282,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
-			ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
+			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

@@ -133,7 +133,7 @@ public class LaubeModel {
 		log.info("[workflowEngine] " + "[resultSet]: " + resultSet);
 		log.info("[workflowEngine] " + "[workflowDto]: " + workflowDto);
 
-		ArrayList<LaubeDto> result = new ArrayList<LaubeDto>();
+		final ArrayList<LaubeDto> result = new ArrayList<LaubeDto>();
 
 		try {
 
@@ -250,9 +250,9 @@ public class LaubeModel {
 			}
 			for (String item : items) {
 				getter = "get" + item.substring(0, 1).toUpperCase() + item.substring(1);
-				Method method =  workflowDto.getClass().getMethod(getter, new Class[]{});
-				Object[] param = null;
-				Object obj = method.invoke(workflowDto, param);
+				final Method method =  workflowDto.getClass().getMethod(getter, new Class[]{});
+				final Object[] param = null;
+				final Object obj = method.invoke(workflowDto, param);
 
 				if (obj == null) {
 					resultDto.setStatus(false);

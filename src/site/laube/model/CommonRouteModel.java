@@ -51,7 +51,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))) {
 			resultDto.setStatus(false);
@@ -61,7 +61,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_common_route ");
@@ -114,7 +114,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||((LaubeUtility.isBlank(routeCode)))) {
 			resultDto.setStatus(false);
@@ -124,7 +124,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_common_route ");
@@ -176,7 +176,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[routeDto]: " + routeDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (routeDto == null) {
 			resultDto.setStatus(false);
@@ -186,7 +186,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_common_route ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -253,7 +253,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[routeDto]: " + routeDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (routeDto == null) {
 			resultDto.setStatus(false);
@@ -263,7 +263,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_common_route ");
 			sql.append("SET ");
 			sql.append("individual_route_name = ?, ");
@@ -336,8 +336,6 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[commonRouteCode]: " + commonRouteCode);
 
-		ResultDto resultDto = new ResultDto();
-
 		if ((LaubeUtility.isBlank(companyCode))||((LaubeUtility.isBlank(commonRouteCode)))) {
 			log.info("[workflowEngine] " + "isOccupied end");
 			return false;
@@ -345,7 +343,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
-			resultDto = applicationFormRouteModel.findByCommonRouteCode(companyCode, commonRouteCode);
+			final ResultDto resultDto = applicationFormRouteModel.findByCommonRouteCode(companyCode, commonRouteCode);
 
 			if (resultDto == null){
 				log.info("[workflowEngine] " + "isOccupied end");
@@ -394,7 +392,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -404,7 +402,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -436,7 +434,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -480,7 +478,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
@@ -490,7 +488,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -525,7 +523,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

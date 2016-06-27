@@ -50,7 +50,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -61,7 +61,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 
 		try {
 			// deletion processing (company unit)
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_appended ");
@@ -113,7 +113,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(applicationNumber == 0)){
 			resultDto.setStatus(false);
@@ -123,7 +123,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_appended ");
@@ -175,7 +175,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[appendedDto]: " + appendedDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (appendedDto == null) {
 			log.error("[workflowEngine] " + "insert end" + "[return value]:false");
@@ -186,7 +186,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_appended ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -264,7 +264,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[appendedDto]: " + appendedDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (appendedDto == null) {
 			resultDto.setStatus(false);
@@ -274,7 +274,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_appended ");
 			sql.append("SET ");
 			sql.append("company_code = ?, ");
@@ -370,14 +370,14 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
 			if (LaubeUtility.isEmpty(companyCode) || applicationNumber == 0){
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException("company Code / applicationNumber is a required field. Be sure to set.");
 			}
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name,");
@@ -420,7 +420,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new AppendedDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new AppendedDto());
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);

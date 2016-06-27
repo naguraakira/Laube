@@ -51,10 +51,10 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_role ");
@@ -106,7 +106,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
 			resultDto.setStatus(false);
@@ -116,7 +116,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_role ");
@@ -168,7 +168,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[roleDto]: " + roleDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (roleDto == null) {
 			resultDto.setStatus(false);
@@ -178,7 +178,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_role ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -245,7 +245,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[roleDto]: " + roleDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (roleDto == null) {
 			resultDto.setStatus(false);
@@ -255,7 +255,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_role ");
 			sql.append("SET ");
 			sql.append("role_name = ?, ");
@@ -327,15 +327,13 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
-		ResultDto resultDto = new ResultDto();
-
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
 			log.info("[workflowEngine] " + "isOccupied end");
 			return false;
 		}
 
-		RoleUserModel roleUserModel = new RoleUserModel();
-		resultDto = roleUserModel.findByRoleCode(companyCode, roleCode);
+		final RoleUserModel roleUserModel = new RoleUserModel();
+		final ResultDto resultDto = roleUserModel.findByRoleCode(companyCode, roleCode);
 
 		try {
 			if (resultDto == null){
@@ -385,10 +383,10 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -463,10 +461,10 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -501,7 +499,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -545,7 +543,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[roleName]: " + roleName);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		try {
 			boolean isSettingYes = false;
@@ -554,7 +552,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				isSettingYes = true;
 			}
 
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -596,7 +594,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
 
 			log.debug("[workflowEngine] " + "find end" + "[return value]:" + resultData);
 			resultDto.setStatus(true);

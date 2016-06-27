@@ -51,7 +51,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -61,7 +61,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_application_form ");
@@ -114,7 +114,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))) {
 			resultDto.setStatus(false);
@@ -124,7 +124,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_application_form ");
@@ -176,7 +176,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[applicationFormDto]: " + applicationFormDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (applicationFormDto == null) {
 			resultDto.setStatus(false);
@@ -186,7 +186,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_application_form ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -259,7 +259,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[applicationFormDto]: " + applicationFormDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (applicationFormDto == null) {
 			resultDto.setStatus(false);
@@ -269,7 +269,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_application_form ");
 			sql.append("SET ");
 			sql.append("application_form_name = ?, ");
@@ -344,7 +344,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -354,7 +354,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("A.\"company_code\", ");
 			sql.append("A.\"company_name\", ");
@@ -386,7 +386,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -431,7 +431,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))) {
 			resultDto.setStatus(false);
@@ -442,7 +442,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -479,7 +479,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -524,7 +524,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[applicationClassificationCode]: " + applicationClassificationCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
@@ -533,7 +533,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			return resultDto;
 		}
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("A.company_code, ");
 			sql.append("A.company_name, ");
@@ -569,7 +569,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

@@ -51,7 +51,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
@@ -61,7 +61,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 
 			sql.append("SELECT ");
 			sql.append("company_code, ");
@@ -89,7 +89,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new CompanyDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new CompanyDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

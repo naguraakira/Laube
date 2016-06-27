@@ -55,7 +55,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
@@ -65,7 +65,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE ");
 			sql.append("FROM ");
 			sql.append("wkf_role_user ");
@@ -119,7 +119,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[roleUserDto]: " + roleUserDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (roleUserDto == null) {
 			resultDto.setStatus(false);
@@ -129,7 +129,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_role_user ");
 			sql.append("(");
 			sql.append("company_code,");
@@ -199,7 +199,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[roleUserDto]: " + roleUserDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (roleUserDto == null) {
 			resultDto.setStatus(false);
@@ -209,7 +209,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE wkf_role_user ");
 			sql.append("SET ");
 			sql.append("unit_code = ?, ");
@@ -272,7 +272,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
@@ -282,7 +282,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -320,7 +320,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleUserDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleUserDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -364,7 +364,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
@@ -374,7 +374,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -412,7 +412,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleUserDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleUserDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -456,7 +456,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
 			resultDto.setStatus(false);
@@ -466,7 +466,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 		}
 
 		try {
-			StringBuffer sql = new StringBuffer();
+			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append("company_code, ");
 			sql.append("company_name, ");
@@ -504,7 +504,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleUserDto());
+			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleUserDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");

@@ -135,7 +135,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		}
 
 		try {
-			String sql = deleteQuery();
+			final String sql = deleteQuery();
 
 			log.info("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
@@ -193,7 +193,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		}
 
 		try {
-			String sql = deleteByRouteQuery();
+			final String sql = deleteByRouteQuery();
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
@@ -239,7 +239,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[activityDto]: " + activityDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (activityDto == null) {
 			resultDto.setStatus(false);
@@ -249,7 +249,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		}
 
 		try {
-			String sql = insertQuery();
+			final String sql = insertQuery();
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
@@ -312,7 +312,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "[activityDto]: " + activityDto);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (activityDto == null) {
 			resultDto.setStatus(false);
@@ -322,7 +322,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		}
 
 		try {
-			String sql = updateQuery();
+			final String sql = updateQuery();
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
@@ -393,7 +393,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		log.info("[workflowEngine] " + "[companyCode]: "  + companyCode);
 		log.info("[workflowEngine] " + "[routeCode]: "    + routeCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
@@ -403,7 +403,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		}
 
 		try {
-			String sql = findByRouteQuery();
+			final String sql = findByRouteQuery();
 
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
@@ -425,7 +425,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
-			ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
+			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -472,7 +472,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		log.info("[workflowEngine] " + "[routeCode]: "    + routeCode);
 		log.info("[workflowEngine] " + "[activityCode]: " + activityCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))||(LaubeUtility.isBlank(activityCode))) {
 			resultDto.setStatus(false);
@@ -482,7 +482,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		}
 
 		try {
-			String sql = findByActivityQuery();
+			final String sql = findByActivityQuery();
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
@@ -505,7 +505,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 				log.error("[workflowEngine] " + "find end");
 				return resultDto;
 			}
-			ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
+			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
