@@ -7,7 +7,7 @@
 
 CREATE  TABLE wkf_application_classification
  ( 
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,application_classification_code VARCHAR (10)  NOT NULL 
  ,application_classification_name VARCHAR (30)  NULL 

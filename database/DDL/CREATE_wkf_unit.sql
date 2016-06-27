@@ -5,7 +5,7 @@
 
 CREATE  TABLE wkf_unit
  (
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,unit_code VARCHAR (10)  NULL
  ,unit_name VARCHAR (30)  NULL

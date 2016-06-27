@@ -5,7 +5,7 @@
 
 CREATE  TABLE wkf_common_route
  (
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,common_route_code VARCHAR (10)  NOT NULL
  ,common_route_name VARCHAR (30)  NOT NULL

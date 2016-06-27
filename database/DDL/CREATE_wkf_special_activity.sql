@@ -5,7 +5,7 @@
 
 CREATE  TABLE wkf_special_activity
  (
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,special_route_code VARCHAR (10)  NOT NULL
  ,activity_code INT  NOT NULL

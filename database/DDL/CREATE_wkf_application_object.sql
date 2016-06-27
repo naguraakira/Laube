@@ -5,7 +5,7 @@
 
 CREATE  TABLE wkf_application_object
  (
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,application_number BIGINT NOT NULL
  ,reApplication_number BIGINT NOT NULL

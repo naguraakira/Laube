@@ -7,7 +7,7 @@
 
 CREATE  TABLE wkf_application_form_route
  (
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,unit_code VARCHAR (10)
  ,application_form_code VARCHAR (10)  NOT NULL

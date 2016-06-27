@@ -5,7 +5,7 @@
 
 CREATE  TABLE wkf_deputy_approvel
  ( 
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,unit_code VARCHAR (10)  NOT NULL
  ,user_code VARCHAR (10)  NOT NULL

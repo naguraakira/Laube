@@ -5,7 +5,7 @@
 
 CREATE  TABLE wkf_company
  (
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
  ,company_name VARCHAR (30)  NULL
  ,create_date_time TIMESTAMP(0) NOT NULL

@@ -5,9 +5,9 @@
 
 CREATE  TABLE wkf_route_history
  ( 
-  id serial
+  id BIGSERIAL
  ,company_code VARCHAR (10)  NOT NULL
- ,application_number VARCHAR (10) NOT NULL 
+ ,application_number BIGINT NOT NULL 
  ,history_number serial
  ,approval_company_code VARCHAR(10) NOT NULL
  ,approval_company_name VARCHAR(30) NOT NULL
