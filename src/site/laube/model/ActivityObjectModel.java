@@ -96,7 +96,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		try {
 			final String companyCode = activityObjectDto.getCompanyCode();
-			final int applicationNumber = activityObjectDto.getApplicationNumber();
+			final long applicationNumber = activityObjectDto.getApplicationNumber();
 			final int activityObjectCode = activityObjectDto.getActivityObjectCode();
 			final String partyCode = activityObjectDto.getPartyCode();
 			final int partyCodeConnector = activityObjectDto.getPartyCodeConnector();
@@ -175,7 +175,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, companyCode);
-			this.preparedStatement.setInt      ( 2, applicationNumber);
+			this.preparedStatement.setLong     ( 2, applicationNumber);
 			this.preparedStatement.setInt      ( 3, activityObjectCode);
 			this.preparedStatement.setString   ( 4, partyCode);
 			this.preparedStatement.setInt      ( 5, partyCodeConnector);
@@ -254,7 +254,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final int    activityStatus = activityObjectDto.getActivityStatus();
 			final String approvalComment = activityObjectDto.getApprovalComment();
 			final String companyCode = activityObjectDto.getCompanyCode();
-			final int applicationNumber = activityObjectDto.getApplicationNumber();
+			final long applicationNumber = activityObjectDto.getApplicationNumber();
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
 			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
 
@@ -285,7 +285,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.setString( 5, approvalComment);
 			this.preparedStatement.setString( 6, approvalUserCode);
 			this.preparedStatement.setString( 7, companyCode);
-			this.preparedStatement.setInt   ( 8, applicationNumber);
+			this.preparedStatement.setLong  ( 8, applicationNumber);
 			this.preparedStatement.setString( 9, approvalCompanyCode);
 			this.preparedStatement.setString(10, approvalUserCode);
 			this.preparedStatement.executeUpdate();
@@ -341,7 +341,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		try {
 			final int    activityStatus = SpecifiedValue.Arrival;
 			final String companyCode = activityObjectDto.getCompanyCode();
-			final int applicationNumber = activityObjectDto.getApplicationNumber();
+			final long applicationNumber = activityObjectDto.getApplicationNumber();
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
 			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
 
@@ -364,7 +364,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.setInt   ( 1, activityStatus);
 			this.preparedStatement.setString( 2, approvalUserCode);
 			this.preparedStatement.setString( 3, companyCode);
-			this.preparedStatement.setInt   ( 4, applicationNumber);
+			this.preparedStatement.setLong  ( 4, applicationNumber);
 			this.preparedStatement.setString( 5, approvalCompanyCode);
 			this.preparedStatement.setString( 6, approvalUserCode);
 			this.preparedStatement.executeUpdate();
@@ -424,7 +424,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final int    activityStatus = SpecifiedValue.Authorizer_Approval;
 			final String approvalComment = activityObjectDto.getApprovalComment();
 			final String companyCode = activityObjectDto.getCompanyCode();
-			final int applicationNumber = activityObjectDto.getApplicationNumber();
+			final long applicationNumber = activityObjectDto.getApplicationNumber();
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
 			final String approvalUserCode = activityObjectDto.getApprovalUserCode();
 
@@ -455,7 +455,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.setString( 5, approvalComment);
 			this.preparedStatement.setString( 6, approvalUserCode);
 			this.preparedStatement.setString( 7, companyCode);
-			this.preparedStatement.setInt   ( 8, applicationNumber);
+			this.preparedStatement.setLong  ( 8, applicationNumber);
 			this.preparedStatement.setString( 9, approvalCompanyCode);
 			this.preparedStatement.setString(10, approvalUserCode);
 			this.preparedStatement.executeUpdate();

@@ -146,7 +146,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 		try {
 			final String companyCode = applicationObjectDto.getCompanyCode();
 			final int applicationNumber = getNextApplicationNumber(applicationObjectDto.getCompanyCode());
-			final int reApplicationNumber = applicationObjectDto.getReapplicationNumber();
+			final long reApplicationNumber = applicationObjectDto.getReapplicationNumber();
 			final String applicationFormCode = applicationObjectDto.getApplicationFormCode();
 			Date applyDate = null;
 			if (applicationObjectDto.getApplyDate() != null) {
@@ -205,7 +205,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, companyCode);
 			this.preparedStatement.setInt   ( 2, applicationNumber);
-			this.preparedStatement.setInt   ( 3, reApplicationNumber);
+			this.preparedStatement.setLong  ( 3, reApplicationNumber);
 			this.preparedStatement.setString( 4, applicationFormCode);
 			this.preparedStatement.setString( 5, applyCompanyCode);
 			this.preparedStatement.setString( 6, applyUnitCode);
@@ -275,7 +275,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 
 		try {
 			final String companyCode = applicationObjectDto.getCompanyCode();
-			final int applicationNumber = applicationObjectDto.getApplicationNumber();
+			final long applicationNumber = applicationObjectDto.getApplicationNumber();
 			java.sql.Date applyDate = null;
 			if (applicationObjectDto.getApplyDate() != null) {
 				DateFormat format=new SimpleDateFormat("yyyy/MM/dd");
@@ -321,7 +321,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.preparedStatement.setInt   ( 8, applicationStatus);
 			this.preparedStatement.setString( 9, updateUserId);
 			this.preparedStatement.setString(10, companyCode);
-			this.preparedStatement.setInt   (11, applicationNumber);
+			this.preparedStatement.setLong  (11, applicationNumber);
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 

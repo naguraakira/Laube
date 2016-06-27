@@ -214,7 +214,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, appendedDto.getCompanyCode());
-			this.preparedStatement.setInt      ( 2, appendedDto.getApplicationNumber());
+			this.preparedStatement.setLong     ( 2, appendedDto.getApplicationNumber());
 			this.preparedStatement.setString   ( 3, appendedDto.getApprovalCompanyCode());
 			this.preparedStatement.setString   ( 4, appendedDto.getApprovalUnitCode());
 			this.preparedStatement.setString   ( 5, appendedDto.getApprovalUserCode());
@@ -293,7 +293,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, appendedDto.getCompanyCode());
-			this.preparedStatement.setInt      ( 2, appendedDto.getApplicationNumber());
+			this.preparedStatement.setLong     ( 2, appendedDto.getApplicationNumber());
 			this.preparedStatement.setInt      ( 3, appendedDto.getApprovalNumber());
 			this.preparedStatement.setString   ( 4, appendedDto.getApprovalCompanyCode());
 			this.preparedStatement.setString   ( 5, appendedDto.getApprovalUnitCode());
@@ -302,7 +302,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement.setTimestamp( 8, appendedDto.getApprovalDate());
 			this.preparedStatement.setString   ( 9, appendedDto.getUpdateUserId());
 			this.preparedStatement.setString   (10, appendedDto.getCompanyCode());
-			this.preparedStatement.setInt      (11, appendedDto.getApplicationNumber());
+			this.preparedStatement.setLong     (11, appendedDto.getApplicationNumber());
 			this.preparedStatement.setInt      (12, appendedDto.getApprovalNumber());
 			int upCnt = this.preparedStatement.executeUpdate();
 

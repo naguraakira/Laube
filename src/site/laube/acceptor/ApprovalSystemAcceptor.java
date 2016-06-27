@@ -41,7 +41,7 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	/**
 	 *  to manage the application number.<br>
 	 */
-	private int applicationNumber;
+	private long applicationNumber;
 
 	/**
 	 * to manage the date of approval.<br>
@@ -93,7 +93,7 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	 * set the application number of approve.<br>
 	 * @param applicationNumber application number of approve
 	 */
-	public final void setApplicationNumber(final int applicationNumber) {
+	public final void setApplicationNumber(final long applicationNumber) {
 		this.applicationNumber = applicationNumber;
 	}
 
@@ -101,7 +101,7 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	 * get the application number of approve.<br>
 	 * @return application number of approve
 	 */
-	public final int getApplicationNumber() {
+	public final long getApplicationNumber() {
 		return this.applicationNumber;
 	}
 

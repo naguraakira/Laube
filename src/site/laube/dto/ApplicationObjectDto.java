@@ -29,12 +29,12 @@ public class ApplicationObjectDto extends CompanyDto {
 	/**
 	 * to manage the application number. <br>
 	 */
-	private int applicationNumber;
+	private long applicationNumber;
 
 	/**
 	 * to manage the reapplication number. <br>
 	 */
-	private int reapplicationNumber;
+	private long reapplicationNumber;
 
 	/**
 	 * to manage the application classification code. <br>
@@ -135,7 +135,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 * set the applicationn number.<br>
 	 * @param applicationNumber applicationn number
 	 */
-	public final void setApplicationNumber(final int applicationNumber) {
+	public final void setApplicationNumber(final long applicationNumber) {
 		this.applicationNumber = applicationNumber;
 	}
 
@@ -143,7 +143,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 * get the applicationn number.<br>
 	 * @return applicationn number
 	 */
-	public final int getApplicationNumber() {
+	public final long getApplicationNumber() {
 		return this.applicationNumber;
 	}
 
@@ -151,7 +151,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 * set the reapplicationn number.<br>
 	 * @param reapplicationNumber reapplicationn number
 	 */
-	public final void setReapplicationNumber(final int reapplicationNumber) {
+	public final void setReapplicationNumber(final long reapplicationNumber) {
 		this.reapplicationNumber = reapplicationNumber;
 	}
 
@@ -159,7 +159,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 * get the reapplicationn number.<br>
 	 * @return reapplicationn number
 	 */
-	public final int getReapplicationNumber() {
+	public final long getReapplicationNumber() {
 		return this.reapplicationNumber;
 	}
 

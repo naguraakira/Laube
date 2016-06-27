@@ -465,7 +465,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append("company_code = ?");
 			sql.append(" AND application_form_code = ?;");
 
-			log.debug("[workflowEngine] " + "[SQL]" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationFormCode);

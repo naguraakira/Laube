@@ -7,7 +7,7 @@ CREATE  TABLE wkf_activity_object
  (
   id serial
  ,company_code VARCHAR (10)  NOT NULL
- ,application_number INT NOT NULL
+ ,application_number BIGINT NOT NULL
  ,activity_object_code INT NOT NULL
  ,party_code VARCHAR (3)  NULL
  ,party_code_connector INT NOT NULL

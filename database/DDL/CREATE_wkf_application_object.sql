@@ -7,8 +7,8 @@ CREATE  TABLE wkf_application_object
  (
   id serial
  ,company_code VARCHAR (10)  NOT NULL
- ,application_number INT NOT NULL
- ,reApplication_number INT NOT NULL
+ ,application_number BIGINT NOT NULL
+ ,reApplication_number BIGINT NOT NULL
  ,application_form_code VARCHAR (10)  NULL
  ,apply_company_code VARCHAR(10) NOT NULL
  ,apply_unit_code VARCHAR(10) NOT NULL

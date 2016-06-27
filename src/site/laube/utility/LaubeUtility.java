@@ -70,7 +70,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param targetStr Before conversion string
 	 * @return Post-conversion string
 	 */
-	public static final CharSequence camelToSnake(String targetStr) {
+	public static final String camelToSnake(String targetStr) {
 
 		String convertedStr = targetStr
 			.replaceAll("([A-Z]+)([A-Z][a-z])", "$1_$2")
@@ -84,7 +84,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param targetStr Before conversion string
 	 * @return Post-conversion string
 	 */
-	public static final CharSequence snakeToCamel(String targetStr) {
+	public static final String snakeToCamel(String targetStr) {
 
 		Pattern p = Pattern.compile("_([a-z])");
 		Matcher m = p.matcher(targetStr.toLowerCase());
@@ -105,7 +105,7 @@ public final class LaubeUtility implements Serializable {
 	 * @return Encrypted string
 	 * @throws LaubeException
 	 */
-	public static final CharSequence doEncryption(String text) throws LaubeException {
+	public static final String doEncryption(String text) throws LaubeException {
 
 		try {
 
@@ -187,7 +187,7 @@ public final class LaubeUtility implements Serializable {
 	 * @return Composite string
 	 * @throws LaubeException
 	 */
-	public static final CharSequence doDecryption(String text) throws LaubeException {
+	public static final String doDecryption(String text) throws LaubeException {
 
 		try {
 

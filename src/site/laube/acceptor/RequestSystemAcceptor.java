@@ -43,12 +43,12 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	/**
 	 * to manage the most recent application number.<br>
 	 */
-	private int reapplicationNumber;
+	private long reapplicationNumber;
 
 	/**
 	 * to manage the application number.<br>
 	 */
-	private int applicationNumber;
+	private long applicationNumber;
 
 	/**
 	 * to manage the application code of request.<br>
@@ -121,7 +121,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	 * set the application number.<br>
 	 * @param applicationNumber application number
 	 */
-	public final void setApplicationNumber(final int applicationNumber) {
+	public final void setApplicationNumber(final long applicationNumber) {
 		this.applicationNumber = applicationNumber;
 	}
 
@@ -130,7 +130,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	 *
 	 * @return application number
 	 */
-	public final int getApplicationNumber() {
+	public final long getApplicationNumber() {
 		return this.applicationNumber;
 	}
 
@@ -138,7 +138,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	 * set the most recent application number.<br>
 	 * @param reapplicationNumber reapplicationNumber
 	 */
-	public final void setReapplicationNumber(final int reapplicationNumber) {
+	public final void setReapplicationNumber(final long reapplicationNumber) {
 		this.reapplicationNumber = reapplicationNumber;
 	}
 
@@ -147,7 +147,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	 *
 	 * @return most recent application number
 	 */
-	public final int getReapplicationNumber() {
+	public final long getReapplicationNumber() {
 		return this.reapplicationNumber;
 	}
 
