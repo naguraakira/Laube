@@ -47,15 +47,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "delete Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "delete start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "delete end");
 			return resultDto;
 		}
 
@@ -75,6 +76,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} catch (SQLException e) {
 			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -89,12 +91,14 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				}
 			} catch (SQLException e) {
 				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "delete End" + "[return value]:true");
+		log.debug("[workflowEngine] " + "delete end" + "[return value]:true");
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
 	}
 
@@ -109,16 +113,17 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	@Override
 	public final ResultDto delete(final String companyCode, final String userCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "delete Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[userCode]: " + userCode);
+		log.info("[workflowEngine] " + "delete start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
-		ResultDto resultDto = new ResultDto();
+		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "delete end");
 			return resultDto;
 		}
 
@@ -139,6 +144,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} catch (SQLException e) {
 			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -153,10 +159,11 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				}
 			} catch (SQLException e) {
 				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "delete End" + "[return value]:true");
+		log.info("[workflowEngine] " + "delete end" + "[return value]:true");
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
 		return resultDto;
@@ -171,16 +178,17 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	@Override
 	public final ResultDto insert(final BossDto bossDto) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "insert Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[bossDto]: " + bossDto);
+		log.info("[workflowEngine] " + "insert start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[bossDto]: " + bossDto);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (bossDto == null) {
-			log.error("[workflowEngine] " + "insert End" + "[return value]:false");
+			log.error("[workflowEngine] " + "insert end" + "[return value]:false");
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "insert end");
 			return resultDto;
 		}
 
@@ -228,6 +236,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} catch (SQLException e) {
 			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -245,7 +254,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "insert End" + "[return value]:true");
+		log.info("[workflowEngine] " + "insert end" + "[return value]:true");
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
 		return resultDto;
@@ -260,16 +269,17 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	@Override
 	public final ResultDto update(final BossDto bosseDto) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "update Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[bosseDto]: " + bosseDto);
+		log.info("[workflowEngine] " + "update start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[bosseDto]: " + bosseDto);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (bosseDto == null) {
-			log.error("[workflowEngine] " + "update End" + "[return value]:false");
+			log.error("[workflowEngine] " + "update end" + "[return value]:false");
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "update end");
 			return resultDto;
 		}
 
@@ -313,11 +323,13 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				log.error("[workflowEngine] applicationFormCode:" + bosseDto.getApplicationFormCode());
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
+				log.info("[workflowEngine] " + "update end");
 				return resultDto;
 			}
 
 		} catch (SQLException e) {
 			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -332,10 +344,11 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				}
 			} catch (SQLException e) {
 				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "update End" + "[return value]:true");
+		log.info("[workflowEngine] " + "update end" + "[return value]:true");
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
 		return resultDto;
@@ -353,20 +366,21 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	@Override
 	public final ResultDto findByChainOfResposibility(String companyCode, String unitCode, String userCode, String applicationFormCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findByChainOfResposibility Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[unitCode]: " + unitCode);
-		log.debug("[workflowEngine] " + "[userCode]: " + userCode);
-		log.debug("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
+		log.info("[workflowEngine] " + "findByChainOfResposibility start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[unitCode]: " + unitCode);
+		log.info("[workflowEngine] " + "[userCode]: " + userCode);
+		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 
 		ResultDto resultDto = new ResultDto();
 		ArrayList<BossDto> list = new ArrayList<BossDto>();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))||(LaubeUtility.isBlank(userCode))) {
-			log.error("[workflowEngine] " + "update End" + "[return value]:false");
+			log.error("[workflowEngine] " + "update end" + "[return value]:false");
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findByChainOfResposibility end");
 			return resultDto;
 		}
 
@@ -379,7 +393,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					resultDto.setStatus(true);
 					resultDto.setMessageId("N0001");
 					resultDto.setResultData(null);
-					log.debug("[workflowEngine]" + "findByChainOfResposibility End");
+					log.info("[workflowEngine]" + "findByChainOfResposibility end");
 					return resultDto;
 				}
 
@@ -394,7 +408,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					resultDto.setMessageId("N0001");
 					resultDto.setResultData(null);
 					log.debug("[workflowEngine]" + "bossDto os null.");
-					log.debug("[workflowEngine]" + "findByChainOfResposibility End");
+					log.info("[workflowEngine]" + "findByChainOfResposibility end");
 					return resultDto;
 
 				}else{
@@ -409,7 +423,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 						resultDto.setStatus(true);
 						resultDto.setResultData(list);
 						log.debug("[workflowEngine]" + "top-level employee." + list.toString());
-						log.debug("[workflowEngine]" + "findByChainOfResposibility End");
+						log.info("[workflowEngine]" + "findByChainOfResposibility end");
 						return resultDto;
 					}
 
@@ -430,11 +444,11 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 							log.debug("[workflowEngine]" + "because the same boss has appeared twice, to exit from the loop.");
 							resultDto.setStatus(false);
 							resultDto.setMessageId("E1004");
-							log.debug("[workflowEngine]" + "findByChainOfResposibility End");
+							log.info("[workflowEngine]" + "findByChainOfResposibility end");
 							return resultDto;
 						}
 					}
-					log.debug("[workflowEngine]" + "[add]" + bossDto);
+					log.info("[workflowEngine]" + "[add]" + bossDto);
 					list.add(bossDto);
 				}
 			}
@@ -451,7 +465,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				}
 			} catch (SQLException e) {
 				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine]" + "findByChainOfResposibility End");
+				log.info("[workflowEngine]" + "findByChainOfResposibility end");
 				throw new LaubeException(e);
 			}
 		}
@@ -473,18 +487,18 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	@Override
 	public final ResultDto find(final String companyCode, final String unitCode, final String userCode, final String applicationFormCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "find Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[unitCode]: " + unitCode);
-		log.debug("[workflowEngine] " + "[userCode]: " + userCode);
-		log.debug("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
+		log.info("[workflowEngine] " + "find start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[unitCode]: " + unitCode);
+		log.info("[workflowEngine] " + "[userCode]: " + userCode);
+		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		try {
 			if (LaubeUtility.isEmpty(companyCode) || LaubeUtility.isEmpty(unitCode) || LaubeUtility.isEmpty(userCode)){
-				log.error("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException("company Code / department code / employee number is a required field. Be sure to set.");
 			}
 			StringBuffer sql = new StringBuffer();
@@ -567,7 +581,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					log.error("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1003");
-					log.error("[workflowEngine] " + "find End");
+					log.info("[workflowEngine] " + "find end");
 					return resultDto;
 				}
 			}
@@ -579,7 +593,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} catch (SQLException e) {
 			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find End");
+			log.error("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -594,11 +608,11 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				}
 			} catch (SQLException e) {
 				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "find End");
+		log.info("[workflowEngine] " + "find end");
 		return resultDto;
 	}
 }
