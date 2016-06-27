@@ -48,7 +48,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	 * @return LaubeResult
 	 * @exception LaubeException
 	 */
-	public ResultDto find(final String companyCode, final int applicationNumber) throws LaubeException {
+	public ResultDto find(final String companyCode, final long applicationNumber) throws LaubeException {
 
 		log.debug("[workflowEngine] " + "find Start");
 		log.debug("[workflowEngine] " + "[argument]");
@@ -75,7 +75,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			log.debug("[workflowEngine] " + "SQL:" + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
-			this.preparedStatement.setInt   (2, applicationNumber);
+			this.preparedStatement.setLong  (2, applicationNumber);
 
 			this.resultSet = this.preparedStatement.executeQuery();
 

@@ -199,6 +199,9 @@ public class LaubeModel {
 				} else if (Types.BOOLEAN == type) {
 					method = laubeDto.getClass().getMethod(setter, new Class[] { boolean.class });
 					method.invoke(laubeDto, resultSet.getBoolean(name));
+				} else if (Types.BIGINT == type) {
+					method = laubeDto.getClass().getMethod(setter, new Class[] { long.class });
+					method.invoke(laubeDto, resultSet.getLong(name));
 				} else {
 					method = laubeDto.getClass().getMethod(setter, new Class[] { String.class });
 					method.invoke(laubeDto, resultSet.getString(name));

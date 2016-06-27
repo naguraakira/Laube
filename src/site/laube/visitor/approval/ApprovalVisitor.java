@@ -84,7 +84,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				return resultDto;
 			}
 
-			final int applicationNumber = approvalAcceptor.getApplicationNumber();
+			final long applicationNumber = approvalAcceptor.getApplicationNumber();
 			final String companyCode = approvalAcceptor.getCompanyCode();
 			String approvalCompanyCode = approvalAcceptor.getApprovalCompanyCode();
 			String approvalUnitCode = approvalAcceptor.getApprovalUnitCode();

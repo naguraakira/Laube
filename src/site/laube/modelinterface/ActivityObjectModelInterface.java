@@ -76,7 +76,7 @@ public interface ActivityObjectModelInterface {
 	 * @throws LaubeException
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
-	public abstract ResultDto delete(final String companyCode, final int applicationNumber) throws LaubeException;
+	public abstract ResultDto delete(final String companyCode, final long applicationNumber) throws LaubeException;
 
 	/**
 	 * find the activity object.<br>
@@ -90,7 +90,7 @@ public interface ActivityObjectModelInterface {
 	 * @throws LaubeException
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
-	public abstract ResultDto find(final String companyCode, final int applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException;
+	public abstract ResultDto find(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException;
 
 	/**
 	 * find the activity object by arrival.<br>
@@ -103,5 +103,5 @@ public interface ActivityObjectModelInterface {
 	 * @throws LaubeException
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
-	public abstract ResultDto findByArrival(final String companyCode, final int applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode) throws LaubeException;
+	public abstract ResultDto findByArrival(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode) throws LaubeException;
 }

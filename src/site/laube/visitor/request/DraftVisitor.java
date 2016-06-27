@@ -87,8 +87,8 @@ public class DraftVisitor extends RequestSystemVisitor {
 			}
 
 			final String companyCode = draftAcceptor.getCompanyCode();
-			      int applicationNumber = draftAcceptor.getApplicationNumber();
-			final int reapplicationNumber = draftAcceptor.getReapplicationNumber();
+			long applicationNumber = draftAcceptor.getApplicationNumber();
+			final long reapplicationNumber = draftAcceptor.getReapplicationNumber();
 			final String applicationFormCode = draftAcceptor.getApplicationFormCode();
 			final String applyDate = draftAcceptor.getApplyDate();
 			final String applyCompanyCode = draftAcceptor.getApplyCompanyCode();
@@ -569,7 +569,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 	private final List<ActivityObjectDto> copyToActivityDto(
 			final String companyCode,
 			final String applyUserCode,
-			final int applicationNumber,
+			final long applicationNumber,
 			final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptor
 			) throws LaubeException {
 

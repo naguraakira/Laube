@@ -493,7 +493,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @throws LaubeException
 	 */
 	@Override
-	public final ResultDto delete(final String companyCode, final int applicationNumber) throws LaubeException {
+	public final ResultDto delete(final String companyCode, final long applicationNumber) throws LaubeException {
 
 		ResultDto resultDto = new ResultDto();
 		try {
@@ -501,7 +501,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? AND application_number = ?;";
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);
-			this.preparedStatement.setInt   (2, applicationNumber);
+			this.preparedStatement.setLong  (2, applicationNumber);
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -539,7 +539,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @throws LaubeException
 	 */
 	@Override
-	public final ResultDto find(final String companyCode, final int applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException {
+	public final ResultDto find(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException {
 
 		log.debug("[workflowEngine] " + "find Start");
 		log.debug("[workflowEngine] " + "[argument]");
@@ -601,7 +601,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
-			this.preparedStatement.setInt   (2, applicationNumber);
+			this.preparedStatement.setLong  (2, applicationNumber);
 			this.preparedStatement.setString(3, approvalCompanyCode);
 			this.preparedStatement.setString(4, approvalUnitCode);
 			this.preparedStatement.setString(5, approvalUserCode);
@@ -666,7 +666,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
 	@Override
-	public final ResultDto findByArrival(final String companyCode, final int applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode) throws LaubeException {
+	public final ResultDto findByArrival(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode) throws LaubeException {
 
 		log.debug("[workflowEngine] " + "findByArrival Start");
 		log.debug("[workflowEngine] " + "[argument]");

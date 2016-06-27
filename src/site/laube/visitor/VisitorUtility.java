@@ -80,7 +80,7 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */
-	public static final ResultDto circulatedNextApprover(final String companyCode, final int applicationNumber) throws LaubeException {
+	public static final ResultDto circulatedNextApprover(final String companyCode, final long applicationNumber) throws LaubeException {
 
 		log.debug("[workflowEngine] " + "circulatedNextApprover start.");
 		log.debug("[workflowEngine] " + "[argument]");

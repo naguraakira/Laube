@@ -29,7 +29,7 @@ public interface ApplicationObjectModelInterface {
 	 * @return LaubeResult
 	 * @exception LaubeException
 	 */
-	public abstract ResultDto find(final String companyCode, final int applicationNumber) throws LaubeException;
+	public abstract ResultDto find(final String companyCode, final long applicationNumber) throws LaubeException;
 
 	/**
 	 * tegister the application object.<br>
