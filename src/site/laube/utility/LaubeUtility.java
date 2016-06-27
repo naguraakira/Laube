@@ -364,7 +364,7 @@ public final class LaubeUtility implements Serializable {
 	 * @return result
 	 */
 	public static final boolean isEmpty(ResultDto resultDto) {
-		return ((resultDto == null)||(!resultDto.isSuccess())||(isEmpty(resultDto.getResultData())));
+		return ((resultDto == null)||(!resultDto.isSuccess()));
 	}
 
 	/**
