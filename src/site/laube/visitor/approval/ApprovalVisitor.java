@@ -237,6 +237,10 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		log.debug("[workflowEngine] " + "[argument]");
 		log.debug("[workflowEngine] " + "approvalAcceptor:" + approvalAcceptor);
 
+		if (LaubeUtility.isEmpty(approvalAcceptor)) {
+			return true;
+		}
+
 		if (LaubeUtility.isBlank(approvalAcceptor.getApprovalCompanyCode())) {
 			log.debug("[workflowEngine] " + "approvalCompanyCode : null");
 			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");

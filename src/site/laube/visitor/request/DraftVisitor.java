@@ -342,6 +342,10 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
 		log.debug("[workflowEngine] " + "target:" + target);
 
+		if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(LaubeUtility.isEmpty(target))) {
+			return false;
+		}
+
 		// check party code
 		if (LaubeUtility.isBlank(target.getPartyCode())) {
 			log.error("[workflowEngine] " + "error party code");
@@ -474,6 +478,10 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "nextPartyCode: " + nextPartyCode);
 		log.debug("[workflowEngine] " + "keywords:" + keywords);
 
+		if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(LaubeUtility.isBlank(nextPartyCode))||(LaubeUtility.isEmpty(keywords))) {
+			return true;
+		}
+
 		for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptors) {
 			// discover the next party code
 			if (nextPartyCode.equals(route.getPartyCode())) {
@@ -515,6 +523,10 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "isNull start");
 		log.debug("[workflowEngine] " + "[argument]");
 		log.debug("[workflowEngine] " + "applyAcceptor:" + draftAcceptor);
+
+		if (LaubeUtility.isEmpty(draftAcceptor)) {
+			return true;
+		}
 
 		if (LaubeUtility.isBlank(draftAcceptor.getCompanyCode())) {
 			log.debug("[workflowEngine] " + "companyCode : null");
@@ -631,6 +643,10 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
 
 		boolean result = true;
+
+		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
+			return false;
+		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (activityObjectDto == null) {

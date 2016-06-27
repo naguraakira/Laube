@@ -56,7 +56,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @return ResultDto
 	 * @exception LaubeException
 	 */
-	@SuppressWarnings("unchecked")
 	public ResultDto visit(final RequestSystemAcceptor requestSystemAcceptor) throws LaubeException {
 
 		log.debug("[workflowEngine] " + "visit start");
@@ -288,7 +287,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param approvalRouteInformationAcceptors
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean checkRoute(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors){
 
 		log.debug("[workflowEngine] " + "checkRoute start");
@@ -338,7 +336,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param target
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean checkItem(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final ApprovalRouteInformationAcceptor target){
 
 		log.debug("[workflowEngine] " + "checkItem start");
@@ -469,7 +466,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param keywords
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean checkNextParty(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final String nextPartyCode, ArrayList<String> keywords){
 
 		log.debug("[workflowEngine] " + "checkNextParty start");
@@ -513,12 +509,15 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	/**
 	 * check of essential items.
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean isNull(final ApplyAcceptor applyAcceptor){
 
 		log.debug("[workflowEngine] " + "isNull start");
 		log.debug("[workflowEngine] " + "[argument]");
 		log.debug("[workflowEngine] " + "applyAcceptor:" + applyAcceptor);
+
+		if (LaubeUtility.isEmpty(applyAcceptor)) {
+			return true;
+		}
 
 		if (LaubeUtility.isBlank(applyAcceptor.getCompanyCode())) {
 			log.debug("[workflowEngine] " + "companyCode : null");
@@ -569,7 +568,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @return List<ActivityObjectDto>
 	 * @exception LaubeException
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final List<ActivityObjectDto> copyToActivityDto(
 			final String companyCode,
 			final String applyUserCode,
@@ -590,9 +588,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
 			for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptor) {
-
 				ActivityObjectDto activityObjectDto = new ActivityObjectDto();
-
 				activityObjectDto.setCompanyCode(companyCode);
 				activityObjectDto.setApplicationNumber(applicationNumber);
 				int activityObjectCode = ++row;
@@ -628,7 +624,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @return List<ActivityObjectDto>
 	 * @exception LaubeException
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final List<ActivityObjectDto> changeTheFirstApproverOfStatus(List<ActivityObjectDto> activityObjectDtoList) {
 
 		log.debug("[workflowEngine] " + "changeTheFirstApproverOfStatus start");
@@ -636,21 +631,25 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
 
 		boolean result = true;
-		if (!LaubeUtility.isEmpty(activityObjectDtoList)){
 
-			for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 
-				if (activityObjectDto != null){
-					// find party of start
-					if (isFirstParty(activityObjectDtoList, activityObjectDto)) {
-						result = setArrivalStatus(activityObjectDtoList, activityObjectDto.getPartyCode());
-					}
-				}
-				if (!result) {
-					break;
+		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
+			return activityObjectDtoList;
+		}
+
+		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
+
+			if (activityObjectDto != null){
+				// find party of start
+				if (isFirstParty(activityObjectDtoList, activityObjectDto)) {
+					result = setArrivalStatus(activityObjectDtoList, activityObjectDto.getPartyCode());
 				}
 			}
+			if (!result) {
+				break;
+			}
 		}
+
 		return activityObjectDtoList;
 	}
 
@@ -660,7 +659,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param target
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean isFirstParty(List<ActivityObjectDto> activityObjectDtoList, final ActivityObjectDto target){
 
 		log.debug("[workflowEngine] " + "isFirstParty start");
@@ -669,6 +667,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "target:" + target);
 
 		boolean result = true;
+
+		if ((LaubeUtility.isEmpty(activityObjectDtoList))||(LaubeUtility.isEmpty(target))) {
+			return false;
+		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 
@@ -688,7 +690,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param partyCode
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean setArrivalStatus(List<ActivityObjectDto> activityObjectDtoList, final String partyCode){
 
 		log.debug("[workflowEngine] " + "setArrivalStatus start");
@@ -697,6 +698,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "partyCode:" + partyCode);
 
 		boolean result = true;
+
+		if ((LaubeUtility.isEmpty(activityObjectDtoList))||(LaubeUtility.isBlank(partyCode))) {
+			return false;
+		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (LaubeUtility.isEmpty(activityObjectDto)){
@@ -716,7 +721,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param activityObjectDtoList
 	 * @return boolean
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean checkActivityStatus(final List<ActivityObjectDto> activityObjectDtoList) {
 
 		log.debug("[workflowEngine] " + "checkActivityStatus start");
@@ -724,6 +728,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
 
 		boolean result = true;
+
+		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
+			return false;
+		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (activityObjectDto == null) {
