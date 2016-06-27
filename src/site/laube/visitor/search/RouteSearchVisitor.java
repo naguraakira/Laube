@@ -29,7 +29,6 @@ import site.laube.model.BossModel;
 import site.laube.model.CompanyModel;
 import site.laube.model.LaubeModel;
 import site.laube.model.RoleUserModel;
-import site.laube.model.RouteModel;
 import site.laube.model.UnitModel;
 import site.laube.model.UserModel;
 import site.laube.modelinterface.ActivityModelInterface;
@@ -39,7 +38,6 @@ import site.laube.modelinterface.ApplicationFormRouteModelInterface;
 import site.laube.modelinterface.BossModelInterface;
 import site.laube.modelinterface.CompanyModelInterface;
 import site.laube.modelinterface.RoleUserModelInterface;
-import site.laube.modelinterface.RouteModelInterface;
 import site.laube.modelinterface.UnitModelInterface;
 import site.laube.modelinterface.UserModelInterface;
 import site.laube.utility.LaubeUtility;
@@ -83,23 +81,23 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		log.debug("[workflowEngine] " + "[argument]");
 		log.debug("[workflowEngine] " + "searchSystemAcceptor:" + searchSystemAcceptor);
 
-		RouteSearchAcceptor routeSearchAcceptor = (RouteSearchAcceptor)searchSystemAcceptor;
+		// create a return information.
+		ResultDto resultDto = new ResultDto();
+
+		if (LaubeUtility.isEmpty(searchSystemAcceptor)){
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "visit end");
+			return resultDto;
+		}
+
+		final RouteSearchAcceptor routeSearchAcceptor = (RouteSearchAcceptor)searchSystemAcceptor;
 
 		try{
-			// create a return information.
-			ResultDto resultDto = new ResultDto();
 
-			// checks of the parameters
-			if (routeSearchAcceptor == null) {
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E0001");
-				log.error("[workflowEngine] " + "visit end");
-				return resultDto;
-			}
+			boolean isNull = isNull(routeSearchAcceptor);
 
-			boolean result = isNull(routeSearchAcceptor);
-
-			if (result) {
+			if (isNull) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "visit end");
@@ -119,10 +117,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			CompanyDto companyDto = null;
 			resultDto = findCompany(companyCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1007");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -134,10 +129,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			ApplicationFormDto applicationFormDto = null;
 			resultDto = findApplicationForm(companyCode, applicationFormCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1002");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -149,10 +141,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			ApplicationFormRouteDto applicationFormRouteDto = null;
 			resultDto = findApplicationFormRoute(applyCompanyCode, applicationFormCode, applyUnitCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1008");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -164,10 +153,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			ApplicationClassificationDto applicationClassificationDto = null;
 			resultDto = findApplicationClassification(companyCode, applicationFormDto.getApplicationClassificationCode());
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1009");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -179,10 +165,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			CompanyDto applyCompanyDto = null;
 			resultDto = findCompany(applyCompanyCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1007");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -194,10 +177,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			UnitDto applyUnitDto = null;
 			resultDto = findUnit(applyCompanyCode, applyUnitCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1010");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -209,10 +189,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			UserDto applyUserDto = null;
 			resultDto = findUser(applyCompanyCode, applyUserCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1011");
+			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
@@ -237,10 +214,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				deputyApplyCompanyDto = null;
 				resultDto = findCompany(deputyApplyCompanyCode);
 
-				if ((resultDto == null)||(!resultDto.isSuccess())) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1007");
+				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
@@ -252,10 +226,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				deputyApplyUnitDto = null;
 				resultDto = findUnit(deputyApplyCompanyCode, deputyApplyUnitCode);
 
-				if ((resultDto == null)||(!resultDto.isSuccess())) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1010");
+				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
@@ -267,10 +238,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				deputyApplyUserDto = null;
 				resultDto = findUser(deputyApplyCompanyCode, deputyApplyUserCode);
 
-				if ((resultDto == null)||(!resultDto.isSuccess())) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1011");
+				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
@@ -325,10 +293,8 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				log.debug("[workflowEngine] " + "find the individual route master.");
 				resultDto = findRoute(applyCompanyCode, individualRouteCode, RouteType.IndividualRoute);
 
-				if (resultDto == null) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1012");
+				if (LaubeUtility.isEmpty(resultDto)) {
+					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
@@ -347,15 +313,8 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				log.debug("[workflowEngine] " + "find the boss route master.");
 				resultDto = findRoute(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 
-				if (resultDto == null) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1013");
-					log.error("[workflowEngine] " + "visit end");
-					return resultDto;
-				}
-
-				if (!resultDto.isSuccess()) {
+				if (LaubeUtility.isEmpty(resultDto)) {
+					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
@@ -364,15 +323,8 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					log.debug("[workflowEngine] " + "find the special route master.");
 					resultDto = findRoute(applyCompanyCode,applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
 
-					if (resultDto == null) {
-						resultDto = new ResultDto();
-						resultDto.setStatus(false);
-						resultDto.setMessageId("E1013");
-						log.error("[workflowEngine] " + "visit end");
-						return resultDto;
-					}
-
-					if (!resultDto.isSuccess()) {
+					if (LaubeUtility.isEmpty(resultDto)) {
+						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 						log.error("[workflowEngine] " + "visit end");
 						return resultDto;
 					}
@@ -402,15 +354,8 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				log.debug("[workflowEngine] " + "find the common route master.");
 				resultDto = findRoute(applyCompanyCode, commonRouteCode, RouteType.CommonRoute);
 
-				if (resultDto == null) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1002");
-					log.error("[workflowEngine] " + "visit end");
-					return resultDto;
-				}
-
-				if (!resultDto.isSuccess()) {
+				if (LaubeUtility.isEmpty(resultDto)) {
+					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
@@ -505,26 +450,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final CompanyModelInterface companyModelInterface = new CompanyModel();
 		ResultDto resultDto = companyModelInterface.find(companyCode);
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findCompany end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findCompany end");
 			return resultDto;
 		}
 
 		ArrayList<LaubeDto> companyDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((companyDtos == null)||(companyDtos.size() != 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findCompany end");
-			return resultDto;
-		}
 
 		CompanyDto companyDto = (CompanyDto)companyDtos.get(0);
 		resultDto.setResultData(companyDto);
@@ -551,26 +483,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final UnitModelInterface unitModelInterface = new UnitModel();
 		ResultDto resultDto = unitModelInterface.find(companyCode, unitCode);
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findUnit end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findUnit end");
 			return resultDto;
 		}
 
 		ArrayList<LaubeDto> unitDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((unitDtos == null)||(unitDtos.size() != 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findUnit end");
-			return resultDto;
-		}
 
 		UnitDto applyUnitDto = (UnitDto)unitDtos.get(0);
 		resultDto.setResultData(applyUnitDto);
@@ -598,26 +517,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final UserModelInterface userModelInterface = new UserModel();
 		ResultDto resultDto = userModelInterface.find(companyCode, userCode);
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findUser end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findUser end");
 			return resultDto;
 		}
 
 		ArrayList<LaubeDto> userDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((userDtos == null)||(userDtos.size() != 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findUser end");
-			return resultDto;
-		}
 
 		UserDto userDto = (UserDto)userDtos.get(0);
 		resultDto.setResultData(userDto);
@@ -645,26 +551,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final ApplicationFormModelInterface applicationFormModelInterface = new ApplicationFormModel();
 		ResultDto resultDto = applicationFormModelInterface.findByApplicationFormCode(companyCode, applicationFormCode);
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findApplicationForm end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findApplicationForm end");
 			return resultDto;
 		}
 
 		ArrayList<LaubeDto> applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((applicationFormDtos == null)||(applicationFormDtos.size() != 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findApplicationForm end");
-			return resultDto;
-		}
 
 		ApplicationFormDto applicationFormDto = (ApplicationFormDto)applicationFormDtos.get(0);
 		resultDto.setResultData(applicationFormDto);
@@ -694,26 +587,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final ApplicationFormRouteModelInterface applicationFormRouteModelInterface = new ApplicationFormRouteModel();
 		ResultDto resultDto = applicationFormRouteModelInterface.find(companyCode, applicationFormCode, unitCode);
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(true);
-			resultDto.setMessageId("N0001");
-			log.debug("[workflowEngine] " + "findApplicationFormRoute end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findApplicationFormRoute end");
 			return resultDto;
 		}
 
 		ArrayList<LaubeDto> applicationFormRouteDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((applicationFormRouteDtos == null)||(applicationFormRouteDtos.size() != 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findApplicationFormRoute end");
-			return resultDto;
-		}
 
 		ApplicationFormRouteDto applicationFormRouteDto = (ApplicationFormRouteDto)applicationFormRouteDtos.get(0);
 		resultDto.setStatus(true);
@@ -741,26 +621,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final ApplicationClassificationModelInterface applicationClassificationModelInterfaces = new ApplicationClassificationModel();
 		ResultDto resultDto = applicationClassificationModelInterfaces.findByApplicationClassificationCode(companyCode, applicationClassificationCode);
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findApplicationClassification end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findApplicationClassification end");
 			return resultDto;
 		}
 
 		ArrayList<LaubeDto> ApplicationClassificationDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((ApplicationClassificationDtos == null)||(ApplicationClassificationDtos.size() != 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findApplicationClassification end");
-			return resultDto;
-		}
 
 		ApplicationClassificationDto applicationClassificationDto = (ApplicationClassificationDto)ApplicationClassificationDtos.get(0);
 		resultDto.setResultData(applicationClassificationDto);
@@ -785,34 +652,10 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
 		log.debug("[workflowEngine] " + "routeCode:" + routeCode);
 
-		final RouteModelInterface routeModelInterface = RouteModel.factory(routeType);
-		ResultDto resultDto = routeModelInterface.find(companyCode, routeCode);
 		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.debug("[workflowEngine] " + "findRoute end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
-			log.error("[workflowEngine] " + "findRoute end");
-			return resultDto;
-		}
-
-		ArrayList<LaubeDto> routeDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-		if ((routeDtos == null)||(routeDtos.size() < 1)) {
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findRoute end");
-			return resultDto;
-		}
-
 		final ActivityModelInterface activityModelInterface = ActivityModel.factory(routeType);
-		resultDto = activityModelInterface.find(companyCode, routeCode);
+		ResultDto resultDto = activityModelInterface.find(companyCode, routeCode);
 		ArrayList<ActivityDto> activityDtos = (ArrayList<ActivityDto>)(resultDto.getResultData());
 
 		final RoleUserModelInterface RoleUserModelInterface = new RoleUserModel();
@@ -905,15 +748,8 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		ResultDto resultDto = bossModelInterface.findByChainOfResposibility(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
 
-		if (resultDto == null) {
-			resultDto = new ResultDto();
-			resultDto.setStatus(false);
-			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findRoute end");
-			return resultDto;
-		}
-
-		if (!resultDto.isSuccess()) {
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 			log.error("[workflowEngine] " + "findRoute end");
 			return resultDto;
 		}

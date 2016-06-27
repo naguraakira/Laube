@@ -63,23 +63,23 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "[argument]");
 		log.debug("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
 
-		DraftAcceptor draftAcceptor = (DraftAcceptor)requestSystemAcceptor;
+		// create a return information.
+		ResultDto resultDto = new ResultDto();
+
+		if (LaubeUtility.isEmpty(requestSystemAcceptor)){
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "visit end");
+			return resultDto;
+		}
+
+		final DraftAcceptor draftAcceptor = (DraftAcceptor)requestSystemAcceptor;
 
 		try{
-			// create a return information.
-			ResultDto resultDto = new ResultDto();
 
-			// checks of the parameters
-			if (draftAcceptor == null) {
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E0001");
-				log.error("[workflowEngine] " + "visit end");
-				return resultDto;
-			}
+			boolean isNull = isNull(draftAcceptor);
 
-			boolean result = isNull(draftAcceptor);
-
-			if (result) {
+			if (isNull) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "visit end");
@@ -103,21 +103,13 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final ApplicationFormModelInterface applicationFormModelInterface = new ApplicationFormModel();
 			resultDto = applicationFormModelInterface.findByApplicationFormCode(applyCompanyCode, applicationFormCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())) {
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1002");
+			if (!resultDto.isSuccess()) {
+				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			ArrayList<LaubeDto> applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-			if ((applicationFormDtos == null)||(applicationFormDtos.size() != 1)) {
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1002");
-				log.error("[workflowEngine] " + "visit end");
-				return resultDto;
-			}
 
 			List<ApprovalRouteInformationAcceptor> individualRoutes = draftAcceptor.getIndividualRoutes();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = draftAcceptor.getCommonRoutes();
@@ -300,9 +292,9 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.debug("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
 
 		boolean result = true;
-		if (approvalRouteInformationAcceptors != null){
+		if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptors)){
 			for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptors) {
-				if (route != null){
+				if (!LaubeUtility.isEmpty(route)) {
 					result = checkItem(approvalRouteInformationAcceptors, route);
 					if (!result) {
 						break;
@@ -312,12 +304,12 @@ public class DraftVisitor extends RequestSystemVisitor {
 		}
 
 		// check chain
-		if (approvalRouteInformationAcceptors != null){
+		if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptors)){
 
 			ArrayList<String> keywords = new ArrayList<String>();
 
 			for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptors) {
-				if (route != null){
+				if (!LaubeUtility.isEmpty(route)) {
 					keywords.add(route.getPartyCode() + route.getNextPartyCode());
 					log.debug("[workflowEngine] " + "keywords:" + keywords);
 					if (!checkNextParty(approvalRouteInformationAcceptors, route.getNextPartyCode(), keywords)) {
@@ -592,7 +584,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 
 		int row = 0;
 
-		if (approvalRouteInformationAcceptor != null){
+		if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
 			for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptor) {
 
 				ActivityObjectDto activityObjectDto = new ActivityObjectDto();

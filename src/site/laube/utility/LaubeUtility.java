@@ -16,6 +16,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -37,6 +38,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 
 /*
@@ -68,7 +70,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param targetStr Before conversion string
 	 * @return Post-conversion string
 	 */
-	public static final String camelToSnake(String targetStr) {
+	public static final CharSequence camelToSnake(String targetStr) {
 
 		String convertedStr = targetStr
 			.replaceAll("([A-Z]+)([A-Z][a-z])", "$1_$2")
@@ -82,7 +84,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param targetStr Before conversion string
 	 * @return Post-conversion string
 	 */
-	public static final String snakeToCamel(String targetStr) {
+	public static final CharSequence snakeToCamel(String targetStr) {
 
 		Pattern p = Pattern.compile("_([a-z])");
 		Matcher m = p.matcher(targetStr.toLowerCase());
@@ -103,7 +105,7 @@ public final class LaubeUtility implements Serializable {
 	 * @return Encrypted string
 	 * @throws LaubeException
 	 */
-	public static final String doEncryption(String text) throws LaubeException {
+	public static final CharSequence doEncryption(String text) throws LaubeException {
 
 		try {
 
@@ -185,7 +187,7 @@ public final class LaubeUtility implements Serializable {
 	 * @return Composite string
 	 * @throws LaubeException
 	 */
-	public static final String doDecryption(String text) throws LaubeException {
+	public static final CharSequence doDecryption(String text) throws LaubeException {
 
 		try {
 
@@ -343,8 +345,45 @@ public final class LaubeUtility implements Serializable {
 	 * @param s Value to validate
 	 * @return result
 	 */
-	public static final boolean isEmpty(String s) {
+	public static final boolean isEmpty(CharSequence s) {
 		return StringUtils.isEmpty(s);
+	}
+
+	/**
+	 * Do not set check.<br>
+	 * @param s Value to validate
+	 * @return result
+	 */
+	public static final boolean isEmpty(int i) {
+		return (i == 0);
+	}
+
+	/**
+	 * Do not set check.<br>
+	 * @param s Value to validate
+	 * @return result
+	 */
+	public static final boolean isEmpty(ResultDto resultDto) {
+		return ((resultDto == null)||(!resultDto.isSuccess())||(isEmpty(resultDto.getResultData())));
+	}
+
+	/**
+	 * Do not set check.<br>
+	 * @param s Value to validate
+	 * @return result
+	 */
+	public static final boolean isEmpty(@SuppressWarnings("rawtypes") ArrayList l) {
+		return ((l == null)||(l.size() == 0));
+	}
+
+	/**
+	 * Do not set check.<br>
+	 * @param s Value to validate
+	 * @return result
+	 */
+	public static final boolean isEmpty(Object o) {
+
+		return (o == null);
 	}
 
 	/**
@@ -353,7 +392,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param s Value to validate
 	 * @return result
 	 */
-	public static final boolean isBlank(String s) {
+	public static final boolean isBlank(CharSequence s) {
 		return StringUtils.isBlank(s);
 	}
 
@@ -363,7 +402,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param s Value to validate
 	 * @return result
 	 */
-	public static final boolean isNotEmpty(String s) {
+	public static final boolean isNotEmpty(CharSequence s) {
 		return StringUtils.isNotEmpty(s);
 	}
 

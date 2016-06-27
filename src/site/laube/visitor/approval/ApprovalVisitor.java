@@ -17,13 +17,12 @@ import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.model.ActivityObjectModel;
 import site.laube.model.AppendedModel;
-import site.laube.model.DeputyApprovelModel;
 import site.laube.model.LaubeModel;
 import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.modelinterface.AppendedModelInterface;
-import site.laube.modelinterface.DeputyApprovelModelInterface;
 import site.laube.utility.LaubeUtility;
 import site.laube.visitor.ApprovalSystemVisitor;
+import site.laube.visitor.VisitorUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -61,23 +60,23 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		log.debug("[workflowEngine] " + "[argument]");
 		log.debug("[workflowEngine] "  + "approvalSystemAcceptor:" + approvalSystemAcceptor);
 
-		ApprovalAcceptor approvalAcceptor = (ApprovalAcceptor)approvalSystemAcceptor;
+		// create a return information.
+		ResultDto resultDto = new ResultDto();
+
+		if (LaubeUtility.isEmpty(approvalSystemAcceptor)){
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.error("[workflowEngine] " + "visit end");
+			return resultDto;
+		}
+
+		final ApprovalAcceptor approvalAcceptor = (ApprovalAcceptor)approvalSystemAcceptor;
 
 		try{
-			// create a return information.
-			ResultDto resultDto = new ResultDto();
 
-			// checks of the parameters
-			if (approvalAcceptor == null) {
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E0001");
-				log.error("[workflowEngine] " + "visit end");
-				return resultDto;
-			}
+			final boolean isNull = isNull(approvalAcceptor);
 
-			boolean result = isNull(approvalAcceptor);
-
-			if (result) {
+			if (isNull) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
@@ -86,7 +85,6 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			}
 
 			final int applicationNumber = approvalAcceptor.getApplicationNumber();
-//			final String approvalDate = approvalAcceptor.getApprovalDate();
 			final String companyCode = approvalAcceptor.getCompanyCode();
 			String approvalCompanyCode = approvalAcceptor.getApprovalCompanyCode();
 			String approvalUnitCode = approvalAcceptor.getApprovalUnitCode();
@@ -98,11 +96,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			ActivityObjectModelInterface activityObjectModelInterface = new ActivityObjectModel();
 			resultDto = activityObjectModelInterface.findByArrival(companyCode, applicationNumber, approvalCompanyCode, approvalUnitCode, approvalUserCode);
 
-			if ((resultDto == null)||(!resultDto.isSuccess())||(resultDto.getResultData() == null)) {
+			if (LaubeUtility.isEmpty(resultDto)) {
 				resultDto = new ResultDto();
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1006");
-				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());
 				log.error("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
@@ -115,7 +113,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				log.debug("[workflowEngine] " + "update the activity object.");
 				resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
-				if ((resultDto == null)||(!resultDto.isSuccess())) {
+				if (LaubeUtility.isEmpty(resultDto)) {
 					resultDto = new ResultDto();
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1005");
@@ -125,13 +123,9 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				}
 			}else{
 				log.debug("[workflowEngine] " + "find the deputy approval master.");
-				final DeputyApprovelModelInterface deputyApprovelModelInterface = new DeputyApprovelModel();
-				resultDto = deputyApprovelModelInterface.find(companyCode, approvalUserCode);
+				resultDto = VisitorUtility.getDeputyApprovalList(approvalCompanyCode, approvalUserCode);
 
-				if ((resultDto == null)||(!resultDto.isSuccess())) {
-					resultDto = new ResultDto();
-					resultDto.setStatus(false);
-					resultDto.setMessageId("E1014");
+				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.error("[workflowEngine] " + "visit end");
 					return resultDto;
@@ -145,10 +139,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					activityObjectModelInterface = new ActivityObjectModel();
 					resultDto = activityObjectModelInterface.findByArrival(companyCode, applicationNumber, deputyApprovelDto.getCompanyCode(), deputyApprovelDto.getUnitCode(), deputyApprovelDto.getUserCode());
 
-					if ((resultDto == null)||(!resultDto.isSuccess())||(resultDto.getResultData() == null)) {
-						resultDto = new ResultDto();
-						resultDto.setStatus(false);
-						resultDto.setMessageId("E1005");
+					if (LaubeUtility.isEmpty(resultDto)) {
 						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 						log.error("[workflowEngine] " + "visit end");
 						return resultDto;
@@ -165,25 +156,22 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 						log.debug("[workflowEngine] " + "update the activity object.");
 						resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
-						if ((resultDto == null)||(!resultDto.isSuccess())) {
-							resultDto = new ResultDto();
-							resultDto.setStatus(false);
-							resultDto.setMessageId("E1005");
+						if (LaubeUtility.isEmpty(resultDto)) {
 							log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 							log.error("[workflowEngine] " + "visit end");
 							return resultDto;
-						}else{
-							approvalCompanyCode = deputyApprovelDto.getCompanyCode();
-							approvalUnitCode = deputyApprovelDto.getDeputyApproverlUnitCode();
-							approvalUserCode = deputyApprovelDto.getDeputyApproverlUserCode();
-							break;
 						}
+
+						approvalCompanyCode = deputyApprovelDto.getCompanyCode();
+						approvalUnitCode = deputyApprovelDto.getDeputyApproverlUnitCode();
+						approvalUserCode = deputyApprovelDto.getDeputyApproverlUserCode();
+						break;
 					}
 				}
 			}
 
 			log.debug("[workflowEngine] " + "insert the appended object.");
-			if ((appendFileList == null)||(appendFileList.size() == 0)) {
+			if (LaubeUtility.isEmpty(appendFileList)){
 			}else{
 				for (ApprovalSystemAcceptor.AppendFile appendFile : appendFileList) {
 
@@ -198,10 +186,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					final AppendedModelInterface appendedModelInterface = new AppendedModel();
 					resultDto = appendedModelInterface.insert(appendedDto);
 
-					if ((resultDto == null)||(!resultDto.isSuccess())) {
-						resultDto = new ResultDto();
-						resultDto.setStatus(false);
-						resultDto.setMessageId("E1005");
+					if (LaubeUtility.isEmpty(resultDto)) {
 						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 						log.error("[workflowEngine] " + "visit end");
 						return resultDto;
@@ -209,19 +194,14 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				}
 			}
 
-			log.debug("次の承認者を到着に更新");
+			log.debug("circulated to the next approver.");
+			resultDto = VisitorUtility.circulatedNextApprover(companyCode, applicationNumber);
 
-
-
-
-
-
-
-
-			log.debug("最終承認の場合、承認済に更新");
-
-
-
+			if (LaubeUtility.isEmpty(resultDto)) {
+				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+				log.error("[workflowEngine] " + "visit end");
+				return resultDto;
+			}
 
 			LaubeModel.connection.commit();
 

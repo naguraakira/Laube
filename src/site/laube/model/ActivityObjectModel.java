@@ -690,14 +690,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 			resultDto = this.find(companyCode, applicationNumber, approvalCompanyCode,  approvalUnitCode, approvalUserCode, applovalUserStatus);
 
-			if (resultDto == null){
-				resultDto = new ResultDto();
-				resultDto.setStatus(false);
-				resultDto.setMessageId("E1003");
-				log.error("[workflowEngine] " + "findByArrival End");
-				return resultDto;
-			}
-
 			if (!resultDto.isSuccess()){
 				return resultDto;
 			}
