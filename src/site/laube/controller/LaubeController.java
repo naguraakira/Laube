@@ -45,7 +45,9 @@ public final class LaubeController implements Serializable {
 	 */
 	public final ResultDto doSearch(final SearchSystemAcceptor searchSystemAcceptor,SearchSystemVisitor searchSystemVisitor) {
 
-		log.debug("[workflowEngine] " + "doSearch start");
+		log.info("[workflowEngine] " + "doSearch start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[searchSystemAcceptor]: " + searchSystemAcceptor);
 
 		ResultDto resultDto = null;
 
@@ -57,7 +59,7 @@ public final class LaubeController implements Serializable {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.error("[workflowEngine] " + "doSearch end");
+			log.info("[workflowEngine] " + "doSearch end");
 			return resultDto;
 
 		}catch(Exception e){
@@ -65,10 +67,10 @@ public final class LaubeController implements Serializable {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.error("[workflowEngine] " + "doSearch end");
+			log.info("[workflowEngine] " + "doSearch end");
 			return resultDto;
 		}
-		log.debug("[workflowEngine] " + "doSearch end");
+		log.info("[workflowEngine] " + "doSearch end");
 		return resultDto;
 	}
 
@@ -80,7 +82,9 @@ public final class LaubeController implements Serializable {
 	 */
 	public final ResultDto doRequest(final RequestSystemAcceptor requestSystemAcceptor,RequestSystemVisitor requestSystemVisitor) {
 
-		log.debug("[workflowEngine] " + "doRequest start");
+		log.info("[workflowEngine] " + "doRequest start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[requestSystemAcceptor]: " + requestSystemAcceptor);
 
 		ResultDto resultDto = null;
 
@@ -92,7 +96,7 @@ public final class LaubeController implements Serializable {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.error("[workflowEngine] " + "doRequest end");
+			log.info("[workflowEngine] " + "doRequest end");
 			return resultDto;
 
 		}catch(Exception e){
@@ -100,10 +104,10 @@ public final class LaubeController implements Serializable {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.error("[workflowEngine] " + "doRequest end");
+			log.info("[workflowEngine] " + "doRequest end");
 			return resultDto;
 		}
-		log.debug("[workflowEngine] " + "doRequest end");
+		log.info("[workflowEngine] " + "doRequest end");
 		return resultDto;
 	}
 
@@ -115,7 +119,9 @@ public final class LaubeController implements Serializable {
 	 */
 	public final ResultDto doApproval(final ApprovalSystemAcceptor approvalAcceptor,ApprovalSystemVisitor approvalSystemVisitor) {
 
-		log.debug("[workflowEngine] " + "doApproval start");
+		log.info("[workflowEngine] " + "doApproval start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[approvalAcceptor]: " + approvalAcceptor);
 
 		ResultDto resultDto = null;
 
@@ -127,7 +133,7 @@ public final class LaubeController implements Serializable {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.error("[workflowEngine] " + "doApproval end");
+			log.info("[workflowEngine] " + "doApproval end");
 			return resultDto;
 
 		}catch(Exception e){
@@ -135,10 +141,10 @@ public final class LaubeController implements Serializable {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.error("[workflowEngine] " + "doApproval end");
+			log.info("[workflowEngine] " + "doApproval end");
 			return resultDto;
 		}
-		log.debug("[workflowEngine] " + "doApproval end");
+		log.info("[workflowEngine] " + "doApproval end");
 		return resultDto;
 	}
 }

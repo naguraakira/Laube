@@ -47,16 +47,16 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "find Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "find start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 		}
 
@@ -70,6 +70,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 			sql.append("WHERE ");
 			sql.append("company_code = ?;");
 
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 
@@ -84,7 +85,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.error("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -93,12 +94,11 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.debug("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -112,8 +112,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.debug("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}

@@ -42,6 +42,8 @@ public final class DbConnectManager {
 	 */
 	public static Connection getConnection() throws LaubeException {
 
+		log.info("[workflowEngine] " + "getConnection start");
+
 		try {
 
 			if ((CONNECTION == null) || (CONNECTION.isClosed())) {
@@ -58,14 +60,15 @@ public final class DbConnectManager {
 					CONNECTION.setAutoCommit(false);
 
 				} catch (Exception e) {
-					log.error("[workflowEngine] " + e);
+					log.info("[workflowEngine] " + "getConnection end");
 					throw new LaubeException(e);
 				}
 			}
 		} catch (Exception e) {
-			log.error("[workflowEngine] " + e);
+			log.info("[workflowEngine] " + "getConnection end");
 			throw new LaubeException(e);
 		}
+		log.info("[workflowEngine] " + "getConnection end");
 		return CONNECTION;
 	}
 }

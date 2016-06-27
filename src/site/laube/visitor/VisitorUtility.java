@@ -41,24 +41,24 @@ public final class VisitorUtility {
 	 */
 	public static final ResultDto getDeputyApprovalList(final String companyCode, final String approvalUserCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "getDeputyApprovalList start.");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] "  + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] "  + "approvalUserCode:" + approvalUserCode);
+		log.info("[workflowEngine] " + "getDeputyApprovalList start.");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] "  + "companyCode:" + companyCode);
+		log.info("[workflowEngine] "  + "approvalUserCode:" + approvalUserCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(companyCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
 		if (LaubeUtility.isEmpty(approvalUserCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -67,7 +67,7 @@ public final class VisitorUtility {
 
 		if (!resultDto.isSuccess()) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 		return resultDto;
@@ -82,24 +82,24 @@ public final class VisitorUtility {
 	 */
 	public static final ResultDto circulatedNextApprover(final String companyCode, final long applicationNumber) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "circulatedNextApprover start.");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] "  + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] "  + "applicationNumber:" + applicationNumber);
+		log.info("[workflowEngine] " + "circulatedNextApprover start.");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] "  + "companyCode:" + companyCode);
+		log.info("[workflowEngine] "  + "applicationNumber:" + applicationNumber);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(companyCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
 		if (LaubeUtility.isEmpty(applicationNumber)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -121,7 +121,7 @@ public final class VisitorUtility {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E1999");
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -133,7 +133,7 @@ public final class VisitorUtility {
 
 
 
-		log.debug("[workflowEngine] " + "circulatedNextApprover end.");
+		log.info("[workflowEngine] " + "circulatedNextApprover end.");
 		return resultDto;
 	}
 }

@@ -46,15 +46,16 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "delete start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "delete start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "delete end");
 			return resultDto;
 		}
 
@@ -72,8 +73,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "delete end");
+			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -87,14 +87,13 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "delete end");
+				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "delete end");
+		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
     }
 
@@ -108,16 +107,17 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 	@Override
 	public final ResultDto delete(final String companyCode, final String userCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "delete start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[userCode]: " + userCode);
+		log.info("[workflowEngine] " + "delete start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank((userCode)))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "delete end");
 			return resultDto;
 		}
 
@@ -130,15 +130,14 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			sql.append("company_code = ? AND ");
 			sql.append("user_code = ? ");
 
-			log.debug("[WKF] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, userCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "delete end");
+			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -152,14 +151,13 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "delete end");
+				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "delete end");
+		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
     }
 
@@ -172,16 +170,16 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 	@Override
 	public final ResultDto insert(final DeputyApprovelDto deputyApprovelDto) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "insert start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[deputyApprovelDto]: " + deputyApprovelDto);
+		log.info("[workflowEngine] " + "insert start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[deputyApprovelDto]: " + deputyApprovelDto);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (deputyApprovelDto == null) {
-			log.error("[workflowEngine] " + "insert end" + "[return value]:false");
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "insert end");
 			return resultDto;
 		}
 
@@ -213,7 +211,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			sql.append("CURRENT_TIMESTAMP(0),");
 			sql.append("?);");
 
-			log.debug("[WKF] SQL:" + sql.toString());
+			log.debug("[WKF] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString(  1, deputyApprovelDto.getCompanyCode());
@@ -228,8 +226,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "insert end");
+			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -243,14 +240,13 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "insert end");
+				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.error("[workflowEngine] " + "insert end");
+		log.info("[workflowEngine] " + "insert end");
 		return resultDto;
 	}
 
@@ -263,16 +259,16 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 	@Override
 	public final ResultDto update(final DeputyApprovelDto deputyApprovelDto) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "update start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[deputyApprovelDto]: " + deputyApprovelDto);
+		log.info("[workflowEngine] " + "update start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[deputyApprovelDto]: " + deputyApprovelDto);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (deputyApprovelDto == null) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "update end");
+			log.info("[workflowEngine] " + "update end");
 			return resultDto;
 		}
 
@@ -291,7 +287,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			sql.append("user_code = ? AND ");
 			sql.append("unit_code = ?;");
 
-			log.debug("[WKF] SQL:" + sql.toString());
+			log.debug("[WKF] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString(  1, deputyApprovelDto.getDeputyApproverlCompanyCode());
@@ -314,13 +310,12 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				log.error("[workflowEngine] unitCode:" + deputyApprovelDto.getUnitCode());
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.error("[workflowEngine] " + "update end");
+				log.info("[workflowEngine] " + "update end");
 				return resultDto;
 			}
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "update end");
+			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -334,13 +329,13 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "update end");
+		log.info("[workflowEngine] " + "update end");
 		return resultDto;
 	}
 
@@ -355,10 +350,10 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 	@Override
 	 public final ResultDto find(final String companyCode, final String unitCode, final String userCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "find start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[userCode]: " + userCode);
+		log.info("[workflowEngine] " + "find start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[userCode]: " + userCode);
 
 		ResultDto resultDto = new ResultDto();
 
@@ -368,6 +363,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			if ((LaubeUtility.isNotEmpty(companyCode))||(LaubeUtility.isNotEmpty(userCode))) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -399,7 +395,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			sql.append("ORDER BY company_cde, unit_code, user_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.resultSet = this.preparedStatement.executeQuery();
@@ -415,7 +411,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				log.debug("[workflowEngine] " + "[userCode]: " + userCode);
 				resultDto.setStatus(true);
 				resultDto.setMessageId("N0001");
-				log.debug("[workflowEngine] " + "find end");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -425,12 +421,11 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.debug("[workflowEngine] " + "find end");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find end");
+			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -444,8 +439,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "find end");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}
@@ -461,10 +455,10 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 	@Override
 	 public final ResultDto find(final String companyCode, final String deputyApproverlUserCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "find start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[deputyApproverlUserCode]: " + deputyApproverlUserCode);
+		log.info("[workflowEngine] " + "find start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[deputyApproverlUserCode]: " + deputyApproverlUserCode);
 
 		ResultDto resultDto = new ResultDto();
 
@@ -472,6 +466,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			if ((LaubeUtility.isNotEmpty(companyCode))||(LaubeUtility.isNotEmpty(deputyApproverlUserCode))) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -502,7 +497,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			sql.append("ORDER BY company_cde, unit_code, user_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.resultSet = this.preparedStatement.executeQuery();
@@ -517,22 +512,20 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				log.debug("[workflowEngine] " + "[deputyApproverlUserCode]: " + deputyApproverlUserCode);
 				resultDto.setStatus(true);
 				resultDto.setMessageId("N0001");
-				log.debug("[workflowEngine] " + "find end");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
 			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
 
-			log.debug("[workflowEngine] " + "find end" + "[return value]:" + resultData);
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.debug("[workflowEngine] " + "find end");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find end");
+			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -546,8 +539,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "find end");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}

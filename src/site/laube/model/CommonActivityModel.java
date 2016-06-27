@@ -35,7 +35,7 @@ public final class CommonActivityModel extends ActivityModel {
 	 */
 	protected String deleteQuery(){
 
-		log.debug("[workflowEngine] " + "deleteQuery Start");
+		log.info("[workflowEngine] " + "deleteQuery start");
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("DELETE ");
@@ -44,8 +44,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("WHERE ");
 		sql.append("company_code = ? ");
 
-		log.debug("[workflowEngine] SQL:" + sql.toString());
-		log.debug("[workflowEngine] " + "deleteQuery End");
+		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+		log.info("[workflowEngine] " + "deleteQuery end");
 		return sql.toString();
 	}
 
@@ -56,7 +56,7 @@ public final class CommonActivityModel extends ActivityModel {
 	 */
 	protected String deleteByRouteQuery(){
 
-		log.debug("[workflowEngine] " + "deleteByRouteQuery Start");
+		log.info("[workflowEngine] " + "deleteByRouteQuery start");
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("DELETE ");
@@ -66,8 +66,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("company_code = ? AND ");
 		sql.append("common_route_code = ? ");
 
-		log.debug("[workflowEngine] SQL:" + sql.toString());
-		log.debug("[workflowEngine] " + "deleteByRouteQuery End");
+		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+		log.info("[workflowEngine] " + "deleteByRouteQuery end");
 		return sql.toString();
 	}
 
@@ -78,7 +78,7 @@ public final class CommonActivityModel extends ActivityModel {
 	 */
 	protected String insertQuery(){
 
-		log.debug("[workflowEngine] " + "insertQuery Start");
+		log.info("[workflowEngine] " + "insertQuery start");
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO wkf_common_activity ");
@@ -125,8 +125,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("CURRENT_TIMESTAMP(0),");
 		sql.append("?);");
 
-		log.debug("[workflowEngine] SQL:" + sql.toString());
-		log.debug("[workflowEngine] " + "insertQuery End");
+		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+		log.info("[workflowEngine] " + "insertQuery end");
 		return sql.toString();
 	}
 
@@ -137,7 +137,7 @@ public final class CommonActivityModel extends ActivityModel {
 	 */
 	protected String updateQuery(){
 
-		log.debug("[workflowEngine] " + "updateQuery Start");
+		log.info("[workflowEngine] " + "updateQuery start");
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE wkf_common_activity ");
@@ -162,8 +162,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("common_route_code = ? AND ");
 		sql.append("activity_code = ?;");
 
-		log.debug("[workflowEngine] SQL:" + sql.toString());
-		log.debug("[workflowEngine] " + "updateQuery End");
+		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+		log.info("[workflowEngine] " + "updateQuery end");
 		return sql.toString();
 	}
 
@@ -174,7 +174,7 @@ public final class CommonActivityModel extends ActivityModel {
 	 */
 	protected String findByRouteQuery(){
 
-		log.debug("[workflowEngine] " + "findByRouteQuery Start");
+		log.info("[workflowEngine] " + "findByRouteQuery start");
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
@@ -209,8 +209,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("company_code = ? AND route_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] SQL:" + sql.toString());
-		log.debug("[workflowEngine] " + "findByRouteQuery End");
+		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+		log.info("[workflowEngine] " + "findByRouteQuery end");
 		return sql.toString();
 	}
 
@@ -221,7 +221,7 @@ public final class CommonActivityModel extends ActivityModel {
 	 */
 	protected String findByActivityQuery(){
 
-		log.debug("[workflowEngine] " + "findByActivityQuery Start");
+		log.info("[workflowEngine] " + "findByActivityQuery start");
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
@@ -256,8 +256,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("company_code = ? AND route_code = ? AND activity_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] SQL:" + sql.toString());
-		log.debug("[workflowEngine] " + "findByActivityQuery End");
+		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+		log.info("[workflowEngine] " + "findByActivityQuery end");
 		return sql.toString();
 	}
 }

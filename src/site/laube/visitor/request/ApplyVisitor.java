@@ -58,9 +58,9 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	public ResultDto visit(final RequestSystemAcceptor requestSystemAcceptor) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "visit start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] "  + "requestSystemAcceptor:" + requestSystemAcceptor);
+		log.info("[workflowEngine] " + "visit start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] "  + "requestSystemAcceptor:" + requestSystemAcceptor);
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -68,7 +68,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		if (LaubeUtility.isEmpty(requestSystemAcceptor)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -82,7 +82,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -125,21 +125,21 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			if (check1) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0002");
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			if (check2) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0003");
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			if (check3) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0007");
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -163,7 +163,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			if (!isCheck) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0009");
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -188,7 +188,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				}else{
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E0010");
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
@@ -229,18 +229,18 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			if (isDraft){
 				resultDto = activityObjectModelInterface.delete(companyCode, applicationNumber);
 				if (!resultDto.isSuccess()) {
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
@@ -254,7 +254,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			}
 
 			if (!resultDto.isSuccess()) {
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -264,19 +264,19 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(applicationNumber);
 			log.debug("[workflowEngine] " + "applicationNumber is " + applicationNumber);
-			log.debug("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 
 		}catch(Exception e){
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			throw new LaubeException(e);
 
 		}finally{
 			try {
 				LaubeModel.connection.close();
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException(e);
 			}
 		}
@@ -289,9 +289,9 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean checkRoute(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors){
 
-		log.debug("[workflowEngine] " + "checkRoute start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
+		log.info("[workflowEngine] " + "checkRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
 
 		boolean result = true;
 		if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptors)){
@@ -316,7 +316,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 					log.debug("[workflowEngine] " + "keywords:" + keywords);
 					if (!checkNextParty(approvalRouteInformationAcceptors, route.getNextPartyCode(), keywords)) {
 						log.error("[workflowEngine] " + "error next party");
-						log.error("[workflowEngine] " + "checkRoute end");
+						log.info("[workflowEngine] " + "checkRoute end");
 						return false;
 					}else{
 						log.debug("[workflowEngine] " + "initialize keywords");
@@ -326,7 +326,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			}
 		}
 
-		log.debug("[workflowEngine] " + "checkRoute end");
+		log.info("[workflowEngine] " + "checkRoute end");
 		return result;
 	}
 
@@ -338,15 +338,15 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean checkItem(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final ApprovalRouteInformationAcceptor target){
 
-		log.debug("[workflowEngine] " + "checkItem start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
-		log.debug("[workflowEngine] " + "target:" + target);
+		log.info("[workflowEngine] " + "checkItem start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
+		log.info("[workflowEngine] " + "target:" + target);
 
 		// check party code
 		if (LaubeUtility.isBlank(target.getPartyCode())) {
 			log.error("[workflowEngine] " + "error party code");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
@@ -358,7 +358,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		if (!isPartyCodeConnector) {
 			log.error("[workflowEngine] " + "error party code connector");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
@@ -370,28 +370,28 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		if (!isRouteType) {
 			log.error("[workflowEngine] " + "error route type");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
 		// check of approval company code
 		if (LaubeUtility.isBlank(target.getApprovalCompanyCode())) {
 			log.error("[workflowEngine] " + "error approval company code");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
 		// check of approval unit code
 		if (LaubeUtility.isBlank(target.getApprovalUnitCode())) {
 			log.error("[workflowEngine] " + "error approval unit code");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
 		// check of approval user code
 		if (LaubeUtility.isBlank(target.getApprovalUserCode())) {
 			log.error("[workflowEngine] " + "error approval user code");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
@@ -403,20 +403,20 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		final boolean isNotDeputy = !isDeputyApprovalCompanyCode && !isDeputyApprovalUnitCode && !isDeputyApprovalUserCode;
 		if (!((isDeputy)||(isNotDeputy))) {
 			log.error("[workflowEngine] " + "error deputy approval");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 		if (isDeputy) {
 			if ((target.getDeputyApprovalComment() == null)||(target.getDeputyApprovalComment().trim().length() == 0)) {
 				log.error("[workflowEngine] " + "error deputy comment");
-				log.error("[workflowEngine] " + "checkItem end");
+				log.info("[workflowEngine] " + "checkItem end");
 				return false;
 			}
 		}
 		if (isNotDeputy) {
 			if (target.getDeputyApprovalComment() != null) {
 				log.error("[workflowEngine] " + "error deputy comment");
-				log.error("[workflowEngine] " + "checkItem end");
+				log.info("[workflowEngine] " + "checkItem end");
 				return false;
 			}
 		}
@@ -427,21 +427,21 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		final boolean isFunction       = isExamination || isFunctionConfirmation;
 		if (!isFunction) {
 			log.error("[workflowEngine] " + "error function");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
 		// check next party code
 		if (LaubeUtility.isBlank(target.getNextPartyCode())) {
 			log.error("[workflowEngine] " + "error next party code");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
 		// check of party transit code
 		if ((target.getPartyTransitCode() == null)||(target.getPartyTransitCode().trim().length() == 0)) {
 			log.error("[workflowEngine] " + "error party transit code");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
@@ -452,10 +452,11 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		final boolean isPartyTransitCodeConnector = isUnspecified || isLogicalSum || isLogicalProduct;
 		if (!isPartyTransitCodeConnector) {
 			log.error("[workflowEngine] " + "error party code connector");
-			log.error("[workflowEngine] " + "checkItem end");
+			log.info("[workflowEngine] " + "checkItem end");
 			return false;
 		}
 
+		log.info("[workflowEngine] " + "checkItem end");
 		return true;
 	}
 
@@ -468,25 +469,25 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean checkNextParty(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final String nextPartyCode, ArrayList<String> keywords){
 
-		log.debug("[workflowEngine] " + "checkNextParty start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
-		log.debug("[workflowEngine] " + "nextPartyCode: " + nextPartyCode);
-		log.debug("[workflowEngine] " + "keywords:" + keywords);
+		log.info("[workflowEngine] " + "checkNextParty start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
+		log.info("[workflowEngine] " + "nextPartyCode: " + nextPartyCode);
+		log.info("[workflowEngine] " + "keywords:" + keywords);
 
 		for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptors) {
 			// discover the next party code
 			if (nextPartyCode.equals(route.getPartyCode())) {
 				if (route.getNextPartyCode().equals(SpecifiedValue.END)) {
 					log.debug("[workflowEngine] " + "success to find the final party");
-					log.debug("[workflowEngine] " + "checkNextParty end");
+					log.info("[workflowEngine] " + "checkNextParty end");
 					return true;
 				}
 				// if the next party code is known of the party error
 				for(String keyword : keywords) {
 					if ((route.getPartyCode() + route.getNextPartyCode()).equals(keyword)) {
 						log.error("[workflowEngine] " + "already add party code. party code is [" + route.getPartyCode() + route.getNextPartyCode() + "]");
-						log.error("[workflowEngine] " + "checkNextParty end");
+						log.info("[workflowEngine] " + "checkNextParty end");
 						return false;
 					}
 				}
@@ -495,14 +496,14 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				boolean result = checkNextParty(approvalRouteInformationAcceptors, route.getNextPartyCode(), keywords);
 				if (!result) {
 					log.error("[workflowEngine] " + "error checkNextParty");
-					log.error("[workflowEngine] " + "checkNextParty end");
+					log.info("[workflowEngine] " + "checkNextParty end");
 					return false;
 				}else{
 					keywords = new ArrayList<String>();
 				}
 			}
 		}
-		log.debug("[workflowEngine] " + "checkNextParty end");
+		log.info("[workflowEngine] " + "checkNextParty end");
 		return true;
 	}
 
@@ -511,9 +512,9 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean isNull(final ApplyAcceptor applyAcceptor){
 
-		log.debug("[workflowEngine] " + "isNull start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "applyAcceptor:" + applyAcceptor);
+		log.info("[workflowEngine] " + "isNull start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "applyAcceptor:" + applyAcceptor);
 
 		if (LaubeUtility.isEmpty(applyAcceptor)) {
 			return true;
@@ -521,41 +522,41 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		if (LaubeUtility.isBlank(applyAcceptor.getCompanyCode())) {
 			log.debug("[workflowEngine] " + "companyCode : null");
-			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(applyAcceptor.getApplicationFormCode())) {
 			log.debug("[workflowEngine] " + "applicationFormCode : null");
-			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(applyAcceptor.getApplyDate())) {
 			log.debug("[workflowEngine] " + "applyDate : null");
-			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(applyAcceptor.getApplyCompanyCode())) {
 			log.debug("[workflowEngine] " + "applyCompanyCode : null");
-			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(applyAcceptor.getApplyUnitCode())) {
 			log.debug("[workflowEngine] " + "applyUnitCode : null");
-			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 			if (LaubeUtility.isBlank(applyAcceptor.getApplyUserCode())) {
 			log.debug("[workflowEngine] " + "applyUserCode : null");
-			log.debug("[workflowEngine] " + "LaubeApplyVisitor.isNull() end [return]:true");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
-		log.debug("[workflowEngine] " + "isNull end");
+		log.info("[workflowEngine] " + "isNull end");
 		return false;
 	}
 
@@ -575,12 +576,12 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptor
 			) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "copyToActivityDto start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] " + "applyUserCode:" + applyUserCode);
-		log.debug("[workflowEngine] " + "applicationNumber:" + applicationNumber);
-		log.debug("[workflowEngine] " + "approvalRouteInformationAcceptor:" + approvalRouteInformationAcceptor);
+		log.info("[workflowEngine] " + "copyToActivityDto start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
+		log.info("[workflowEngine] " + "applicationNumber:" + applicationNumber);
+		log.info("[workflowEngine] " + "approvalRouteInformationAcceptor:" + approvalRouteInformationAcceptor);
 
 		List<ActivityObjectDto> activityObjectDtos = new ArrayList<ActivityObjectDto>();
 
@@ -615,6 +616,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				activityObjectDtos.add(activityObjectDto);
 			}
 		}
+		log.info("[workflowEngine] " + "copyToActivityDto end");
 		return activityObjectDtos;
 	}
 
@@ -626,14 +628,15 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final List<ActivityObjectDto> changeTheFirstApproverOfStatus(List<ActivityObjectDto> activityObjectDtoList) {
 
-		log.debug("[workflowEngine] " + "changeTheFirstApproverOfStatus start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
+		log.info("[workflowEngine] " + "changeTheFirstApproverOfStatus start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
 
 		boolean result = true;
 
 
 		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
+			log.info("[workflowEngine] " + "changeTheFirstApproverOfStatus end");
 			return activityObjectDtoList;
 		}
 
@@ -650,6 +653,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			}
 		}
 
+		log.info("[workflowEngine] " + "changeTheFirstApproverOfStatus end");
 		return activityObjectDtoList;
 	}
 
@@ -661,14 +665,15 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean isFirstParty(List<ActivityObjectDto> activityObjectDtoList, final ActivityObjectDto target){
 
-		log.debug("[workflowEngine] " + "isFirstParty start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
-		log.debug("[workflowEngine] " + "target:" + target);
+		log.info("[workflowEngine] " + "isFirstParty start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
+		log.info("[workflowEngine] " + "target:" + target);
 
 		boolean result = true;
 
 		if ((LaubeUtility.isEmpty(activityObjectDtoList))||(LaubeUtility.isEmpty(target))) {
+			log.info("[workflowEngine] " + "isFirstParty end");
 			return false;
 		}
 
@@ -680,7 +685,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				}
 			}
 		}
-		log.debug("[workflowEngine] " + "isFirstParty end");
+		log.info("[workflowEngine] " + "isFirstParty end");
 		return result;
 	}
 
@@ -692,27 +697,28 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean setArrivalStatus(List<ActivityObjectDto> activityObjectDtoList, final String partyCode){
 
-		log.debug("[workflowEngine] " + "setArrivalStatus start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
-		log.debug("[workflowEngine] " + "partyCode:" + partyCode);
+		log.info("[workflowEngine] " + "setArrivalStatus start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
+		log.info("[workflowEngine] " + "partyCode:" + partyCode);
 
 		boolean result = true;
 
 		if ((LaubeUtility.isEmpty(activityObjectDtoList))||(LaubeUtility.isBlank(partyCode))) {
+			log.info("[workflowEngine] " + "setArrivalStatus end");
 			return false;
 		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (LaubeUtility.isEmpty(activityObjectDto)){
-				log.debug("[workflowEngine] " + "setArrivalStatus end");
+				log.info("[workflowEngine] " + "setArrivalStatus end");
 				return false;
 			}
 			if (partyCode.equals(activityObjectDto.getPartyCode())) {
 				activityObjectDto.setActivityStatus(SpecifiedValue.Arrival);
 			}
 		}
-		log.debug("[workflowEngine] " + "setArrivalStatus end");
+		log.info("[workflowEngine] " + "setArrivalStatus end");
 		return result;
 	}
 
@@ -723,35 +729,41 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 */
 	private final boolean checkActivityStatus(final List<ActivityObjectDto> activityObjectDtoList) {
 
-		log.debug("[workflowEngine] " + "checkActivityStatus start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
+		log.info("[workflowEngine] " + "checkActivityStatus start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
 
 		boolean result = true;
 
 		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
+			log.info("[workflowEngine] " + "checkActivityStatus end");
 			return false;
 		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (activityObjectDto == null) {
+				log.info("[workflowEngine] " + "checkActivityStatus end");
 				return false;
 			}
 
 			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Authorizer_Untreated) {
+				log.info("[workflowEngine] " + "checkActivityStatus end");
 				return false;
 			}
 
 			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Arrival) {
 				if (activityObjectDto.getFunction() != SpecifiedValue.FunctionConfirmation) {
+					log.info("[workflowEngine] " + "checkActivityStatus end");
 					return false;
 				}
 			}
 
 			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Hold) {
+				log.info("[workflowEngine] " + "checkActivityStatus end");
 				return false;
 			}
 		}
+		log.info("[workflowEngine] " + "checkActivityStatus end");
 		return result;
 	}
 }

@@ -1,5 +1,8 @@
 package site.laube.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -19,6 +22,11 @@ package site.laube.exception;
 public class LaubeException extends Exception {
 
 	/**
+	 * To manage the log object.<br>
+	 */
+	private static Logger log = LoggerFactory.getLogger(LaubeException.class);
+
+	/**
 	 * sirial version
 	 */
 	private static final long serialVersionUID = 2314117173345596443L;
@@ -29,6 +37,9 @@ public class LaubeException extends Exception {
 	 */
 	public LaubeException(Exception e) {
 		super(e);
+		log.error("[workflowEngine] " + "Exception occured.");
+		log.error("[workflowEngine] " + "[argument]");
+		log.error("[workflowEngine] " + "e:" + e);
 	}
 
 	/**
@@ -37,6 +48,9 @@ public class LaubeException extends Exception {
 	 */
 	public LaubeException(String message) {
 		super(message);
+		log.error("[workflowEngine] " + "Exception occured.");
+		log.error("[workflowEngine] " + "[argument]");
+		log.error("[workflowEngine] " + "message:" + message);
 	}
 
 	/**
@@ -48,6 +62,10 @@ public class LaubeException extends Exception {
 	 */
 	public LaubeException(String messageID, String message) {
 		super(messageID + ":" + message);
+		log.error("[workflowEngine] " + "Exception occured.");
+		log.error("[workflowEngine] " + "[argument]");
+		log.error("[workflowEngine] " + "messageID:" + messageID);
+		log.error("[workflowEngine] " + "message:" + message);
 	}
 
 }

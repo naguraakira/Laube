@@ -77,9 +77,9 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	public ResultDto visit(final SearchSystemAcceptor searchSystemAcceptor) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "visit start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "searchSystemAcceptor:" + searchSystemAcceptor);
+		log.info("[workflowEngine] " + "visit start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "searchSystemAcceptor:" + searchSystemAcceptor);
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -87,7 +87,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		if (LaubeUtility.isEmpty(searchSystemAcceptor)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -99,7 +99,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			if (isNull) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -116,7 +116,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findCompany(companyCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -127,7 +127,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findApplicationForm(companyCode, applicationFormCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -137,7 +137,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findApplicationFormRoute(applyCompanyCode, applicationFormCode, applyUnitCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -147,7 +147,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findApplicationClassification(companyCode, applicationFormDto.getApplicationClassificationCode());
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -157,7 +157,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findCompany(applyCompanyCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -167,7 +167,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findUnit(applyCompanyCode, applyUnitCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -177,7 +177,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto = findUser(applyCompanyCode, applyUserCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -201,7 +201,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				resultDto = findCompany(deputyApplyCompanyCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 
@@ -212,7 +212,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				resultDto = findUnit(deputyApplyCompanyCode, deputyApplyUnitCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 
@@ -223,7 +223,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				resultDto = findUser(deputyApplyCompanyCode, deputyApplyUserCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 
@@ -277,7 +277,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				resultDto = findRoute(applyCompanyCode, individualRouteCode, RouteType.IndividualRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 
@@ -285,7 +285,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1002");
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 				routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
@@ -296,7 +296,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				resultDto = findRoute(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 
@@ -305,7 +305,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					resultDto = findRoute(applyCompanyCode,applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
 					if (LaubeUtility.isEmpty(resultDto)) {
 						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-						log.error("[workflowEngine] " + "visit end");
+						log.info("[workflowEngine] " + "visit end");
 						return resultDto;
 					}
 
@@ -313,7 +313,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
 						resultDto.setStatus(false);
 						resultDto.setMessageId("E1002");
-						log.error("[workflowEngine] " + "visit end");
+						log.info("[workflowEngine] " + "visit end");
 						return resultDto;
 					}
 					routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
@@ -323,7 +323,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
 						resultDto.setStatus(false);
 						resultDto.setMessageId("E1002");
-						log.error("[workflowEngine] " + "visit end");
+						log.info("[workflowEngine] " + "visit end");
 						return resultDto;
 					}
 					routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
@@ -335,7 +335,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				resultDto = findRoute(applyCompanyCode, commonRouteCode, RouteType.CommonRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 
@@ -343,7 +343,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1002");
-					log.error("[workflowEngine] " + "visit end");
+					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 				routeSearchAcceptor.setCommonRoutes(approvalRouteInformationAcceptors);
@@ -352,18 +352,18 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(routeSearchAcceptor);
-			log.debug("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 
 		}catch(Exception e){
-			log.error("[workflowEngine] " + "visit end");
+			log.info("[workflowEngine] " + "visit end");
 			throw new LaubeException(e);
 
 		}finally{
 			try {
 				LaubeModel.connection.close();
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "visit end");
+				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException(e);
 			}
 		}
@@ -375,9 +375,9 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings({ "nls", "static-method" })
 	private final boolean isNull(final RouteSearchAcceptor routeSearchAcceptor){
 
-		log.debug("[workflowEngine] " + "isNull start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "routeSearchAcceptor:" + routeSearchAcceptor);
+		log.info("[workflowEngine] " + "isNull start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "routeSearchAcceptor:" + routeSearchAcceptor);
 
 		if (LaubeUtility.isEmpty(routeSearchAcceptor)) {
 			return true;
@@ -385,35 +385,35 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getCompanyCode())) {
 			log.debug("[workflowEngine] " + "companyCode : null");
-			log.debug("[workflowEngine] " + "isNull end");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplicationFormCode())) {
 			log.debug("[workflowEngine] " + "applicationFormCode : null");
-			log.debug("[workflowEngine] " + "isNull end");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyCompanyCode())) {
 			log.debug("[workflowEngine] " + "applyCompanyCode : null");
-			log.debug("[workflowEngine] " + "isNull end");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUnitCode())) {
 			log.debug("[workflowEngine] " + "applyUnitCode : null");
-			log.debug("[workflowEngine] " + "isNull end");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUserCode())) {
 			log.debug("[workflowEngine] " + "applyUserCode : null");
-			log.debug("[workflowEngine] " + "isNull end");
+			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
-		log.debug("[workflowEngine] " + "isNull end");
+		log.info("[workflowEngine] " + "isNull end");
 		return false;
 	}
 
@@ -426,16 +426,16 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findCompany(final String companyCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findCompany start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "findCompany start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findCompany end");
 			return resultDto;
 		}
 
@@ -443,7 +443,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto = companyModelInterface.find(companyCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findCompany end");
+			log.info("[workflowEngine] " + "findCompany end");
 			return resultDto;
 		}
 
@@ -453,7 +453,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(companyDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "findCompany end");
+		log.info("[workflowEngine] " + "findCompany end");
 		return resultDto;
 	}
 
@@ -467,24 +467,24 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findUnit(final String companyCode, final String unitCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findUnit start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "unitCode:" + unitCode);
+		log.info("[workflowEngine] " + "findUnit start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "unitCode:" + unitCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findUnit end");
 			return resultDto;
 		}
 
 		final UnitModelInterface unitModelInterface = new UnitModel();
-		esultDto = unitModelInterface.find(companyCode, unitCode);
+		resultDto = unitModelInterface.find(companyCode, unitCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findUnit end");
+			log.info("[workflowEngine] " + "findUnit end");
 			return resultDto;
 		}
 
@@ -494,7 +494,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(applyUnitDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "findUnit end");
+		log.info("[workflowEngine] " + "findUnit end");
 		return resultDto;
 	}
 
@@ -508,17 +508,17 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findUser(final String companyCode, final String userCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findUser start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] " + "userCode:" + userCode);
+		log.info("[workflowEngine] " + "findUser start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "userCode:" + userCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findUser end");
 			return resultDto;
 		}
 
@@ -526,7 +526,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto = userModelInterface.find(companyCode, userCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findUser end");
+			log.info("[workflowEngine] " + "findUser end");
 			return resultDto;
 		}
 
@@ -536,7 +536,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(userDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "findUser end");
+		log.info("[workflowEngine] " + "findUser end");
 		return resultDto;
 	}
 
@@ -550,17 +550,17 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findApplicationForm(final String companyCode, final String applicationFormCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findApplicationForm start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+		log.info("[workflowEngine] " + "findApplicationForm start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findApplicationForm end");
 			return resultDto;
 		}
 
@@ -568,7 +568,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto = applicationFormModelInterface.findByApplicationFormCode(companyCode, applicationFormCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findApplicationForm end");
+			log.info("[workflowEngine] " + "findApplicationForm end");
 			return resultDto;
 		}
 
@@ -578,7 +578,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(applicationFormDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "findApplicationForm end");
+		log.info("[workflowEngine] " + "findApplicationForm end");
 		return resultDto;
 	}
 
@@ -593,18 +593,18 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findApplicationFormRoute(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findApplicationFormRoute start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
-		log.debug("[workflowEngine] " + "unitCode:" + unitCode);
+		log.info("[workflowEngine] " + "findApplicationFormRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+		log.info("[workflowEngine] " + "unitCode:" + unitCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findApplicationFormRoute end");
 			return resultDto;
 		}
 
@@ -612,7 +612,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto = applicationFormRouteModelInterface.find(companyCode, applicationFormCode, unitCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findApplicationFormRoute end");
+			log.info("[workflowEngine] " + "findApplicationFormRoute end");
 			return resultDto;
 		}
 
@@ -622,7 +622,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
 		resultDto.setResultData(applicationFormRouteDto);
-		log.debug("[workflowEngine] " + "findApplicationFormRoute end");
+		log.info("[workflowEngine] " + "findApplicationFormRoute end");
 		return resultDto;
 	}
 
@@ -636,17 +636,17 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findApplicationClassification(final String companyCode, final String applicationClassificationCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findApplicationClassification start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] " + "applicationClassificationCode:" + applicationClassificationCode);
+		log.info("[workflowEngine] " + "findApplicationClassification start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applicationClassificationCode:" + applicationClassificationCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findApplicationClassification end");
 			return resultDto;
 		}
 
@@ -654,7 +654,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto = applicationClassificationModelInterfaces.findByApplicationClassificationCode(companyCode, applicationClassificationCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findApplicationClassification end");
+			log.info("[workflowEngine] " + "findApplicationClassification end");
 			return resultDto;
 		}
 
@@ -664,7 +664,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(applicationClassificationDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.error("[workflowEngine] " + "findApplicationClassification end");
+		log.info("[workflowEngine] " + "findApplicationClassification end");
 		return resultDto;
 	}
 
@@ -678,17 +678,17 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	@SuppressWarnings("unchecked")
 	private final ResultDto findRoute(final String companyCode, final String routeCode, final RouteType routeType) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findRoute start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "companyCode:" + companyCode);
-		log.debug("[workflowEngine] " + "routeCode:" + routeCode);
+		log.info("[workflowEngine] " + "findRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "routeCode:" + routeCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))||(LaubeUtility.isEmpty(routeType))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.debug("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findRoute end");
 			return resultDto;
 		}
 
@@ -753,7 +753,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(approvalRouteInformationAcceptors);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "findRoute end");
+		log.info("[workflowEngine] " + "findRoute end");
 		return resultDto;
 	}
 
@@ -777,19 +777,19 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			final String applyUserCode,
 			final String applicationFormCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findRoute start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "applyCompanyCode:" + applyCompanyCode);
-		log.debug("[workflowEngine] " + "applyUnitCode:" + applyUnitCode);
-		log.debug("[workflowEngine] " + "applyUserCode:" + applyUserCode);
-		log.debug("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+		log.info("[workflowEngine] " + "findRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "applyCompanyCode:" + applyCompanyCode);
+		log.info("[workflowEngine] " + "applyUnitCode:" + applyUnitCode);
+		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
+		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
 
 		final BossModelInterface bossModelInterface = new BossModel();
 		ResultDto resultDto = bossModelInterface.findByChainOfResposibility(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.error("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findRoute end");
 			return resultDto;
 		}
 
@@ -802,7 +802,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		if ((bossDtos == null)||(bossDtos.size() < 1)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E1002");
-			log.error("[workflowEngine] " + "findRoute end");
+			log.info("[workflowEngine] " + "findRoute end");
 			return resultDto;
 		}
 
@@ -837,7 +837,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		resultDto.setResultData(approvalRouteInformationAcceptors);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "findRoute end");
+		log.info("[workflowEngine] " + "findRoute end");
 		return resultDto;
 	}
 }

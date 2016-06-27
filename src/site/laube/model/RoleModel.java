@@ -47,9 +47,9 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "delete Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "delete start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
 		ResultDto resultDto = new ResultDto();
 
@@ -66,7 +66,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
+			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -80,13 +80,13 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
+				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "delete End" + "[return value]:true");
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
     }
 
@@ -101,17 +101,17 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto delete(final String companyCode, final String roleCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "delete Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+		log.info("[workflowEngine] " + "delete start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "delete End");
+			log.info("[workflowEngine] " + "delete end");
 			return resultDto;
 		}
 
@@ -124,15 +124,14 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append("company_code = ? AND ");
 			sql.append("role_code = ? ");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, roleCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "delete End");
+			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -146,14 +145,13 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "delete End");
+				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "delete End");
+		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
     }
 
@@ -166,16 +164,16 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto insert(final RoleDto roleDto) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "insert Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[roleDto]: " + roleDto);
+		log.info("[workflowEngine] " + "insert start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[roleDto]: " + roleDto);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (roleDto == null) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "insert End");
+			log.info("[workflowEngine] " + "insert end");
 			return resultDto;
 		}
 
@@ -199,7 +197,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append("CURRENT_TIMESTAMP(0),");
 			sql.append("?);");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString( 1, roleDto.getCompanyCode());
@@ -210,8 +208,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			this.preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "insert End");
+			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -225,15 +222,13 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "insert End");
+				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
 		}
-		log.debug("[workflowEngine] " + "insert End" + "[return value]:true");
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "insert End");
+		log.info("[workflowEngine] " + "insert end");
 		return resultDto;
 	}
 
@@ -246,16 +241,16 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto update(final RoleDto roleDto) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "update Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[roleDto]: " + roleDto);
+		log.info("[workflowEngine] " + "update start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[roleDto]: " + roleDto);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (roleDto == null) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "update End");
+			log.info("[workflowEngine] " + "update end");
 			return resultDto;
 		}
 
@@ -270,7 +265,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append("company_code = ? AND ");
 			sql.append("role_code = ?;");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString( 1, roleDto.getRoleName());
@@ -287,13 +282,12 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				log.error("[workflowEngine] roleCode:" + roleDto.getRoleCode());
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.error("[workflowEngine] " + "update End");
+				log.info("[workflowEngine] " + "update end");
 				return resultDto;
 			}
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "update End");
+			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -307,14 +301,13 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "update End");
+				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.debug("[workflowEngine] " + "update End");
+		log.info("[workflowEngine] " + "update end");
 		return resultDto;
 	}
 
@@ -329,15 +322,15 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final boolean isOccupied(final String companyCode, final String roleCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "isOccupied Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+		log.info("[workflowEngine] " + "isOccupied start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
-			log.error("[workflowEngine] " + "isOccupied End");
+			log.info("[workflowEngine] " + "isOccupied end");
 			return false;
 		}
 
@@ -346,23 +339,20 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			if (resultDto == null){
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "isOccupied End");
+				log.info("[workflowEngine] " + "isOccupied end");
 				return false;
 			}else{
 				if (resultDto.getResultData() == null) {
-					log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-					log.error("[workflowEngine] " + "isOccupied End");
+					log.info("[workflowEngine] " + "isOccupied end");
 					return false;
 				}else{
-					log.error("[workflowEngine] " + "isOccupied End");
+					log.info("[workflowEngine] " + "isOccupied end");
 					return true;
 				}
 			}
 
 		} catch (Exception e) {
-			log.error("[workflowEngine] " + "[Exception] " + e);
-			log.error("[workflowEngine] " + "isOccupied End");
+			log.info("[workflowEngine] " + "isOccupied end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -376,8 +366,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "isOccupied End");
+				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException(e);
 			}
 		}
@@ -392,9 +381,9 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "find Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "find start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
 
 		ResultDto resultDto = new ResultDto();
 
@@ -412,7 +401,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append("ORDER BY role_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.resultSet = this.preparedStatement.executeQuery();
@@ -426,7 +415,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
 				resultDto.setStatus(true);
 				resultDto.setMessageId("N0001");
-				log.debug("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -435,12 +424,11 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.debug("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -454,8 +442,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}
@@ -471,10 +458,10 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto findByRoleCode(final String companyCode, final String roleCode) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findByRoleCode Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
+		log.info("[workflowEngine] " + "findByRoleCode start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
 
 		ResultDto resultDto = new ResultDto();
 
@@ -493,7 +480,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append("ORDER BY role_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, roleCode);
@@ -510,7 +497,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				log.debug("[workflowEngine] " + "[roleCode]: " + roleCode);
 				resultDto.setStatus(true);
 				resultDto.setMessageId("N0001");
-				log.debug("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -519,12 +506,11 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.debug("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -538,8 +524,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}
@@ -555,10 +540,10 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	@Override
 	public final ResultDto findByRoleName(final String companyCode, final String roleName) throws LaubeException {
 
-		log.debug("[workflowEngine] " + "findByRoleName Start");
-		log.debug("[workflowEngine] " + "[argument]");
-		log.debug("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.debug("[workflowEngine] " + "[roleName]: " + roleName);
+		log.info("[workflowEngine] " + "findByRoleName start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.info("[workflowEngine] " + "[roleName]: " + roleName);
 
 		ResultDto resultDto = new ResultDto();
 
@@ -587,7 +572,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append("ORDER BY company_cde, role_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 
@@ -607,22 +592,21 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 				log.debug("[workflowEngine] " + "[roleName]: " + roleName);
 				resultDto.setStatus(true);
 				resultDto.setMessageId("N0001");
-				log.debug("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
 			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
 
-			log.debug("[workflowEngine] " + "find End" + "[return value]:" + resultData);
+			log.debug("[workflowEngine] " + "find end" + "[return value]:" + resultData);
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.debug("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (SQLException e) {
-			log.error("[workflowEngine] " + "[SQLException] " + e);
-			log.error("[workflowEngine] " + "find End");
+			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
 		} finally {
@@ -636,8 +620,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 					this.preparedStatement = null;
 				}
 			} catch (SQLException e) {
-				log.error("[workflowEngine] " + "[SQLException] " + e);
-				log.error("[workflowEngine] " + "find End");
+				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
 		}
