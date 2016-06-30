@@ -109,7 +109,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+			ArrayList<LaubeDto> applicationFormDtos = null;
+			if (resultDto.getResultData() instanceof ArrayList){
+				applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+			}
 
 			List<ApprovalRouteInformationAcceptor> individualRoutes = applyAcceptor.getIndividualRoutes();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = applyAcceptor.getCommonRoutes();
@@ -174,7 +177,11 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			}
 
 			Object object = resultDto.getResultData();
-			ArrayList<LaubeDto> applicationObjectDtos = (ArrayList<LaubeDto>)object;
+			ArrayList<LaubeDto> applicationObjectDtos = null;
+
+			if (object instanceof ArrayList){
+				applicationObjectDtos = (ArrayList<LaubeDto>)object;
+			}
 
 			boolean isDraft = false;
 			if ((applicationNumber == 0)||(applicationObjectDtos == null)) {
