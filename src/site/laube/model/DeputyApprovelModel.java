@@ -358,7 +358,6 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		final ResultDto resultDto = new ResultDto();
 
 		try {
-			boolean isSettingYes = false;
 
 			if ((LaubeUtility.isNotEmpty(companyCode))||(LaubeUtility.isNotEmpty(userCode))) {
 				resultDto.setStatus(false);

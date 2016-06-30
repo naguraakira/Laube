@@ -3,9 +3,6 @@ package site.laube.acceptor.search;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.utility.LaubeUtility;
@@ -27,11 +24,6 @@ import site.laube.utility.LaubeUtility;
  */
 
 public final class RouteSearchAcceptor extends SearchSystemAcceptor {
-
-	/**
-	 * To manage the log object.<br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(RouteSearchAcceptor.class);
 
 	/**
 	 * to manage the screen mode<br>

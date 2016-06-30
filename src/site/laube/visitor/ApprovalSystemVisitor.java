@@ -1,8 +1,5 @@
 package site.laube.visitor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.ApprovalSystemAcceptor;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
@@ -24,11 +21,6 @@ import site.laube.exception.LaubeException;
  */
 
 public abstract class ApprovalSystemVisitor implements LaubeVisitor {
-
-	/**
-	 * to manage the log object.<br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(ApprovalSystemVisitor.class);
 
 	/**
 	 * do the approval process.<br>

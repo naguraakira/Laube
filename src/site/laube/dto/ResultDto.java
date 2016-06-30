@@ -2,9 +2,6 @@ package site.laube.dto;
 
 import java.io.Serializable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 
@@ -25,11 +22,6 @@ import site.laube.utility.LaubeUtility;
  */
 
 public final class ResultDto implements Serializable {
-
-	/**
-	 * to manage the serial version ID. <br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(ResultDto.class);
 
 	/**
 	 * normal message

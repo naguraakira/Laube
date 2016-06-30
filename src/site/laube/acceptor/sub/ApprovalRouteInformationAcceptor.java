@@ -2,9 +2,6 @@ package site.laube.acceptor.sub;
 
 import java.io.Serializable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 import site.laube.utility.type.RouteType;
@@ -26,11 +23,6 @@ import site.laube.utility.type.RouteType;
  */
 
 public final class ApprovalRouteInformationAcceptor implements Serializable {
-
-	/**
-	 * to manage the log<br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(ApprovalRouteInformationAcceptor.class);
 
 	/**
 	 * to manage the serial version ID.<br>

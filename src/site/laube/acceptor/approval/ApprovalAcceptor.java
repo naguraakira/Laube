@@ -1,8 +1,5 @@
 package site.laube.acceptor.approval;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.ApprovalSystemAcceptor;
 import site.laube.utility.LaubeUtility;
 
@@ -23,11 +20,6 @@ import site.laube.utility.LaubeUtility;
  */
 
 public final class ApprovalAcceptor extends ApprovalSystemAcceptor {
-
-	/**
-	 * To manage the log object.<br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(ApprovalAcceptor.class);
 
 	/**
 	 * All the items in the class will be returned.<br>

@@ -1,8 +1,5 @@
 package site.laube.acceptor.request;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.utility.LaubeUtility;
 
@@ -23,11 +20,6 @@ import site.laube.utility.LaubeUtility;
  */
 
 public final class ApplyAcceptor extends RequestSystemAcceptor {
-
-	/**
-	 * To manage the log object.<br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(ApplyAcceptor.class);
 
 	/**
 	 * All the items in the class will be returned.<br>
