@@ -753,19 +753,19 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				return false;
 			}
 
-			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Authorizer_Untreated) {
+			if (SpecifiedValue.Authorizer_Untreated == activityObjectDto.getActivityStatus()) {
 				log.info("[workflowEngine] " + "checkActivityStatus end");
 				return false;
 			}
 
-			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Arrival) {
+			if (SpecifiedValue.Arrival == activityObjectDto.getActivityStatus()) {
 				if (activityObjectDto.getFunction() != SpecifiedValue.FunctionConfirmation) {
 					log.info("[workflowEngine] " + "checkActivityStatus end");
 					return false;
 				}
 			}
 
-			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Hold) {
+			if (SpecifiedValue.Hold == activityObjectDto.getActivityStatus()) {
 				log.info("[workflowEngine] " + "checkActivityStatus end");
 				return false;
 			}

@@ -654,17 +654,17 @@ public class DraftVisitor extends RequestSystemVisitor {
 				return false;
 			}
 
-			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Authorizer_Untreated) {
+			if (SpecifiedValue.Authorizer_Untreated == activityObjectDto.getActivityStatus()) {
 				return false;
 			}
 
-			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Arrival) {
-				if (activityObjectDto.getFunction() != SpecifiedValue.FunctionConfirmation) {
+			if (SpecifiedValue.Arrival == activityObjectDto.getActivityStatus()) {
+				if (SpecifiedValue.FunctionConfirmation != activityObjectDto.getFunction()) {
 					return false;
 				}
 			}
 
-			if (activityObjectDto.getActivityStatus() == SpecifiedValue.Hold) {
+			if (SpecifiedValue.Hold == activityObjectDto.getActivityStatus()) {
 				return false;
 			}
 		}
