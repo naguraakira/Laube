@@ -44,7 +44,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * @return model object
 	 * @throws LaubeException
 	 */
-	public static ActivityModel factory(RouteType routeType) throws LaubeException {
+	public static ActivityModel factory(final RouteType routeType) throws LaubeException {
 
 		log.info("[workflowEngine] " + "factory start");
 		log.info("[workflowEngine] " + "[argument]");
@@ -142,7 +142,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -156,7 +156,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -201,7 +201,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			this.preparedStatement.setString(2, routeCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -215,7 +215,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -288,7 +288,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -353,7 +353,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 				return resultDto;
 			}
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
@@ -367,7 +367,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -433,7 +433,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -448,7 +448,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 					this.preparedStatement = null;
 				}
 
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -513,7 +513,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -528,7 +528,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 					this.preparedStatement = null;
 				}
 
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}

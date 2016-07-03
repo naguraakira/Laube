@@ -72,7 +72,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -86,7 +86,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -136,7 +136,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			this.preparedStatement.setString(2, userCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -150,7 +150,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -225,7 +225,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			this.preparedStatement.setString(  9, deputyApprovelDto.getUserCode());
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
@@ -239,7 +239,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -314,7 +314,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 				return resultDto;
 			}
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
@@ -328,7 +328,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -423,7 +423,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -437,7 +437,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -523,7 +523,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -537,7 +537,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}

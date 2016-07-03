@@ -118,7 +118,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 				}
 			}
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "isOccupied end");
 			throw new LaubeException(e);
 
@@ -132,7 +132,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException(e);
 			}
@@ -202,7 +202,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -216,7 +216,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -290,7 +290,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -305,7 +305,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 					this.preparedStatement = null;
 				}
 
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}

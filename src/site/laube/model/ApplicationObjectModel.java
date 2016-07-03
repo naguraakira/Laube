@@ -101,7 +101,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -115,7 +115,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -221,11 +221,11 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 
-		} catch (ParseException pe) {
+		} catch (final ParseException pe) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(pe);
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(se);
 
@@ -241,7 +241,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 					this.preparedStatement = null;
 				}
 
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -326,11 +326,11 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 
-		} catch (ParseException pe) {
+		} catch (final ParseException pe) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(pe);
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(se);
 
@@ -345,7 +345,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -397,7 +397,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			}
 			result = ++max;
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "getNextApplicationNumber end");
 			throw new LaubeException(se);
 
@@ -411,7 +411,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "getNextApplicationNumber end");
 				throw new LaubeException(e);
 			}

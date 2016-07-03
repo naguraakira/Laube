@@ -54,7 +54,7 @@ public final class LaubeController implements Serializable {
 		try {
 			resultDto = searchSystemAcceptor.accept(searchSystemVisitor);
 
-		}catch(LaubeException e){
+		}catch(final LaubeException e){
 			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
@@ -62,7 +62,7 @@ public final class LaubeController implements Serializable {
 			log.info("[workflowEngine] " + "doSearch end");
 			return resultDto;
 
-		}catch(Exception e){
+		}catch(final Exception e){
 			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
@@ -91,7 +91,7 @@ public final class LaubeController implements Serializable {
 		try {
 			resultDto = requestSystemAcceptor.accept(requestSystemVisitor);
 
-		}catch(LaubeException e){
+		}catch(final LaubeException e){
 			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
@@ -99,7 +99,7 @@ public final class LaubeController implements Serializable {
 			log.info("[workflowEngine] " + "doRequest end");
 			return resultDto;
 
-		}catch(Exception e){
+		}catch(final Exception e){
 			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
@@ -128,7 +128,7 @@ public final class LaubeController implements Serializable {
 		try {
 			resultDto = approvalAcceptor.accept(approvalSystemVisitor);
 
-		}catch(LaubeException e){
+		}catch(final LaubeException e){
 			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
@@ -136,7 +136,7 @@ public final class LaubeController implements Serializable {
 			log.info("[workflowEngine] " + "doApproval end");
 			return resultDto;
 
-		}catch(Exception e){
+		}catch(final Exception e){
 			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);

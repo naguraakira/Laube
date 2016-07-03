@@ -91,7 +91,7 @@ public class LaubeModel {
 				statement = connection.createStatement();
 			}
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "getConnection end");
 			e.printStackTrace();
 		}
@@ -112,7 +112,7 @@ public class LaubeModel {
 		try {
 			connection.commit();
 			log.info("[workflowEngine] " + "commit end");
-		} catch(Exception e){
+		} catch(final Exception e){
 			log.info("[workflowEngine] " + "commit end");
 			e.printStackTrace();
 		}
@@ -149,7 +149,7 @@ public class LaubeModel {
 
 			} while (resultSet.next());
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "conversion end");
 			throw new LaubeException(e);
 		}
@@ -216,7 +216,7 @@ public class LaubeModel {
 					method.invoke(laubeDto, resultSet.getString(name));
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "resultSetToDto end");
 			throw new LaubeException(e);
 
@@ -262,7 +262,7 @@ public class LaubeModel {
 				}
 
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "checkRequiredItem end" );
 			throw new LaubeException(e);
 		}

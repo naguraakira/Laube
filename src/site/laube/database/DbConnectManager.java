@@ -64,7 +64,7 @@ public final class DbConnectManager {
 					throw new LaubeException(e);
 				}
 			}
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "getConnection end");
 			throw new LaubeException(e);
 		}

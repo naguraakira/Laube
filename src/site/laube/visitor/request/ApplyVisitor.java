@@ -274,7 +274,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 
-		}catch(Exception e){
+		}catch(final Exception e){
 			log.info("[workflowEngine] " + "visit end");
 			throw new LaubeException(e);
 
@@ -282,7 +282,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			try {
 				LaubeModel.connection.close();
 				log.info("[workflowEngine] " + "visit end");
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException(e);
 			}

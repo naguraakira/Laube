@@ -265,14 +265,14 @@ public class DraftVisitor extends RequestSystemVisitor {
 			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 
-		}catch(Exception e){
+		}catch(final Exception e){
 			log.info("[workflowEngine] " + "visit end");
 			throw new LaubeException(e);
 
 		}finally{
 			try {
 				LaubeModel.connection.close();
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException(e);
 			}

@@ -73,7 +73,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -87,7 +87,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -137,7 +137,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement.setInt   (2, applicationNumber);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -151,7 +151,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -226,7 +226,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement.setString   ( 8, appendedDto.getApprovalUserCode());
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
@@ -240,7 +240,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -329,7 +329,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 				return resultDto;
 			}
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
@@ -343,7 +343,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -425,7 +425,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -439,7 +439,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}

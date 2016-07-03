@@ -74,7 +74,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -88,7 +88,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -139,7 +139,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			this.preparedStatement.setString(2, applicationClassificationCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -153,7 +153,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -219,7 +219,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			this.preparedStatement.setString(  6, applicationClassificationDto.getUpdateUserId());
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
@@ -233,7 +233,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -301,7 +301,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				return resultDto;
 			}
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
@@ -315,7 +315,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -387,7 +387,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -401,7 +401,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -474,7 +474,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
 			throw new LaubeException(e);
 
@@ -488,7 +488,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
 				throw new LaubeException(e);
 			}
@@ -565,7 +565,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			log.info("[workflowEngine] " + "findBySpecialRouteCode end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "findBySpecialRouteCode end");
 			throw new LaubeException(e);
 
@@ -579,7 +579,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "findBySpecialRouteCode end");
 				throw new LaubeException(e);
 			}

@@ -36,7 +36,7 @@ public abstract class RouteModel extends LaubeModel {
 	 * @return route master
 	 * @throws LaubeException
 	 */
-	public static RouteModelInterface factory(RouteType routeType) throws LaubeException {
+	public static RouteModelInterface factory(final RouteType routeType) throws LaubeException {
 
 		log.info("[workflowEngine] " + "factory Start");
 		log.info("[workflowEngine] " + "[argument]");

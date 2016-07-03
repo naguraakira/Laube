@@ -204,7 +204,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(se);
 
@@ -221,7 +221,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 					this.preparedStatement = null;
 				}
 
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -298,7 +298,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(se);
 
@@ -313,7 +313,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				throw new LaubeException(e);
 			}
 		}
@@ -377,7 +377,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "updateByArrival end");
 			throw new LaubeException(se);
 
@@ -392,7 +392,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "updateByArrival end");
 				throw new LaubeException(e);
 			}
@@ -469,7 +469,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.executeUpdate();
 			resultDto.setResultData(applicationNumber);
 
-		} catch (SQLException se) {
+		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "updateByAuthorizerApproval end");
 			throw new LaubeException(se);
 
@@ -484,7 +484,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "updateByAuthorizerApproval end");
 				throw new LaubeException(e);
 			}
@@ -526,7 +526,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.setLong  (2, applicationNumber);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -542,7 +542,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 					this.preparedStatement = null;
 				}
 
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -656,7 +656,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -671,7 +671,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 					this.preparedStatement = null;
 				}
 
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -723,7 +723,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			log.info("[workflowEngine] " + "findByArrival end");
 			return resultDto;
 
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "findByArrival end");
 			throw new LaubeException(e);
 		}

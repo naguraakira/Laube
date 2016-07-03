@@ -74,7 +74,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -88,7 +88,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -140,7 +140,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 			this.preparedStatement.setString(2, userCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -154,7 +154,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -230,7 +230,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 			this.preparedStatement.setString( 9, bossDto.getUpdateUserId());
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
@@ -244,7 +244,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -322,7 +322,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				return resultDto;
 			}
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
@@ -336,7 +336,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -459,7 +459,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine]" + "findByChainOfResposibility end");
 				throw new LaubeException(e);
 			}
@@ -586,7 +586,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.error("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -600,7 +600,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}

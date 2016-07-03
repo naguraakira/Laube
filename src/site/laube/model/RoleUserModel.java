@@ -81,7 +81,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.preparedStatement.setString(3, userCode);
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "delete end");
 			throw new LaubeException(e);
 
@@ -95,7 +95,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
 			}
@@ -161,7 +161,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.preparedStatement.setString( 6, roleUserDto.getUpdateUserId());
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "insert end");
 			throw new LaubeException(e);
 
@@ -175,7 +175,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
 			}
@@ -230,7 +230,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.preparedStatement.setString( 5, roleUserDto.getRoleCode());
 			this.preparedStatement.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException(e);
 
@@ -244,7 +244,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
 			}
@@ -328,7 +328,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException(e);
 
@@ -342,7 +342,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
 			}
@@ -420,7 +420,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			log.info("[workflowEngine] " + "findByUserCode end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "findByUserCode end");
 			throw new LaubeException(e);
 
@@ -434,7 +434,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "findByUserCode end");
 				throw new LaubeException(e);
 			}
@@ -512,7 +512,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			log.info("[workflowEngine] " + "findByRoleCode end");
 			return resultDto;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "findByRoleCode end");
 			throw new LaubeException(e);
 
@@ -526,7 +526,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
-			} catch (SQLException e) {
+			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "findByRoleCode end");
 				throw new LaubeException(e);
 			}
