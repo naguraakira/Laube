@@ -20,6 +20,8 @@ CREATE  TABLE wkf_appended
  ,update_user_id VARCHAR (18)  NOT NULL
 
  ,CONSTRAINT wkf_appended_pkey PRIMARY KEY (id)
+ ,CONSTRAINT wkf_appended_fkey FOREIGN KEY ( company_code,application_number )
+     REFERENCES wkf_application_object ( company_code,application_number )  ON UPDATE CASCADE ON DELETE CASCADE
 )
  TABLESPACE pg_default;
 
@@ -40,7 +42,3 @@ COMMENT ON COLUMN wkf_appended.update_date_time IS 'update date';
 COMMENT ON COLUMN wkf_appended.update_user_id IS 'record of the update';
 
 CREATE UNIQUE INDEX wkf_appended_unique_idx1 on wkf_appended(company_code,application_number,approval_number);
-
-alter TABLE wkf_appended
- add CONSTRAINT wkf_appended_fkey FOREIGN KEY ( company_code,application_number )
-     REFERENCES wkf_application_object ( company_code,application_number )  ON UPDATE CASCADE ON DELETE CASCADE

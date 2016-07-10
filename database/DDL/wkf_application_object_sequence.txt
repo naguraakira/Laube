@@ -1,0 +1,12 @@
+-- Sequence: wkf_application_object_sequence
+
+-- DROP SEQUENCE wkf_application_object_sequence;
+
+CREATE SEQUENCE wkf_application_object_sequence
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9999999999
+  START 1
+  CACHE 1;
+ALTER TABLE wkf_application_object_sequence
+  OWNER TO postgres;

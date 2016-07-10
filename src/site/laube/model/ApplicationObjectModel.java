@@ -146,7 +146,6 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 
 		try {
 			final String companyCode = applicationObjectDto.getCompanyCode();
-			final int applicationNumber = getNextApplicationNumber(applicationObjectDto.getCompanyCode());
 			final long reApplicationNumber = applicationObjectDto.getReapplicationNumber();
 			final String applicationFormCode = applicationObjectDto.getApplicationFormCode();
 			Date applyDate = null;
@@ -168,7 +167,6 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			final  StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_application_object( ");
 			sql.append("company_code, ");
-			sql.append("application_number, ");
 			sql.append("reapplication_number, ");
 			sql.append("application_form_code, ");
 			sql.append("apply_company_code, ");
@@ -195,7 +193,6 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append("?,");
 			sql.append("?,");
 			sql.append("?,");
-			sql.append("?,");
 			sql.append("CURRENT_TIMESTAMP(0),");
 			sql.append("?,");
 			sql.append("CURRENT_TIMESTAMP(0),");
@@ -205,21 +202,19 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, companyCode);
-			this.preparedStatement.setInt   ( 2, applicationNumber);
-			this.preparedStatement.setLong  ( 3, reApplicationNumber);
-			this.preparedStatement.setString( 4, applicationFormCode);
-			this.preparedStatement.setString( 5, applyCompanyCode);
-			this.preparedStatement.setString( 6, applyUnitCode);
-			this.preparedStatement.setString( 7, applyUserCode);
-			this.preparedStatement.setString( 8, deputyApplyCompanyCode);
-			this.preparedStatement.setString( 9, deputyApplyUnitCode);
-			this.preparedStatement.setString(10, deputyApplyUserCode);
-			this.preparedStatement.setDate  (11, applyDate);
-			this.preparedStatement.setInt   (12, applicationStatus);
-			this.preparedStatement.setString(13, createUserID);
-			this.preparedStatement.setString(14, updateUserID);
+			this.preparedStatement.setLong  ( 2, reApplicationNumber);
+			this.preparedStatement.setString( 3, applicationFormCode);
+			this.preparedStatement.setString( 4, applyCompanyCode);
+			this.preparedStatement.setString( 5, applyUnitCode);
+			this.preparedStatement.setString( 6, applyUserCode);
+			this.preparedStatement.setString( 7, deputyApplyCompanyCode);
+			this.preparedStatement.setString( 8, deputyApplyUnitCode);
+			this.preparedStatement.setString( 9, deputyApplyUserCode);
+			this.preparedStatement.setDate  (10, applyDate);
+			this.preparedStatement.setInt   (11, applicationStatus);
+			this.preparedStatement.setString(12, createUserID);
+			this.preparedStatement.setString(13, updateUserID);
 			this.preparedStatement.executeUpdate();
-			resultDto.setResultData(applicationNumber);
 
 		} catch (final ParseException pe) {
 			log.info("[workflowEngine] " + "insert end");
@@ -354,69 +349,5 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 		resultDto.setMessageId("N0001");
 		log.info("[workflowEngine] " + "update end");
 		return resultDto;
-	}
-
-	/**
-	 * it returns the value obtained by counting up the maximum application number.<br>
-	 * @param companyCode company code
-	 * @return result
-	 * @throws LaubeException
-	 */
-	@SuppressWarnings({ "nls", "boxing" })
-	private final int getNextApplicationNumber(String  companyCode) throws LaubeException {
-
-		log.info("[workflowEngine] " + "getNextApplicationNumber start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-
-		int result = 0;
-
-		if (LaubeUtility.isBlank(companyCode)) {
-			log.info("[workflowEngine] " + "getNextApplicationNumber end");
-			throw new LaubeException("companyCode is null");
-		}
-
-		try {
-			final  StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("max(application_number) ");
-			sql.append("FROM ");
-			sql.append("wkf_view_application_object ");
-			sql.append("WHERE ");
-			sql.append("company_code = ?");
-
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
-			this.preparedStatement.setString(1, companyCode);
-			this.resultSet = this.preparedStatement.executeQuery();
-
-			int max = 0;
-
-			if (this.resultSet.first()) {
-				max = this.resultSet.getInt("max");
-			}
-			result = ++max;
-
-		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "getNextApplicationNumber end");
-			throw new LaubeException(se);
-
-		} finally {
-			try {
-				if (this.resultSet != null) {
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-				if (this.preparedStatement != null) {
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "getNextApplicationNumber end");
-				throw new LaubeException(e);
-			}
-		}
-		log.info("[workflowEngine] " + "getNextApplicationNumber end");
-		return result;
 	}
 }

@@ -1,0 +1,26 @@
+-- Function: wkf_activity_object_insert_trigger()
+
+-- DROP FUNCTION wkf_activity_object_insert_trigger();
+
+CREATE OR REPLACE FUNCTION wkf_activity_object_insert_trigger()
+  RETURNS trigger AS
+$BODY$
+    BEGIN
+        NEW.application_number := currval('wkf_application_object_sequence' );
+        RETURN NEW;
+    END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION wkf_activity_object_insert_trigger()
+  OWNER TO postgres;
+
+-- Trigger: wkf_activity_object_insert_trigger on wkf_activity_object_
+
+-- DROP TRIGGER wkf_activity_object_insert_trigger ON wkf_activity_object_;
+
+CREATE TRIGGER wkf_activity_object_insert_trigger
+  BEFORE INSERT
+  ON wkf_activity_object
+  FOR EACH ROW
+  EXECUTE PROCEDURE wkf_activity_object_insert_trigger();

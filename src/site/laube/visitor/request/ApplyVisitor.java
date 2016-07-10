@@ -223,10 +223,8 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				resultDto = applicationObjectModelInterface.insert(applicationObjectDto);
 			}
 
-			applicationNumber = (int)(resultDto.getResultData());
-
 			// create Activity Object
-			List<ActivityObjectDto> activityObjectDtoList = copyToActivityDto(companyCode, applyUserCode, applicationNumber, approvalRouteInformationAcceptor);
+			List<ActivityObjectDto> activityObjectDtoList = copyToActivityDto(companyCode, applyUserCode, approvalRouteInformationAcceptor);
 
 			// change the first approver of status
 			activityObjectDtoList = changeTheFirstApproverOfStatus(activityObjectDtoList);
@@ -579,7 +577,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	private final List<ActivityObjectDto> copyToActivityDto(
 			final String companyCode,
 			final String applyUserCode,
-			final long applicationNumber,
 			final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptor
 			) throws LaubeException {
 
@@ -587,7 +584,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "companyCode:" + companyCode);
 		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
-		log.info("[workflowEngine] " + "applicationNumber:" + applicationNumber);
 		log.info("[workflowEngine] " + "approvalRouteInformationAcceptor:" + approvalRouteInformationAcceptor);
 
 		List<ActivityObjectDto> activityObjectDtos = new ArrayList<ActivityObjectDto>();
@@ -598,7 +594,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptor) {
 				ActivityObjectDto activityObjectDto = new ActivityObjectDto();
 				activityObjectDto.setCompanyCode(companyCode);
-				activityObjectDto.setApplicationNumber(applicationNumber);
 				int activityObjectCode = ++row;
 				activityObjectDto.setActivityObjectCode(activityObjectCode);
 				activityObjectDto.setPartyCode(route.getPartyCode());

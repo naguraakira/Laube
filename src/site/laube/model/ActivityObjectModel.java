@@ -55,7 +55,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		ResultDto resultDto = new ResultDto();
 
-		if (ActivityObjectDtos == null) {
+		if (LaubeUtility.isEmpty(ActivityObjectDtos)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "insert end");
@@ -100,7 +100,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		try {
 			final String companyCode = activityObjectDto.getCompanyCode();
-			final long applicationNumber = activityObjectDto.getApplicationNumber();
 			final int activityObjectCode = activityObjectDto.getActivityObjectCode();
 			final String partyCode = activityObjectDto.getPartyCode();
 			final int partyCodeConnector = activityObjectDto.getPartyCodeConnector();
@@ -126,7 +125,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_activity_object( ");
 			sql.append("company_code,");
-			sql.append("application_number,");
 			sql.append("activity_object_code,");
 			sql.append("party_code,");
 			sql.append("party_code_connector,");
@@ -169,7 +167,6 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append("?,");
 			sql.append("?,");
 			sql.append("?,");
-			sql.append("?,");
 			sql.append("CURRENT_TIMESTAMP(0),");
 			sql.append("?,");
 			sql.append("CURRENT_TIMESTAMP(0),");
@@ -180,29 +177,27 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, companyCode);
-			this.preparedStatement.setLong     ( 2, applicationNumber);
-			this.preparedStatement.setInt      ( 3, activityObjectCode);
-			this.preparedStatement.setString   ( 4, partyCode);
-			this.preparedStatement.setInt      ( 5, partyCodeConnector);
-			this.preparedStatement.setInt      ( 6, routeType);
-			this.preparedStatement.setString   ( 7, approvalCompanyCode);
-			this.preparedStatement.setString   ( 8, approvalUnitCode);
-			this.preparedStatement.setString   ( 9, approvalUserCode);
-			this.preparedStatement.setString   (10, deputyApprovalCompanyCode);
-			this.preparedStatement.setString   (11, deputyApprovalUserCode);
-			this.preparedStatement.setString   (12, deputyApprovalComment);
-			this.preparedStatement.setInt      (13, function);
-			this.preparedStatement.setString   (14, nextPartyCode);
-			this.preparedStatement.setString   (15, partyTransitCode);
-			this.preparedStatement.setInt      (16, partyTransitCodeConnector);
-			this.preparedStatement.setTimestamp(17, reachingDate);
-			this.preparedStatement.setTimestamp(18, processDate);
-			this.preparedStatement.setInt      (19, activityStatus);
-			this.preparedStatement.setString   (20, approvalComment);
-			this.preparedStatement.setString   (21, createUserID);
-			this.preparedStatement.setString   (22, updateUserID);
+			this.preparedStatement.setInt      ( 2, activityObjectCode);
+			this.preparedStatement.setString   ( 3, partyCode);
+			this.preparedStatement.setInt      ( 4, partyCodeConnector);
+			this.preparedStatement.setInt      ( 5, routeType);
+			this.preparedStatement.setString   ( 6, approvalCompanyCode);
+			this.preparedStatement.setString   ( 7, approvalUnitCode);
+			this.preparedStatement.setString   ( 8, approvalUserCode);
+			this.preparedStatement.setString   ( 9, deputyApprovalCompanyCode);
+			this.preparedStatement.setString   (10, deputyApprovalUserCode);
+			this.preparedStatement.setString   (11, deputyApprovalComment);
+			this.preparedStatement.setInt      (12, function);
+			this.preparedStatement.setString   (13, nextPartyCode);
+			this.preparedStatement.setString   (14, partyTransitCode);
+			this.preparedStatement.setInt      (15, partyTransitCodeConnector);
+			this.preparedStatement.setTimestamp(16, reachingDate);
+			this.preparedStatement.setTimestamp(17, processDate);
+			this.preparedStatement.setInt      (18, activityStatus);
+			this.preparedStatement.setString   (19, approvalComment);
+			this.preparedStatement.setString   (20, createUserID);
+			this.preparedStatement.setString   (21, updateUserID);
 			this.preparedStatement.executeUpdate();
-			resultDto.setResultData(applicationNumber);
 
 		} catch (final SQLException se) {
 			log.info("[workflowEngine] " + "insert end");

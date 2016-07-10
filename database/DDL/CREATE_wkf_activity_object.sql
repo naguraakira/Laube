@@ -32,6 +32,9 @@ CREATE  TABLE wkf_activity_object
  ,update_user_id VARCHAR (10)  NOT NULL
 
  ,CONSTRAINT wkf_activity_object_pkey PRIMARY KEY (id)
+ ,CONSTRAINT wkf_activity_object_fkey FOREIGN KEY ( company_code,application_number )
+     REFERENCES wkf_application_object ( company_code,application_number )  ON UPDATE CASCADE ON DELETE CASCADE
+
 )
  TABLESPACE pg_default;
 
@@ -63,7 +66,3 @@ COMMENT ON COLUMN wkf_activity_object.update_date_time IS 'update date';
 COMMENT ON COLUMN wkf_activity_object.update_user_id IS 'record of the update';
 
 CREATE UNIQUE INDEX wkf_activity_object_unique_idx1 on wkf_activity_object(company_code,application_number,activity_object_code);
-
-alter TABLE wkf_activity_object
- add CONSTRAINT wkf_activity_object_fkey FOREIGN KEY ( company_code,application_number )
-     REFERENCES wkf_application_object ( company_code,application_number )  ON UPDATE CASCADE ON DELETE CASCADE
