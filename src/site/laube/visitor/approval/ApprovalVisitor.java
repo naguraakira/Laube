@@ -74,7 +74,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 
 		try{
 
-			final boolean isNull = isNull(approvalAcceptor);
+			final boolean isNull = ApprovalUtility.isNull(approvalAcceptor);
 
 			if (isNull) {
 				resultDto.setStatus(false);
@@ -225,47 +225,5 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				throw new LaubeException(e);
 			}
 		}
-	}
-
-	/**
-	 * check of essential items.
-	 */
-	@SuppressWarnings({ "nls", "static-method" })
-	private final boolean isNull(final ApprovalAcceptor approvalAcceptor){
-
-		log.info("[workflowEngine] " + "isNull start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "approvalAcceptor:" + approvalAcceptor);
-
-		if (LaubeUtility.isEmpty(approvalAcceptor)) {
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(approvalAcceptor.getApprovalCompanyCode())) {
-			log.debug("[workflowEngine] " + "approvalCompanyCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(approvalAcceptor.getApprovalDate())) {
-			log.debug("[workflowEngine] " + "approvalDate : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(approvalAcceptor.getApprovalUserCode())) {
-			log.debug("[workflowEngine] " + "approvalUserCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (approvalAcceptor.getApplicationNumber() == 0) {
-			log.debug("[workflowEngine] " + "applicationNumber : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		log.info("[workflowEngine] " + "isNull end");
-		return false;
 	}
 }

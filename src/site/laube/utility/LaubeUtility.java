@@ -37,6 +37,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
@@ -58,6 +60,11 @@ import site.laube.exception.LaubeException;
  */
 
 public final class LaubeUtility implements Serializable {
+
+	/**
+	 * To manage the log object.<br>
+	 */
+	private static Logger log = LoggerFactory.getLogger(LaubeUtility.class);
 
 	/**
 	 * To manage the serial version ID.<br>
