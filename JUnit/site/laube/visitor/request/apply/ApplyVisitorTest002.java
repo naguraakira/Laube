@@ -59,11 +59,11 @@ public class ApplyVisitorTest002 {
 
 		try {
 			requestSystemAcceptor.setCompanyCode("PS");
-			requestSystemAcceptor.setApplicationFormCode("F001");
+			requestSystemAcceptor.setApplicationFormCode("FORM001");
 			requestSystemAcceptor.setApplyDate("2016/02/10");
 			requestSystemAcceptor.setApplyCompanyCode("PS");
-			requestSystemAcceptor.setApplyUnitCode("U001");
-			requestSystemAcceptor.setApplyUserCode("90001");
+			requestSystemAcceptor.setApplyUnitCode("UNIT001");
+			requestSystemAcceptor.setApplyUserCode("USER001");
 
 			List<ApprovalRouteInformationAcceptor> individualRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
@@ -75,8 +75,8 @@ public class ApplyVisitorTest002 {
 			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
 			route.setRouteType(SpecifiedValue.IndividualRoute);
 			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("U001");
-			route.setApprovalUserCode("USER01");
+			route.setApprovalUnitCode("UNIT001");
+			route.setApprovalUserCode("USER001");
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
@@ -93,8 +93,8 @@ public class ApplyVisitorTest002 {
 			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
 			route.setRouteType(SpecifiedValue.IndividualRoute);
 			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("U001");
-			route.setApprovalUserCode("USER02");
+			route.setApprovalUnitCode("UNIT001");
+			route.setApprovalUserCode("USER002");
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
@@ -111,8 +111,8 @@ public class ApplyVisitorTest002 {
 			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
 			route.setRouteType(SpecifiedValue.IndividualRoute);
 			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("U001");
-			route.setApprovalUserCode("USER03");
+			route.setApprovalUnitCode("UNIT001");
+			route.setApprovalUserCode("USER003");
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
@@ -129,8 +129,8 @@ public class ApplyVisitorTest002 {
 			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
 			route.setRouteType(SpecifiedValue.CommonRoute);
 			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("U001");
-			route.setApprovalUserCode("USER04");
+			route.setApprovalUnitCode("UNIT001");
+			route.setApprovalUserCode("USER004");
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
@@ -147,8 +147,8 @@ public class ApplyVisitorTest002 {
 			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
 			route.setRouteType(SpecifiedValue.CommonRoute);
 			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("U001");
-			route.setApprovalUserCode("USER05");
+			route.setApprovalUnitCode("UNIT001");
+			route.setApprovalUserCode("USER005");
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);

@@ -59,11 +59,11 @@ public class DraftVisitorTest001 {
 
 		try {
 			requestSystemAcceptor.setCompanyCode("PS");
-			requestSystemAcceptor.setApplicationFormCode("F001");
+			requestSystemAcceptor.setApplicationFormCode("FORM001");
 			requestSystemAcceptor.setApplyDate("2016/02/10");
 			requestSystemAcceptor.setApplyCompanyCode("PS");
-			requestSystemAcceptor.setApplyUnitCode("U001");
-			requestSystemAcceptor.setApplyUserCode("90001");
+			requestSystemAcceptor.setApplyUnitCode("UNIT001");
+			requestSystemAcceptor.setApplyUserCode("USER001");
 
 			List<ApprovalRouteInformationAcceptor> individualRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();

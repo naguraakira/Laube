@@ -57,9 +57,9 @@ public class ApprovalVisitorTest001 {
 			approvalSystemAcceptor.setApplicationNumber(1);
 			approvalSystemAcceptor.setApprovalDate("2016/06/08");
 			approvalSystemAcceptor.setApprovalCompanyCode("PS");
-			approvalSystemAcceptor.setApprovalUnitCode("U002");
-			approvalSystemAcceptor.setApprovalUserCode("90001");
-			approvalSystemAcceptor.setComment("代理承認します");
+			approvalSystemAcceptor.setApprovalUnitCode("UNIT001");
+			approvalSystemAcceptor.setApprovalUserCode("USER001");
+			approvalSystemAcceptor.setComment("承認します");
 			approvalSystemAcceptor.setAppendFileList(null);
 
 			ResultDto result = LaubeController.doApproval(approvalSystemAcceptor, approvalSystemVisitor);
