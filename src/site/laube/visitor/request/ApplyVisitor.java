@@ -184,7 +184,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			}
 
 			boolean isDraft = false;
-			if ((applicationNumber == 0)||(applicationObjectDtos == null)) {
+			if ((applicationNumber == 0)||(LaubeUtility.isEmpty(applicationObjectDtos))) {
 				isDraft = false;
 
 			}else{
