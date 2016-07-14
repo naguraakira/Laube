@@ -1,13 +1,46 @@
 package site.laube.visitor;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.dto.ActivityDto;
+import site.laube.dto.ApplicationClassificationDto;
+import site.laube.dto.ApplicationFormDto;
+import site.laube.dto.ApplicationFormRouteDto;
+import site.laube.dto.BossDto;
+import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
+import site.laube.dto.RoleUserDto;
+import site.laube.dto.temporary.CompanyDto;
+import site.laube.dto.temporary.UnitDto;
+import site.laube.dto.temporary.UserDto;
 import site.laube.exception.LaubeException;
+import site.laube.model.ActivityModel;
+import site.laube.model.ApplicationClassificationModel;
+import site.laube.model.ApplicationFormModel;
+import site.laube.model.ApplicationFormRouteModel;
+import site.laube.model.BossModel;
+import site.laube.model.CompanyModel;
 import site.laube.model.DeputyApprovelModel;
+import site.laube.model.RoleUserModel;
+import site.laube.model.UnitModel;
+import site.laube.model.UserModel;
+import site.laube.modelinterface.ActivityModelInterface;
+import site.laube.modelinterface.ApplicationClassificationModelInterface;
+import site.laube.modelinterface.ApplicationFormModelInterface;
+import site.laube.modelinterface.ApplicationFormRouteModelInterface;
+import site.laube.modelinterface.BossModelInterface;
+import site.laube.modelinterface.CompanyModelInterface;
 import site.laube.modelinterface.DeputyApprovelModelInterface;
+import site.laube.modelinterface.RoleUserModelInterface;
+import site.laube.modelinterface.UnitModelInterface;
+import site.laube.modelinterface.UserModelInterface;
 import site.laube.utility.LaubeUtility;
+import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.RouteType;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -31,6 +64,430 @@ public final class VisitorUtility {
 	 * to manage the log object.<br>
 	 */
 	private static Logger log = LoggerFactory.getLogger(RequestSystemVisitor.class);
+
+	/**
+	 * find the company master.<br>
+	 * @param laubeRequestAcceptor
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findCompany(final String companyCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findCompany start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+
+		ResultDto resultDto  = new ResultDto();
+
+		if (LaubeUtility.isBlank(companyCode)) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findCompany end");
+			return resultDto;
+		}
+
+		final CompanyModelInterface companyModelInterface = new CompanyModel();
+		resultDto = companyModelInterface.find(companyCode);
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findCompany end");
+			return resultDto;
+		}
+
+		ArrayList<LaubeDto> companyDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+
+		CompanyDto companyDto = (CompanyDto)companyDtos.get(0);
+		resultDto.setResultData(companyDto);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findCompany end");
+		return resultDto;
+	}
+
+	/**
+	 * find the unit master.<br>
+	 * @param companyCode company code
+	 * @param unitCode unit code
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findUnit(final String companyCode, final String unitCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findUnit start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "unitCode:" + unitCode);
+
+		ResultDto resultDto  = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findUnit end");
+			return resultDto;
+		}
+
+		final UnitModelInterface unitModelInterface = new UnitModel();
+		resultDto = unitModelInterface.find(companyCode, unitCode);
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findUnit end");
+			return resultDto;
+		}
+
+		ArrayList<LaubeDto> unitDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+
+		UnitDto applyUnitDto = (UnitDto)unitDtos.get(0);
+		resultDto.setResultData(applyUnitDto);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findUnit end");
+		return resultDto;
+	}
+
+	/**
+	 * find the user master.<br>
+	 * @param companyCode ompany code
+	 * @param userCode user code
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findUser(final String companyCode, final String userCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findUser start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "userCode:" + userCode);
+
+		ResultDto resultDto  = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findUser end");
+			return resultDto;
+		}
+
+		final UserModelInterface userModelInterface = new UserModel();
+		resultDto = userModelInterface.find(companyCode, userCode);
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findUser end");
+			return resultDto;
+		}
+
+		ArrayList<LaubeDto> userDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+
+		UserDto userDto = (UserDto)userDtos.get(0);
+		resultDto.setResultData(userDto);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findUser end");
+		return resultDto;
+	}
+
+	/**
+	 * find the application form master.<br>
+	 * @param companyCode ompany code
+	 * @param applicationFormCode application form Code
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findApplicationForm(final String companyCode, final String applicationFormCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findApplicationForm start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+
+		ResultDto resultDto  = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findApplicationForm end");
+			return resultDto;
+		}
+
+		final ApplicationFormModelInterface applicationFormModelInterface = new ApplicationFormModel();
+		resultDto = applicationFormModelInterface.findByApplicationFormCode(companyCode, applicationFormCode);
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findApplicationForm end");
+			return resultDto;
+		}
+
+		ArrayList<LaubeDto> applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+
+		ApplicationFormDto applicationFormDto = (ApplicationFormDto)applicationFormDtos.get(0);
+		resultDto.setResultData(applicationFormDto);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findApplicationForm end");
+		return resultDto;
+	}
+
+	/**
+	 * find the application form route master.<br>
+	 * @param companyCode ompany code
+	 * @param applicationFormCode application form Code
+	 * @param unitCode unit Code
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findApplicationFormRoute(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findApplicationFormRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+		log.info("[workflowEngine] " + "unitCode:" + unitCode);
+
+		ResultDto resultDto  = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))||(LaubeUtility.isBlank(unitCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findApplicationFormRoute end");
+			return resultDto;
+		}
+
+		final ApplicationFormRouteModelInterface applicationFormRouteModelInterface = new ApplicationFormRouteModel();
+		resultDto = applicationFormRouteModelInterface.find(companyCode, applicationFormCode, unitCode);
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findApplicationFormRoute end");
+			return resultDto;
+		}
+
+		ArrayList<LaubeDto> applicationFormRouteDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+
+		ApplicationFormRouteDto applicationFormRouteDto = (ApplicationFormRouteDto)applicationFormRouteDtos.get(0);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		resultDto.setResultData(applicationFormRouteDto);
+		log.info("[workflowEngine] " + "findApplicationFormRoute end");
+		return resultDto;
+	}
+
+	/**
+	 * find the application classification master.<br>
+	 * @param companyCode ompany code
+	 * @param applicationClassificationCode application classification code
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findApplicationClassification(final String companyCode, final String applicationClassificationCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findApplicationClassification start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "applicationClassificationCode:" + applicationClassificationCode);
+
+		ResultDto resultDto  = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findApplicationClassification end");
+			return resultDto;
+		}
+
+		final ApplicationClassificationModelInterface applicationClassificationModelInterfaces = new ApplicationClassificationModel();
+		resultDto = applicationClassificationModelInterfaces.findByApplicationClassificationCode(companyCode, applicationClassificationCode);
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findApplicationClassification end");
+			return resultDto;
+		}
+
+		ArrayList<LaubeDto> ApplicationClassificationDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+
+		ApplicationClassificationDto applicationClassificationDto = (ApplicationClassificationDto)ApplicationClassificationDtos.get(0);
+		resultDto.setResultData(applicationClassificationDto);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findApplicationClassification end");
+		return resultDto;
+	}
+
+	/**
+	 * find the route master.<br>
+	 * @param companyCode ompany code
+	 * @param individualRouteCode individual route code
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findRoute(final String companyCode, final String routeCode, final RouteType routeType) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.info("[workflowEngine] " + "routeCode:" + routeCode);
+
+		ResultDto resultDto = new ResultDto();
+
+		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))||(LaubeUtility.isEmpty(routeType))) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E0001");
+			log.info("[workflowEngine] " + "findRoute end");
+			return resultDto;
+		}
+
+		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
+
+		final ActivityModelInterface activityModelInterface = ActivityModel.factory(routeType);
+		resultDto = activityModelInterface.find(companyCode, routeCode);
+		ArrayList<ActivityDto> activityDtos = (ArrayList<ActivityDto>)(resultDto.getResultData());
+
+		final RoleUserModelInterface RoleUserModelInterface = new RoleUserModel();
+
+		for (ActivityDto activityDto : activityDtos) {
+
+			String roleCode = activityDto.getApprovalRoleCode();
+
+			if (!LaubeUtility.isBlank(roleCode)) {
+
+				resultDto = RoleUserModelInterface.findByRoleCode(companyCode, roleCode);
+				if (resultDto == null) {
+					continue;
+				}
+				ArrayList<RoleUserDto> roleUserDtos = (ArrayList<RoleUserDto>)resultDto.getResultData();
+
+				for (RoleUserDto roleUserDto : roleUserDtos) {
+					ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor = new ApprovalRouteInformationAcceptor();
+					approvalRouteInformationAcceptor.setApprovalCompanyCode(roleUserDto.getCompanyCode());
+					approvalRouteInformationAcceptor.setApprovalUnitCode(roleUserDto.getUnitCode());
+					approvalRouteInformationAcceptor.setApprovalUserCode(roleUserDto.getUserCode());
+					approvalRouteInformationAcceptor.setDeputyApprovalComment(null);
+					approvalRouteInformationAcceptor.setDeputyApprovalCompanyCode(null);
+					approvalRouteInformationAcceptor.setDeputyApprovalUnitCode(null);
+					approvalRouteInformationAcceptor.setDeputyApprovalUserCode(null);
+					approvalRouteInformationAcceptor.setFunction(activityDto.getFunction());
+					approvalRouteInformationAcceptor.setNextPartyCode(activityDto.getNextPartyCode());
+					approvalRouteInformationAcceptor.setPartyCode(activityDto.getPartyCode());
+					approvalRouteInformationAcceptor.setPartyCodeConnector(activityDto.getPartyCodeConnector());
+					approvalRouteInformationAcceptor.setPartyTransitCode(activityDto.getPartyTransitCode());
+					approvalRouteInformationAcceptor.setPartyTransitCodeConnector(activityDto.getPartyTransitCodeConnector());
+					approvalRouteInformationAcceptor.setRouteType(routeType);
+					approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
+				}
+
+			} else {
+				ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor = new ApprovalRouteInformationAcceptor();
+				approvalRouteInformationAcceptor.setApprovalCompanyCode(activityDto.getApprovalCompanyCode());
+				approvalRouteInformationAcceptor.setApprovalUnitCode(activityDto.getApprovalUnitCode());
+				approvalRouteInformationAcceptor.setApprovalUserCode(activityDto.getApprovalUserCode());
+				approvalRouteInformationAcceptor.setDeputyApprovalComment(null);
+				approvalRouteInformationAcceptor.setDeputyApprovalCompanyCode(null);
+				approvalRouteInformationAcceptor.setDeputyApprovalUnitCode(null);
+				approvalRouteInformationAcceptor.setDeputyApprovalUserCode(null);
+				approvalRouteInformationAcceptor.setFunction(activityDto.getFunction());
+				approvalRouteInformationAcceptor.setNextPartyCode(activityDto.getNextPartyCode());
+				approvalRouteInformationAcceptor.setPartyCode(activityDto.getPartyCode());
+				approvalRouteInformationAcceptor.setPartyCodeConnector(activityDto.getPartyCodeConnector());
+				approvalRouteInformationAcceptor.setPartyTransitCode(activityDto.getPartyTransitCode());
+				approvalRouteInformationAcceptor.setPartyTransitCodeConnector(activityDto.getPartyTransitCodeConnector());
+				approvalRouteInformationAcceptor.setRouteType(routeType);
+				approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
+			}
+		}
+		resultDto.setResultData(approvalRouteInformationAcceptors);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findRoute end");
+		return resultDto;
+	}
+
+	/**
+	 * find the route master.<br>
+	 * @param applyCompanyCode apply company code
+	 * @param applyUnitCode apply unit code
+	 * @param applyUserCode apply user code
+	 * @param applicationFormCode application form code
+	 * @param bossCompanyCode boss company code
+	 * @param bossUnitCode boss unit code
+	 * @param bossUserCode boss user code
+	 * @param finalApproverFlag final approver flag
+	 * @return ResultDto
+	 * @exception LaubeException
+	 */
+	@SuppressWarnings("unchecked")
+	public static final ResultDto findRoute(
+			final String applyCompanyCode,
+			final String applyUnitCode,
+			final String applyUserCode,
+			final String applicationFormCode) throws LaubeException {
+
+		log.info("[workflowEngine] " + "findRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "applyCompanyCode:" + applyCompanyCode);
+		log.info("[workflowEngine] " + "applyUnitCode:" + applyUnitCode);
+		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
+		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+
+		final BossModelInterface bossModelInterface = new BossModel();
+		ResultDto resultDto = bossModelInterface.findByChainOfResposibility(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
+		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
+		if (LaubeUtility.isEmpty(resultDto)) {
+			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+			log.info("[workflowEngine] " + "findRoute end");
+			return resultDto;
+		}
+
+		if (resultDto.getMessageId().equals("N0002")) {
+			return resultDto;
+		}
+
+		ArrayList<BossDto> bossDtos = (ArrayList<BossDto>)resultDto.getResultData();
+
+		if ((bossDtos == null)||(bossDtos.size() < 1)) {
+			resultDto.setStatus(false);
+			resultDto.setMessageId("E1002");
+			log.info("[workflowEngine] " + "findRoute end");
+			return resultDto;
+		}
+
+		int partyCodeIndex = 0;
+		int partyTransitCodeIndex = 0;
+
+		for (BossDto bossDto : bossDtos) {
+			ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor = new ApprovalRouteInformationAcceptor();
+
+			// add initial route
+			approvalRouteInformationAcceptor = new ApprovalRouteInformationAcceptor();
+			approvalRouteInformationAcceptor.setApprovalCompanyCode(bossDto.getBossCompanyCode());
+			approvalRouteInformationAcceptor.setApprovalUnitCode(bossDto.getBossUnitCode());
+			approvalRouteInformationAcceptor.setApprovalUserCode(bossDto.getBossUserCode());
+			approvalRouteInformationAcceptor.setDeputyApprovalComment(null);
+			approvalRouteInformationAcceptor.setDeputyApprovalCompanyCode(null);
+			approvalRouteInformationAcceptor.setDeputyApprovalUnitCode(null);
+			approvalRouteInformationAcceptor.setDeputyApprovalUserCode(null);
+			approvalRouteInformationAcceptor.setFunction(SpecifiedValue.Examination);
+			approvalRouteInformationAcceptor.setPartyCode("AP" + String.format("%1$08d", (++partyCodeIndex)));
+			approvalRouteInformationAcceptor.setPartyCodeConnector(SpecifiedValue.Unspecified);
+			if (bossDtos.size() == partyCodeIndex) {
+				approvalRouteInformationAcceptor.setNextPartyCode(SpecifiedValue.END);
+			}else{
+				approvalRouteInformationAcceptor.setNextPartyCode("AP" + String.format("%1$08d", (partyCodeIndex + 1)));
+			}
+			approvalRouteInformationAcceptor.setPartyTransitCode("AT" + String.format("%1$08d", (++partyTransitCodeIndex)));
+			approvalRouteInformationAcceptor.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			approvalRouteInformationAcceptor.setRouteType(SpecifiedValue.IndividualRoute);
+			approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
+		}
+		resultDto.setResultData(approvalRouteInformationAcceptors);
+		resultDto.setStatus(true);
+		resultDto.setMessageId("N0001");
+		log.info("[workflowEngine] " + "findRoute end");
+		return resultDto;
+	}
 
 	/**
 	 * <br>

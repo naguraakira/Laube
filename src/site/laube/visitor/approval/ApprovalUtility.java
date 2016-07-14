@@ -32,7 +32,7 @@ public class ApprovalUtility {
 	/**
 	 * check of essential items.
 	 */
-	protected static final boolean isNull(final ApprovalSystemAcceptor approvalSystemAcceptor){
+	protected static final boolean isEmpty(final ApprovalSystemAcceptor approvalSystemAcceptor){
 
 		log.info("[workflowEngine] " + "isNull start");
 		log.info("[workflowEngine] " + "[argument]");

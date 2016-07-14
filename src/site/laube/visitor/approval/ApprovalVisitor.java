@@ -73,7 +73,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		final ApprovalAcceptor approvalAcceptor = (ApprovalAcceptor)approvalSystemAcceptor;
 
 		try{
-			final boolean isNull = ApprovalUtility.isNull(approvalAcceptor);
+			final boolean isNull = ApprovalUtility.isEmpty(approvalAcceptor);
 
 			if (isNull) {
 				resultDto.setStatus(false);

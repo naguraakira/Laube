@@ -17,15 +17,14 @@ import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.model.ActivityObjectModel;
-import site.laube.model.ApplicationFormModel;
 import site.laube.model.ApplicationObjectModel;
 import site.laube.model.LaubeModel;
 import site.laube.modelinterface.ActivityObjectModelInterface;
-import site.laube.modelinterface.ApplicationFormModelInterface;
 import site.laube.modelinterface.ApplicationObjectModelInterface;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 import site.laube.visitor.RequestSystemVisitor;
+import site.laube.visitor.VisitorUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -97,19 +96,13 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			final int applicationStatus = SpecifiedValue.UnderExamination;
 
 			log.debug("[workflowEngine] " + "Find the application form master.");
-			final ApplicationFormModelInterface applicationFormModelInterface = new ApplicationFormModel();
-			resultDto = applicationFormModelInterface.findByApplicationFormCode(applyCompanyCode, applicationFormCode);
-
-			if (!resultDto.isSuccess()) {
-				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());
-				log.error("[workflowEngine] " + "visit end");
+			VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
+			if (LaubeUtility.isEmpty(resultDto)) {
+				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
-
-			ArrayList<LaubeDto> applicationFormDtos = null;
-			if (resultDto.getResultData() instanceof ArrayList){
-				applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
-			}
+			ApplicationFormDto applicationFormDto  = (ApplicationFormDto)resultDto.getResultData();
 
 			List<ApprovalRouteInformationAcceptor> individualRoutes = applyAcceptor.getIndividualRoutes();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = applyAcceptor.getCommonRoutes();
@@ -117,7 +110,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			final boolean isIndividualRoutes = (LaubeUtility.isEmpty(individualRoutes))||(individualRoutes.size() == 0);
 			final boolean isCommonRoutes = (LaubeUtility.isEmpty(commonRoutes))||(commonRoutes.size() == 0);
 
-			ApplicationFormDto applicationFormDto = (ApplicationFormDto)applicationFormDtos.get(0);
 			final boolean check1 = (SpecifiedValue.NoIndividualRouteFlag == applicationFormDto.getRouteFlag()) && (!isIndividualRoutes);
 			final boolean check2 = (SpecifiedValue.IndividualRouteFlag == applicationFormDto.getRouteFlag()) && (isIndividualRoutes);
 			final boolean check3 = isIndividualRoutes && isCommonRoutes;
