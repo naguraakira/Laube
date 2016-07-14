@@ -95,7 +95,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		final RouteSearchAcceptor routeSearchAcceptor = (RouteSearchAcceptor)searchSystemAcceptor;
 
 		try{
-			boolean isNull = isNull(routeSearchAcceptor);
+			boolean isNull = SearchUtility.isEmpty(routeSearchAcceptor);
 
 			if (isNull) {
 				resultDto.setStatus(false);
@@ -456,54 +456,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			}
 		}
 		routeSearchAcceptor.setIndividualRoutes(updateApprovalRouteInformationAcceptor);
-	}
-
-	/**
-	 * check of essential items.
-	 */
-	@SuppressWarnings({ "nls", "static-method" })
-	private final boolean isNull(final RouteSearchAcceptor routeSearchAcceptor){
-
-		log.info("[workflowEngine] " + "isNull start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "routeSearchAcceptor:" + routeSearchAcceptor);
-
-		if (LaubeUtility.isEmpty(routeSearchAcceptor)) {
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(routeSearchAcceptor.getCompanyCode())) {
-			log.debug("[workflowEngine] " + "companyCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplicationFormCode())) {
-			log.debug("[workflowEngine] " + "applicationFormCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyCompanyCode())) {
-			log.debug("[workflowEngine] " + "applyCompanyCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUnitCode())) {
-			log.debug("[workflowEngine] " + "applyUnitCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUserCode())) {
-			log.debug("[workflowEngine] " + "applyUserCode : null");
-			log.info("[workflowEngine] " + "isNull end");
-			return true;
-		}
-
-		log.info("[workflowEngine] " + "isNull end");
-		return false;
 	}
 
 	/**

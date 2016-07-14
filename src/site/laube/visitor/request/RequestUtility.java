@@ -84,7 +84,7 @@ public class RequestUtility {
 	/**
 	 * check of essential items.
 	 */
-	protected static final boolean isNull(final RequestSystemAcceptor requestSystemAcceptor){
+	protected static final boolean isEmpty(final RequestSystemAcceptor requestSystemAcceptor){
 
 		log.info("[workflowEngine] " + "isNull start");
 		log.info("[workflowEngine] " + "[argument]");

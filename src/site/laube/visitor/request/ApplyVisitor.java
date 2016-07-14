@@ -75,7 +75,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		final ApplyAcceptor applyAcceptor = (ApplyAcceptor)requestSystemAcceptor;
 
 		try{
-			if (RequestUtility.isNull(applyAcceptor)) {
+			if (RequestUtility.isEmpty(applyAcceptor)) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());

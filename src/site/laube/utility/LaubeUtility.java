@@ -394,16 +394,6 @@ public final class LaubeUtility implements Serializable {
 	}
 
 	/**
-	 * Do not set check.<br>
-	 * Wrapper class for hiding the "org.apache.commons.lang3.builder.ToStringBuilder", which is an external class<br>
-	 * @param s Value to validate
-	 * @return result
-	 */
-	public static final boolean isBlank(final CharSequence s) {
-		return StringUtils.isBlank(s);
-	}
-
-	/**
 	 * Make the configured check.<br>
 	 * Wrapper class for hiding the "org.apache.commons.lang3.builder.ToStringBuilder", which is an external class<br>
 	 * @param s Value to validate
@@ -411,6 +401,16 @@ public final class LaubeUtility implements Serializable {
 	 */
 	public static final boolean isNotEmpty(final CharSequence s) {
 		return StringUtils.isNotEmpty(s);
+	}
+
+	/**
+	 * Do not set check.<br>
+	 * Wrapper class for hiding the "org.apache.commons.lang3.builder.ToStringBuilder", which is an external class<br>
+	 * @param s Value to validate
+	 * @return result
+	 */
+	public static final boolean isBlank(final CharSequence s) {
+		return StringUtils.isBlank(s);
 	}
 
 	/**
