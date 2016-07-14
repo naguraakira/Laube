@@ -47,6 +47,12 @@ public class ApplicationFormDto extends CompanyDto {
 	private String applicationClassificationName = null;
 
 	/**
+	 * to manage the automatic skip apply user.<br>
+	 * If this flag is true, erase about user from individual route.
+	 */
+	private boolean skipApplyUser;
+
+	/**
 	 * to manage the automatic approval flag.<br>
 	 * If this flag is true, automatically update to the [approval]
 	 * when you arrive employees applicant was once approved for the same employee number again.
@@ -129,6 +135,22 @@ public class ApplicationFormDto extends CompanyDto {
 	 */
 	public final String getApplicationClassificationName() {
 		return this.applicationClassificationName;
+	}
+
+	/**
+	 * Set the skip apply user.<br>
+	 * @param skipApplyUser skip apply user
+	 */
+	public final void setSkipApplyUser(final boolean skipApplyUser) {
+		this.skipApplyUser = skipApplyUser;
+	}
+
+	/**
+	 * Get the skip apply user.<br>
+	 * @return skip apply user
+	 */
+	public final boolean isSkipApplyUser() {
+		return this.skipApplyUser;
 	}
 
 	/**

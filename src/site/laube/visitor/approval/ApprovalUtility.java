@@ -43,25 +43,21 @@ public class ApprovalUtility {
 		}
 
 		if (LaubeUtility.isBlank(approvalSystemAcceptor.getApprovalCompanyCode())) {
-			log.debug("[workflowEngine] " + "approvalCompanyCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(approvalSystemAcceptor.getApprovalDate())) {
-			log.debug("[workflowEngine] " + "approvalDate : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(approvalSystemAcceptor.getApprovalUserCode())) {
-			log.debug("[workflowEngine] " + "approvalUserCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (approvalSystemAcceptor.getApplicationNumber() == 0) {
-			log.debug("[workflowEngine] " + "applicationNumber : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}

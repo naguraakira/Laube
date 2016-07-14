@@ -80,6 +80,11 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	private int function = 0;
 
 	/**
+	 * to manage the delete flag.<br>
+	 */
+	private boolean deleteFlag = false;
+
+	/**
 	 * to manage the deputy approval comment.<br>
 	 */
 	private String deputyApprovalComment = null;
@@ -314,6 +319,24 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 		}else{
 			this.deputyApprovalUserCode = deputyApprovalUserCode;
 		}
+	}
+
+	/**
+	 * get the delete flag.<br>
+	 * @return flag
+	 */
+	public final boolean getDeleteFlag() {
+
+		return this.deleteFlag;
+	}
+
+	/**
+	 * set the delete flag.<br>
+	 * @param deleteFlag
+	 */
+	public final void setDeleteFlag(final boolean deleteFlag) {
+
+		this.deleteFlag = deleteFlag;
 	}
 
 	/**

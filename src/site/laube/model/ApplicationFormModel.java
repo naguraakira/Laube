@@ -193,12 +193,14 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append("application_form_code,");
 			sql.append("application_form_name,");
 			sql.append("application_classification_code,");
+			sql.append("skip_apply_user,");
 			sql.append("auto_approval_flag,");
 			sql.append("create_date_time,");
 			sql.append("create_user_id,");
 			sql.append("update_date_time,");
 			sql.append("update_user_id) ");
 			sql.append("VALUES(");
+			sql.append("?,");
 			sql.append("?,");
 			sql.append("?,");
 			sql.append("?,");
@@ -216,9 +218,10 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			this.preparedStatement.setString(  2, applicationFormDto.getApplicationFormCode());
 			this.preparedStatement.setString(  3, applicationFormDto.getApplicationFormName());
 			this.preparedStatement.setString(  4, applicationFormDto.getApplicationClassificationCode());
-			this.preparedStatement.setBoolean( 5, applicationFormDto.isAutoApprovalFlag());
-			this.preparedStatement.setString(  6, applicationFormDto.getCreateUserId());
-			this.preparedStatement.setString(  7, applicationFormDto.getUpdateUserId());
+			this.preparedStatement.setBoolean( 5, applicationFormDto.isSkipApplyUser());
+			this.preparedStatement.setBoolean( 6, applicationFormDto.isAutoApprovalFlag());
+			this.preparedStatement.setString(  7, applicationFormDto.getCreateUserId());
+			this.preparedStatement.setString(  8, applicationFormDto.getUpdateUserId());
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
@@ -274,6 +277,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append("SET ");
 			sql.append("application_form_name = ?, ");
 			sql.append("application_classification_code = ?, ");
+			sql.append("skip_apply_user = ?, ");
 			sql.append("auto_approval_flag = ?, ");
 			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
 			sql.append("update_user_id = ? ");
@@ -286,16 +290,18 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 			this.preparedStatement.setString(  1, applicationFormDto.getApplicationFormName());
 			this.preparedStatement.setString(  2, applicationFormDto.getApplicationClassificationCode());
-			this.preparedStatement.setBoolean( 3, applicationFormDto.isAutoApprovalFlag());
-			this.preparedStatement.setString(  4, applicationFormDto.getUpdateUserId());
-			this.preparedStatement.setString(  5, applicationFormDto.getCompanyCode());
-			this.preparedStatement.setString(  6, applicationFormDto.getApplicationFormCode());
+			this.preparedStatement.setBoolean( 3, applicationFormDto.isSkipApplyUser());
+			this.preparedStatement.setBoolean( 4, applicationFormDto.isAutoApprovalFlag());
+			this.preparedStatement.setString(  5, applicationFormDto.getUpdateUserId());
+			this.preparedStatement.setString(  6, applicationFormDto.getCompanyCode());
+			this.preparedStatement.setString(  7, applicationFormDto.getApplicationFormCode());
 			int upCnt = this.preparedStatement.executeUpdate();
 
 			if (upCnt != 1) {
 				log.error("[workflowEngine] It failed to update the application form master.");
 				log.error("[workflowEngine] applicationFormName:" + applicationFormDto.getApplicationFormName());
 				log.error("[workflowEngine] applicationClassificationCode:" + applicationFormDto.getApplicationClassificationCode());
+				log.error("[workflowEngine] skipApplyUser:" + applicationFormDto.isSkipApplyUser());
 				log.error("[workflowEngine] autoApprovalFlag:" + applicationFormDto.isAutoApprovalFlag());
 				log.error("[workflowEngine] companyCode:" + applicationFormDto.getCompanyCode());
 				log.error("[workflowEngine] applicationFormCode:" + applicationFormDto.getApplicationFormCode());
@@ -362,6 +368,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append("A.\"application_form_name\", ");
 			sql.append("A.\"application_classification_code\", ");
 			sql.append("A.\"application_classification_name\", ");
+			sql.append("A.\"skip_apply_user\", ");
 			sql.append("A.\"auto_approval_flag\" ");
 			sql.append("FROM \"wkf_view_application_form\" ");
 			sql.append("WHERE ");
@@ -450,6 +457,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append("application_form_name, ");
 			sql.append("application_classification_code, ");
 			sql.append("application_classification_name, ");
+			sql.append("skip_apply_user, ");
 			sql.append("auto_approval_flag, ");
 			sql.append("pulling_flag, ");
 			sql.append("route_flag ");
@@ -541,6 +549,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append("A.application_form_name, ");
 			sql.append("A.application_classification_code, ");
 			sql.append("A.application_classification_name, ");
+			sql.append("A.skip_apply_user, ");
 			sql.append("A.auto_approval_flag ");
 			sql.append("FROM wkf_view_application_form ");
 			sql.append("WHERE ");

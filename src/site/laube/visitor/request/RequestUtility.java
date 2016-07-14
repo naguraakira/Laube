@@ -95,37 +95,31 @@ public class RequestUtility {
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getCompanyCode())) {
-			log.debug("[workflowEngine] " + "companyCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplicationFormCode())) {
-			log.debug("[workflowEngine] " + "applicationFormCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyDate())) {
-			log.debug("[workflowEngine] " + "applyDate : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyCompanyCode())) {
-			log.debug("[workflowEngine] " + "applyCompanyCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyUnitCode())) {
-			log.debug("[workflowEngine] " + "applyUnitCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyUserCode())) {
-			log.debug("[workflowEngine] " + "applyUserCode : null");
 			log.info("[workflowEngine] " + "isNull end");
 			return true;
 		}

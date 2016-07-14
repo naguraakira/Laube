@@ -60,7 +60,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] "  + "requestSystemAcceptor:" + requestSystemAcceptor);
+		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -75,10 +75,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		final ApplyAcceptor applyAcceptor = (ApplyAcceptor)requestSystemAcceptor;
 
 		try{
-
-			boolean isNull = RequestUtility.isNull(applyAcceptor);
-
-			if (isNull) {
+			if (RequestUtility.isNull(applyAcceptor)) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());
@@ -117,12 +114,12 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			List<ApprovalRouteInformationAcceptor> individualRoutes = applyAcceptor.getIndividualRoutes();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = applyAcceptor.getCommonRoutes();
 
-			final boolean isIndividualRoutes = (individualRoutes == null)||(individualRoutes.size() == 0);
-			final boolean isCommonRoutes = (commonRoutes == null)||(commonRoutes.size() == 0);
+			final boolean isIndividualRoutes = (LaubeUtility.isEmpty(individualRoutes))||(individualRoutes.size() == 0);
+			final boolean isCommonRoutes = (LaubeUtility.isEmpty(commonRoutes))||(commonRoutes.size() == 0);
 
 			ApplicationFormDto applicationFormDto = (ApplicationFormDto)applicationFormDtos.get(0);
-			final boolean check1 = (applicationFormDto.getRouteFlag() == SpecifiedValue.NoIndividualRouteFlag) && (!isIndividualRoutes);
-			final boolean check2 = (applicationFormDto.getRouteFlag() == SpecifiedValue.IndividualRouteFlag) && (isIndividualRoutes);
+			final boolean check1 = (SpecifiedValue.NoIndividualRouteFlag == applicationFormDto.getRouteFlag()) && (!isIndividualRoutes);
+			final boolean check2 = (SpecifiedValue.IndividualRouteFlag == applicationFormDto.getRouteFlag()) && (isIndividualRoutes);
 			final boolean check3 = isIndividualRoutes && isCommonRoutes;
 
 			if (check1) {
@@ -346,7 +343,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 
-			if (activityObjectDto != null) {
+			if (!LaubeUtility.isEmpty(activityObjectDto)) {
 				if (activityObjectDto.getNextPartyCode().equals(target.getPartyCode())) {
 					result = false;
 				}

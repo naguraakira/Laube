@@ -75,10 +75,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 		final DraftAcceptor draftAcceptor = (DraftAcceptor)requestSystemAcceptor;
 
 		try{
-
-			boolean isNull = RequestUtility.isNull(draftAcceptor);
-
-			if (isNull) {
+			if (RequestUtility.isNull(draftAcceptor)) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.info("[workflowEngine] " + "visit end");
