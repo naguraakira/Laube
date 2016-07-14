@@ -184,9 +184,9 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 			UserDto applyUserDto = (UserDto)resultDto.getResultData();
 
-			final boolean isDeputyApplyCompanyCode = (deputyApplyCompanyCode == null);
-			final boolean isDeputyApplyUnitCode = (deputyApplyUnitCode == null);
-			final boolean isDeputyApplyUserCode = (deputyApplyUserCode == null);
+			final boolean isDeputyApplyCompanyCode = (LaubeUtility.isBlank(deputyApplyCompanyCode));
+			final boolean isDeputyApplyUnitCode    = (LaubeUtility.isBlank(deputyApplyUnitCode));
+			final boolean isDeputyApplyUserCode    = (LaubeUtility.isBlank(deputyApplyUserCode));
 
 			final boolean isNotDeputy = isDeputyApplyCompanyCode || isDeputyApplyUnitCode || isDeputyApplyUserCode;
 
@@ -263,7 +263,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			String individualRouteCode = null;
 			String commonRouteCode = null;
 
-			if (applicationFormRouteDto != null) {
+			if (!LaubeUtility.isEmpty(applicationFormRouteDto)) {
 				log.debug("[workflowEngine] " + "find the application form route master.");
 				individualRouteCode = applicationFormRouteDto.getIndividualRouteCode();
 				commonRouteCode     = applicationFormRouteDto.getCommonRouteCode();
@@ -273,7 +273,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			log.debug("[workflowEngine] " + "individualRouteCode:" + individualRouteCode);
 			log.debug("[workflowEngine] " + "commonRouteCode:" + commonRouteCode);
 
-			if ((applicationFormDto.getRouteFlag() == SpecifiedValue.IndividualRouteFlag) && (individualRouteCode != null)) {
+			if ((SpecifiedValue.IndividualRouteFlag == applicationFormDto.getRouteFlag()) && (!LaubeUtility.isBlank(individualRouteCode))) {
 				log.debug("[workflowEngine] " + "find the individual route master.");
 				resultDto = findRoute(applyCompanyCode, individualRouteCode, RouteType.IndividualRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -292,7 +292,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
 			}
 
-			if (applicationFormDto.getRouteFlag() == SpecifiedValue.BossRouteFlag) {
+			if (SpecifiedValue.BossRouteFlag == applicationFormDto.getRouteFlag()) {
 				log.debug("[workflowEngine] " + "find the boss route master.");
 				resultDto = findRoute(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -311,7 +311,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					}
 
 					ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)resultDto.getResultData();;
-					if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
+					if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
 						resultDto.setStatus(false);
 						resultDto.setMessageId("E1002");
 						log.info("[workflowEngine] " + "visit end");
@@ -321,7 +321,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 				}else{
 					ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)resultDto.getResultData();;
-					if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
+					if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
 						resultDto.setStatus(false);
 						resultDto.setMessageId("E1002");
 						log.info("[workflowEngine] " + "visit end");
@@ -331,7 +331,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				}
 			}
 
-			// 申請者がＡルート上にいる場合、ルートから削除します。
 			String applyUser = null;
 
 			if (isNotDeputy){
@@ -340,11 +339,11 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				applyUser = routeSearchAcceptor.getDeputyApplyUserCode();
 			}
 
+			// if the applicant is on the individual route, and then removed from the route.
 			updateIndividualRoute(applyUser, routeSearchAcceptor);
 
 			if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
-				resultDto = findApplicationClassification(companyCode, applicationFormDto.getApplicationClassificationCode());
-
+				resultDto = findRoute(applyCompanyCode, applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.info("[workflowEngine] " + "visit end");
@@ -355,21 +354,20 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					if (LaubeUtility.isEmpty(resultDto.getResultData())) {
 						routeSearchAcceptor.setIndividualRoutes(null);
 					}else{
-						// 申請者がＡルート上にいる場合、ルートから削除します。
+						Object o = resultDto.getResultData();
+						ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)o;
+						routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
+						// if the applicant is on the individual route, and then removed from the route.
 						updateIndividualRoute(applyUser, routeSearchAcceptor);
 					}
 				}else{
-					resultDto.setStatus(false);
-					resultDto.setMessageId("XXXXX");
+					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
 
-
-
-
-			if (commonRouteCode != null) {
+			if (!LaubeUtility.isBlank(commonRouteCode)) {
 				log.debug("[workflowEngine] " + "find the common route master.");
 				resultDto = findRoute(applyCompanyCode, commonRouteCode, RouteType.CommonRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -379,7 +377,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				}
 
 				ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)resultDto.getResultData();;
-				if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
+				if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1002");
 					log.info("[workflowEngine] " + "visit end");
@@ -415,12 +413,10 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	 */
 	private final void updateIndividualRoute(final String applyUserCode, final RouteSearchAcceptor routeSearchAcceptor) throws LaubeException {
 
-		// 申請者がＡルート上にいるか検索します。
 		if (LaubeUtility.isEmpty(routeSearchAcceptor)){
 			return;
 		}
 
-		// 申請者がＡルート上にいるか検索します。
 		if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
 			return;
 		}
@@ -432,22 +428,17 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : routeSearchAcceptor.getIndividualRoutes()) {
 			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
 				if (applyUserCode.equals(approvalRouteInformationAcceptor.getApprovalUserCode())){
-					// Ａルート上に存在した場合、そこまでの承認者を処理済にします。(確認者として登録されている場合も同様)
-					// (いきなり削除してしまうと、並列が含まれる場合、処理が複雑になるため)
 					approvalRouteInformationAcceptor.setDeleteFlag(true);
 				}
 			}
 		}
 
-		// 削除した承認者の機能が[承認]の場合、trueにします。
 		boolean isApproval = false;
 
-		// 処理済でない承認者のみＡルートとして抜き取ります。
+		// not processed approver only pull out as the individual route.
 		final List<ApprovalRouteInformationAcceptor> updateApprovalRouteInformationAcceptor = new ArrayList<ApprovalRouteInformationAcceptor>();
 		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : routeSearchAcceptor.getIndividualRoutes()) {
 			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
-
-				// 削除した承認者の機能が[承認]の場合のチェック
 				if (isApproval){
 					isApproval = false;
 					// 削除した承認者の次が並列の場合、[承認]に変更
