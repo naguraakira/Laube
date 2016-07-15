@@ -89,15 +89,23 @@ public class SearchUtility {
 	 */
 	protected static final void updateIndividualRoute(final String applyUserCode, final RouteSearchAcceptor routeSearchAcceptor) throws LaubeException {
 
+		log.info("[workflowEngine] " + "updateIndividualRoute start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
+		log.info("[workflowEngine] " + "routeSearchAcceptor:" + routeSearchAcceptor);
+
 		if (LaubeUtility.isEmpty(routeSearchAcceptor)){
+			log.info("[workflowEngine] " + "updateIndividualRoute end");
 			return;
 		}
 
 		if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
+			log.info("[workflowEngine] " + "updateIndividualRoute end");
 			return;
 		}
 
 		if (LaubeUtility.isBlank(applyUserCode)){
+			log.info("[workflowEngine] " + "updateIndividualRoute end");
 			return;
 		}
 
@@ -108,6 +116,7 @@ public class SearchUtility {
 				}
 			}
 		}
+		log.info("[workflowEngine] " + "updateIndividualRoute end");
 	}
 
 	/**
@@ -117,9 +126,14 @@ public class SearchUtility {
 	 */
 	protected static final boolean isAllSkip(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptorList) throws LaubeException {
 
+		log.info("[workflowEngine] " + "isAllSkip start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "approvalRouteInformationAcceptorList:" + approvalRouteInformationAcceptorList);
+
 		boolean result = true;
 
 		if (LaubeUtility.isEmpty(approvalRouteInformationAcceptorList)){
+			log.info("[workflowEngine] " + "isAllSkip end");
 			return result;
 		}
 
@@ -130,6 +144,7 @@ public class SearchUtility {
 				}
 			}
 		}
+		log.info("[workflowEngine] " + "isAllSkip end");
 		return result;
 	}
 }

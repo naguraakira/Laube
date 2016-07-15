@@ -317,31 +317,33 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				applyUser = routeSearchAcceptor.getDeputyApplyUserCode();
 			}
 
-			// if the applicant is on the individual route, and then removed from the route.
-			SearchUtility.updateIndividualRoute(applyUser, routeSearchAcceptor);
+			if (applicationFormDto.isSkipApplyUser()){
+				// if the applicant is on the individual route, and then removed from the route.
+				SearchUtility.updateIndividualRoute(applyUser, routeSearchAcceptor);
 
-			if (SearchUtility.isAllSkip(routeSearchAcceptor.getIndividualRoutes())){
-				resultDto = VisitorUtility.findRoute(applyCompanyCode, applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
-				if (LaubeUtility.isEmpty(resultDto)) {
-					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.info("[workflowEngine] " + "visit end");
-					return resultDto;
-				}
-
-				if (resultDto.isSuccess()) {
-					if (LaubeUtility.isEmpty(resultDto.getResultData())) {
-						routeSearchAcceptor.setIndividualRoutes(null);
-					}else{
-						Object o = resultDto.getResultData();
-						ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)o;
-						routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
-						// if the applicant is on the individual route, and then removed from the route.
-						SearchUtility.updateIndividualRoute(applyUser, routeSearchAcceptor);
+				if (SearchUtility.isAllSkip(routeSearchAcceptor.getIndividualRoutes())){
+					resultDto = VisitorUtility.findRoute(applyCompanyCode, applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
+					if (LaubeUtility.isEmpty(resultDto)) {
+						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+						log.info("[workflowEngine] " + "visit end");
+						return resultDto;
 					}
-				}else{
-					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-					log.info("[workflowEngine] " + "visit end");
-					return resultDto;
+
+					if (resultDto.isSuccess()) {
+						if (LaubeUtility.isEmpty(resultDto.getResultData())) {
+							routeSearchAcceptor.setIndividualRoutes(null);
+						}else{
+							Object o = resultDto.getResultData();
+							ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)o;
+							routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
+							// if the applicant is on the individual route, and then removed from the route.
+							SearchUtility.updateIndividualRoute(applyUser, routeSearchAcceptor);
+						}
+					}else{
+						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
+						log.info("[workflowEngine] " + "visit end");
+						return resultDto;
+					}
 				}
 			}
 
