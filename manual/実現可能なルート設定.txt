@@ -1,0 +1,115 @@
+
+
+<<標準パターン>>
+
+
+==================================================================
+ 標準ルート
+------------------------------------------------------------------
+ P1(USER001) -(T1)-> P2(USER002) -(T2)-> P3(USER003) -(T3)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            指定なし            個別       PS                   U001              USER001           承認       P2             T1                 指定なし
+P2            指定なし            個別       PS                   U001              USER002           承認       P3             T2                 指定なし
+P3            指定なし            個別       PS                   U001              USER003           －－       E              T3                 指定なし
+
+
+==================================================================
+ USER001 -->　USER002かUSER003が承認したら --> USER004
+------------------------------------------------------------------
+ P1(USER001) -(T1)-> P2(USER002/USER003)(OR) -(T2)-> P3(USER004) -(T3)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            指定なし            個別       PS                   U001              USER001           承認       P2             T1                 指定なし
+P2            論理和              個別       PS                   U001              USER002           承認       P3             T2                 指定なし
+P2            論理和              個別       PS                   U001              USER003           承認       P3             T2                 指定なし
+P3            指定なし            個別       PS                   U001              USER004           －－       E              T3                 指定なし
+
+
+==================================================================
+ USER001 -->　USER002とUSER003が承認したら --> USER004
+------------------------------------------------------------------
+ P1(USER001) -(T1)-> P2(USER002/USER003)(AND) -(T2)-> P3(USER004) -(T3)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            指定なし            個別       PS                   U001              USER001           承認       P2             T1                 指定なし
+P2            論理積              個別       PS                   U001              USER002           承認       P3             T2                 指定なし
+P2            論理積              個別       PS                   U001              USER003           承認       P3             T2                 指定なし
+P3            指定なし            個別       PS                   U001              USER004           －－       E              T3                 指定なし
+
+
+==================================================================
+ USER001かUSER002が承認したら -->　USER003 --> USER004
+------------------------------------------------------------------
+ P1(USER001/USER002)(OR) -(T1)-> P2(USER003) -(T2)-> P3(USER004) -(T3)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            論理和              個別       PS                   U001              USER001           承認       P2             T1                 指定なし
+P1            論理和              個別       PS                   U001              USER002           承認       P2             T1                 指定なし
+P2            指定なし            個別       PS                   U001              USER003           承認       P3             T2                 指定なし
+P3            指定なし            個別       PS                   U001              USER004           －－       E              T3                 指定なし
+
+
+<<分岐パターン／結合パターン>>
+
+
+==================================================================
+ USER001 --> USER002 --> USER004
+             USER003 --> USER005 --> USER004かUSER005が承認したら終了
+------------------------------------------------------------------
+ P1(USER001) -(T1)-> P2(USER002) -(T2)-> P4(USER004)
+                     P3(USER003) -(T3)-> P5(USER005) -(T4)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            指定なし            個別       PS                   U001              USER001           承認       P2             T1                 指定なし
+P1            指定なし            個別       PS                   U001              USER001           承認       P3             T1                 指定なし
+P2            指定なし            個別       PS                   U001              USER002           承認       P4             T2                 指定なし
+P3            指定なし            個別       PS                   U001              USER003           承認       P5             T3                 指定なし
+P4            指定なし            個別       PS                   U001              USER004           承認       E              T4                 論理和
+P5            指定なし            個別       PS                   U001              USER005           承認       E              T4                 論理和
+
+
+==================================================================
+ USER001 --> USER002 --> USER004
+             USER003 --> USER005 --> USER004とUSER005が承認したら終了
+------------------------------------------------------------------
+ P1(USER001) -(T1)-> P2(USER002) -(T2)-> P4(USER004)
+                     P3(USER003) -(T3)-> P5(USER005) -(T4)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            指定なし            個別       PS                   U001              USER001           承認       P2             T1                 指定なし
+P1            指定なし            個別       PS                   U001              USER001           承認       P3             T1                 指定なし
+P2            指定なし            個別       PS                   U001              USER002           承認       P4             T2                 指定なし
+P3            指定なし            個別       PS                   U001              USER003           承認       P5             T3                 指定なし
+P4            指定なし            個別       PS                   U001              USER004           承認       E              T4                 論理積
+P5            指定なし            個別       PS                   U001              USER005           承認       E              T4                 論理積
+
+
+==================================================================
+ 交際費が100,000円未満ならP2、100,000円以上ならP3へ
+------------------------------------------------------------------
+ P1(USER001) -(T1)-> P2(USER002) -(T3)-> P4(USER004)
+             -(T2)-> P3(USER003) -(T4)-> P5(USER005) -(T5)-> E
+==================================================================
+
+party code    partyCodeConnector  routeType  approvalCompanyCode  approvalUnitCode  approvalUserCode  function   nextPartyCode  partyTransitCode   partyTransitCodeConnector branchItemName branch_item  comparisonOperator
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+P1            指定なし            個別       PS                   U001              USER001           承認       P2             T1                 指定なし                  交際費         100000       Smaller
+P1            指定なし            個別       PS                   U001              USER001           承認       P3             T2                 指定なし                  交際費         100000       OrMore
+P2            指定なし            個別       PS                   U001              USER002           承認       P4             T3                 指定なし
+P3            指定なし            個別       PS                   U001              USER003           承認       P5             T4                 指定なし
+P4            指定なし            個別       PS                   U001              USER004           承認       E              T5                 論理和
+P5            指定なし            個別       PS                   U001              USER005           承認       E              T5                 論理和
+
