@@ -11,6 +11,7 @@ A.application_form_code,
 A.application_form_name,
 A.application_classification_code,
 C.application_classification_name,
+A.skip_apply_user,
 A.auto_approval_flag,
 A.pulling_flag,
 A.route_flag
