@@ -43,7 +43,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
      * remove all of the application classification master and the applicant by category activity master.
      * @param companyCode company code
      * @return result
-     * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
      */
 	@Override
     public final ResultDto delete(final String companyCode) throws LaubeException {
@@ -105,7 +105,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
      * @param companyCode company code
      * @param applicationClassificationCode Application classification code
      * @return result
-     * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
      */
 	@Override
     public final ResultDto delete(final String companyCode, final String applicationClassificationCode) throws LaubeException {
@@ -168,7 +168,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * register the application classification master.<br>
 	 * @param applicationClassificationDto Application classification master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final ApplicationClassificationDto applicationClassificationDto) throws LaubeException {
@@ -248,7 +248,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * to update the application classification master.<br>
 	 * @param applicationClassificationDto Application classification master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final ApplicationClassificationDto applicationClassificationDto) throws LaubeException {
@@ -330,7 +330,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * search the application form master.<br>
 	 * @param companyCode company code
 	 * @return Application form master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override
@@ -413,7 +413,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * @param companyCode company code
 	 * @param applicationClassificationCode Application classification code
 	 * @return Application form master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override
@@ -500,7 +500,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * @param companyCode company code
 	 * @param specialRouteCode special route code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public final ResultDto findBySpecialRouteCode(final String companyCode, final String specialRouteCode) throws LaubeException {
 

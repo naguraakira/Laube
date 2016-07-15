@@ -257,7 +257,8 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	/**
 	 * accept
 	 * @param approvalSystemVisitor approval system visitor
-	 * @exception LaubeException
+	 * @return ResultDto
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public final ResultDto accept(final ApprovalSystemVisitor approvalSystemVisitor) throws LaubeException{
 

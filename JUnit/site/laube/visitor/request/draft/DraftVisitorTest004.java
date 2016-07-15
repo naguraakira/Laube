@@ -23,7 +23,7 @@ import site.laube.visitor.RequestSystemVisitor;
 import site.laube.visitor.request.DraftVisitor;
 
 /**
- * 下書き-->下書き
+ * 下書きから下書き
  * @author mikir
  *
  */

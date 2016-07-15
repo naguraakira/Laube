@@ -26,7 +26,7 @@ public abstract class RequestSystemVisitor implements LaubeVisitor {
 	 * make the application-based processing.<br>
 	 * @param requestSystemAcceptor request system acceptor
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto visit(final RequestSystemAcceptor requestSystemAcceptor) throws LaubeException;
 }

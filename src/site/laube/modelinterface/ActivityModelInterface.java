@@ -27,7 +27,7 @@ public interface ActivityModelInterface {
 	 * remove all of the common activity master.<br>
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto delete(final String companyCode) throws LaubeException;
 
@@ -37,7 +37,7 @@ public interface ActivityModelInterface {
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto delete(final String companyCode, final String routeCode) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface ActivityModelInterface {
 	 * register the activity master.<br>
 	 * @param activityDto activity dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final ActivityDto activityDto) throws LaubeException;
 
@@ -53,7 +53,7 @@ public interface ActivityModelInterface {
 	 * update the activity master.<br>
 	 * @param activityDto activity dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final ActivityDto activityDto) throws LaubeException;
 
@@ -63,7 +63,7 @@ public interface ActivityModelInterface {
 	 * @param routeCode route code
 	 * @param activityCode activity code
 	 * @return activity master
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto find(final String companyCode, final String routeCode, final String activityCode) throws LaubeException;
 
@@ -72,7 +72,7 @@ public interface ActivityModelInterface {
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return activity master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto find(final String companyCode, final String routeCode) throws LaubeException;
 }

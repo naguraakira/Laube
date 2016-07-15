@@ -34,7 +34,7 @@ public abstract class RouteModel extends LaubeModel {
 	 * it returns the root model class.<br>
 	 * @param routeType route type
 	 * @return route master
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public static RouteModelInterface factory(final RouteType routeType) throws LaubeException {
 

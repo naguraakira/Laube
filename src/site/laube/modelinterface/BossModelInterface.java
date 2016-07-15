@@ -27,7 +27,7 @@ public interface BossModelInterface {
 	 * remove the application-specific all of the boss master.
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	*/
 	public abstract ResultDto delete(final String companyCode) throws LaubeException;
 
@@ -37,7 +37,7 @@ public interface BossModelInterface {
 	 * @param companyCode company code
 	 * @param userCode user code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto delete(final String companyCode, final String userCode) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface BossModelInterface {
 	 * register the boss master.<br>
 	 * @param bossDto boss dto
 	 * @return ResultDto
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final BossDto bossDto) throws LaubeException;
 
@@ -53,7 +53,7 @@ public interface BossModelInterface {
 	 * To update the boss master.<br>
 	 * @param bosseDto boss master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final BossDto bosseDto) throws LaubeException;
 
@@ -64,7 +64,7 @@ public interface BossModelInterface {
 	 * @param userCode user code
 	 * @param applicationFormCode application form code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto findByChainOfResposibility(final String companyCode, final String unitCode, final String userCode, final String applicationFormCode) throws LaubeException;
 
@@ -78,7 +78,7 @@ public interface BossModelInterface {
 	 * @param userCode user code
 	 * @param applicationFormCode application form code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode, final String unitCode, final String userCode, final String applicationFormCode) throws LaubeException;

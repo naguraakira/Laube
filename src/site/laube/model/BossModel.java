@@ -42,7 +42,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * remove the application-specific all of the boss master.
 	 * @param companyCode company code
 	 * @return ResultDto
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
@@ -106,7 +106,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * @param companyCode company code
 	 * @param userCode user code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode, final String userCode) throws LaubeException {
@@ -169,7 +169,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * register the boss master.<br>
 	 * @param bossDto boss dto
 	 * @return ResultDto
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final BossDto bossDto) throws LaubeException {
@@ -259,7 +259,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * To update the boss master.<br>
 	 * @param bosseDto boss master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final BossDto bosseDto) throws LaubeException {
@@ -354,7 +354,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * @param userCode user code
 	 * @param applicationFormCode application form code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto findByChainOfResposibility(String companyCode, String unitCode, String userCode, String applicationFormCode) throws LaubeException {
@@ -476,7 +476,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * @param userCode user code
 	 * @param applicationFormCode application form code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override

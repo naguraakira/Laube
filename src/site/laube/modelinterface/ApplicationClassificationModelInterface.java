@@ -27,7 +27,7 @@ public interface ApplicationClassificationModelInterface {
 	 * Remove all of the application classification master and the applicant by category activity master.
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto delete(final String companyCode) throws LaubeException;
 
@@ -37,7 +37,7 @@ public interface ApplicationClassificationModelInterface {
 	 * @param companyCode company code
 	 * @param applicationClassificationCode Application classification code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto delete(final String companyCode, final String applicationClassificationCode) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface ApplicationClassificationModelInterface {
 	 * register the application classification master.<br>
 	 * @param applicationClassificationDto Application classification master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final ApplicationClassificationDto applicationClassificationDto) throws LaubeException;
 
@@ -53,7 +53,7 @@ public interface ApplicationClassificationModelInterface {
 	 * to update the application classification master.<br>
 	 * @param applicationClassificationDto Application classification master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final ApplicationClassificationDto applicationClassificationDto) throws LaubeException;
 
@@ -61,7 +61,7 @@ public interface ApplicationClassificationModelInterface {
 	 * search the application form master.<br>
 	 * @param companyCode company code
 	 * @return Application form master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode) throws LaubeException;
@@ -71,7 +71,7 @@ public interface ApplicationClassificationModelInterface {
 	 * @param companyCode company code
 	 * @param applicationClassificationCode Application classification code
 	 * @return Application form master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto findByApplicationClassificationCode(final String companyCode, final String applicationClassificationCode) throws LaubeException;

@@ -25,7 +25,7 @@ public interface CompanyModelInterface {
 	 * Search the company master.<br>
 	 * @param companyCode company code
 	 * @return company master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode) throws LaubeException;

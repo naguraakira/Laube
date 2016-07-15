@@ -43,7 +43,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * remove all of the special route master.<br>
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
@@ -56,7 +56,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode, final String routeCode) throws LaubeException {
@@ -67,7 +67,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * register the special route master.<br>
 	 * @param routeDto route master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final RouteDto routeDto) throws LaubeException {
@@ -78,7 +78,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * update the special route master.<br>
 	 * @param routeDto route master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final RouteDto routeDto) throws LaubeException {
@@ -91,7 +91,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final boolean isOccupied(final String companyCode, final String routeCode) throws LaubeException {
@@ -143,7 +143,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * search the special route master.<br>
 	 * @param companyCode company code
 	 * @return route master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
@@ -228,7 +228,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return route master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final String routeCode) throws LaubeException {

@@ -41,7 +41,7 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 	 * search the company master.<br>
 	 * @param companyCode company code
 	 * @return company master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override

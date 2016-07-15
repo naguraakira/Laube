@@ -51,7 +51,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	 * Do the application work.<br>
 	 * @param searchSystemAcceptor searchs system acceptor
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public ResultDto visit(final SearchSystemAcceptor searchSystemAcceptor) throws LaubeException {

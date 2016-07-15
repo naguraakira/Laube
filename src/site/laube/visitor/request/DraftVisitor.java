@@ -53,7 +53,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 	 * Do the application work.<br>
 	 * @param requestSystemAcceptor request system acceptor
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public ResultDto visit(final RequestSystemAcceptor requestSystemAcceptor) throws LaubeException {
 

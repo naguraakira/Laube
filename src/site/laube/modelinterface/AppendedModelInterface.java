@@ -27,7 +27,7 @@ public interface AppendedModelInterface {
 	 * remove the application-specific all of the boss master.
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	*/
 	public abstract ResultDto delete(final String companyCode) throws LaubeException;
 
@@ -37,7 +37,7 @@ public interface AppendedModelInterface {
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto delete(final String companyCode, final int applicationNumber) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface AppendedModelInterface {
 	 * register the appended object.<br>
 	 * @param appendedDto appended object
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final AppendedDto appendedDto) throws LaubeException;
 
@@ -53,7 +53,7 @@ public interface AppendedModelInterface {
 	 * To update the appended object.<br>
 	 * @param appendedDto appended object
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final AppendedDto appendedDto) throws LaubeException;
 
@@ -62,7 +62,7 @@ public interface AppendedModelInterface {
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode, final int applicationNumber) throws LaubeException;

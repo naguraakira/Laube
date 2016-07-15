@@ -42,7 +42,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * remove all of the individual route master.<br>
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
@@ -103,7 +103,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode, final String routeCode) throws LaubeException {
@@ -166,7 +166,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * register the route master.<br>
 	 * @param routeDto route master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final RouteDto routeDto) throws LaubeException {
@@ -243,7 +243,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * update the individual route master.<br>
 	 * @param routeDto route master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final RouteDto routeDto) throws LaubeException {
@@ -324,7 +324,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @param companyCode company code
 	 * @param individualRouteCode individual route code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("static-method")
 	@Override
@@ -377,7 +377,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * search the individual route master.<br>
 	 * @param companyCode company code
 	 * @return route master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
@@ -462,7 +462,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return route master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final String routeCode) throws LaubeException {

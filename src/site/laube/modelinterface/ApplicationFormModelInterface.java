@@ -27,7 +27,7 @@ public interface ApplicationFormModelInterface {
      * remove the application-specific activity master and all of the application form master.
      * @param companyCode company code
      * @return result
-     * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
      */
 	public abstract ResultDto delete(final String companyCode) throws LaubeException;
 
@@ -37,7 +37,7 @@ public interface ApplicationFormModelInterface {
      * @param companyCode Company code
      * @param applicationFormCode Application code
      * @return result
-     * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
      */
     public abstract ResultDto delete(final String companyCode, final String applicationFormCode) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface ApplicationFormModelInterface {
 	 * register the application form master.<br>
 	 * @param applicationFormDto Application form master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final ApplicationFormDto applicationFormDto) throws LaubeException;
 
@@ -53,7 +53,7 @@ public interface ApplicationFormModelInterface {
 	 * to update the application form master.<br>
 	 * @param applicationFormDto Application form master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final ApplicationFormDto applicationFormDto) throws LaubeException;
 
@@ -61,7 +61,7 @@ public interface ApplicationFormModelInterface {
 	 * search the application form master.<br>
 	 * @param companyCode Company code
 	 * @return Application form master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode) throws LaubeException;
@@ -71,7 +71,7 @@ public interface ApplicationFormModelInterface {
 	 * @param companyCode Company code
 	 * @param applicationFormCode Application code
 	 * @return Application form master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto findByApplicationFormCode(final String companyCode, final String applicationFormCode) throws LaubeException;
@@ -81,7 +81,7 @@ public interface ApplicationFormModelInterface {
 	 * @param companyCode Company code
 	 * @param applicationClassificationCode application classification code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto findByApplicationClassificationCode(final String companyCode, final String applicationClassificationCode) throws LaubeException;

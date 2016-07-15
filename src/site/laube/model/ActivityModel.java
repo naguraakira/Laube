@@ -42,7 +42,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * it returns the route model class.<br>
 	 * @param routeType route type
 	 * @return model object
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public static ActivityModel factory(final RouteType routeType) throws LaubeException {
 
@@ -117,7 +117,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * remove all of the common activity master.<br>
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
     public final ResultDto delete(final String companyCode) throws LaubeException {
 
@@ -173,7 +173,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
     public final ResultDto delete(final String companyCode, final String routeCode) throws LaubeException {
@@ -230,7 +230,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * register the activityd dto.<br>
 	 * @param activityDto activityd dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final ActivityDto activityDto) throws LaubeException {
@@ -303,7 +303,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * update the activityd dto.<br>
 	 * @param activityDto activity dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final ActivityDto activityDto) throws LaubeException {
@@ -383,7 +383,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * @param companyCode company code
 	 * @param routeCode route code
 	 * @return activity master
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final String routeCode) throws LaubeException {
@@ -461,7 +461,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 	 * @param routeCode route code
 	 * @param activityCode activity code
 	 * @return activity master
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final String routeCode, final String activityCode) throws LaubeException {

@@ -51,7 +51,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 	 * Do the application work.<br>
 	 * @param approvalSystemAcceptor approval system acceptor
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public ResultDto visit(final ApprovalSystemAcceptor approvalSystemAcceptor) throws LaubeException {

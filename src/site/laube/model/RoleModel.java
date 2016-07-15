@@ -42,7 +42,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * remove all of the role the master and the role by the employee master.<br>
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
@@ -96,7 +96,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * @param companyCode company code
 	 * @param roleCode role code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode, final String roleCode) throws LaubeException {
@@ -159,7 +159,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * register the role master.<br>
 	 * @param roleDto role master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final RoleDto roleDto) throws LaubeException {
@@ -236,7 +236,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * update the role master.<br>
 	 * @param roleDto role master
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final RoleDto roleDto) throws LaubeException {
@@ -317,7 +317,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * @param companyCode company code
 	 * @param roleCode role code
 	 * @return use check
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final boolean isOccupied(final String companyCode, final String roleCode) throws LaubeException {
@@ -374,7 +374,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * search for the role a master at the company code.<br>
 	 * @param companyCode company code
 	 * @return role master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
@@ -451,7 +451,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * @param companyCode company code
 	 * @param roleCode role code
 	 * @return role master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto findByRoleCode(final String companyCode, final String roleCode) throws LaubeException {
@@ -533,7 +533,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 	 * @param companyCode company code
 	 * @param roleName role name
 	 * @return role master list
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto findByRoleName(final String companyCode, final String roleName) throws LaubeException {

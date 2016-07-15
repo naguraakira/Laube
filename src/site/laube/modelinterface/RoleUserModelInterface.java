@@ -29,7 +29,7 @@ public interface RoleUserModelInterface {
 	 * @param roleCode    role code
 	 * @param userCode    user code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
     public abstract ResultDto delete(final String companyCode, final String roleCode, final String userCode) throws LaubeException;
 
@@ -37,7 +37,7 @@ public interface RoleUserModelInterface {
 	 * register the role by the employee master.<br>
 	 * @param roleUserDto role user dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final RoleUserDto roleUserDto) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface RoleUserModelInterface {
 	 * update the role by the employee master.<br>
 	 * @param roleUserDto role user dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final RoleUserDto roleUserDto) throws LaubeException;
 
@@ -55,7 +55,7 @@ public interface RoleUserModelInterface {
 	 * @param roleName    role name
 	 * @param userCode    user code
 	 * @return role user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto find(final String companyCode, final String roleName, final String userCode) throws LaubeException;
 
@@ -64,7 +64,7 @@ public interface RoleUserModelInterface {
 	 * @param companyCode company code
 	 * @param userCode    user code
 	 * @return role user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto findByUserCode(final String companyCode, final String userCode) throws LaubeException;
 
@@ -73,7 +73,7 @@ public interface RoleUserModelInterface {
 	 * @param companyCode company code
 	 * @param roleCode role code
 	 * @return role user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto findByRoleCode(final String companyCode, final String roleCode) throws LaubeException;
 }

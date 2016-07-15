@@ -67,9 +67,9 @@ public final class VisitorUtility {
 
 	/**
 	 * find the company master.<br>
-	 * @param laubeRequestAcceptor
+	 * @param companyCode company code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findCompany(final String companyCode) throws LaubeException {
@@ -110,7 +110,7 @@ public final class VisitorUtility {
 	 * @param companyCode company code
 	 * @param unitCode unit code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findUnit(final String companyCode, final String unitCode) throws LaubeException {
@@ -151,7 +151,7 @@ public final class VisitorUtility {
 	 * @param companyCode ompany code
 	 * @param userCode user code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findUser(final String companyCode, final String userCode) throws LaubeException {
@@ -193,7 +193,7 @@ public final class VisitorUtility {
 	 * @param companyCode ompany code
 	 * @param applicationFormCode application form Code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findApplicationForm(final String companyCode, final String applicationFormCode) throws LaubeException {
@@ -236,7 +236,7 @@ public final class VisitorUtility {
 	 * @param applicationFormCode application form Code
 	 * @param unitCode unit Code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findApplicationFormRoute(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException {
@@ -279,7 +279,7 @@ public final class VisitorUtility {
 	 * @param companyCode ompany code
 	 * @param applicationClassificationCode application classification code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findApplicationClassification(final String companyCode, final String applicationClassificationCode) throws LaubeException {
@@ -318,10 +318,11 @@ public final class VisitorUtility {
 
 	/**
 	 * find the route master.<br>
-	 * @param companyCode ompany code
-	 * @param individualRouteCode individual route code
+	 * @param companyCode company code
+	 * @param routeCode route code
+	 * @param routeType route type
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findRoute(final String companyCode, final String routeCode, final RouteType routeType) throws LaubeException {
@@ -411,12 +412,8 @@ public final class VisitorUtility {
 	 * @param applyUnitCode apply unit code
 	 * @param applyUserCode apply user code
 	 * @param applicationFormCode application form code
-	 * @param bossCompanyCode boss company code
-	 * @param bossUnitCode boss unit code
-	 * @param bossUserCode boss user code
-	 * @param finalApproverFlag final approver flag
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("unchecked")
 	public static final ResultDto findRoute(
@@ -494,7 +491,7 @@ public final class VisitorUtility {
 	 * @param companyCode company code
 	 * @param approvalUserCode approval user code
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public static final ResultDto getDeputyApprovalList(final String companyCode, final String approvalUserCode) throws LaubeException {
 
@@ -535,7 +532,7 @@ public final class VisitorUtility {
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public static final ResultDto circulatedNextApprover(final String companyCode, final long applicationNumber) throws LaubeException {
 

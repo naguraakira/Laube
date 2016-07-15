@@ -36,6 +36,8 @@ public class SearchUtility {
 
 	/**
 	 * check of essential items.
+	 * @param routeSearchAcceptor route search acceptor
+	 * @return result
 	 */
 	@SuppressWarnings({ "nls", "static-method" })
 	public static final boolean isEmpty(final RouteSearchAcceptor routeSearchAcceptor){

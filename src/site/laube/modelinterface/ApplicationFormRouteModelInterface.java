@@ -27,7 +27,7 @@ public interface ApplicationFormRouteModelInterface {
 	 * @param applicationFormCode application form code
 	 * @param unitCode unit code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto find(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException;
 
@@ -36,7 +36,7 @@ public interface ApplicationFormRouteModelInterface {
 	 * @param companyCode company code
 	 * @param individualRouteCode individual route code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto findByIndividualRouteCode(final String companyCode, final String individualRouteCode) throws LaubeException;
 
@@ -45,7 +45,7 @@ public interface ApplicationFormRouteModelInterface {
 	 * @param companyCode company code
 	 * @param commonRouteCode common route code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto findByCommonRouteCode(final String companyCode, final String commonRouteCode) throws LaubeException;
 }

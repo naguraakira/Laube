@@ -42,7 +42,7 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 	 * @param companyCode company code
 	 * @param unitCode unit code
 	 * @return unit master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override

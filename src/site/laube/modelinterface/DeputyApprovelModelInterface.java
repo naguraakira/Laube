@@ -26,7 +26,7 @@ public interface DeputyApprovelModelInterface {
 	 * delete the deputy approval master.<br>
 	 * @param companyCode company code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
     public abstract ResultDto delete(final String companyCode) throws LaubeException;
 
@@ -35,7 +35,7 @@ public interface DeputyApprovelModelInterface {
 	 * @param companyCode company code
 	 * @param userCode user code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
     public abstract ResultDto delete(final String companyCode, final String userCode) throws LaubeException;
 
@@ -43,7 +43,7 @@ public interface DeputyApprovelModelInterface {
 	 * insert the deputy approval master.<br>
 	 * @param deputyApprovelDto deputy approvel dto
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto insert(final DeputyApprovelDto deputyApprovelDto) throws LaubeException;
 
@@ -51,7 +51,7 @@ public interface DeputyApprovelModelInterface {
 	 * update the deputy approval master.<br>
 	 * @param deputyApprovelDto deputy approvel dto
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto update(final DeputyApprovelDto deputyApprovelDto) throws LaubeException;
 
@@ -61,7 +61,7 @@ public interface DeputyApprovelModelInterface {
 	 * @param unitCode unit code
 	 * @param userCode user code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public abstract ResultDto find(final String companyCode, final String unitCode, final String userCode) throws LaubeException;
 
@@ -70,7 +70,7 @@ public interface DeputyApprovelModelInterface {
 	 * @param companyCode company code
 	 * @param deputyApproverlUserCode deputy approverl user code
 	 * @return result
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	 public abstract ResultDto find(final String companyCode, final String deputyApproverlUserCode) throws LaubeException;
 }

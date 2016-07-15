@@ -38,7 +38,7 @@ public class RequestUtility {
 
 	/**
 	 * check activity status.<br>
-	 * @param activityObjectDtoList
+	 * @param activityObjectDtoList activity Object Dto List
 	 * @return boolean
 	 */
 	protected static final boolean checkActivityStatus(final List<ActivityObjectDto> activityObjectDtoList) {
@@ -83,6 +83,8 @@ public class RequestUtility {
 
 	/**
 	 * check of essential items.
+	 * @param requestSystemAcceptor request System Acceptor
+	 * @return result
 	 */
 	protected static final boolean isEmpty(final RequestSystemAcceptor requestSystemAcceptor){
 
@@ -130,11 +132,11 @@ public class RequestUtility {
 
 	/**
 	 * copy the value of the Acceptor in Dto.<br>
-	 * @param companyCode
-	 * @param applyUserCode
-	 * @param applicationNumber
-	 * @param approvalRouteInformationAcceptor
-	 * @return List<ActivityObjectDto>
+	 * @param companyCode company Code
+	 * @param applyUserCode apply User Code
+	 * @param applicationNumber application Number
+	 * @param approvalRouteInformationAcceptor approval Route Information Acceptor
+	 * @return List<ActivityObjectDto> result
 	 * @exception LaubeException
 	 */
 	protected static final List<ActivityObjectDto> copyToActivityDto(

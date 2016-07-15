@@ -205,7 +205,7 @@ public abstract class SearchSystemAcceptor implements LaubeAcceptor {
 	 * accept
 	 * @param searchSystemVisitor  search system visitor
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public final ResultDto accept(final SearchSystemVisitor searchSystemVisitor) throws LaubeException{
 

@@ -43,7 +43,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	 * @param applicationFormCode application form code
 	 * @param unitCode unit code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException {
@@ -170,7 +170,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	 * @param companyCode company code
 	 * @param individualRouteCode individual route code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public final ResultDto findByIndividualRouteCode(final String companyCode, final String individualRouteCode) throws LaubeException {
 
@@ -263,7 +263,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	 * @param companyCode company code
 	 * @param commonRouteCode common route code
 	 * @return Application-specific root master entity
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public final ResultDto findByCommonRouteCode(final String companyCode, final String commonRouteCode) throws LaubeException {
 

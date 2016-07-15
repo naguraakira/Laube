@@ -38,7 +38,7 @@ public final class DbConnectManager {
 	 * It gets the generated connection object.<br>
 	 * The resulting connection object will generate only one instance.<br>
 	 * @return Connection object
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public static Connection getConnection() throws LaubeException {
 

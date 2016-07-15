@@ -42,7 +42,7 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 	 * @param companyCode company code
 	 * @param userCode user code
 	 * @return user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override

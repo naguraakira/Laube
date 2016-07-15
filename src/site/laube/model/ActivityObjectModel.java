@@ -44,7 +44,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * register the activity object.<br>
 	 * @param ActivityObjectDtos activity object
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public ResultDto insert(final List<ActivityObjectDto> ActivityObjectDtos) throws LaubeException {
@@ -79,7 +79,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * add the activity object.<br>
 	 * @param activityObjectDto activity object
 	 * @return ResultDto
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
 	@Override
@@ -231,7 +231,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * update the activity object.<br>
 	 * @param activityObjectDto activity object Dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final ActivityObjectDto activityObjectDto) throws LaubeException {
@@ -322,7 +322,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * update the activity object status.<br>
 	 * @param activityObjectDto activity object Dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto updateByArrival(final ActivityObjectDto activityObjectDto) throws LaubeException {
@@ -402,7 +402,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * update the activity object status.<br>
 	 * @param activityObjectDto activity object Dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto updateByAuthorizerApproval(final ActivityObjectDto activityObjectDto) throws LaubeException {
@@ -494,7 +494,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * delete the activity object.<br>
 	 * @param applicationNumber application number
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto delete(final String companyCode, final long applicationNumber) throws LaubeException {
@@ -556,7 +556,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @param approvalUnitCode approval unit code
 	 * @param approvalUserCode approval userCode code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException {
@@ -681,7 +681,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @param approvalUnitCode approval unit code
 	 * @param approvalUserCode approval userCode code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
 	@Override

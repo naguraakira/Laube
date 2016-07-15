@@ -26,7 +26,7 @@ public interface UserModelInterface {
 	 * @param companyCode Company code
 	 * @param userCode user code
 	 * @return user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode, final String userCode) throws LaubeException;

@@ -332,7 +332,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 
 	/**
 	 * set the delete flag.<br>
-	 * @param deleteFlag
+	 * @param deleteFlag delete flag
 	 */
 	public final void setDeleteFlag(final boolean deleteFlag) {
 

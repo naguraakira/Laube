@@ -103,7 +103,7 @@ public class LaubeModel {
 	/**
 	 * commit<br>
 	 *
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public void commit() throws LaubeException {
 
@@ -124,7 +124,7 @@ public class LaubeModel {
 	 * @param resultSet ResultSet
 	 * @param workflowDto before data
 	 * @return after data
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public ArrayList<LaubeDto> conversion(final ResultSet resultSet, LaubeDto workflowDto) throws LaubeException {
 
@@ -162,9 +162,9 @@ public class LaubeModel {
 	 * set ResultSet to Dto.<br>
 	 *
 	 * @param resultSet result set
-	 * @param wWorkflowDto wWorkflo dto
+	 * @param workflowDto workflow dto
 	 * @return after data
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "static-method", "nls", "boxing" })
 	public LaubeDto resultSetToDto(final ResultSet resultSet, final LaubeDto workflowDto) throws LaubeException {

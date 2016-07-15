@@ -44,7 +44,7 @@ public class LaubeException extends Exception {
 
 	/**
 	 * constractor
-	 * @param message
+	 * @param message message
 	 */
 	public LaubeException(String message) {
 		super(message);
@@ -55,10 +55,9 @@ public class LaubeException extends Exception {
 
 	/**
 	 * constractor<br>
-	 *
 	 * The message of the exception "message ID +": "+ Message" to set
-	 * @param messageID
-	 * @param message
+	 * @param messageID message ID
+	 * @param message message
 	 */
 	public LaubeException(String messageID, String message) {
 		super(messageID + ":" + message);

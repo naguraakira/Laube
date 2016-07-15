@@ -26,7 +26,7 @@ public interface UnitModelInterface {
 	 * @param companyCode Company code
 	 * @param unitCode unit code
 	 * @return unit master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode, final String unitCode) throws LaubeException;

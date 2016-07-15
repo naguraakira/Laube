@@ -42,7 +42,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 	 * remove the application-specific all of the boss master.
 	 * @param companyCode company code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	*/
 	public final ResultDto delete(final String companyCode) throws LaubeException {
 
@@ -104,7 +104,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public final ResultDto delete(final String companyCode, final int applicationNumber) throws LaubeException {
 
@@ -166,7 +166,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 	 * register the boss master.<br>
 	 * @param appendedDto appended dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final AppendedDto appendedDto) throws LaubeException {
@@ -255,7 +255,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 	 * To update the appended.<br>
 	 * @param appendedDto appended dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final AppendedDto appendedDto) throws LaubeException {
@@ -359,7 +359,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 	 * @param companyCode company code
 	 * @param applicationNumber application number
 	 * @return ResultDto
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings("nls")
 	@Override

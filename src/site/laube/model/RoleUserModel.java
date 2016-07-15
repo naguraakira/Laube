@@ -44,7 +44,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @param roleCode    role code
 	 * @param userCode    user code
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
     public final ResultDto delete(final String companyCode, final String roleCode, final String userCode) throws LaubeException {
@@ -110,7 +110,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * register the role by the employee master.<br>
 	 * @param roleUserDto role user dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto insert(final RoleUserDto roleUserDto) throws LaubeException {
@@ -190,7 +190,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * update the role by the employee master.<br>
 	 * @param roleUserDto role user dto
 	 * @return result
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto update(final RoleUserDto roleUserDto) throws LaubeException {
@@ -261,7 +261,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @param roleCode    role code
 	 * @param userCode    user code
 	 * @return role user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto find(final String companyCode, final String roleCode, final String userCode) throws LaubeException {
@@ -354,7 +354,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @param companyCode company code
 	 * @param userCode    user code
 	 * @return role user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto findByUserCode(final String companyCode, final String userCode) throws LaubeException {
@@ -446,7 +446,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @param companyCode company code
 	 * @param roleCode role code
 	 * @return role user master
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
 	public final ResultDto findByRoleCode(final String companyCode, final String roleCode) throws LaubeException {

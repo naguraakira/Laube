@@ -46,7 +46,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	 * @param companyCode Company code
 	 * @param applicationNumber application Number
 	 * @return LaubeResult
-	 * @exception LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	public ResultDto find(final String companyCode, final long applicationNumber) throws LaubeException {
 
@@ -126,7 +126,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	 * tegister the application object.<br>
 	 * @param applicationObjectDto application object Dto
 	 * @return rsult
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
 	public final ResultDto insert(final ApplicationObjectDto applicationObjectDto) throws LaubeException {
@@ -251,7 +251,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	 * update the application object.<br>
 	 * @param applicationObjectDto application object Dto
 	 * @return rsult
-	 * @throws LaubeException
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "nls", "boxing" })
 	public final ResultDto update(final ApplicationObjectDto applicationObjectDto) throws LaubeException {
