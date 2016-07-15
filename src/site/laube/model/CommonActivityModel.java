@@ -206,7 +206,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("wkf_view_common_activity");
 		sql.append(" ");
 		sql.append("WHERE ");
-		sql.append("company_code = ? AND route_code = ?");
+		sql.append("company_code = ? AND route_code = ? ");
+		sql.append("ORDER BY company_code asc,activity_code asc");
 		sql.append(";");
 
 		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -253,7 +254,8 @@ public final class CommonActivityModel extends ActivityModel {
 		sql.append("wkf_view_common_activity");
 		sql.append(" ");
 		sql.append("WHERE ");
-		sql.append("company_code = ? AND route_code = ? AND activity_code = ?");
+		sql.append("company_code = ? AND route_code = ? AND activity_code = ? ");
+		sql.append("ORDER BY company_code asc,route_code asc,activity_code asc");
 		sql.append(";");
 
 		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
