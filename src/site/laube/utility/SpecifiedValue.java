@@ -53,6 +53,7 @@ public final class SpecifiedValue implements Serializable {
 	public static final int InitialState                       = 0;   // 初期状態
 	public static final int Examination                        = 1;   // 承認
 	public static final int FunctionConfirmation               = 2;   // 確認
+	public static final int Skip                               = 9;   // スキップ(本人申請の場合)
 
 	// comparison operator
 	public static final int Smaller                            = 1;   // より小さい

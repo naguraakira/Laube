@@ -1,10 +1,15 @@
 package site.laube.visitor.search;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import site.laube.acceptor.search.RouteSearchAcceptor;
+import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeUtility;
+import site.laube.utility.SpecifiedValue;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -75,5 +80,56 @@ public class SearchUtility {
 
 		log.info("[workflowEngine] " + "isEmpty end");
 		return false;
+	}
+
+	/**
+	 * if the applicant is included in the approval route, to exclude from the individual route.<br>
+	 * @param applyUserCode apply user code
+	 * @param routeSearchAcceptor individual route(updates in this method)
+	 */
+	protected static final void updateIndividualRoute(final String applyUserCode, final RouteSearchAcceptor routeSearchAcceptor) throws LaubeException {
+
+		if (LaubeUtility.isEmpty(routeSearchAcceptor)){
+			return;
+		}
+
+		if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
+			return;
+		}
+
+		if (LaubeUtility.isBlank(applyUserCode)){
+			return;
+		}
+
+		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : routeSearchAcceptor.getIndividualRoutes()) {
+			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
+				if (applyUserCode.equals(approvalRouteInformationAcceptor.getApprovalUserCode())){
+					approvalRouteInformationAcceptor.setFunction(SpecifiedValue.Skip);
+				}
+			}
+		}
+	}
+
+	/**
+	 * <br>
+	 * @param applyUserCode apply user code
+	 * @param routeSearchAcceptor individual route(updates in this method)
+	 */
+	protected static final boolean isAllSkip(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptorList) throws LaubeException {
+
+		boolean result = true;
+
+		if (LaubeUtility.isEmpty(approvalRouteInformationAcceptorList)){
+			return result;
+		}
+
+		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : approvalRouteInformationAcceptorList) {
+			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
+				if (SpecifiedValue.Skip != approvalRouteInformationAcceptor.getFunction()){
+					result = false;
+				}
+			}
+		}
+		return result;
 	}
 }

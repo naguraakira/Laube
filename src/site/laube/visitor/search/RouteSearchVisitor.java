@@ -2,7 +2,6 @@ package site.laube.visitor.search;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -319,9 +318,9 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			}
 
 			// if the applicant is on the individual route, and then removed from the route.
-			updateIndividualRoute(applyUser, routeSearchAcceptor);
+			SearchUtility.updateIndividualRoute(applyUser, routeSearchAcceptor);
 
-			if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
+			if (SearchUtility.isAllSkip(routeSearchAcceptor.getIndividualRoutes())){
 				resultDto = VisitorUtility.findRoute(applyCompanyCode, applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
@@ -337,7 +336,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 						ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)o;
 						routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
 						// if the applicant is on the individual route, and then removed from the route.
-						updateIndividualRoute(applyUser, routeSearchAcceptor);
+						SearchUtility.updateIndividualRoute(applyUser, routeSearchAcceptor);
 					}
 				}else{
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
@@ -383,57 +382,5 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				throw new LaubeException(e);
 			}
 		}
-	}
-
-	/**
-	 * 申請者が承認ルートに含まれる場合、ルートから外します。<br>
-	 * @param applyUserCode 申請者の社員番号
-	 * @param approvalDataInfoDtoList Ａルート情報
-	 */
-	private final void updateIndividualRoute(final String applyUserCode, final RouteSearchAcceptor routeSearchAcceptor) throws LaubeException {
-
-		if (LaubeUtility.isEmpty(routeSearchAcceptor)){
-			return;
-		}
-
-		if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
-			return;
-		}
-
-		if (LaubeUtility.isBlank(applyUserCode)){
-			return;
-		}
-
-		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : routeSearchAcceptor.getIndividualRoutes()) {
-			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
-				if (applyUserCode.equals(approvalRouteInformationAcceptor.getApprovalUserCode())){
-					approvalRouteInformationAcceptor.setDeleteFlag(true);
-				}
-			}
-		}
-
-		boolean isApproval = false;
-
-		// not processed approver only pull out as the individual route.
-		final List<ApprovalRouteInformationAcceptor> updateApprovalRouteInformationAcceptor = new ArrayList<ApprovalRouteInformationAcceptor>();
-		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : routeSearchAcceptor.getIndividualRoutes()) {
-			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
-				if (isApproval){
-					isApproval = false;
-					// 削除した承認者の次が並列の場合、[承認]に変更
-					if (SpecifiedValue.FUNC_SAMEAPPROVAL == approvalDataInfoDto.getFunction()){
-						approvalDataInfoDto.setFunction(SpecifiedValue.FUNC_APPROVAL);
-					}
-				}
-				if (SpecifiedValue.FLG_COMPLT != approvalDataInfoDto.getFlag()){
-					updateApprovalRouteInformationAcceptor.add(approvalDataInfoDto);
-				}else{
-					if (SpecifiedValue.FUNC_APPROVAL == approvalDataInfoDto.getFunction()){
-						isApproval = true;
-					}
-				}
-			}
-		}
-		routeSearchAcceptor.setIndividualRoutes(updateApprovalRouteInformationAcceptor);
 	}
 }

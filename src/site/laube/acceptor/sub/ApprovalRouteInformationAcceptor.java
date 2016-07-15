@@ -100,7 +100,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	private String partyTansitCode;
 
 	/**
-	 * to manage the party transit code.<br>
+	 * to manage the party transit connector.<br>
 	 */
 	private int partyTansitCodeConnector;
 
