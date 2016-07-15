@@ -48,6 +48,7 @@ public final class SpecifiedValue implements Serializable {
 	public static final int Unspecified                        = 0;   // 指定なし
 	public static final int LogicalSum                         = 1;   // 論理和
 	public static final int LogicalProduct                     = 2;   // 論理積
+	public static final int Majority                           = 3;   // 過半数
 
 	// approval function
 	public static final int InitialState                       = 0;   // 初期状態
