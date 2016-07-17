@@ -51,31 +51,26 @@ public class SearchUtility {
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getCompanyCode())) {
-			log.debug("[workflowEngine] " + "companyCode : null");
 			log.info("[workflowEngine] " + "isEmpty end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplicationFormCode())) {
-			log.debug("[workflowEngine] " + "applicationFormCode : null");
 			log.info("[workflowEngine] " + "isEmpty end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyCompanyCode())) {
-			log.debug("[workflowEngine] " + "applyCompanyCode : null");
 			log.info("[workflowEngine] " + "isEmpty end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUnitCode())) {
-			log.debug("[workflowEngine] " + "applyUnitCode : null");
 			log.info("[workflowEngine] " + "isEmpty end");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUserCode())) {
-			log.debug("[workflowEngine] " + "applyUserCode : null");
 			log.info("[workflowEngine] " + "isEmpty end");
 			return true;
 		}

@@ -120,7 +120,7 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	 */
 	public final String getApprovalDate() {
 
-		if (this.approvalDate != null){
+		if (!LaubeUtility.isBlank(this.approvalDate)){
 			this.approvalDate = this.approvalDate.trim().replace('-', '/');
 		}
 		return this.approvalDate;

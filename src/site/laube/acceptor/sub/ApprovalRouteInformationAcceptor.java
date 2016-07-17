@@ -176,10 +176,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return approvalCompanyCode approval Company Code
 	 */
 	public final String getApprovalCompanyCode() {
-
-		if (this.approvalCompanyCode != null){
-			this.approvalCompanyCode = this.approvalCompanyCode.trim();
-		}
 		return this.approvalCompanyCode;
 	}
 
@@ -188,12 +184,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param approvalCompanyCode approval Company Code
 	 */
 	public final void setApprovalCompanyCode(final String approvalCompanyCode) {
-
-		if ((approvalCompanyCode != null)&&(approvalCompanyCode.trim().length() == 0)){
-			this.approvalCompanyCode = null;
-		}else{
-			this.approvalCompanyCode = approvalCompanyCode;
-		}
+		this.approvalCompanyCode = approvalCompanyCode;
 	}
 
 	/**
@@ -201,10 +192,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return approvalUnitCode approval unit Code
 	 */
 	public final String getApprovalUnitCode() {
-
-		if (this.approvalUnitCode != null){
-			this.approvalUnitCode = this.approvalUnitCode.trim();
-		}
 		return this.approvalUnitCode;
 	}
 
@@ -213,12 +200,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param approvalUnitCode approval unit Code
 	 */
 	public final void setApprovalUnitCode(final String approvalUnitCode) {
-
-		if ((approvalUnitCode != null)&&(approvalUnitCode.trim().length() == 0)){
-			this.approvalUnitCode = null;
-		}else{
-			this.approvalUnitCode = approvalUnitCode;
-		}
+		this.approvalUnitCode = approvalUnitCode;
 	}
 
 	/**
@@ -226,10 +208,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return approvalUserCode approval User Code
 	 */
 	public final String getApprovalUserCode() {
-
-		if (this.approvalUserCode != null){
-			this.approvalUserCode = this.approvalUserCode.trim();
-		}
 		return this.approvalUserCode;
 	}
 
@@ -238,12 +216,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param approvalUserCode approval User Code
 	 */
 	public final void setApprovalUserCode(final String approvalUserCode) {
-
-		if ((approvalUserCode != null)&&(approvalUserCode.trim().length() == 0)){
-			this.approvalUserCode = null;
-		}else{
-			this.approvalUserCode = approvalUserCode;
-		}
+		this.approvalUserCode = approvalUserCode;
 	}
 
 	/**
@@ -251,10 +224,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return deputy approvalCompanyCode
 	 */
 	public final String getDeputyApprovalCompanyCode() {
-
-		if (this.deputyApprovalCompanyCode != null){
-			this.deputyApprovalCompanyCode = this.deputyApprovalCompanyCode.trim();
-		}
 		return this.deputyApprovalCompanyCode;
 	}
 
@@ -263,12 +232,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param deputyApprovalCompanyCode deputy approval Company Code
 	 */
 	public final void setDeputyApprovalCompanyCode(final String deputyApprovalCompanyCode) {
-
-		if ((deputyApprovalCompanyCode != null)&&(deputyApprovalCompanyCode.trim().length() == 0)){
-			this.deputyApprovalCompanyCode = null;
-		}else{
-			this.deputyApprovalCompanyCode = deputyApprovalCompanyCode;
-		}
+		this.deputyApprovalCompanyCode = deputyApprovalCompanyCode;
 	}
 
 	/**
@@ -276,10 +240,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return deputy approval unit Code
 	 */
 	public final String getDeputyApprovalUnitCode() {
-
-		if (this.deputyApprovalUnitCode != null){
-			this.deputyApprovalUnitCode = this.deputyApprovalUnitCode.trim();
-		}
 		return this.deputyApprovalUnitCode;
 	}
 
@@ -288,12 +248,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param deputyApprovalUnitCode deputy approval unit Code
 	 */
 	public final void setDeputyApprovalUnitCode(final String deputyApprovalUnitCode) {
-
-		if ((deputyApprovalUnitCode != null)&&(deputyApprovalUnitCode.trim().length() == 0)){
-			this.deputyApprovalUnitCode = null;
-		}else{
-			this.deputyApprovalUnitCode = deputyApprovalUnitCode;
-		}
+		this.deputyApprovalUnitCode = deputyApprovalUnitCode;
 	}
 
 	/**
@@ -301,10 +256,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return deputy Approval User Code
 	 */
 	public final String getDeputyApprovalUserCode() {
-
-		if (this.deputyApprovalUserCode != null){
-			this.deputyApprovalUserCode = this.deputyApprovalUserCode.trim();
-		}
 		return this.deputyApprovalUserCode;
 	}
 
@@ -313,12 +264,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param deputyApprovalUserCode deputy Approval User Code
 	 */
 	public final void setDeputyApprovalUserCode(final String deputyApprovalUserCode) {
-
-		if ((deputyApprovalUserCode != null)&&(deputyApprovalUserCode.trim().length() == 0)){
-			this.deputyApprovalUserCode = null;
-		}else{
-			this.deputyApprovalUserCode = deputyApprovalUserCode;
-		}
+		this.deputyApprovalUserCode = deputyApprovalUserCode;
 	}
 
 	/**
@@ -326,7 +272,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return flag
 	 */
 	public final boolean getDeleteFlag() {
-
 		return this.deleteFlag;
 	}
 
@@ -335,7 +280,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param deleteFlag delete flag
 	 */
 	public final void setDeleteFlag(final boolean deleteFlag) {
-
 		this.deleteFlag = deleteFlag;
 	}
 
@@ -344,10 +288,6 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @return deputy Approval Comment
 	 */
 	public final String getDeputyApprovalComment() {
-
-		if (this.deputyApprovalComment != null){
-			this.deputyApprovalComment = this.deputyApprovalComment.trim();
-		}
 		return this.deputyApprovalComment;
 	}
 
@@ -356,12 +296,7 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	 * @param deputyApprovalComment deputy Approval Comment
 	 */
 	public final void setDeputyApprovalComment(final String deputyApprovalComment) {
-
-		if ((deputyApprovalComment != null)&&(deputyApprovalComment.trim().length() == 0)){
-			this.deputyApprovalComment = null;
-		}else{
-			this.deputyApprovalComment = deputyApprovalComment;
-		}
+		this.deputyApprovalComment = deputyApprovalComment;
 	}
 
 	/**

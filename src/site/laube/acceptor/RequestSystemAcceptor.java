@@ -183,7 +183,7 @@ public abstract class RequestSystemAcceptor implements LaubeAcceptor {
 	 */
 	public final String getApplyDate() {
 
-		if (this.applyDate != null){
+		if (!LaubeUtility.isBlank(this.applyDate)){
 			this.applyDate = this.applyDate.trim().replace('-', '/');
 		}
 		return this.applyDate;

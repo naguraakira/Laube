@@ -55,7 +55,7 @@ public class RequestUtility {
 		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
-			if (activityObjectDto == null) {
+			if (LaubeUtility.isEmpty(activityObjectDto)) {
 				log.info("[workflowEngine] " + "checkActivityStatus end");
 				return false;
 			}
@@ -306,9 +306,9 @@ public class RequestUtility {
 		}
 
 		// check of deputy approval
-		final boolean isDeputyApprovalCompanyCode = (target.getDeputyApprovalCompanyCode() != null) && (target.getDeputyApprovalCompanyCode().trim().length() > 0);
-		final boolean isDeputyApprovalUnitCode    = (target.getDeputyApprovalUnitCode()    != null) && (target.getDeputyApprovalUnitCode().trim().length()    > 0);
-		final boolean isDeputyApprovalUserCode    = (target.getDeputyApprovalUserCode()    != null) && (target.getDeputyApprovalUserCode().trim().length()    > 0);
+		final boolean isDeputyApprovalCompanyCode = !LaubeUtility.isBlank(target.getDeputyApprovalCompanyCode());
+		final boolean isDeputyApprovalUnitCode    = !LaubeUtility.isBlank(target.getDeputyApprovalUnitCode());
+		final boolean isDeputyApprovalUserCode    = !LaubeUtility.isBlank(target.getDeputyApprovalUserCode());
 		final boolean isDeputy = isDeputyApprovalCompanyCode && isDeputyApprovalUnitCode && isDeputyApprovalUserCode;
 		final boolean isNotDeputy = !isDeputyApprovalCompanyCode && !isDeputyApprovalUnitCode && !isDeputyApprovalUserCode;
 		if (!((isDeputy)||(isNotDeputy))) {
@@ -317,14 +317,14 @@ public class RequestUtility {
 			return false;
 		}
 		if (isDeputy) {
-			if ((target.getDeputyApprovalComment() == null)||(target.getDeputyApprovalComment().trim().length() == 0)) {
+			if (LaubeUtility.isBlank(target.getDeputyApprovalComment())){
 				log.error("[workflowEngine] " + "error deputy comment");
 				log.info("[workflowEngine] " + "checkItem end");
 				return false;
 			}
 		}
 		if (isNotDeputy) {
-			if (target.getDeputyApprovalComment() != null) {
+			if (!LaubeUtility.isBlank(target.getDeputyApprovalComment())){
 				log.error("[workflowEngine] " + "error deputy comment");
 				log.info("[workflowEngine] " + "checkItem end");
 				return false;
@@ -349,7 +349,7 @@ public class RequestUtility {
 		}
 
 		// check of party transit code
-		if ((target.getPartyTransitCode() == null)||(target.getPartyTransitCode().trim().length() == 0)) {
+		if (LaubeUtility.isBlank(target.getPartyTransitCode())){
 			log.error("[workflowEngine] " + "error party transit code");
 			log.info("[workflowEngine] " + "checkItem end");
 			return false;

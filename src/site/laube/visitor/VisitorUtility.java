@@ -429,7 +429,7 @@ public final class VisitorUtility {
 			if (!LaubeUtility.isBlank(roleCode)) {
 
 				resultDto = RoleUserModelInterface.findByRoleCode(companyCode, roleCode);
-				if (resultDto == null) {
+				if (LaubeUtility.isEmpty(resultDto)) {
 					continue;
 				}
 				ArrayList<RoleUserDto> roleUserDtos = (ArrayList<RoleUserDto>)resultDto.getResultData();
@@ -517,7 +517,7 @@ public final class VisitorUtility {
 
 		ArrayList<BossDto> bossDtos = (ArrayList<BossDto>)resultDto.getResultData();
 
-		if ((bossDtos == null)||(bossDtos.size() < 1)) {
+		if ((LaubeUtility.isEmpty(bossDtos))||(bossDtos.size() < 1)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E1002");
 			log.info("[workflowEngine] " + "findRoute end");
