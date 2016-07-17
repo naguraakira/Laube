@@ -79,14 +79,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -144,14 +146,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -178,7 +182,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (routeDto == null) {
+		if (LaubeUtility.isEmpty(routeDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "insert end");
@@ -221,14 +225,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
@@ -255,7 +261,7 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (routeDto == null) {
+		if (LaubeUtility.isEmpty(routeDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "update end");
@@ -300,14 +306,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
@@ -345,11 +353,11 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 			ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
 			final ResultDto resultDto = applicationFormRouteModel.findByCommonRouteCode(companyCode, commonRouteCode);
 
-			if (resultDto == null){
+			if (LaubeUtility.isEmpty(resultDto)){
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException("the record was not found. Please investigate the cause by referring to the following.");
 			}else{
-				if (resultDto.getResultData() == null) {
+				if (LaubeUtility.isEmpty(resultDto.getResultData())){
 					log.info("[workflowEngine] " + "isOccupied end");
 					return false;
 				}else{
@@ -364,14 +372,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException(e);
@@ -448,14 +458,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
@@ -537,14 +549,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);

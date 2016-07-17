@@ -148,14 +148,16 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -207,14 +209,16 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -241,7 +245,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (activityDto == null) {
+		if (LaubeUtility.isEmpty(activityDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "insert end");
@@ -280,14 +284,16 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
@@ -314,7 +320,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (activityDto == null) {
+		if (LaubeUtility.isEmpty(activityDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "update end");
@@ -359,14 +365,16 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
@@ -439,11 +447,12 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
@@ -519,11 +528,12 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}

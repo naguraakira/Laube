@@ -105,11 +105,11 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			final ApplicationClassificationModel applicationClassificationModel = new ApplicationClassificationModel();
 			final ResultDto  resultDto = applicationClassificationModel.findBySpecialRouteCode(companyCode, routeCode);
 
-			if (resultDto == null){
+			if (LaubeUtility.isEmpty(resultDto)){
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException("the record was not found. Please investigate the cause by referring to the following.");
 			}else{
-				if (resultDto.getResultData() == null) {
+				if (LaubeUtility.isEmpty(resultDto.getResultData())){
 					log.info("[workflowEngine] " + "isOccupied end");
 					return false;
 				}else{
@@ -124,14 +124,16 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException(e);
@@ -208,14 +210,16 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
@@ -296,11 +300,12 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}

@@ -78,14 +78,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -143,14 +145,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -177,7 +181,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (routeDto == null) {
+		if (LaubeUtility.isEmpty(routeDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "insert end");
@@ -220,14 +224,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
@@ -254,7 +260,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (routeDto == null) {
+		if (LaubeUtility.isEmpty(routeDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "update end");
@@ -299,14 +305,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
@@ -339,11 +347,11 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			final ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
 			final ResultDto resultDto = applicationFormRouteModel.findByIndividualRouteCode(companyCode, individualRouteCode);
 
-			if (resultDto == null){
+			if (LaubeUtility.isEmpty(resultDto)){
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException("the record was not found. Please investigate the cause by referring to the following.");
 			}else{
-				if (resultDto.getResultData() == null) {
+				if (LaubeUtility.isEmpty(resultDto.getResultData())){
 					log.info("[workflowEngine] " + "isOccupied end");
 					return false;
 				}else{
@@ -358,14 +366,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "isOccupied end");
 				throw new LaubeException(e);
@@ -442,14 +452,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
@@ -531,14 +543,16 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);

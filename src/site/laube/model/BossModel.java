@@ -80,14 +80,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -146,14 +148,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "delete end");
 				throw new LaubeException(e);
@@ -180,7 +184,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		final  ResultDto resultDto = new ResultDto();
 
-		if (bossDto == null) {
+		if (LaubeUtility.isEmpty(bossDto)){
 			log.error("[workflowEngine] " + "insert end" + "[return value]:false");
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
@@ -236,14 +240,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "insert end");
 				throw new LaubeException(e);
@@ -262,15 +268,15 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@Override
-	public final ResultDto update(final BossDto bosseDto) throws LaubeException {
+	public final ResultDto update(final BossDto bossDto) throws LaubeException {
 
 		log.info("[workflowEngine] " + "update start");
 		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[bosseDto]: " + bosseDto);
+		log.info("[workflowEngine] " + "[bossDto]: " + bossDto);
 
 		final  ResultDto resultDto = new ResultDto();
 
-		if (bosseDto == null) {
+		if (LaubeUtility.isEmpty(bossDto)){
 			log.error("[workflowEngine] " + "update end" + "[return value]:false");
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
@@ -296,26 +302,26 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
-			this.preparedStatement.setString( 1, bosseDto.getBossCompanyCode());
-			this.preparedStatement.setString( 2, bosseDto.getBossUnitCode());
-			this.preparedStatement.setString( 3, bosseDto.getBossUserCode());
-			this.preparedStatement.setString( 4, bosseDto.getUpdateUserId());
-			this.preparedStatement.setString( 5, bosseDto.getCompanyCode());
-			this.preparedStatement.setString( 6, bosseDto.getUnitCode());
-			this.preparedStatement.setString( 7, bosseDto.getUserCode());
-			this.preparedStatement.setString( 8, bosseDto.getApplicationFormCode());
+			this.preparedStatement.setString( 1, bossDto.getBossCompanyCode());
+			this.preparedStatement.setString( 2, bossDto.getBossUnitCode());
+			this.preparedStatement.setString( 3, bossDto.getBossUserCode());
+			this.preparedStatement.setString( 4, bossDto.getUpdateUserId());
+			this.preparedStatement.setString( 5, bossDto.getCompanyCode());
+			this.preparedStatement.setString( 6, bossDto.getUnitCode());
+			this.preparedStatement.setString( 7, bossDto.getUserCode());
+			this.preparedStatement.setString( 8, bossDto.getApplicationFormCode());
 			int upCnt = this.preparedStatement.executeUpdate();
 
 			if (upCnt != 1) {
 				log.error("[workflowEngine] It failed to update the boss master.");
-				log.error("[workflowEngine] bossCompanyCode:" + bosseDto.getBossCompanyCode());
-				log.error("[workflowEngine] bossUnitCode:" + bosseDto.getBossUnitCode());
-				log.error("[workflowEngine] bossUserCode:" + bosseDto.getBossUserCode());
-				log.error("[workflowEngine] updateUserId:" + bosseDto.getUpdateUserId());
-				log.error("[workflowEngine] companyCode:" + bosseDto.getCompanyCode());
-				log.error("[workflowEngine] unitCode:" + bosseDto.getUnitCode());
-				log.error("[workflowEngine] userCode:" + bosseDto.getUserCode());
-				log.error("[workflowEngine] applicationFormCode:" + bosseDto.getApplicationFormCode());
+				log.error("[workflowEngine] bossCompanyCode:" + bossDto.getBossCompanyCode());
+				log.error("[workflowEngine] bossUnitCode:" + bossDto.getBossUnitCode());
+				log.error("[workflowEngine] bossUserCode:" + bossDto.getBossUserCode());
+				log.error("[workflowEngine] updateUserId:" + bossDto.getUpdateUserId());
+				log.error("[workflowEngine] companyCode:" + bossDto.getCompanyCode());
+				log.error("[workflowEngine] unitCode:" + bossDto.getUnitCode());
+				log.error("[workflowEngine] userCode:" + bossDto.getUserCode());
+				log.error("[workflowEngine] applicationFormCode:" + bossDto.getApplicationFormCode());
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
 				log.info("[workflowEngine] " + "update end");
@@ -328,14 +334,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);
@@ -382,7 +390,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 			while(true) {
 				final  ResultDto r = find(companyCode, unitCode, userCode, applicationFormCode);
 
-				if (r == null){
+				if (LaubeUtility.isEmpty(r)){
 					resultDto.setStatus(true);
 					resultDto.setMessageId("N0001");
 					resultDto.setResultData(null);
@@ -399,7 +407,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 					bossDtos = (ArrayList<BossDto>)(r.getResultData());
 				}
 
-				if (bossDtos == null){
+				if (LaubeUtility.isEmpty(bossDtos)){
 					resultDto.setStatus(true);
 					resultDto.setMessageId("N0001");
 					resultDto.setResultData(null);
@@ -451,14 +459,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine]" + "findByChainOfResposibility end");
 				throw new LaubeException(e);
@@ -592,14 +602,16 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);

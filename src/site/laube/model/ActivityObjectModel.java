@@ -91,7 +91,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (activityObjectDto == null) {
+		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "insert end");
@@ -206,12 +206,12 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		} finally {
 
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
 
-				if (this.preparedStatement != null) {
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
@@ -242,7 +242,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (activityObjectDto == null) {
+		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "update end");
@@ -300,14 +300,16 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		} finally {
 
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final Exception e) {
 				throw new LaubeException(e);
 			}
@@ -333,7 +335,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (activityObjectDto == null) {
+		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "updateByArrival end");
@@ -379,14 +381,16 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		} finally {
 
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "updateByArrival end");
 				throw new LaubeException(e);
@@ -413,7 +417,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (activityObjectDto == null) {
+		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.error("[workflowEngine] " + "updateByAuthorizerApproval end");
@@ -471,14 +475,16 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		} finally {
 
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "updateByAuthorizerApproval end");
 				throw new LaubeException(e);
@@ -527,12 +533,12 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
 
-				if (this.preparedStatement != null) {
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
@@ -657,11 +663,12 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}

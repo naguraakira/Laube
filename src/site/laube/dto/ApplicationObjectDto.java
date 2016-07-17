@@ -433,7 +433,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 */
 	public final String getApplyDate() {
 
-		if (this.applyDate != null){
+		if (!LaubeUtility.isEmpty(this.applyDate)){
 			this.applyDate = this.applyDate.trim().replace('-', '/');
 		}
 		return this.applyDate;

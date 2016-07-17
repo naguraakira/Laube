@@ -107,14 +107,16 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "find end");
 				throw new LaubeException(e);
@@ -137,7 +139,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (applicationObjectDto == null) {
+		if (LaubeUtility.isEmpty(applicationObjectDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "insert end");
@@ -149,7 +151,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			final long reApplicationNumber = applicationObjectDto.getReapplicationNumber();
 			final String applicationFormCode = applicationObjectDto.getApplicationFormCode();
 			Date applyDate = null;
-			if (applicationObjectDto.getApplyDate() != null) {
+			if (!LaubeUtility.isEmpty(applicationObjectDto.getApplyDate())){
 				DateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 				java.util.Date date = format.parse(applicationObjectDto.getApplyDate());
 				applyDate = new java.sql.Date(date.getTime());
@@ -226,12 +228,12 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 
 		} finally {
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
 
-				if (this.preparedStatement != null) {
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
@@ -262,7 +264,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 
 		final ResultDto resultDto = new ResultDto();
 
-		if (applicationObjectDto == null) {
+		if (LaubeUtility.isEmpty(applicationObjectDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "update end");
@@ -273,7 +275,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			final String companyCode = applicationObjectDto.getCompanyCode();
 			final long applicationNumber = applicationObjectDto.getApplicationNumber();
 			java.sql.Date applyDate = null;
-			if (applicationObjectDto.getApplyDate() != null) {
+			if (!LaubeUtility.isEmpty(applicationObjectDto.getApplyDate())){
 				DateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 				java.util.Date date = format.parse(applicationObjectDto.getApplyDate());
 				applyDate = new java.sql.Date(date.getTime());
@@ -332,14 +334,16 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 		} finally {
 
 			try {
-				if (this.resultSet != null) {
+				if (!LaubeUtility.isEmpty(this.resultSet)){
 					this.resultSet.close();
 					this.resultSet = null;
 				}
-				if (this.preparedStatement != null) {
+
+				if (!LaubeUtility.isEmpty(this.preparedStatement)){
 					this.preparedStatement.close();
 					this.preparedStatement = null;
 				}
+
 			} catch (final Exception e) {
 				log.info("[workflowEngine] " + "update end");
 				throw new LaubeException(e);

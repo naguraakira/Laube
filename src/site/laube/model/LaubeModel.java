@@ -86,7 +86,7 @@ public class LaubeModel {
 		log.info("[workflowEngine] " + "getConnection start");
 
 		try {
-			if ((connection == null) || (connection.isClosed())) {
+			if ((LaubeUtility.isEmpty(connection)) || (connection.isClosed())) {
 				connection = DbConnectManager.getConnection();
 				statement = connection.createStatement();
 			}
@@ -140,7 +140,7 @@ public class LaubeModel {
 			do {
 				LaubeDto updateWorkflowDto = resultSetToDto(resultSet, workflowDto);
 
-				if (updateWorkflowDto == null){
+				if (LaubeUtility.isEmpty(updateWorkflowDto)){
 					break;
 				}
 
@@ -245,7 +245,7 @@ public class LaubeModel {
 		String getter = null;
 
 		try {
-			if (items == null) {
+			if (LaubeUtility.isEmpty(items)){
 				return true;
 			}
 			for (String item : items) {
@@ -254,7 +254,7 @@ public class LaubeModel {
 				final Object[] param = null;
 				final Object obj = method.invoke(workflowDto, param);
 
-				if (obj == null) {
+				if (LaubeUtility.isEmpty(obj)){
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E0019");
 					log.info("[workflowEngine] " + "checkRequiredItem end" );
