@@ -1,6 +1,7 @@
 package site.laube.dto;
 
 import java.io.Serializable;
+import java.sql.Connection;
 
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
@@ -23,13 +24,8 @@ import site.laube.utility.LaubeUtility;
 
 public final class ResultDto implements Serializable {
 
-	/**
-	 * normal message
-	 */
-	@SuppressWarnings("nls")
-	public static final String MSG_N_N0001 = "N0001";
-
 	private static final long serialVersionUID = 2824047883202335433L;
+	private Connection connection = null;
 	private boolean status;
 	private String messageId = null;
 	private String message = null;
@@ -39,10 +35,25 @@ public final class ResultDto implements Serializable {
 	 * constractor
 	 */
 	public ResultDto(){
-
 		setStatus(true);
-		this.messageId = MSG_N_N0001;
+		this.messageId = "N0001";
 		setMessage(this.messageId);
+	}
+
+	/**
+	 * set the Connection.<br>
+	 * @param connection Connection
+	 */
+	public void setConnection(Connection connection){
+		this.connection = connection;
+	}
+
+	/**
+	 * get the Connection.<br>
+	 * @return Connection
+	 */
+	public Connection getConnection(){
+		return this.connection;
 	}
 
 	/**

@@ -20,6 +20,7 @@ import site.laube.model.AppendedModel;
 import site.laube.model.LaubeModel;
 import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.modelinterface.AppendedModelInterface;
+import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.visitor.ApprovalSystemVisitor;
 import site.laube.visitor.VisitorUtility;
@@ -59,6 +60,13 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] "  + "approvalSystemAcceptor:" + approvalSystemAcceptor);
+
+		boolean isAutoCommit = false;
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			isAutoCommit = true;
+		}else{
+			isAutoCommit = false;
+		}
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -113,6 +121,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 				if (LaubeUtility.isEmpty(resultDto)) {
+					LaubeModel.connection.rollback();
 					resultDto = new ResultDto();
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1005");
@@ -125,6 +134,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				resultDto = VisitorUtility.getDeputyApprovalList(approvalCompanyCode, approvalUserCode);
 
 				if (LaubeUtility.isEmpty(resultDto)) {
+					LaubeModel.connection.rollback();
 					log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
@@ -139,6 +149,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					resultDto = activityObjectModelInterface.findByArrival(companyCode, applicationNumber, deputyApprovelDto.getCompanyCode(), deputyApprovelDto.getUnitCode(), deputyApprovelDto.getUserCode());
 
 					if (LaubeUtility.isEmpty(resultDto)) {
+						LaubeModel.connection.rollback();
 						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 						log.info("[workflowEngine] " + "visit end");
 						return resultDto;
@@ -156,6 +167,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 						resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 						if (LaubeUtility.isEmpty(resultDto)) {
+							LaubeModel.connection.rollback();
 							log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 							log.info("[workflowEngine] " + "visit end");
 							return resultDto;
@@ -186,6 +198,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					resultDto = appendedModelInterface.insert(appendedDto);
 
 					if (LaubeUtility.isEmpty(resultDto)) {
+						LaubeModel.connection.rollback();
 						log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 						log.info("[workflowEngine] " + "visit end");
 						return resultDto;
@@ -197,12 +210,17 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			resultDto = VisitorUtility.circulatedNextApprover(companyCode, applicationNumber);
 
 			if (LaubeUtility.isEmpty(resultDto)) {
+				LaubeModel.connection.rollback();
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
-			LaubeModel.connection.commit();
+			if (isAutoCommit){
+				LaubeModel.connection.commit();
+			}else{
+				resultDto.setConnection(LaubeModel.connection);
+			}
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -217,7 +235,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 
 		}finally{
 			try {
-				LaubeModel.connection.close();
+				if (isAutoCommit){
+					if (!LaubeUtility.isEmpty(LaubeModel.connection)){
+						LaubeModel.connection.close();
+					}
+				}
 				log.info("[workflowEngine] " + "visit end");
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "visit end");

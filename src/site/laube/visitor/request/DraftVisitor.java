@@ -21,6 +21,7 @@ import site.laube.model.ApplicationObjectModel;
 import site.laube.model.LaubeModel;
 import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.modelinterface.ApplicationObjectModelInterface;
+import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 import site.laube.visitor.RequestSystemVisitor;
@@ -60,6 +61,13 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
+
+		boolean isAutoCommit = false;
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			isAutoCommit = true;
+		}else{
+			isAutoCommit = false;
+		}
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -216,17 +224,20 @@ public class DraftVisitor extends RequestSystemVisitor {
 			if (isDraft){
 				resultDto = activityObjectModelInterface.delete(companyCode, applicationNumber);
 				if (!resultDto.isSuccess()) {
+					LaubeModel.connection.rollback();
 					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
+					LaubeModel.connection.rollback();
 					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
+					LaubeModel.connection.rollback();
 					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
@@ -241,11 +252,16 @@ public class DraftVisitor extends RequestSystemVisitor {
 			}
 
 			if (!resultDto.isSuccess()) {
+				LaubeModel.connection.rollback();
 				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
-			LaubeModel.connection.commit();
+			if (isAutoCommit){
+				LaubeModel.connection.commit();
+			}else{
+				resultDto.setConnection(LaubeModel.connection);
+			}
 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
@@ -260,7 +276,11 @@ public class DraftVisitor extends RequestSystemVisitor {
 
 		}finally{
 			try {
-				LaubeModel.connection.close();
+				if (isAutoCommit){
+					if (!LaubeUtility.isEmpty(LaubeModel.connection)){
+						LaubeModel.connection.close();
+					}
+				}
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException(e);

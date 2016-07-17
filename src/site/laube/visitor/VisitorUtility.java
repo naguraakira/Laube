@@ -1,5 +1,7 @@
 package site.laube.visitor;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
@@ -38,6 +40,7 @@ import site.laube.modelinterface.DeputyApprovelModelInterface;
 import site.laube.modelinterface.RoleUserModelInterface;
 import site.laube.modelinterface.UnitModelInterface;
 import site.laube.modelinterface.UserModelInterface;
+import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 import site.laube.utility.type.RouteType;
@@ -64,6 +67,76 @@ public final class VisitorUtility {
 	 * to manage the log object.<br>
 	 */
 	private static Logger log = LoggerFactory.getLogger(RequestSystemVisitor.class);
+
+	/**
+	 * commit.<br>
+	 * @param connection connection
+	 * @return result
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
+	 */
+	public static final boolean commit(Connection connection) throws LaubeException {
+
+		log.info("[workflowEngine] " + "commit start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "connection:" + connection);
+
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			final String errMessage = "auto commit mode now.you can not call this method.";
+			log.info("[workflowEngine] " + "commit end");
+			throw new LaubeException(errMessage);
+		}
+
+		if (LaubeUtility.isEmpty(connection)){
+			final String errMessage = "connection is null.";
+			log.info("[workflowEngine] " + "commit end");
+			throw new LaubeException(errMessage);
+		}
+
+		try {
+			connection.commit();
+			connection.close();
+			log.info("[workflowEngine] " + "commit end");
+			return true;
+		} catch (final SQLException e) {
+			log.info("[workflowEngine] " + "commit end");
+			return false;
+		}
+	}
+
+	/**
+	 * rollbeck.<br>
+	 * @param connection connection
+	 * @return result
+	 * @exception LaubeException please properly handle because it is impossible to continue exception.
+	 */
+	public static final boolean rollback(Connection connection) throws LaubeException {
+
+		log.info("[workflowEngine] " + "rollback start");
+		log.info("[workflowEngine] " + "[argument]");
+		log.info("[workflowEngine] " + "connection:" + connection);
+
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			final String errMessage = "auto commit mode now.you can not call this method.";
+			log.info("[workflowEngine] " + "rollback end");
+			throw new LaubeException(errMessage);
+		}
+
+		if (LaubeUtility.isEmpty(connection)){
+			final String errMessage = "connection is null.";
+			log.info("[workflowEngine] " + "rollback end");
+			throw new LaubeException(errMessage);
+		}
+
+		try {
+			connection.rollback();
+			connection.close();
+			log.info("[workflowEngine] " + "rollback end");
+			return true;
+		} catch (final SQLException e) {
+			log.info("[workflowEngine] " + "rollback end");
+			return false;
+		}
+	}
 
 	/**
 	 * find the company master.<br>

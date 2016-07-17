@@ -18,6 +18,7 @@ import site.laube.dto.temporary.UnitDto;
 import site.laube.dto.temporary.UserDto;
 import site.laube.exception.LaubeException;
 import site.laube.model.LaubeModel;
+import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 import site.laube.utility.type.RouteType;
@@ -59,6 +60,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "searchSystemAcceptor:" + searchSystemAcceptor);
+
+		boolean isAutoCommit = false;
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			isAutoCommit = true;
+		}else{
+			isAutoCommit = false;
+		}
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -378,7 +386,11 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 		}finally{
 			try {
-				LaubeModel.connection.close();
+				if (isAutoCommit){
+					if (!LaubeUtility.isEmpty(LaubeModel.connection)){
+						LaubeModel.connection.close();
+					}
+				}
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException(e);
