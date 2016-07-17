@@ -7,9 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import site.laube.acceptor.LaubeAcceptor;
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.request.ApplyAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.ApplicationFormDto;
 import site.laube.dto.ApplicationObjectDto;
@@ -61,6 +63,11 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
+
+		// be sure to set this when you reuse a single connection.
+		if (!LaubeUtility.isEmpty(LaubeAcceptor.connection)){
+			DbConnectManager.setConnection(LaubeAcceptor.connection);
+		}
 
 		boolean isAutoCommit = false;
 		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){

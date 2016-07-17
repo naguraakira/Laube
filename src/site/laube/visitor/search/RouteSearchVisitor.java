@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import site.laube.acceptor.LaubeAcceptor;
 import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.acceptor.search.RouteSearchAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.database.DbConnectManager;
 import site.laube.dto.ApplicationClassificationDto;
 import site.laube.dto.ApplicationFormDto;
 import site.laube.dto.ApplicationFormRouteDto;
@@ -60,6 +62,11 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "searchSystemAcceptor:" + searchSystemAcceptor);
+
+		// be sure to set this when you reuse a single connection.
+		if (!LaubeUtility.isEmpty(LaubeAcceptor.connection)){
+			DbConnectManager.setConnection(LaubeAcceptor.connection);
+		}
 
 		boolean isAutoCommit = false;
 		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){

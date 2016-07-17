@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import site.laube.acceptor.ApprovalSystemAcceptor;
+import site.laube.acceptor.LaubeAcceptor;
 import site.laube.acceptor.approval.ApprovalAcceptor;
+import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.AppendedDto;
 import site.laube.dto.DeputyApprovelDto;
@@ -60,6 +62,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		log.info("[workflowEngine] " + "visit start");
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] "  + "approvalSystemAcceptor:" + approvalSystemAcceptor);
+
+		// be sure to set this when you reuse a single connection.
+		if (!LaubeUtility.isEmpty(LaubeAcceptor.connection)){
+			DbConnectManager.setConnection(LaubeAcceptor.connection);
+		}
 
 		boolean isAutoCommit = false;
 		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){

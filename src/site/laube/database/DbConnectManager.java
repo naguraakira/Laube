@@ -36,6 +36,16 @@ public final class DbConnectManager {
 	private static Connection CONNECTION = null;
 
 	/**
+	 * It sets the generated connection object.<br>
+	 * The resulting connection object will generate only one instance.<br>
+	 * @return Connection object
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
+	 */
+	public static void setConnection(Connection connection) throws LaubeException {
+		CONNECTION = connection;
+	}
+
+	/**
 	 * It gets the generated connection object.<br>
 	 * The resulting connection object will generate only one instance.<br>
 	 * @return Connection object

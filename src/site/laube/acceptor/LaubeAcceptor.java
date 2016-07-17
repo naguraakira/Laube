@@ -1,5 +1,7 @@
 package site.laube.acceptor;
 
+import java.sql.Connection;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -17,5 +19,10 @@ package site.laube.acceptor;
  */
 
 public interface LaubeAcceptor {
+
+	/**
+	 * connection<br>
+	 */
+	public static Connection connection = null;
 }
 
