@@ -145,12 +145,12 @@ public class DraftVisitor extends RequestSystemVisitor {
 			// Store individualRoute and commonRoutes in the same variable
 			List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptor = new ArrayList<ApprovalRouteInformationAcceptor>();
 
-			if (individualRoutes != null){
+			if (!LaubeUtility.isEmpty(individualRoutes)){
 				for(ApprovalRouteInformationAcceptor individualRoute : individualRoutes) {
 					approvalRouteInformationAcceptor.add(individualRoute);
 				}
 			}
-			if (commonRoutes != null){
+			if (!LaubeUtility.isEmpty(commonRoutes)){
 				for(ApprovalRouteInformationAcceptor commonRoute : commonRoutes) {
 					approvalRouteInformationAcceptor.add(commonRoute);
 				}
@@ -177,7 +177,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 			ArrayList<LaubeDto> applicationObjectDtos = (ArrayList<LaubeDto>)object;
 
 			boolean isDraft = false;
-			if ((applicationNumber == 0)||(applicationObjectDtos == null)) {
+			if ((applicationNumber == 0)||(LaubeUtility.isEmpty(applicationObjectDtos))) {
 				isDraft = false;
 
 			}else{

@@ -269,7 +269,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				}
 
 				ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)resultDto.getResultData();;
-				if ((approvalRouteInformationAcceptors == null)||(approvalRouteInformationAcceptors.size() < 1)) {
+				if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1002");
 					log.info("[workflowEngine] " + "visit end");

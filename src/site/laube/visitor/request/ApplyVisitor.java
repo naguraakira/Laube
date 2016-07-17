@@ -146,12 +146,12 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			// Store individualRoute and commonRoutes in the same variable
 			List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptor = new ArrayList<ApprovalRouteInformationAcceptor>();
 
-			if (individualRoutes != null){
+			if (!LaubeUtility.isEmpty(individualRoutes)){
 				for(ApprovalRouteInformationAcceptor individualRoute : individualRoutes) {
 					approvalRouteInformationAcceptor.add(individualRoute);
 				}
 			}
-			if (commonRoutes != null){
+			if (!LaubeUtility.isEmpty(commonRoutes)){
 				for(ApprovalRouteInformationAcceptor commonRoute : commonRoutes) {
 					approvalRouteInformationAcceptor.add(commonRoute);
 				}
@@ -318,7 +318,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 
-			if (activityObjectDto != null){
+			if (!LaubeUtility.isEmpty(activityObjectDto)){
 				// find party of start
 				if (isFirstParty(activityObjectDtoList, activityObjectDto)) {
 					result = setArrivalStatus(activityObjectDtoList, activityObjectDto.getPartyCode());

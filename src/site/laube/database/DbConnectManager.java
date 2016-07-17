@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeProperties;
+import site.laube.utility.LaubeUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -46,7 +47,7 @@ public final class DbConnectManager {
 
 		try {
 
-			if ((CONNECTION == null) || (CONNECTION.isClosed())) {
+			if ((LaubeUtility.isEmpty(CONNECTION)) || (CONNECTION.isClosed())) {
 
 				LaubeProperties workflowProperties = LaubeProperties.getInstance();
 				String dbDriver = workflowProperties.getValue("db.driver");
