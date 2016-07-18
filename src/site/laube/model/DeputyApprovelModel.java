@@ -367,7 +367,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 
 		try {
 
-			if ((LaubeUtility.isNotEmpty(companyCode))||(LaubeUtility.isNotEmpty(userCode))) {
+			if ((!LaubeUtility.isEmpty(companyCode))||(!LaubeUtility.isEmpty(userCode))) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.info("[workflowEngine] " + "find end");
@@ -472,7 +472,7 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 		final ResultDto resultDto = new ResultDto();
 
 		try {
-			if ((LaubeUtility.isNotEmpty(companyCode))||(LaubeUtility.isNotEmpty(deputyApproverlUserCode))) {
+			if ((!LaubeUtility.isEmpty(companyCode))||(!LaubeUtility.isEmpty(deputyApproverlUserCode))) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.info("[workflowEngine] " + "find end");

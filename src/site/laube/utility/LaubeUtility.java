@@ -16,9 +16,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,10 +37,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 
 /*
@@ -60,11 +57,6 @@ import site.laube.exception.LaubeException;
  */
 
 public final class LaubeUtility implements Serializable {
-
-	/**
-	 * To manage the log object.<br>
-	 */
-	private static Logger log = LoggerFactory.getLogger(LaubeUtility.class);
 
 	/**
 	 * To manage the serial version ID.<br>
@@ -115,7 +107,6 @@ public final class LaubeUtility implements Serializable {
 	public static final String doEncryption(final String text) throws LaubeException {
 
 		try {
-
 			PBEKeySpec              pBEKeySpec;
 			PBEParameterSpec        pBEParameterSpec;
 			SecretKeyFactory        secretKeyFactory;
@@ -197,7 +188,6 @@ public final class LaubeUtility implements Serializable {
 	public static final String doDecryption(final String text) throws LaubeException {
 
 		try {
-
 			char[] password = null;
 
 			if (StringUtils.isNotEmpty(SpecifiedValue.CipherPassword)) {
@@ -347,6 +337,17 @@ public final class LaubeUtility implements Serializable {
 	}
 
 	/**
+	 * automaticCast<br>
+	 * @param object object
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T automaticCast(Object object) {
+	    T castedObject = (T) object;
+	    return castedObject;
+	}
+
+	/**
 	 * Do not set check.<br>
 	 * Wrapper class for hiding the "org.apache.commons.lang3.builder.ToStringBuilder", which is an external class<br>
 	 * @param s Value to validate
@@ -358,49 +359,22 @@ public final class LaubeUtility implements Serializable {
 
 	/**
 	 * Do not set check.<br>
-	 * @param i Value to validate
-	 * @return result
-	 */
-	public static final boolean isEmpty(final int i) {
-		return (i == 0);
-	}
-
-	/**
-	 * Do not set check.<br>
-	 * @param resultDto object
-	 * @return result
-	 */
-	public static final boolean isEmpty(final ResultDto resultDto) {
-		return ((resultDto == null)||(!resultDto.isSuccess()));
-	}
-
-	/**
-	 * Do not set check.<br>
-	 * @param l Value to validate
-	 * @return result
-	 */
-	public static final boolean isEmpty(@SuppressWarnings("rawtypes") final ArrayList l) {
-		return ((l == null)||(l.size() == 0));
-	}
-
-	/**
-	 * Do not set check.<br>
 	 * @param o Value to validate
 	 * @return result
 	 */
+	@SuppressWarnings("rawtypes")
 	public static final boolean isEmpty(final Object o) {
 
-		return (o == null);
-	}
+		if (o == null){
+			return true;
+		}
 
-	/**
-	 * Make the configured check.<br>
-	 * Wrapper class for hiding the "org.apache.commons.lang3.builder.ToStringBuilder", which is an external class<br>
-	 * @param s Value to validate
-	 * @return result
-	 */
-	public static final boolean isNotEmpty(final CharSequence s) {
-		return StringUtils.isNotEmpty(s);
+		if (o instanceof List){
+			if (((List) o).size() == 0){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

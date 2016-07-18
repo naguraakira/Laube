@@ -562,7 +562,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 		try {
 			boolean isSettingYes = false;
 
-			if (LaubeUtility.isNotEmpty(roleName)){
+			if (!LaubeUtility.isEmpty(roleName)){
 				isSettingYes = true;
 			}
 
