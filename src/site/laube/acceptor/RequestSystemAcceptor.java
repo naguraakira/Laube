@@ -28,7 +28,7 @@ import site.laube.visitor.RequestSystemVisitor;
  * limitations under the License.
  */
 
-public abstract class RequestSystemAcceptor implements LaubeAcceptor {
+public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 
 	/**
 	 * To manage the log object.<br>

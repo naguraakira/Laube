@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import site.laube.acceptor.ApprovalSystemAcceptor;
-import site.laube.acceptor.LaubeAcceptor;
 import site.laube.acceptor.approval.ApprovalAcceptor;
 import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
@@ -63,18 +62,6 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] "  + "approvalSystemAcceptor:" + approvalSystemAcceptor);
 
-		// be sure to set this when you reuse a single connection.
-		if (!LaubeUtility.isEmpty(LaubeAcceptor.connection)){
-			DbConnectManager.setConnection(LaubeAcceptor.connection);
-		}
-
-		boolean isAutoCommit = false;
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
-			isAutoCommit = true;
-		}else{
-			isAutoCommit = false;
-		}
-
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
 
@@ -83,6 +70,18 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
+		}
+
+		// be sure to set this when you reuse a single connection.
+		if (!LaubeUtility.isEmpty(approvalSystemAcceptor.getConnection())){
+			DbConnectManager.setConnection(approvalSystemAcceptor.getConnection());
+		}
+
+		boolean isAutoCommit = false;
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			isAutoCommit = true;
+		}else{
+			isAutoCommit = false;
 		}
 
 		final ApprovalAcceptor approvalAcceptor = (ApprovalAcceptor)approvalSystemAcceptor;

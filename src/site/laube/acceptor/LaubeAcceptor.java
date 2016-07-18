@@ -18,11 +18,27 @@ import java.sql.Connection;
  * limitations under the License.
  */
 
-public interface LaubeAcceptor {
+public abstract class LaubeAcceptor {
 
 	/**
 	 * connection<br>
 	 */
-	public static Connection connection = null;
+	private Connection connection = null;
+
+	/**
+	 * set connection<br>
+	 * @param connection connection
+	 */
+	public final void setConnection(final Connection connection){
+		this.connection = connection;
+	}
+
+	/**
+	 * get connection<br>
+	 * @return connection
+	 */
+	public final Connection getConnection(){
+		return this.connection;
+	}
 }
 

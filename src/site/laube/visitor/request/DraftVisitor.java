@@ -7,7 +7,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import site.laube.acceptor.LaubeAcceptor;
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.request.DraftAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
@@ -64,18 +63,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
 
-		// be sure to set this when you reuse a single connection.
-		if (!LaubeUtility.isEmpty(LaubeAcceptor.connection)){
-			DbConnectManager.setConnection(LaubeAcceptor.connection);
-		}
-
-		boolean isAutoCommit = false;
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
-			isAutoCommit = true;
-		}else{
-			isAutoCommit = false;
-		}
-
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
 
@@ -84,6 +71,18 @@ public class DraftVisitor extends RequestSystemVisitor {
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
+		}
+
+		// be sure to set this when you reuse a single connection.
+		if (!LaubeUtility.isEmpty(requestSystemAcceptor.getConnection())){
+			DbConnectManager.setConnection(requestSystemAcceptor.getConnection());
+		}
+
+		boolean isAutoCommit = false;
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			isAutoCommit = true;
+		}else{
+			isAutoCommit = false;
 		}
 
 		final DraftAcceptor draftAcceptor = (DraftAcceptor)requestSystemAcceptor;

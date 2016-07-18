@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import site.laube.acceptor.LaubeAcceptor;
 import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.acceptor.search.RouteSearchAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
@@ -63,18 +62,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		log.info("[workflowEngine] " + "[argument]");
 		log.info("[workflowEngine] " + "searchSystemAcceptor:" + searchSystemAcceptor);
 
-		// be sure to set this when you reuse a single connection.
-		if (!LaubeUtility.isEmpty(LaubeAcceptor.connection)){
-			DbConnectManager.setConnection(LaubeAcceptor.connection);
-		}
-
-		boolean isAutoCommit = false;
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
-			isAutoCommit = true;
-		}else{
-			isAutoCommit = false;
-		}
-
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
 
@@ -83,6 +70,18 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto.setMessageId("E0001");
 			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
+		}
+
+		// be sure to set this when you reuse a single connection.
+		if (!LaubeUtility.isEmpty(searchSystemAcceptor.getConnection())){
+			DbConnectManager.setConnection(searchSystemAcceptor.getConnection());
+		}
+
+		boolean isAutoCommit = false;
+		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+			isAutoCommit = true;
+		}else{
+			isAutoCommit = false;
 		}
 
 		final RouteSearchAcceptor routeSearchAcceptor = (RouteSearchAcceptor)searchSystemAcceptor;
