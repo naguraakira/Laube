@@ -184,7 +184,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			ArrayList<LaubeDto> applicationObjectDtos = null;
 
 			if (object instanceof ArrayList){
-				applicationObjectDtos = (ArrayList<LaubeDto>)object;
+				applicationObjectDtos = LaubeUtility.automaticCast(object);
 			}
 
 			boolean isDraft = false;

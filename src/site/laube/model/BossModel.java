@@ -404,7 +404,7 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 				ArrayList<BossDto> bossDtos = null;
 				if (r.getResultData() instanceof ArrayList){
-					bossDtos = (ArrayList<BossDto>)(r.getResultData());
+					bossDtos = LaubeUtility.automaticCast(r.getResultData());
 				}
 
 				if (LaubeUtility.isEmpty(bossDtos)){

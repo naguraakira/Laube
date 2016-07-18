@@ -181,7 +181,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 			}
 
 			Object object = resultDto.getResultData();
-			ArrayList<LaubeDto> applicationObjectDtos = (ArrayList<LaubeDto>)object;
+			ArrayList<LaubeDto> applicationObjectDtos = LaubeUtility.automaticCast(object);
 
 			boolean isDraft = false;
 			if ((applicationNumber == 0)||(LaubeUtility.isEmpty(applicationObjectDtos))) {
