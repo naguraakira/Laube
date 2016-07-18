@@ -88,9 +88,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		final ApprovalAcceptor approvalAcceptor = (ApprovalAcceptor)approvalSystemAcceptor;
 
 		try{
-			final boolean isNull = ApprovalUtility.isEmpty(approvalAcceptor);
-
-			if (isNull) {
+			if (ApprovalUtility.isEmpty(approvalAcceptor)) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
 				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
@@ -192,7 +190,6 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			if (LaubeUtility.isEmpty(appendFileList)){
 			}else{
 				for (ApprovalSystemAcceptor.AppendFile appendFile : appendFileList) {
-
 					AppendedDto appendedDto = new AppendedDto();
 					appendedDto.setCompanyCode(companyCode);
 					appendedDto.setApplicationNumber(applicationNumber);
@@ -200,7 +197,6 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					appendedDto.setApprovalUnitCode(approvalUnitCode);
 					appendedDto.setApprovalUserCode(approvalUserCode);
 					appendedDto.setApprovalPath(appendFile.getPath());
-
 					final AppendedModelInterface appendedModelInterface = new AppendedModel();
 					resultDto = appendedModelInterface.insert(appendedDto);
 
@@ -212,7 +208,6 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					}
 				}
 			}
-
 			log.debug("circulated to the next approver.");
 			resultDto = VisitorUtility.circulatedNextApprover(companyCode, applicationNumber);
 
