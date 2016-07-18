@@ -33,7 +33,7 @@ public final class DbConnectManager {
 	 */
 	private static Logger log = LoggerFactory.getLogger(DbConnectManager.class);
 
-	private static Connection CONNECTION = null;
+	private static Connection connection = null;
 
 	/**
 	 * It sets the generated connection object.<br>
@@ -41,8 +41,8 @@ public final class DbConnectManager {
 	 * @return Connection object
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	public static void setConnection(Connection connection) throws LaubeException {
-		CONNECTION = connection;
+	public static void setConnection(Connection con) throws LaubeException {
+		connection = con;
 	}
 
 	/**
@@ -56,9 +56,7 @@ public final class DbConnectManager {
 		log.info("[workflowEngine] " + "getConnection start");
 
 		try {
-
-			if ((LaubeUtility.isEmpty(CONNECTION)) || (CONNECTION.isClosed())) {
-
+			if ((LaubeUtility.isEmpty(connection)) || (connection.isClosed())) {
 				LaubeProperties workflowProperties = LaubeProperties.getInstance();
 				String dbDriver = workflowProperties.getValue("db.driver");
 				String url = workflowProperties.getValue("db.url");
@@ -67,9 +65,8 @@ public final class DbConnectManager {
 
 				try {
 					Class.forName (dbDriver);
-					CONNECTION = DriverManager.getConnection(url, userName, password);
-					CONNECTION.setAutoCommit(false);
-
+					connection = DriverManager.getConnection(url, userName, password);
+					connection.setAutoCommit(false);
 				} catch (Exception e) {
 					log.info("[workflowEngine] " + "getConnection end");
 					throw new LaubeException(e);
@@ -80,6 +77,6 @@ public final class DbConnectManager {
 			throw new LaubeException(e);
 		}
 		log.info("[workflowEngine] " + "getConnection end");
-		return CONNECTION;
+		return connection;
 	}
 }

@@ -26,7 +26,7 @@ import site.laube.visitor.ApprovalSystemVisitor;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
+public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 
 	/**
 	 * To manage the log object.<br>
@@ -71,7 +71,7 @@ public abstract class ApprovalSystemAcceptor implements LaubeAcceptor {
 	/**
 	 * to manage the attachments of approval.<br>
 	 */
-	List<AppendFile> appendFileList = new ArrayList<AppendFile>();
+	private List<AppendFile> appendFileList = new ArrayList<AppendFile>();
 
 	/**
 	 * set the company code.<br>
