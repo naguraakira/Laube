@@ -459,7 +459,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 * set the application status name.<br>
 	 * @param applicationStatusName application status name
 	 */
-	public void setApplicationStatusName(String applicationStatusName) {
+	public final void setApplicationStatusName(String applicationStatusName) {
 		this.applicationStatusName = applicationStatusName;
 	}
 
@@ -467,15 +467,7 @@ public class ApplicationObjectDto extends CompanyDto {
 	 * get the application status name.<br>
 	 * @return application status name
 	 */
-	public String getApplicationStatusName() {
+	public final String getApplicationStatusName() {
 		return this.applicationStatusName;
-	}
-
-	/*
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

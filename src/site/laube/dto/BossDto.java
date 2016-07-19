@@ -1,7 +1,6 @@
 package site.laube.dto;
 
 import site.laube.dto.temporary.UserDto;
-import site.laube.utility.LaubeUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -70,7 +69,7 @@ public class BossDto extends UserDto {
 	 * set the application code.<br>
 	 * @param applicationFormCode application form code
 	 */
-	public void setApplicationFormCode(String applicationFormCode) {
+	public final void setApplicationFormCode(String applicationFormCode) {
 		this.applicationFormCode = applicationFormCode;
 	}
 
@@ -78,7 +77,7 @@ public class BossDto extends UserDto {
 	 * get the application code.<br>
 	 * @return application form code
 	 */
-	public String getApplicationFormCode() {
+	public final String getApplicationFormCode() {
 		return this.applicationFormCode;
 	}
 
@@ -102,7 +101,7 @@ public class BossDto extends UserDto {
 	 * set the company code of the immediate supervisor.<br>
 	 * @param bossCompanyCode boss company code
 	 */
-	public void setBossCompanyCode(String bossCompanyCode) {
+	public final void setBossCompanyCode(String bossCompanyCode) {
 		this.bossCompanyCode = bossCompanyCode;
 	}
 
@@ -110,7 +109,7 @@ public class BossDto extends UserDto {
 	 * get the company code of the immediate supervisor.<br>
 	 * @return boss company code
 	 */
-	public String getBossCompanyCode() {
+	public final String getBossCompanyCode() {
 		return bossCompanyCode;
 	}
 
@@ -118,7 +117,7 @@ public class BossDto extends UserDto {
 	 * set the company name of the immediate supervisor.<br>
 	 * @param bossCompanyName boss company name
 	 */
-	public void setBossCompanyName(String bossCompanyName) {
+	public final void setBossCompanyName(String bossCompanyName) {
 		this.bossCompanyName = bossCompanyName;
 	}
 
@@ -126,7 +125,7 @@ public class BossDto extends UserDto {
 	 * get the company name of the immediate supervisor.<br>
 	 * @return boss company name
 	 */
-	public String getBossCompanyName() {
+	public final String getBossCompanyName() {
 		return bossCompanyName;
 	}
 
@@ -134,7 +133,7 @@ public class BossDto extends UserDto {
 	 * set the department code of the immediate supervisor.<br>
 	 * @param bossUnitCode boss unit code
 	 */
-	public void setBossUnitCode(String bossUnitCode) {
+	public final void setBossUnitCode(String bossUnitCode) {
 		this.bossUnitCode = bossUnitCode;
 	}
 
@@ -142,7 +141,7 @@ public class BossDto extends UserDto {
 	 * get the department code of the immediate supervisor.<br>
 	 * @return boss unit code
 	 */
-	public String getBossUnitCode() {
+	public final String getBossUnitCode() {
 		return bossUnitCode;
 	}
 
@@ -150,7 +149,7 @@ public class BossDto extends UserDto {
 	 * set the department name of the immediate supervisor.<br>
 	 * @param bossUnitName boss unit name
 	 */
-	public void setBossUnitName(String bossUnitName) {
+	public final void setBossUnitName(String bossUnitName) {
 		this.bossUnitName = bossUnitName;
 	}
 
@@ -158,7 +157,7 @@ public class BossDto extends UserDto {
 	 * get the department name of the immediate supervisor.<br>
 	 * @return boss unit name
 	 */
-	public String getBossUnitName() {
+	public final String getBossUnitName() {
 		return bossUnitName;
 	}
 
@@ -166,7 +165,7 @@ public class BossDto extends UserDto {
 	 * set the employee number of the immediate supervisor.<br>
 	 * @param bossUserCode boss user code
 	 */
-	public void setBossUserCode(String bossUserCode) {
+	public final void setBossUserCode(String bossUserCode) {
 		this.bossUserCode = bossUserCode;
 	}
 
@@ -174,7 +173,7 @@ public class BossDto extends UserDto {
 	 * get the employee number of the immediate supervisor.<br>
 	 * @return boss user code
 	 */
-	public String getBossUserCode() {
+	public final String getBossUserCode() {
 		return bossUserCode;
 	}
 
@@ -182,7 +181,7 @@ public class BossDto extends UserDto {
 	 * set the employee name of the immediate supervisor.<br>
 	 * @param bossUserName boss user name
 	 */
-	public void setBossUserName(String bossUserName) {
+	public final void setBossUserName(String bossUserName) {
 		this.bossUserName = bossUserName;
 	}
 
@@ -190,16 +189,7 @@ public class BossDto extends UserDto {
 	 * get the employee name of the immediate supervisor.<br>
 	 * @return boss user name
 	 */
-	public String getBossUserName() {
+	public final String getBossUserName() {
 		return bossUserName;
-	}
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

@@ -1,7 +1,5 @@
 package site.laube.dto.temporary;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -65,7 +63,7 @@ public class UnitDto extends CompanyDto {
 	 * set the unit name.<br>
 	 * @param unitName unit name
 	 */
-	public void setUnitName(String unitName) {
+	public final void setUnitName(String unitName) {
 		this.unitName = unitName;
 	}
 
@@ -74,7 +72,7 @@ public class UnitDto extends CompanyDto {
 	 *
 	 * @return unit name
 	 */
-	public String getUnitName() {
+	public final String getUnitName() {
 		return this.unitName;
 	}
 
@@ -98,7 +96,7 @@ public class UnitDto extends CompanyDto {
 	 * set the manager name.<br>
 	 * @param managerName manager name
 	 */
-	public void setManagerName(String managerName) {
+	public final void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
 
@@ -107,16 +105,7 @@ public class UnitDto extends CompanyDto {
 	 *
 	 * @return manager name
 	 */
-	public String getManagerName() {
+	public final String getManagerName() {
 		return this.managerName;
-	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

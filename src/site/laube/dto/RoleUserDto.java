@@ -1,7 +1,5 @@
 package site.laube.dto;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -65,7 +63,7 @@ public final class RoleUserDto extends RoleDto {
 	 * set the unit name.<br>
 	 * @param unitName unit name
 	 */
-	public void setUnitName(String unitName) {
+	public final void setUnitName(String unitName) {
 		this.unitName = unitName;
 	}
 
@@ -73,7 +71,7 @@ public final class RoleUserDto extends RoleDto {
 	 * get the unit name.<br>
 	 * @return unit name
 	 */
-	public String getUnitName() {
+	public final String getUnitName() {
 		return this.unitName;
 	}
 
@@ -97,7 +95,7 @@ public final class RoleUserDto extends RoleDto {
 	 * set the user name.<br>
 	 * @param userName user name
 	 */
-	public void setUserName(String userName) {
+	public final void setUserName(String userName) {
 		this.userName = userName;
 	}
 
@@ -105,15 +103,7 @@ public final class RoleUserDto extends RoleDto {
 	 * get the user name.<br>
 	 * @return user name
 	 */
-	public String getUserName() {
+	public final String getUserName() {
 		return this.userName;
-	}
-
-	/*
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

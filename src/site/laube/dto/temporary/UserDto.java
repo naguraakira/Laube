@@ -1,7 +1,5 @@
 package site.laube.dto.temporary;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -55,7 +53,7 @@ public class UserDto extends UnitDto {
 	 * set the employee name.<br>
 	 * @param userName employee name
 	 */
-	public void setUserName(String userName) {
+	public final void setUserName(String userName) {
 		this.userName = userName;
 	}
 
@@ -64,16 +62,7 @@ public class UserDto extends UnitDto {
 	 *
 	 * @return employee name
 	 */
-	public String getUserName() {
+	public final String getUserName() {
 		return this.userName;
-	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

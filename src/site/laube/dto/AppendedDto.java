@@ -2,8 +2,6 @@ package site.laube.dto;
 
 import java.sql.Timestamp;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -108,7 +106,7 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 * set the company name of the approver.<br>
 	 * @param approvalCompanyName company name of the approver
 	 */
-	public void setApprovalCompanyName(String approvalCompanyName) {
+	public final void setApprovalCompanyName(String approvalCompanyName) {
 		this.approvalCompanyName = approvalCompanyName;
 	}
 
@@ -116,7 +114,7 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 * get the company name of the approver.<br>
 	 * @return company name of the approver
 	 */
-	public String getApprovalCompanyName() {
+	public final String getApprovalCompanyName() {
 		return this.approvalCompanyName;
 	}
 
@@ -140,7 +138,7 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 * set the unit name of the approver.<br>
 	 * @param approvalUnitName unit name of the approver
 	 */
-	public void setApprovalUnitName(String approvalUnitName) {
+	public final void setApprovalUnitName(String approvalUnitName) {
 		this.approvalUnitName = approvalUnitName;
 	}
 
@@ -148,7 +146,7 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 * get the unit name of the approver.<br>
 	 * @return unit name of the approver
 	 */
-	public String getApprovalUnitName() {
+	public final String getApprovalUnitName() {
 		return this.approvalUnitName;
 	}
 
@@ -172,7 +170,7 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 * set the employee name of the approver.<br>
 	 * @param approvalUserName employee name of the approver
 	 */
-	public void setApprovalUserName(String approvalUserName) {
+	public final void setApprovalUserName(String approvalUserName) {
 		this.approvalUserName = approvalUserName;
 	}
 
@@ -180,7 +178,7 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 * get the employee name of the approver.<br>
 	 * @return employee name of the approver
 	 */
-	public String getApprovalUserName() {
+	public final String getApprovalUserName() {
 		return this.approvalUserName;
 	}
 
@@ -214,14 +212,5 @@ public final class AppendedDto extends ApplicationObjectDto {
 	 */
 	public final Timestamp getApprovalDate() {
 		return this.approvalDate;
-	}
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

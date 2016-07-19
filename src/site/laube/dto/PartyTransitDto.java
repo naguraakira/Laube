@@ -1,7 +1,5 @@
 package site.laube.dto;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -130,14 +128,5 @@ public class PartyTransitDto extends RouteDto {
 	 */
 	public final int getComparisonOperator() {
 		return comparisonOperator;
-	}
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

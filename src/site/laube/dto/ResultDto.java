@@ -44,7 +44,7 @@ public final class ResultDto implements Serializable {
 	 * set the Connection.<br>
 	 * @param connection Connection
 	 */
-	public void setConnection(Connection connection){
+	public final void setConnection(Connection connection){
 		this.connection = connection;
 	}
 
@@ -52,7 +52,7 @@ public final class ResultDto implements Serializable {
 	 * get the Connection.<br>
 	 * @return Connection
 	 */
-	public Connection getConnection(){
+	public final Connection getConnection(){
 		return this.connection;
 	}
 
@@ -132,7 +132,7 @@ public final class ResultDto implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString() {
+	public final String toString() {
 		return LaubeUtility.reflectionToString(this);
 	}
 }

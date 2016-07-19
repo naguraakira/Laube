@@ -1,7 +1,5 @@
 package site.laube.dto;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -65,14 +63,5 @@ public class PartyDto extends PartyTransitDto {
 	 */
 	public final int getPartyCodeConnector() {
 		return this.partyCodeConnector;
-	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

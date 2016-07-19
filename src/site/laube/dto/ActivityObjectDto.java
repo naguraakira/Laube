@@ -2,8 +2,6 @@ package site.laube.dto;
 
 import java.sql.Timestamp;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -207,7 +205,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the route type.<br>
 	 * @param routeType route type
 	 */
-	public void setRouteType(int routeType) {
+	public final void setRouteType(int routeType) {
 		this.routeType = routeType;
 	}
 
@@ -215,7 +213,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the route type.<br>
 	 * @return route type
 	 */
-	public int getRouteType() {
+	public final int getRouteType() {
 		return routeType;
 	}
 
@@ -239,7 +237,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the company name of the approver.<br>
 	 * @param approvalCompanyName company name of the approver
 	 */
-	public void setApprovalCompanyName(String approvalCompanyName) {
+	public final void setApprovalCompanyName(String approvalCompanyName) {
 		this.approvalCompanyName = approvalCompanyName;
 	}
 
@@ -247,7 +245,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the company name of the approver.<br>
 	 * @return company name of the approver
 	 */
-	public String getApprovalCompanyName() {
+	public final String getApprovalCompanyName() {
 		return this.approvalCompanyName;
 	}
 
@@ -271,7 +269,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the unit name of the approver.<br>
 	 * @param approvalUnitName unit name of the approver
 	 */
-	public void setApprovalUnitName(String approvalUnitName) {
+	public final void setApprovalUnitName(String approvalUnitName) {
 		this.approvalUnitName = approvalUnitName;
 	}
 
@@ -279,7 +277,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the unit name of the approver.<br>
 	 * @return unit name of the approver
 	 */
-	public String getApprovalUnitName() {
+	public final String getApprovalUnitName() {
 		return this.approvalUnitName;
 	}
 
@@ -303,7 +301,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the employee name of the approver.<br>
 	 * @param approvalUserName employee name of the approver
 	 */
-	public void setApprovalUserName(String approvalUserName) {
+	public final void setApprovalUserName(String approvalUserName) {
 		this.approvalUserName = approvalUserName;
 	}
 
@@ -311,7 +309,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the employee name of the approver.<br>
 	 * @return employee name of the approver
 	 */
-	public String getApprovalUserName() {
+	public final String getApprovalUserName() {
 		return this.approvalUserName;
 	}
 
@@ -367,7 +365,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the employee name of the proxy approver<br>
 	 * @param deputyApprovalUserName deputy approval user name
 	 */
-	public void setDeputyApprovalUserName(String deputyApprovalUserName) {
+	public final void setDeputyApprovalUserName(String deputyApprovalUserName) {
 		this.deputyApprovalUserName = deputyApprovalUserName;
 	}
 
@@ -375,7 +373,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the employee name of the proxy approver<br>
 	 * @return deputy approval user name
 	 */
-	public String getDeputyApprovalUserName() {
+	public final String getDeputyApprovalUserName() {
 		return this.deputyApprovalUserName;
 	}
 
@@ -383,7 +381,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the proxy approval reason.<br>
 	 * @param deputyApprovalComment deputy approval comment
 	 */
-	public void setDeputyApprovalComment(String deputyApprovalComment) {
+	public final void setDeputyApprovalComment(String deputyApprovalComment) {
 		this.deputyApprovalComment = deputyApprovalComment;
 	}
 
@@ -391,7 +389,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the proxy approval reason.<br>
 	 * @return deputy comment
 	 */
-	public String getDeputyApprovalComment() {
+	public final String getDeputyApprovalComment() {
 		return this.deputyApprovalComment;
 	}
 
@@ -479,7 +477,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the reaching date.<br>
 	 * @param reachingDate reaching date
 	 */
-	public void setReachingDate(Timestamp reachingDate) {
+	public final void setReachingDate(Timestamp reachingDate) {
 		this.reachingDate = reachingDate;
 	}
 
@@ -487,7 +485,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the reaching date.<br>
 	 * @return reaching date
 	 */
-	public Timestamp getReachingDate() {
+	public final Timestamp getReachingDate() {
 		return this.reachingDate;
 	}
 
@@ -495,7 +493,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the application form the date of arrival.<br>
 	 * @param processDate process date
 	 */
-	public void setProcessDate(Timestamp processDate) {
+	public final void setProcessDate(Timestamp processDate) {
 		this.processDate = processDate;
 	}
 
@@ -503,7 +501,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * get the application of the processing day.<br>
 	 * @return application of the processing day
 	 */
-	public Timestamp getProcessDate() {
+	public final Timestamp getProcessDate() {
 		return this.processDate;
 	}
 
@@ -527,17 +525,17 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * set the approval status name of the approver.<br>
 	 * @param activityStatusName activity status name
 	 */
-	public void setActivityStatusName(String activityStatusName) {
+	public final void setActivityStatusName(String activityStatusName) {
 		this.activityStatusName = activityStatusName;
 	}
+
 	/**
 	 * get the approval status name of the approver.<br>
 	 * @return activity status name
 	 */
-	public String getActivityStatusName() {
+	public final String getActivityStatusName() {
 		return this.activityStatusName;
 	}
-
 
 	/**
 	 * set the approval comment.<br>
@@ -553,14 +551,5 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 */
 	public final String getApprovalComment() {
 		return this.approvalComment;
-	}
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

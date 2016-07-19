@@ -1,7 +1,6 @@
 package site.laube.dto;
 
 import site.laube.dto.temporary.UserDto;
-import site.laube.utility.LaubeUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -25,13 +24,4 @@ public final class NotificationDto extends UserDto {
 	 * to manage the log.<br>
 	 */
 	private static final long serialVersionUID = -984786919952633458L;
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
-	}
 }

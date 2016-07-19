@@ -1,7 +1,5 @@
 package site.laube.dto;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -139,7 +137,7 @@ public final class ApplicationFormRouteDto extends ApplicationFormDto {
 	 * set the common route name.<br>
 	 * @param commonRouteName common route name
 	 */
-	public void setCommonRouteName(String commonRouteName) {
+	public final void setCommonRouteName(String commonRouteName) {
 		this.commonRouteName = commonRouteName;
 	}
 
@@ -147,15 +145,7 @@ public final class ApplicationFormRouteDto extends ApplicationFormDto {
 	 * get the common route name.<br>
 	 * @return common route name
 	 */
-	public String getCommonRouteName() {
+	public final String getCommonRouteName() {
 		return this.commonRouteName;
-	}
-
-	/* (非 Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

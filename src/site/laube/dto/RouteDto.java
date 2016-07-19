@@ -1,7 +1,6 @@
 package site.laube.dto;
 
 import site.laube.dto.temporary.CompanyDto;
-import site.laube.utility.LaubeUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -77,7 +76,7 @@ public class RouteDto extends CompanyDto {
 	 * set the route type.<br>
 	 * @param routeType route type
 	 */
-	public void setRouteType(int routeType) {
+	public final void setRouteType(int routeType) {
 		this.routeType = routeType;
 	}
 
@@ -85,16 +84,7 @@ public class RouteDto extends CompanyDto {
 	 * get the route type.<br>
 	 * @return route type
 	 */
-	public int getRouteType() {
+	public final int getRouteType() {
 		return routeType;
-	}
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

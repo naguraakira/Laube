@@ -56,7 +56,7 @@ public class CompanyDto extends LaubeDto {
 	 * set the company name.<br>
 	 * @param companyName company name
 	 */
-	public void setCompanyName(String companyName) {
+	public final void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
 
@@ -65,7 +65,7 @@ public class CompanyDto extends LaubeDto {
 	 *
 	 * @return company name
 	 */
-	public String getCompanyName() {
+	public final String getCompanyName() {
 		return this.companyName;
 	}
 
@@ -74,7 +74,7 @@ public class CompanyDto extends LaubeDto {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString() {
+	public final String toString() {
 		return LaubeUtility.reflectionToString(this);
 	}
 }
