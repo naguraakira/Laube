@@ -1,7 +1,6 @@
 package site.laube.acceptor.approval;
 
 import site.laube.acceptor.ApprovalSystemAcceptor;
-import site.laube.utility.LaubeUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -20,13 +19,4 @@ import site.laube.utility.LaubeUtility;
  */
 
 public final class ApprovalAcceptor extends ApprovalSystemAcceptor {
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
-	}
 }

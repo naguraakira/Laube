@@ -289,7 +289,7 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	 * get the Individual Routes<br>
 	 * @return Individual Routes
 	 */
-	public List<ApprovalRouteInformationAcceptor> getIndividualRoutes() {
+	public final List<ApprovalRouteInformationAcceptor> getIndividualRoutes() {
 		return this.individualRoutes;
 	}
 
@@ -297,7 +297,7 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	 * set the Individual Routes.<br>
 	 * @param individualRoutes Individual Routes
 	 */
-	public void setIndividualRoutes(List<ApprovalRouteInformationAcceptor> individualRoutes) {
+	public final void setIndividualRoutes(List<ApprovalRouteInformationAcceptor> individualRoutes) {
 		this.individualRoutes = individualRoutes;
 	}
 
@@ -305,7 +305,7 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	 * get the Common Routes.<br>
 	 * @return common Routes
 	 */
-	public List<ApprovalRouteInformationAcceptor> getCommonRoutes() {
+	public final List<ApprovalRouteInformationAcceptor> getCommonRoutes() {
 		return this.commonRoutes;
 	}
 
@@ -313,7 +313,7 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	 * set the Common Routes.<br>
 	 * @param commonRoutes Common Routes
 	 */
-	public void setCommonRoutes(List<ApprovalRouteInformationAcceptor> commonRoutes) {
+	public final void setCommonRoutes(List<ApprovalRouteInformationAcceptor> commonRoutes) {
 		this.commonRoutes = commonRoutes;
 	}
 
@@ -328,14 +328,5 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 		ResultDto resultDto = requestSystemVisitor.visit(this);
 		log.debug("[workflowEngine]" + resultDto.toString());
 		return resultDto;
-	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

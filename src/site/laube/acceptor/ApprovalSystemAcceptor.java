@@ -194,7 +194,7 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	 * set the attachments of approval.<br>
 	 * @param appendFileList append file list
 	 */
-	public void setAppendFileList(List<AppendFile> appendFileList) {
+	public final void setAppendFileList(List<AppendFile> appendFileList) {
 		this.appendFileList = appendFileList;
 	}
 
@@ -202,14 +202,14 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	 * get the attachments of approval.<br>
 	 * @return appendedList attachments of approval
 	 */
-	public List<AppendFile> getAppendFileList() {
+	public final List<AppendFile> getAppendFileList() {
 		return this.appendFileList;
 	}
 
 	/**
 	 * Inner class for managing the attachment<br>
 	 */
-	public class AppendFile {
+	public final class AppendFile {
 
 		/**
 		 * to manage the approval number of attachments.<br>
@@ -266,14 +266,4 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 		log.debug("[workflowEngine]" + resultDto.toString());
 		return resultDto;
 	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
-	}
 }
-

@@ -2,6 +2,8 @@ package site.laube.acceptor;
 
 import java.sql.Connection;
 
+import site.laube.utility.LaubeUtility;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -39,6 +41,15 @@ public abstract class LaubeAcceptor {
 	 */
 	public final Connection getConnection(){
 		return this.connection;
+	}
+
+	/**
+	 * All the items in the class will be returned.<br>
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public final String toString() {
+		return LaubeUtility.reflectionToString(this);
 	}
 }
 

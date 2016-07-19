@@ -5,7 +5,6 @@ import java.util.List;
 
 import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
-import site.laube.utility.LaubeUtility;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -273,7 +272,7 @@ public final class RouteSearchAcceptor extends SearchSystemAcceptor {
 	 * get the Individual Routes<br>
 	 * @return Individual Routes
 	 */
-	public List<ApprovalRouteInformationAcceptor> getIndividualRoutes() {
+	public final List<ApprovalRouteInformationAcceptor> getIndividualRoutes() {
 		return this.individualRoutes;
 	}
 
@@ -281,7 +280,7 @@ public final class RouteSearchAcceptor extends SearchSystemAcceptor {
 	 * set the Individual Routes.<br>
 	 * @param individualRoutes Individual Routes
 	 */
-	public void setIndividualRoutes(List<ApprovalRouteInformationAcceptor> individualRoutes) {
+	public final void setIndividualRoutes(List<ApprovalRouteInformationAcceptor> individualRoutes) {
 		this.individualRoutes = individualRoutes;
 	}
 
@@ -289,7 +288,7 @@ public final class RouteSearchAcceptor extends SearchSystemAcceptor {
 	 * get the Common Routes.<br>
 	 * @return common Routes
 	 */
-	public List<ApprovalRouteInformationAcceptor> getCommonRoutes() {
+	public final List<ApprovalRouteInformationAcceptor> getCommonRoutes() {
 		return this.commonRoutes;
 	}
 
@@ -297,16 +296,7 @@ public final class RouteSearchAcceptor extends SearchSystemAcceptor {
 	 * set the Common Routes.<br>
 	 * @param commonRoutes Common Routes
 	 */
-	public void setCommonRoutes(List<ApprovalRouteInformationAcceptor> commonRoutes) {
+	public final void setCommonRoutes(List<ApprovalRouteInformationAcceptor> commonRoutes) {
 		this.commonRoutes = commonRoutes;
-	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }

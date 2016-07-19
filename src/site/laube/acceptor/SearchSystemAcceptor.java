@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
-import site.laube.utility.LaubeUtility;
 import site.laube.visitor.SearchSystemVisitor;
 
 /*
@@ -212,14 +211,5 @@ public abstract class SearchSystemAcceptor extends LaubeAcceptor {
 		ResultDto resultDto = searchSystemVisitor.visit(this);
 		log.debug("[workflowEngine]" + resultDto.toString());
 		return resultDto;
-	}
-
-	/**
-	 * All the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }
