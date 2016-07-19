@@ -64,14 +64,15 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("user_code, ");
-			sql.append("user_name ");
-			sql.append("FROM wkf_user ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
-			sql.append("AND user_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",user_code");
+			sql.append(",user_name");
+			sql.append(" FROM wkf_user");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND user_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);

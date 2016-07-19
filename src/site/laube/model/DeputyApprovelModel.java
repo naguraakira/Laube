@@ -61,11 +61,11 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_deputy_approvel ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_deputy_approvel ");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL]" + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -125,12 +125,12 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_deputy_approvel ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("user_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_deputy_approvel");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and user_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -189,31 +189,34 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_deputy_approvel ");
+			sql.append("INSERT INTO wkf_deputy_approvel");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("user_code,");
-			sql.append("unit_code,");
-			sql.append("deputy_approverl_company_code,");
-			sql.append("deputy_approverl_unit_code,");
-			sql.append("deputy_approverl_user_code,");
-			sql.append("deputy_contents,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",user_code");
+			sql.append(",unit_code");
+			sql.append(",deputy_approverl_company_code");
+			sql.append(",deputy_approverl_unit_code");
+			sql.append(",deputy_approverl_user_code");
+			sql.append(",deputy_contents");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id)");
+			sql.append(" VALUES");
+			sql.append("(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.debug("[WKF] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -280,18 +283,19 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_deputy_approvel ");
-			sql.append("SET ");
-			sql.append("deputy_approverl_company_code = ?, ");
-			sql.append("deputy_approverl_unit_code = ?, ");
-			sql.append("deputy_approverl_user_code = ?, ");
-			sql.append("deputy_contents = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_user_id = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("user_code = ? AND ");
-			sql.append("unit_code = ?;");
+			sql.append("UPDATE wkf_deputy_approvel");
+			sql.append(" SET");
+			sql.append(" deputy_approverl_company_code = ?");
+			sql.append(",deputy_approverl_unit_code = ?");
+			sql.append(",deputy_approverl_user_code = ?");
+			sql.append(",deputy_contents = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_user_id = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and user_code = ?");
+			sql.append(" and unit_code = ?");
+			sql.append(";");
 
 			log.debug("[WKF] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -375,31 +379,30 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			}
 
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("user_code, ");
-			sql.append("user_name, ");
-			sql.append("unit_code, ");
-			sql.append("unit_name, ");
-			sql.append("deputy_approverl_company_code, ");
-			sql.append("deputy_approverl_company_name, ");
-			sql.append("deputy_approverl_unit_code, ");
-			sql.append("deputy_approverl_unit_name, ");
-			sql.append("deputy_approverl_user_code, ");
-			sql.append("deputy_approverl_user_name, ");
-			sql.append("deputy_contents, ");
-			sql.append("create_date_time, ");
-			sql.append("create_user_id, ");
-			sql.append("update_date_time, ");
-			sql.append("update_user_id ");
-			sql.append("FROM ");
-			sql.append("wkf_view_deputy_approvel ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("user_code = ? AND ");
-			sql.append("unit_code = ? ");
-			sql.append("ORDER BY company_cde, unit_code, user_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",user_code");
+			sql.append(",user_name");
+			sql.append(",unit_code");
+			sql.append(",unit_name");
+			sql.append(",deputy_approverl_company_code");
+			sql.append(",deputy_approverl_company_name");
+			sql.append(",deputy_approverl_unit_code");
+			sql.append(",deputy_approverl_unit_name");
+			sql.append(",deputy_approverl_user_code");
+			sql.append(",deputy_approverl_user_name");
+			sql.append(",deputy_contents");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(" FROM wkf_view_deputy_approvel");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and user_code = ?");
+			sql.append(" and unit_code = ?");
+			sql.append(" ORDER BY company_cde, unit_code, user_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -480,30 +483,29 @@ public final class DeputyApprovelModel extends LaubeModel implements DeputyAppro
 			}
 
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("user_code, ");
-			sql.append("user_name, ");
-			sql.append("unit_code, ");
-			sql.append("unit_name, ");
-			sql.append("deputy_approverl_company_code, ");
-			sql.append("deputy_approverl_company_name, ");
-			sql.append("deputy_approverl_unit_code, ");
-			sql.append("deputy_approverl_unit_name, ");
-			sql.append("deputy_approverl_user_code, ");
-			sql.append("deputy_approverl_user_name, ");
-			sql.append("deputy_contents, ");
-			sql.append("create_date_time, ");
-			sql.append("create_user_id, ");
-			sql.append("update_date_time, ");
-			sql.append("update_user_id ");
-			sql.append("FROM ");
-			sql.append("wkf_view_deputy_approvel ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("deputy_approverl_user_code = ? ");
-			sql.append("ORDER BY company_cde, unit_code, user_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",user_code");
+			sql.append(",user_name");
+			sql.append(",unit_code");
+			sql.append(",unit_name");
+			sql.append(",deputy_approverl_company_code");
+			sql.append(",deputy_approverl_company_name");
+			sql.append(",deputy_approverl_unit_code");
+			sql.append(",deputy_approverl_unit_name");
+			sql.append(",deputy_approverl_user_code");
+			sql.append(",deputy_approverl_user_name");
+			sql.append(",deputy_contents");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(" FROM wkf_view_deputy_approvel");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and deputy_approverl_user_code = ?");
+			sql.append(" ORDER BY company_cde, unit_code, user_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

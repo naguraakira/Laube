@@ -62,11 +62,11 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_common_route ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_common_route");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -127,12 +127,12 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_common_route ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("individual_route_code = ?; ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_common_route");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and individual_route_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -191,23 +191,26 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_common_route ");
+			sql.append("INSERT INTO wkf_common_route");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("individual_route_code,");
-			sql.append("individual_route_name,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",individual_route_code");
+			sql.append(",individual_route_name");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(")");
+			sql.append(" VALUES(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -270,14 +273,15 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_common_route ");
-			sql.append("SET ");
-			sql.append("individual_route_name = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_user_id = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("individual_route_code = ?;");
+			sql.append("UPDATE wkf_common_route");
+			sql.append(" SET");
+			sql.append(" individual_route_name = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_user_id = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and individual_route_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -413,17 +417,15 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("route_code, ");
-			sql.append("route_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_common_route");
-			sql.append(" ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
-			sql.append("ORDER BY route_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",route_code");
+			sql.append(",route_name");
+			sql.append(" FROM wkf_view_common_route");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -501,18 +503,16 @@ public final class CommonRouteModel extends RouteModel implements RouteModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("route_code, ");
-			sql.append("route_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_common_route");
-			sql.append(" ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("route_code = ? ");
-			sql.append("ORDER BY route_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",route_code");
+			sql.append(",route_name");
+			sql.append(" FROM wkf_view_common_route");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and route_code = ?");
+			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

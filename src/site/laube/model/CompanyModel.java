@@ -63,12 +63,13 @@ public final class CompanyModel extends LaubeModel implements CompanyModelInterf
 		try {
 			final StringBuffer sql = new StringBuffer();
 
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name ");
-			sql.append("FROM wkf_company ");
-			sql.append("WHERE ");
-			sql.append("company_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(" FROM wkf_company");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);

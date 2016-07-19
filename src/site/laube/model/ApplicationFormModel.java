@@ -62,11 +62,11 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_application_form ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_application_form");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -127,12 +127,12 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_application_form ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("application_form_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_application_form");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and application_form_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -191,29 +191,32 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_application_form ");
+			sql.append("INSERT INTO wkf_application_form");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("application_form_code,");
-			sql.append("application_form_name,");
-			sql.append("application_classification_code,");
-			sql.append("skip_apply_user,");
-			sql.append("auto_approval_flag,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",application_form_code");
+			sql.append(",application_form_name");
+			sql.append(",application_classification_code");
+			sql.append(",skip_apply_user");
+			sql.append(",auto_approval_flag");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(")");
+			sql.append(" VALUES(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -279,17 +282,18 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_application_form ");
-			sql.append("SET ");
-			sql.append("application_form_name = ?, ");
-			sql.append("application_classification_code = ?, ");
-			sql.append("skip_apply_user = ?, ");
-			sql.append("auto_approval_flag = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_user_id = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("application_form_code = ?;");
+			sql.append("UPDATE wkf_application_form");
+			sql.append(" SET");
+			sql.append(" application_form_name = ?");
+			sql.append(",application_classification_code = ?");
+			sql.append(",skip_apply_user = ?");
+			sql.append(",auto_approval_flag = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_user_id = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and application_form_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -369,18 +373,19 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("A.\"company_code\", ");
-			sql.append("A.\"company_name\", ");
-			sql.append("A.\"application_form_code\", ");
-			sql.append("A.\"application_form_name\", ");
-			sql.append("A.\"application_classification_code\", ");
-			sql.append("A.\"application_classification_name\", ");
-			sql.append("A.\"skip_apply_user\", ");
-			sql.append("A.\"auto_approval_flag\" ");
-			sql.append("FROM \"wkf_view_application_form\" ");
-			sql.append("WHERE ");
-			sql.append("\"company_code\" = ?;");
+			sql.append("SELECT");
+			sql.append(" A.\"company_code\"");
+			sql.append(",A.\"company_name\"");
+			sql.append(",A.\"application_form_code\"");
+			sql.append(",A.\"application_form_name\"");
+			sql.append(",A.\"application_classification_code\"");
+			sql.append(",A.\"application_classification_name\"");
+			sql.append(",A.\"skip_apply_user\"");
+			sql.append(",A.\"auto_approval_flag\"");
+			sql.append(" FROM \"wkf_view_application_form\"");
+			sql.append(" WHERE");
+			sql.append(" \"company_code\" = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
@@ -460,21 +465,22 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("application_form_code, ");
-			sql.append("application_form_name, ");
-			sql.append("application_classification_code, ");
-			sql.append("application_classification_name, ");
-			sql.append("skip_apply_user, ");
-			sql.append("auto_approval_flag, ");
-			sql.append("pulling_flag, ");
-			sql.append("route_flag ");
-			sql.append("FROM wkf_view_application_form ");
-			sql.append("WHERE ");
-			sql.append("company_code = ?");
-			sql.append(" AND application_form_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",application_form_code");
+			sql.append(",application_form_name");
+			sql.append(",application_classification_code");
+			sql.append(",application_classification_name");
+			sql.append(",skip_apply_user");
+			sql.append(",auto_approval_flag");
+			sql.append(",pulling_flag");
+			sql.append(",route_flag");
+			sql.append(" FROM wkf_view_application_form");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND application_form_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
@@ -554,19 +560,20 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		}
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("A.company_code, ");
-			sql.append("A.company_name, ");
-			sql.append("A.application_form_code, ");
-			sql.append("A.application_form_name, ");
-			sql.append("A.application_classification_code, ");
-			sql.append("A.application_classification_name, ");
-			sql.append("A.skip_apply_user, ");
-			sql.append("A.auto_approval_flag ");
-			sql.append("FROM wkf_view_application_form ");
-			sql.append("WHERE ");
-			sql.append("company_code = ?");
-			sql.append(" AND application_classification_code = ?;");
+			sql.append("SELECT");
+			sql.append(" A.company_code");
+			sql.append(",A.company_name");
+			sql.append(",A.application_form_code");
+			sql.append(",A.application_form_name");
+			sql.append(",A.application_classification_code");
+			sql.append(",A.application_classification_name");
+			sql.append(",A.skip_apply_user");
+			sql.append(",A.auto_approval_flag");
+			sql.append(" FROM wkf_view_application_form");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND application_classification_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);

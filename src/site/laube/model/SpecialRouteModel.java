@@ -165,17 +165,15 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("route_code, ");
-			sql.append("route_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_special_route");
-			sql.append(" ");
-			sql.append("WHERE ");
-			sql.append("company_code\" = ? ");
-			sql.append("ORDER BY route_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",route_code");
+			sql.append(",route_name");
+			sql.append(" FROM wkf_view_special_route");
+			sql.append(" WHERE");
+			sql.append(" company_code\" = ?");
+			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -253,18 +251,16 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("route_code, ");
-			sql.append("route_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_special_route");
-			sql.append(" ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("route_code = ? ");
-			sql.append("ORDER BY \"route_code\"");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",route_code");
+			sql.append(",route_name");
+			sql.append(" FROM wkf_view_special_route");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND route_code = ?");
+			sql.append(" ORDER BY \"route_code\"");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

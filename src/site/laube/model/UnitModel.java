@@ -64,14 +64,15 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("unit_code, ");
-			sql.append("unit_name ");
-			sql.append("FROM wkf_unit ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
-			sql.append("AND unit_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",unit_code");
+			sql.append(",unit_name");
+			sql.append(" FROM wkf_unit");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND unit_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);

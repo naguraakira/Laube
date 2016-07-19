@@ -55,11 +55,11 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_role ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_role");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
@@ -119,12 +119,12 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_role ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("role_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_role");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and role_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -183,23 +183,26 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_role ");
+			sql.append("INSERT INTO wkf_role");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("role_code,");
-			sql.append("role_name,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",role_code");
+			sql.append(",role_name");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(")");
+			sql.append(" VALUES(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -262,14 +265,15 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_role ");
-			sql.append("SET ");
-			sql.append("role_name = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_user_id = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("role_code = ?;");
+			sql.append("UPDATE wkf_role");
+			sql.append(" SET");
+			sql.append(" role_name = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_user_id = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and role_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -397,16 +401,15 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("role_code, ");
-			sql.append("role_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_role ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
-			sql.append("ORDER BY role_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",role_code");
+			sql.append(",role_name");
+			sql.append(" FROM wkf_view_role");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" ORDER BY role_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -477,17 +480,16 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("role_code, ");
-			sql.append("role_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_role ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
-			sql.append("AND role_code = ?");
-			sql.append("ORDER BY role_code");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",role_code");
+			sql.append(",role_name");
+			sql.append(" FROM wkf_view_role");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND role_code = ?");
+			sql.append(" ORDER BY role_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -567,15 +569,14 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			}
 
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("role_code, ");
-			sql.append("role_name ");
-			sql.append("FROM ");
-			sql.append("wkf_view_role ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",role_code");
+			sql.append(",role_name");
+			sql.append(" FROM wkf_view_role");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
 
 			if (isSettingYes){
 				sql.append("AND role_name LIKE ?");

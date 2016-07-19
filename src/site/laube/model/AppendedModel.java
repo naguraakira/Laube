@@ -62,11 +62,11 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 		try {
 			// deletion processing (company unit)
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_appended ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_appended");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -126,12 +126,12 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_appended ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("applicationNumber = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_appended");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND applicationNumber = ?");
+			sql.append(";");
 
 			log.info("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -191,31 +191,35 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_appended ");
+			sql.append("INSERT INTO wkf_appended");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("application_number,");
-			sql.append("approval_company_code,");
-			sql.append("approval_unit_code,");
-			sql.append("approval_user_code,");
-			sql.append("approval_path,");
-			sql.append("approval_date,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",application_number");
+			sql.append(",approval_company_code");
+			sql.append(",approval_unit_code");
+			sql.append(",approval_user_code");
+			sql.append(",approval_path");
+			sql.append(",approval_date");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(")");
+			sql.append(" VALUES");
+			sql.append("(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.info("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -281,22 +285,23 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_appended ");
-			sql.append("SET ");
-			sql.append("company_code = ?, ");
-			sql.append("application_number = ?, ");
-			sql.append("approval_number = ?, ");
-			sql.append("approval_company_code = ?, ");
-			sql.append("approval_unit_code = ?, ");
-			sql.append("approval_user_code = ?, ");
-			sql.append("approval_path = ?, ");
-			sql.append("approval_date = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_user_id = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("application_number = ? AND ");
-			sql.append("approval_number = ?;");
+			sql.append("UPDATE wkf_appended");
+			sql.append(" SET");
+			sql.append(" company_code = ?");
+			sql.append(",application_number = ?");
+			sql.append(",approval_number = ?");
+			sql.append(",approval_company_code = ?");
+			sql.append(",approval_unit_code = ?");
+			sql.append(",approval_user_code = ?");
+			sql.append(",approval_path = ?");
+			sql.append(",approval_date = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_user_id = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND application_number = ?");
+			sql.append(" AND approval_number = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -386,27 +391,28 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 				throw new LaubeException("company Code / applicationNumber is a required field. Be sure to set.");
 			}
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name,");
-			sql.append("application_number, ");
-			sql.append("approval_number,");
-			sql.append("approval_company_code,");
-			sql.append("approval_unit_code,");
-			sql.append("approval_user_code,");
-			sql.append("approval_path, ");
-			sql.append("approval_date,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id");
-			sql.append("from wkf_view_Appended as A ");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",application_number,");
+			sql.append(",approval_number");
+			sql.append(",approval_company_code");
+			sql.append(",approval_unit_code");
+			sql.append(",approval_user_code");
+			sql.append(",approval_path");
+			sql.append(",approval_date");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(" from wkf_view_Appended as A");
 
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("applicationNumber = ?;");
-			sql.append("ORDER BY ");
-			sql.append("approval_number ASC;");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" AND applicationNumber = ?");
+			sql.append(" ORDER BY");
+			sql.append(" approval_number ASC");
+			sql.append(";");
 
 			log.info("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);

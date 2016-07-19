@@ -63,11 +63,11 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_application_classification ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_application_classification");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] SQL:" + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -128,12 +128,12 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_application_classification ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("application_classification_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_application_classification");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and application_classification_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -192,25 +192,28 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_application_classification ");
+			sql.append("INSERT INTO wkf_application_classification");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("application_classification_code,");
-			sql.append("application_classification_name,");
-			sql.append("sort_order,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",application_classification_code");
+			sql.append(",application_classification_name");
+			sql.append(",sort_order");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(")");
+			sql.append(" VALUES(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -274,15 +277,16 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_application_classification ");
-			sql.append("SET ");
-			sql.append("application_classification_name = ?, ");
-			sql.append("sort_order = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_user_id = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("application_classification_code = ?;");
+			sql.append("UPDATE wkf_application_classification");
+			sql.append(" SET");
+			sql.append(" application_classification_name = ?");
+			sql.append(",sort_order = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_user_id = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and application_classification_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -359,14 +363,15 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("application_classification_code, ");
-			sql.append("application_classification_name ");
-			sql.append("FROM wkf_view_application_classification ");
-			sql.append("WHERE ");
-			sql.append("company_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",application_classification_code");
+			sql.append(",application_classification_name");
+			sql.append(" FROM wkf_view_application_classification");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
@@ -445,15 +450,16 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("application_classification_code, ");
-			sql.append("application_classification_name ");
-			sql.append("FROM wkf_view_application_classification ");
-			sql.append("WHERE ");
-			sql.append("company_code = ?");
-			sql.append(" AND application_classification_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",application_classification_code");
+			sql.append(",application_classification_name");
+			sql.append(" FROM wkf_view_application_classification");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and application_classification_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
@@ -532,21 +538,22 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 		try {
 			final StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name, ");
-			sql.append("application_classification_code, ");
-			sql.append("application_classification_name, ");
-			sql.append("unit_code, ");
-			sql.append("unit_name, ");
-			sql.append("individual_route_code, ");
-			sql.append("individual_route_name, ");
-			sql.append("common_route_code, ");
-			sql.append("common_route_name ");
-			sql.append("FROM wkf_view_application_classification_Activity ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
-			sql.append("and common_route_code = ?;");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",application_classification_code");
+			sql.append(",application_classification_name");
+			sql.append(",unit_code");
+			sql.append(",unit_name");
+			sql.append(",individual_route_code");
+			sql.append(",individual_route_name");
+			sql.append(",common_route_code");
+			sql.append(",common_route_name");
+			sql.append(" FROM wkf_view_application_classification_Activity");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and common_route_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);

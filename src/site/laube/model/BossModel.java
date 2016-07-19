@@ -63,11 +63,11 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 		try {
 			// deletion processing (company unit)
 			final  StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_boss ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_boss");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL]" + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -129,12 +129,12 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		try {
 			final  StringBuffer sql = new StringBuffer();
-			sql.append("DELETE ");
-			sql.append("FROM ");
-			sql.append("wkf_boss ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("user_code = ? ");
+			sql.append("DELETE");
+			sql.append(" FROM wkf_boss");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and user_code = ? ");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -194,31 +194,34 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		try {
 			final  StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO wkf_boss ");
+			sql.append("INSERT INTO wkf_boss");
 			sql.append("(");
-			sql.append("company_code,");
-			sql.append("unit_code,");
-			sql.append("user_code,");
-			sql.append("application_form_code,");
-			sql.append("boss_company_code,");
-			sql.append("boss_unit_code,");
-			sql.append("boss_user_code,");
-			sql.append("create_date_time,");
-			sql.append("create_user_id,");
-			sql.append("update_date_time,");
-			sql.append("update_user_id) ");
-			sql.append("VALUES(");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?,");
-			sql.append("CURRENT_TIMESTAMP(0),");
-			sql.append("?);");
+			sql.append(" company_code");
+			sql.append(",unit_code");
+			sql.append(",user_code");
+			sql.append(",application_form_code");
+			sql.append(",boss_company_code");
+			sql.append(",boss_unit_code");
+			sql.append(",boss_user_code");
+			sql.append(",create_date_time");
+			sql.append(",create_user_id");
+			sql.append(",update_date_time");
+			sql.append(",update_user_id");
+			sql.append(")");
+			sql.append(" VALUES(");
+			sql.append(" ?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(",CURRENT_TIMESTAMP(0)");
+			sql.append(",?");
+			sql.append(")");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -286,18 +289,19 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 		try {
 			final  StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE wkf_boss ");
-			sql.append("SET ");
-			sql.append("boss_company_code = ?, ");
-			sql.append("boss_unit_code = ?, ");
-			sql.append("boss_user_code = ?, ");
-			sql.append("update_date_time = CURRENT_TIMESTAMP(0), ");
-			sql.append("update_userID = ? ");
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("unit_code = ? AND ");
-			sql.append("user_code = ? AND ");
-			sql.append("application_form_code = ?;");
+			sql.append("UPDATE wkf_boss");
+			sql.append(" SET");
+			sql.append(" boss_company_code = ?");
+			sql.append(",boss_unit_code = ?");
+			sql.append(",boss_user_code = ?");
+			sql.append(",update_date_time = CURRENT_TIMESTAMP(0)");
+			sql.append(",update_userID = ?");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and unit_code = ?");
+			sql.append(" and user_code = ?");
+			sql.append(" and application_form_code = ?");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
@@ -507,30 +511,31 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 				throw new LaubeException("company Code / department code / employee number is a required field. Be sure to set.");
 			}
 			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append("company_code, ");
-			sql.append("company_name,");
-			sql.append("unit_code, ");
-			sql.append("unit_name,");
-			sql.append("user_code,");
-			sql.append("user_name,");
-			sql.append("application_form_code,");
-			sql.append("application_form_name, ");
-			sql.append("boss_company_code,");
-			sql.append("boss_company_name,");
-			sql.append("boss_unit_code,");
-			sql.append("boss_unit_name,");
-			sql.append("boss_user_code,");
-			sql.append("boss_user_name ");
-			sql.append("from wkf_view_boss as A ");
+			sql.append("SELECT");
+			sql.append(" company_code");
+			sql.append(",company_name");
+			sql.append(",unit_code");
+			sql.append(",unit_name");
+			sql.append(",user_code");
+			sql.append(",user_name");
+			sql.append(",application_form_code");
+			sql.append(",application_form_name");
+			sql.append(",boss_company_code");
+			sql.append(",boss_company_name");
+			sql.append(",boss_unit_code");
+			sql.append(",boss_unit_name");
+			sql.append(",boss_user_code");
+			sql.append(",boss_user_name");
+			sql.append(" from wkf_view_boss as A");
 
-			sql.append("WHERE ");
-			sql.append("company_code = ? AND ");
-			sql.append("unit_code = ? AND ");
-			sql.append("user_Code = ? AND ");
-			sql.append("application_form_code = ? ");
-			sql.append("ORDER BY ");
-			sql.append("unit_code ASC;");
+			sql.append(" WHERE");
+			sql.append(" company_code = ?");
+			sql.append(" and unit_code = ?");
+			sql.append(" and user_Code = ?");
+			sql.append(" and application_form_code = ?");
+			sql.append(" ORDER BY");
+			sql.append(" unit_code ASC");
+			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
@@ -542,30 +547,30 @@ public final class BossModel extends LaubeModel implements BossModelInterface {
 
 			if (!this.resultSet.first()) {
 				sql = new StringBuffer();
-				sql.append("SELECT ");
-				sql.append("company_code, ");
-				sql.append("company_name,");
-				sql.append("unit_code, ");
-				sql.append("unit_name,");
-				sql.append("user_code,");
-				sql.append("user_name,");
-				sql.append("application_form_code,");
-				sql.append("application_form_name, ");
-				sql.append("boss_company_code,");
-				sql.append("boss_company_name,");
-				sql.append("boss_unit_code,");
-				sql.append("boss_unit_name,");
-				sql.append("boss_user_code,");
-				sql.append("boss_user_name ");
-				sql.append("from wkf_view_boss as A ");
-
-				sql.append("WHERE ");
-				sql.append("company_code = ? AND ");
-				sql.append("unit_code = ? AND ");
-				sql.append("user_Code = ? AND ");
-				sql.append("application_form_code IS NULL ");
-				sql.append("ORDER BY ");
-				sql.append("unit_code ASC;");
+				sql.append("SELECT");
+				sql.append(" company_code");
+				sql.append(",company_name");
+				sql.append(",unit_code");
+				sql.append(",unit_name");
+				sql.append(",user_code");
+				sql.append(",user_name");
+				sql.append(",application_form_code");
+				sql.append(",application_form_name");
+				sql.append(",boss_company_code");
+				sql.append(",boss_company_name");
+				sql.append(",boss_unit_code");
+				sql.append(",boss_unit_name");
+				sql.append(",boss_user_code");
+				sql.append(",boss_user_name");
+				sql.append(" from wkf_view_boss as A");
+				sql.append(" WHERE");
+				sql.append(" company_code = ?");
+				sql.append(" and unit_code = ?");
+				sql.append(" and user_Code = ?");
+				sql.append(" and application_form_code IS NULL");
+				sql.append(" ORDER BY");
+				sql.append(" unit_code ASC");
+				sql.append(";");
 
 				log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
 				this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
