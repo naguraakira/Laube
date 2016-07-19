@@ -488,7 +488,7 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append(" FROM wkf_view_role");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND role_code = ?");
+			sql.append(" and role_code = ?");
 			sql.append(" ORDER BY role_code");
 			sql.append(";");
 
@@ -579,10 +579,10 @@ public final class RoleModel extends LaubeModel implements RoleModelInterface {
 			sql.append(" company_code = ?");
 
 			if (isSettingYes){
-				sql.append("AND role_name LIKE ?");
+				sql.append(" and role_name LIKE ?");
 			}
 
-			sql.append("ORDER BY company_cde, role_code");
+			sql.append(" ORDER BY company_cde, role_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

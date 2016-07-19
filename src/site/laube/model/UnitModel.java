@@ -71,7 +71,7 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 			sql.append(" FROM wkf_unit");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND unit_code = ?");
+			sql.append(" and unit_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

@@ -374,17 +374,17 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 		try {
 			final StringBuffer sql = new StringBuffer();
 			sql.append("SELECT");
-			sql.append(" A.\"company_code\"");
-			sql.append(",A.\"company_name\"");
-			sql.append(",A.\"application_form_code\"");
-			sql.append(",A.\"application_form_name\"");
-			sql.append(",A.\"application_classification_code\"");
-			sql.append(",A.\"application_classification_name\"");
-			sql.append(",A.\"skip_apply_user\"");
-			sql.append(",A.\"auto_approval_flag\"");
-			sql.append(" FROM \"wkf_view_application_form\"");
+			sql.append(" A.company_code");
+			sql.append(",A.company_name");
+			sql.append(",A.application_form_code");
+			sql.append(",A.application_form_name");
+			sql.append(",A.application_classification_code");
+			sql.append(",A.application_classification_name");
+			sql.append(",A.skip_apply_user");
+			sql.append(",A.auto_approval_flag");
+			sql.append(" FROM wkf_view_application_form");
 			sql.append(" WHERE");
-			sql.append(" \"company_code\" = ?");
+			sql.append(" company_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -479,7 +479,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(" FROM wkf_view_application_form");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND application_form_code = ?");
+			sql.append(" and application_form_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -572,7 +572,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(" FROM wkf_view_application_form");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND application_classification_code = ?");
+			sql.append(" and application_classification_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

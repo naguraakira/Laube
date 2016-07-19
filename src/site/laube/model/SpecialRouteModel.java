@@ -172,7 +172,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			sql.append(",route_name");
 			sql.append(" FROM wkf_view_special_route");
 			sql.append(" WHERE");
-			sql.append(" company_code\" = ?");
+			sql.append(" company_code = ?");
 			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
@@ -259,8 +259,8 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			sql.append(" FROM wkf_view_special_route");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND route_code = ?");
-			sql.append(" ORDER BY \"route_code\"");
+			sql.append(" and route_code = ?");
+			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

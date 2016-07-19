@@ -62,8 +62,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 		try {
 			final StringBuffer sql = new StringBuffer();
 			sql.append("DELETE");
-			sql.append(" FROM ");
-			sql.append(" wkf_individual_route");
+			sql.append(" FROM wkf_individual_route");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
 			sql.append(";");
@@ -131,7 +130,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" FROM wkf_individual_route");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND individual_route_code = ?");
+			sql.append(" and individual_route_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -280,7 +279,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(",update_user_id = ? ");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND individual_route_code = ?");
+			sql.append(" and individual_route_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -419,7 +418,7 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(",route_name");
 			sql.append(" FROM wkf_view_individual_route");
 			sql.append(" WHERE");
-			sql.append(" company_code\" = ?");
+			sql.append(" company_code = ?");
 			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
@@ -506,8 +505,8 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" FROM wkf_view_individual_route");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND route_code = ?");
-			sql.append(" ORDER BY \"route_code\"");
+			sql.append(" and route_code = ?");
+			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

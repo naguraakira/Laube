@@ -71,7 +71,7 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 			sql.append(" FROM wkf_user");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND user_code = ?");
+			sql.append(" and user_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

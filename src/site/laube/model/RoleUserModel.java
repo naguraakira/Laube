@@ -70,8 +70,8 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" FROM wkf_role_user");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND role_code = ?");
-			sql.append(" AND user_code = ?");
+			sql.append(" and role_code = ?");
+			sql.append(" and user_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -226,7 +226,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(",update_user_id = ?");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND role_code = ?");
+			sql.append(" and role_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -306,8 +306,8 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" FROM wkf_view_role_user");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND role_code = ?");
-			sql.append(" AND user_code = ?");
+			sql.append(" and role_code = ?");
+			sql.append(" and user_code = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -399,7 +399,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" FROM wkf_view_user_role");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND user_code = ?");
+			sql.append(" and user_code = ?");
 			sql.append(" ORDER BY role_code");
 			sql.append(";");
 
@@ -492,7 +492,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" FROM wkf_view_role_user");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND role_code = ?");
+			sql.append(" and role_code = ?");
 			sql.append(" ORDER BY user_code");
 			sql.append(";");
 

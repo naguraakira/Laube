@@ -93,7 +93,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(" FROM wkf_view_application_object");
 			sql.append(" WHERE ");
 			sql.append(" company_code = ?");
-			sql.append(" AND application_number = ?");
+			sql.append(" and application_number = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

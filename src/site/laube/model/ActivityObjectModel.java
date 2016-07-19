@@ -522,7 +522,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		}
 
 		try {
-			final String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? AND application_number = ?;";
+			final String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? and application_number = ?;";
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
@@ -622,7 +622,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(",update_user_id");
 			sql.append(" FROM wkf_view_activity_object");
 			sql.append(" WHERE");
-			sql.append(" company_code = ? AND application_number = ? AND approval_company_code = ? AND approval_unit_code = ? AND approval_user_code = ? AND activity_status = ?");
+			sql.append(" company_code = ? and application_number = ? and approval_company_code = ? and approval_unit_code = ? and approval_user_code = ? and activity_status = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());

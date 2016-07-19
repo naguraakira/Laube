@@ -130,7 +130,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(" FROM wkf_appended");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND applicationNumber = ?");
+			sql.append(" and applicationNumber = ?");
 			sql.append(";");
 
 			log.info("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -299,8 +299,8 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(",update_user_id = ?");
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND application_number = ?");
-			sql.append(" AND approval_number = ?");
+			sql.append(" and application_number = ?");
+			sql.append(" and approval_number = ?");
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -409,7 +409,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 
 			sql.append(" WHERE");
 			sql.append(" company_code = ?");
-			sql.append(" AND applicationNumber = ?");
+			sql.append(" and applicationNumber = ?");
 			sql.append(" ORDER BY");
 			sql.append(" approval_number ASC");
 			sql.append(";");

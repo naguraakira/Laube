@@ -105,7 +105,7 @@ public class LaubeModel {
 	 *
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	public void commit() throws LaubeException {
+	public final void commit() throws LaubeException {
 
 		log.info("[workflowEngine] " + "commit start");
 
@@ -126,7 +126,7 @@ public class LaubeModel {
 	 * @return after data
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	public ArrayList<LaubeDto> conversion(final ResultSet resultSet, LaubeDto workflowDto) throws LaubeException {
+	public final ArrayList<LaubeDto> conversion(final ResultSet resultSet, LaubeDto workflowDto) throws LaubeException {
 
 		log.info("[workflowEngine] " + "conversion start");
 		log.info("[workflowEngine] " + "[argument]");
@@ -136,24 +136,18 @@ public class LaubeModel {
 		final ArrayList<LaubeDto> result = new ArrayList<LaubeDto>();
 
 		try {
-
 			do {
 				LaubeDto updateWorkflowDto = resultSetToDto(resultSet, workflowDto);
-
 				if (LaubeUtility.isEmpty(updateWorkflowDto)){
 					break;
 				}
-
 				log.debug("[workflowEngine] " + "[updateWorkflowDto] " + updateWorkflowDto);
 				result.add(updateWorkflowDto);
-
 			} while (resultSet.next());
-
 		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "conversion end");
 			throw new LaubeException(e);
 		}
-
 		log.info("[workflowEngine] " + "conversion end");
 		return result;
 	}
@@ -167,7 +161,7 @@ public class LaubeModel {
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "static-method", "nls", "boxing" })
-	public LaubeDto resultSetToDto(final ResultSet resultSet, final LaubeDto workflowDto) throws LaubeException {
+	public final LaubeDto resultSetToDto(final ResultSet resultSet, final LaubeDto workflowDto) throws LaubeException {
 
 		log.info("[workflowEngine] " + "resultSetToDto start");
 		log.info("[workflowEngine] " + "[argument]");
@@ -177,7 +171,6 @@ public class LaubeModel {
 		LaubeDto laubeDto = workflowDto;
 
 		try {
-
 			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
 			ArrayList<String> itemList = new ArrayList<String>();
 
@@ -219,7 +212,6 @@ public class LaubeModel {
 		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "resultSetToDto end");
 			throw new LaubeException(e);
-
 		}
 		log.info("[workflowEngine] " + "resultSetToDto end");
 		return laubeDto;
@@ -234,7 +226,7 @@ public class LaubeModel {
 	 * @throws Exception
 	 */
 	@SuppressWarnings({ "static-method", "nls" })
-	protected boolean checkRequiredItem(ResultDto resultDto, LaubeDto workflowDto, String[] items) throws LaubeException {
+	protected final boolean checkRequiredItem(ResultDto resultDto, LaubeDto workflowDto, String[] items) throws LaubeException {
 
 		log.info("[workflowEngine] " + "checkRequiredItem start");
 		log.info("[workflowEngine] " + "[argument]");
@@ -266,7 +258,6 @@ public class LaubeModel {
 			log.info("[workflowEngine] " + "checkRequiredItem end" );
 			throw new LaubeException(e);
 		}
-
 		log.info("[workflowEngine] " + "checkRequiredItem end" );
 		return true;
 	}

@@ -63,7 +63,7 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(" FROM wkf_application_classification_activity");
 		sql.append(" WHERE");
 		sql.append(" company_code = ?");
-		sql.append(" AND application_classification_code = ?");
+		sql.append(" and application_classification_code = ?");
 		sql.append(";");
 
 		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -163,8 +163,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(",update_user_id = ?");
 		sql.append(" WHERE");
 		sql.append(" company_code = ?");
-		sql.append(" AND application_classification_code = ?");
-		sql.append(" AND activity_code = ?");
+		sql.append(" and application_classification_code = ?");
+		sql.append(" and activity_code = ?");
 		sql.append(";");
 
 		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
@@ -209,7 +209,7 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(",update_user_id");
 		sql.append(" FROM wkf_view_special_activity");
 		sql.append(" WHERE");
-		sql.append(" company_code = ? AND route_code = ?");
+		sql.append(" company_code = ? and route_code = ?");
 		sql.append(" ORDER BY company_code asc,activity_code asc");
 		sql.append(";");
 
@@ -255,7 +255,9 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(",update_user_id");
 		sql.append(" FROM wkf_view_special_activity");
 		sql.append(" WHERE");
-		sql.append(" company_code = ? AND route_code = ? AND activity_code = ?");
+		sql.append(" company_code = ?");
+		sql.append(" and route_code = ?");
+		sql.append(" and activity_code = ?");
 		sql.append(" ORDER BY company_code asc,route_code asc,activity_code asc");
 		sql.append(";");
 
