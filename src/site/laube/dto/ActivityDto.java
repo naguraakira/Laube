@@ -1,7 +1,5 @@
 package site.laube.dto;
 
-import site.laube.utility.LaubeUtility;
-
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -29,14 +27,6 @@ public final class ActivityDto extends PartyDto {
 	 * to manage the activity code. <br>
 	 */
 	private int activityCode;
-
-	/**
-	 * to manage the route type. <br>
-	 * 1:Individual route<br>
-	 * 2:Common route<br>
-	 * 3:Special route<br>
-	 */
-	private int routeType;
 
 	/**
 	 * to manage the approval company code.<br>
@@ -105,22 +95,6 @@ public final class ActivityDto extends PartyDto {
 	}
 
 	/**
-	 * set the route type.<br>
-	 * @param routeType route type
-	 */
-	public void setRouteType(int routeType) {
-		this.routeType = routeType;
-	}
-
-	/**
-	 * get the route type.<br>
-	 * @return route type
-	 */
-	public int getRouteType() {
-		return routeType;
-	}
-
-	/**
 	 * set the company code of the approver.<br>
 	 * @param approvalCompanyCode company code of the approver
 	 */
@@ -140,7 +114,7 @@ public final class ActivityDto extends PartyDto {
 	 * set the company name of the approver.<br>
 	 * @param approvalCompanyName company name of the approver
 	 */
-	public void setApprovalCompanyName(String approvalCompanyName) {
+	public final void setApprovalCompanyName(String approvalCompanyName) {
 		this.approvalCompanyName = approvalCompanyName;
 	}
 
@@ -148,7 +122,7 @@ public final class ActivityDto extends PartyDto {
 	 * get the company name of the approver.<br>
 	 * @return company name of the approver
 	 */
-	public String getApprovalCompanyName() {
+	public final String getApprovalCompanyName() {
 		return this.approvalCompanyName;
 	}
 
@@ -204,7 +178,7 @@ public final class ActivityDto extends PartyDto {
 	 * set the unit name of the approver.<br>
 	 * @param approvalUnitName unit name of the approver
 	 */
-	public void setApprovalUnitName(String approvalUnitName) {
+	public final void setApprovalUnitName(String approvalUnitName) {
 		this.approvalUnitName = approvalUnitName;
 	}
 
@@ -212,7 +186,7 @@ public final class ActivityDto extends PartyDto {
 	 * get the unit name of the approver.<br>
 	 * @return unit name of the approver
 	 */
-	public String getApprovalUnitName() {
+	public final String getApprovalUnitName() {
 		return this.approvalUnitName;
 	}
 
@@ -236,7 +210,7 @@ public final class ActivityDto extends PartyDto {
 	 * set the employee name of the approver.<br>
 	 * @param approvalUserName employee name of the approver
 	 */
-	public void setApprovalUserName(String approvalUserName) {
+	public final void setApprovalUserName(String approvalUserName) {
 		this.approvalUserName = approvalUserName;
 	}
 
@@ -244,7 +218,7 @@ public final class ActivityDto extends PartyDto {
 	 * get the employee name of the approver.<br>
 	 * @return employee name of the approver
 	 */
-	public String getApprovalUserName() {
+	public final String getApprovalUserName() {
 		return this.approvalUserName;
 	}
 
@@ -278,14 +252,5 @@ public final class ActivityDto extends PartyDto {
 	 */
 	public final String getNextPartyCode() {
 		return this.nextPartyCode;
-	}
-
-	/**
-	 * all the items in the class will be returned.<br>
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return LaubeUtility.reflectionToString(this);
 	}
 }
