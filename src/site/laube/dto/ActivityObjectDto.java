@@ -214,7 +214,7 @@ public class ActivityObjectDto extends ApplicationObjectDto {
 	 * @return route type
 	 */
 	public final int getRouteType() {
-		return routeType;
+		return this.routeType;
 	}
 
 	/**

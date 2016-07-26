@@ -1,10 +1,9 @@
 package site.laube.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.RouteModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.type.RouteType;
 
 /*
@@ -28,7 +27,7 @@ public abstract class RouteModel extends LaubeModel {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(RouteModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RouteModel.class);
 
 	/**
 	 * it returns the root model class.<br>

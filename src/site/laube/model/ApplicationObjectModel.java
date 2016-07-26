@@ -8,14 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ApplicationObjectDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.ApplicationObjectModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -39,7 +38,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ApplicationObjectModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationObjectModel.class);
 
 	/**
 	 * search the application object.<br>
@@ -48,19 +47,17 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	 * @return LaubeResult
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public ResultDto find(final String companyCode, final long applicationNumber) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
+		log.traceStart("find", companyCode, applicationNumber);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -96,7 +93,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(" and application_number = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setLong  (2, applicationNumber);
@@ -104,16 +101,15 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
+				log.message("find","the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find","[SQL]");
+				log.message("find",sql.toString());
+				log.message("find","");
+				log.message("find","[Extraction condition]");
+				log.message("find","[companyCode]: " + companyCode);
+				log.message("find","[applicationNumber]: " + applicationNumber);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -122,12 +118,10 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find",e);
 
 		} finally {
 			try {
@@ -142,9 +136,9 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				throw new LaubeException("find",e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -157,16 +151,14 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	@SuppressWarnings({ "nls", "boxing" })
 	public final ResultDto insert(final ApplicationObjectDto applicationObjectDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "insert start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[applicationObjectDto]: " + applicationObjectDto);
+		log.traceStart("insert", applicationObjectDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(applicationObjectDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "insert end");
+			log.traceEnd("insert");
 			return resultDto;
 		}
 
@@ -227,7 +219,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(")");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("insert","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, companyCode);
 			this.preparedStatement.setLong  ( 2, reApplicationNumber);
@@ -245,12 +237,10 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.preparedStatement.executeUpdate();
 
 		} catch (final ParseException pe) {
-			log.info("[workflowEngine] " + "insert end");
-			throw new LaubeException(pe);
+			throw new LaubeException("insert",pe);
 
 		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "insert end");
-			throw new LaubeException(se);
+			throw new LaubeException("insert",se);
 
 		} finally {
 			try {
@@ -265,13 +255,13 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 				}
 
 			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "insert end");
-				throw new LaubeException(e);
+				throw new LaubeException("insert",e);
 			}
+			log.traceEnd("insert");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "insert end");
+		log.traceEnd("insert");
 		return resultDto;
 	}
 
@@ -284,16 +274,14 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 	@SuppressWarnings({ "nls", "boxing" })
 	public final ResultDto update(final ApplicationObjectDto applicationObjectDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "update start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[applicationObjectDto]: " + applicationObjectDto);
+		log.traceStart("update", applicationObjectDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(applicationObjectDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "update end");
+			log.traceEnd("update");
 			return resultDto;
 		}
 
@@ -334,7 +322,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(" and application_number = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("update", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, applyCompanyCode);
 			this.preparedStatement.setString( 2, applyUnitCode);
@@ -351,12 +339,10 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final ParseException pe) {
-			log.info("[workflowEngine] " + "update end");
-			throw new LaubeException(pe);
+			throw new LaubeException("update",pe);
 
 		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "update end");
-			throw new LaubeException(se);
+			throw new LaubeException("update",se);
 
 		} finally {
 
@@ -372,13 +358,13 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 				}
 
 			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "update end");
-				throw new LaubeException(e);
+				throw new LaubeException("update",e);
 			}
+			log.traceEnd("update");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "update end");
+		log.traceEnd("update");
 		return resultDto;
 	}
 }

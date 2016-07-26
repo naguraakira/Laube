@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.dto.ActivityDto;
 import site.laube.dto.ApplicationClassificationDto;
@@ -40,6 +37,8 @@ import site.laube.modelinterface.DeputyApprovelModelInterface;
 import site.laube.modelinterface.RoleUserModelInterface;
 import site.laube.modelinterface.UnitModelInterface;
 import site.laube.modelinterface.UserModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
@@ -66,7 +65,7 @@ public final class VisitorUtility {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(RequestSystemVisitor.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(VisitorUtility.class);
 
 	/**
 	 * commit.<br>
@@ -74,31 +73,28 @@ public final class VisitorUtility {
 	 * @return result
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final boolean commit(Connection connection) throws LaubeException {
 
-		log.info("[workflowEngine] " + "commit start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "connection:" + connection);
+		log.traceStart("commit", connection);
 
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+		if ("true".equals(LaubeProperties.getValue("isAutoCommit"))){
 			final String errMessage = "auto commit mode now.you can not call this method.";
-			log.info("[workflowEngine] " + "commit end");
-			throw new LaubeException(errMessage);
+			throw new LaubeException("commit", errMessage);
 		}
 
 		if (LaubeUtility.isEmpty(connection)){
 			final String errMessage = "connection is null.";
-			log.info("[workflowEngine] " + "commit end");
-			throw new LaubeException(errMessage);
+			throw new LaubeException("commit", errMessage);
 		}
 
 		try {
 			connection.commit();
 			connection.close();
-			log.info("[workflowEngine] " + "commit end");
+			log.traceEnd("commit");
 			return true;
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "commit end");
+			log.traceEnd("commit");
 			return false;
 		}
 	}
@@ -109,31 +105,28 @@ public final class VisitorUtility {
 	 * @return result
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final boolean rollback(Connection connection) throws LaubeException {
 
-		log.info("[workflowEngine] " + "rollback start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "connection:" + connection);
+		log.traceStart("rollback", connection);
 
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+		if ("true".equals(LaubeProperties.getValue("isAutoCommit"))){
 			final String errMessage = "auto commit mode now.you can not call this method.";
-			log.info("[workflowEngine] " + "rollback end");
-			throw new LaubeException(errMessage);
+			throw new LaubeException("rollback", errMessage);
 		}
 
 		if (LaubeUtility.isEmpty(connection)){
 			final String errMessage = "connection is null.";
-			log.info("[workflowEngine] " + "rollback end");
-			throw new LaubeException(errMessage);
+			throw new LaubeException("rollback", errMessage);
 		}
 
 		try {
 			connection.rollback();
 			connection.close();
-			log.info("[workflowEngine] " + "rollback end");
+			log.traceEnd("rollback");
 			return true;
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "rollback end");
+			log.traceEnd("rollback");
 			return false;
 		}
 	}
@@ -144,27 +137,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findCompany(final String companyCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findCompany start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
+		log.traceStart("findCompany", companyCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findCompany end");
+			log.traceEnd("findCompany");
 			return resultDto;
 		}
 
 		final CompanyModelInterface companyModelInterface = new CompanyModel();
 		resultDto = companyModelInterface.find(companyCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findCompany end");
+			log.traceEnd("findCompany");
 			return resultDto;
 		}
 
@@ -174,7 +164,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(companyDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findCompany end");
+		log.traceEnd("findCompany");
 		return resultDto;
 	}
 
@@ -185,27 +175,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findUnit(final String companyCode, final String unitCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findUnit start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "unitCode:" + unitCode);
+		log.traceStart("findUnit", companyCode, unitCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findUnit end");
+			log.traceEnd("findCompany");
 			return resultDto;
 		}
 
 		final UnitModelInterface unitModelInterface = new UnitModel();
 		resultDto = unitModelInterface.find(companyCode, unitCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findUnit end");
+			log.traceEnd("findCompany");
 			return resultDto;
 		}
 
@@ -215,7 +202,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(applyUnitDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findUnit end");
+		log.traceEnd("findCompany");
 		return resultDto;
 	}
 
@@ -226,28 +213,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findUser(final String companyCode, final String userCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findUser start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
-		log.info("[workflowEngine] " + "userCode:" + userCode);
+		log.traceStart("findUser", companyCode, userCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findUser end");
+			log.traceEnd("findUser");
 			return resultDto;
 		}
 
 		final UserModelInterface userModelInterface = new UserModel();
 		resultDto = userModelInterface.find(companyCode, userCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findUser end");
+			log.traceEnd("findUser");
 			return resultDto;
 		}
 
@@ -257,7 +240,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(userDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findUser end");
+		log.traceEnd("findUser");
 		return resultDto;
 	}
 
@@ -268,28 +251,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findApplicationForm(final String companyCode, final String applicationFormCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findApplicationForm start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
-		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+		log.traceStart("findApplicationForm", companyCode, applicationFormCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findApplicationForm end");
+			log.traceEnd("findApplicationForm");
 			return resultDto;
 		}
 
 		final ApplicationFormModelInterface applicationFormModelInterface = new ApplicationFormModel();
 		resultDto = applicationFormModelInterface.findByApplicationFormCode(companyCode, applicationFormCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findApplicationForm end");
+			log.traceEnd("findApplicationForm");
 			return resultDto;
 		}
 
@@ -299,7 +278,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(applicationFormDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findApplicationForm end");
+		log.traceEnd("findApplicationForm");
 		return resultDto;
 	}
 
@@ -311,29 +290,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findApplicationFormRoute(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findApplicationFormRoute start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
-		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
-		log.info("[workflowEngine] " + "unitCode:" + unitCode);
+		log.traceStart("findApplicationFormRoute", companyCode, applicationFormCode, unitCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findApplicationFormRoute end");
+			log.traceEnd("findApplicationFormRoute");
 			return resultDto;
 		}
 
 		final ApplicationFormRouteModelInterface applicationFormRouteModelInterface = new ApplicationFormRouteModel();
 		resultDto = applicationFormRouteModelInterface.find(companyCode, applicationFormCode, unitCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findApplicationFormRoute end");
+			log.traceEnd("findApplicationFormRoute");
 			return resultDto;
 		}
 
@@ -343,7 +317,7 @@ public final class VisitorUtility {
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
 		resultDto.setResultData(applicationFormRouteDto);
-		log.info("[workflowEngine] " + "findApplicationFormRoute end");
+		log.traceEnd("findApplicationFormRoute");
 		return resultDto;
 	}
 
@@ -354,28 +328,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findApplicationClassification(final String companyCode, final String applicationClassificationCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findApplicationClassification start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
-		log.info("[workflowEngine] " + "applicationClassificationCode:" + applicationClassificationCode);
+		log.traceStart("findApplicationClassification", companyCode, applicationClassificationCode);
 
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findApplicationClassification end");
+			log.traceEnd("findApplicationClassification");
 			return resultDto;
 		}
 
 		final ApplicationClassificationModelInterface applicationClassificationModelInterfaces = new ApplicationClassificationModel();
 		resultDto = applicationClassificationModelInterfaces.findByApplicationClassificationCode(companyCode, applicationClassificationCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findApplicationClassification end");
+			log.traceEnd("findApplicationClassification");
 			return resultDto;
 		}
 
@@ -385,7 +355,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(applicationClassificationDto);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findApplicationClassification end");
+		log.traceEnd("findApplicationClassification");
 		return resultDto;
 	}
 
@@ -397,20 +367,17 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findRoute(final String companyCode, final String routeCode, final RouteType routeType) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findRoute start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
-		log.info("[workflowEngine] " + "routeCode:" + routeCode);
+		log.traceStart("findRoute", companyCode, routeCode, routeType);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))||(LaubeUtility.isEmpty(routeType))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findRoute end");
+			log.traceEnd("findRoute");
 			return resultDto;
 		}
 
@@ -475,7 +442,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(approvalRouteInformationAcceptors);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findRoute end");
+		log.traceEnd("findRoute");
 		return resultDto;
 	}
 
@@ -488,26 +455,20 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static final ResultDto findRoute(
 			final String applyCompanyCode,
 			final String applyUnitCode,
 			final String applyUserCode,
 			final String applicationFormCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findRoute start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "applyCompanyCode:" + applyCompanyCode);
-		log.info("[workflowEngine] " + "applyUnitCode:" + applyUnitCode);
-		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
-		log.info("[workflowEngine] " + "applicationFormCode:" + applicationFormCode);
+		log.traceStart("findRoute", applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 
 		final BossModelInterface bossModelInterface = new BossModel();
 		ResultDto resultDto = bossModelInterface.findByChainOfResposibility(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
 		if (LaubeUtility.isEmpty(resultDto)) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "findRoute end");
+			log.traceEnd("findRoute");
 			return resultDto;
 		}
 
@@ -520,7 +481,7 @@ public final class VisitorUtility {
 		if ((LaubeUtility.isEmpty(bossDtos))||(bossDtos.size() < 1)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E1002");
-			log.info("[workflowEngine] " + "findRoute end");
+			log.traceEnd("findRoute");
 			return resultDto;
 		}
 
@@ -555,7 +516,7 @@ public final class VisitorUtility {
 		resultDto.setResultData(approvalRouteInformationAcceptors);
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "findRoute end");
+		log.traceEnd("findRoute");
 		return resultDto;
 	}
 
@@ -566,26 +527,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final ResultDto getDeputyApprovalList(final String companyCode, final String approvalUserCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "getDeputyApprovalList start.");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] "  + "companyCode:" + companyCode);
-		log.info("[workflowEngine] "  + "approvalUserCode:" + approvalUserCode);
+		log.traceStart("getDeputyApprovalList", companyCode, approvalUserCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(companyCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "visit end");
+			log.traceEnd("getDeputyApprovalList");
 			return resultDto;
 		}
 
 		if (LaubeUtility.isEmpty(approvalUserCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "visit end");
+			log.traceEnd("getDeputyApprovalList");
 			return resultDto;
 		}
 
@@ -593,10 +552,10 @@ public final class VisitorUtility {
 		resultDto = deputyApprovelModelInterface.find(companyCode, approvalUserCode);
 
 		if (!resultDto.isSuccess()) {
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "visit end");
+			log.traceEnd("getDeputyApprovalList");
 			return resultDto;
 		}
+		log.traceEnd("getDeputyApprovalList");
 		return resultDto;
 	}
 
@@ -607,26 +566,24 @@ public final class VisitorUtility {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final ResultDto circulatedNextApprover(final String companyCode, final long applicationNumber) throws LaubeException {
 
-		log.info("[workflowEngine] " + "circulatedNextApprover start.");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] "  + "companyCode:" + companyCode);
-		log.info("[workflowEngine] "  + "applicationNumber:" + applicationNumber);
+		log.traceStart("circulatedNextApprover", companyCode, applicationNumber);
 
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(companyCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "visit end");
+			log.traceEnd("circulatedNextApprover");
 			return resultDto;
 		}
 
 		if (LaubeUtility.isEmpty(applicationNumber)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "visit end");
+			log.traceEnd("circulatedNextApprover");
 			return resultDto;
 		}
 
@@ -647,8 +604,7 @@ public final class VisitorUtility {
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E1999");
-			log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-			log.info("[workflowEngine] " + "visit end");
+			log.traceEnd("circulatedNextApprover");
 			return resultDto;
 		}
 
@@ -660,7 +616,7 @@ public final class VisitorUtility {
 
 
 
-		log.info("[workflowEngine] " + "circulatedNextApprover end.");
+		log.traceEnd("circulatedNextApprover");
 		return resultDto;
 	}
 }

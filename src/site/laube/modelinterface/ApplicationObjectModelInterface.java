@@ -37,7 +37,7 @@ public interface ApplicationObjectModelInterface {
 	 * @return rsult
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto insert(final ApplicationObjectDto applicationObjectDto) throws LaubeException;
 
 	/**
@@ -46,6 +46,6 @@ public interface ApplicationObjectModelInterface {
 	 * @return rsult
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto update(final ApplicationObjectDto applicationObjectDto) throws LaubeException;
 }

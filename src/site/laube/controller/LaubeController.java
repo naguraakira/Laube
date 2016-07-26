@@ -2,14 +2,13 @@ package site.laube.controller;
 
 import java.io.Serializable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.ApprovalSystemAcceptor;
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.visitor.ApprovalSystemVisitor;
 import site.laube.visitor.RequestSystemVisitor;
 import site.laube.visitor.SearchSystemVisitor;
@@ -35,7 +34,7 @@ public final class LaubeController implements Serializable {
 	/**
 	 * to manage the log.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(LaubeController.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeController.class);
 
 	/**
 	 * Make the application-based processing.<br>
@@ -43,11 +42,10 @@ public final class LaubeController implements Serializable {
 	 * @param searchSystemVisitor search system visitor
 	 * @return ResultDto
 	 */
-	public final ResultDto doSearch(final SearchSystemAcceptor searchSystemAcceptor,SearchSystemVisitor searchSystemVisitor) {
+	@SuppressWarnings("nls")
+	public final static ResultDto doSearch(final SearchSystemAcceptor searchSystemAcceptor,SearchSystemVisitor searchSystemVisitor) {
 
-		log.info("[workflowEngine] " + "doSearch start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[searchSystemAcceptor]: " + searchSystemAcceptor);
+		log.traceStart("doSearch", searchSystemAcceptor, searchSystemVisitor);
 
 		ResultDto resultDto = null;
 
@@ -55,22 +53,20 @@ public final class LaubeController implements Serializable {
 			resultDto = searchSystemAcceptor.accept(searchSystemVisitor);
 
 		}catch(final LaubeException e){
-			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.info("[workflowEngine] " + "doSearch end");
+			log.traceEnd("doSearch");
 			return resultDto;
 
 		}catch(final Exception e){
-			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.info("[workflowEngine] " + "doSearch end");
+			log.traceEnd("doSearch");
 			return resultDto;
 		}
-		log.info("[workflowEngine] " + "doSearch end");
+		log.traceEnd("doSearch");
 		return resultDto;
 	}
 
@@ -80,11 +76,10 @@ public final class LaubeController implements Serializable {
 	 * @param requestSystemVisitor request system visitor
 	 * @return ResultDto
 	 */
-	public final ResultDto doRequest(final RequestSystemAcceptor requestSystemAcceptor,RequestSystemVisitor requestSystemVisitor) {
+	@SuppressWarnings("nls")
+	public final static ResultDto doRequest(final RequestSystemAcceptor requestSystemAcceptor,RequestSystemVisitor requestSystemVisitor) {
 
-		log.info("[workflowEngine] " + "doRequest start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[requestSystemAcceptor]: " + requestSystemAcceptor);
+		log.traceStart("doRequest", requestSystemAcceptor, requestSystemVisitor);
 
 		ResultDto resultDto = null;
 
@@ -92,22 +87,20 @@ public final class LaubeController implements Serializable {
 			resultDto = requestSystemAcceptor.accept(requestSystemVisitor);
 
 		}catch(final LaubeException e){
-			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.info("[workflowEngine] " + "doRequest end");
+			log.traceEnd("doRequest");
 			return resultDto;
 
 		}catch(final Exception e){
-			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.info("[workflowEngine] " + "doRequest end");
+			log.traceEnd("doRequest");
 			return resultDto;
 		}
-		log.info("[workflowEngine] " + "doRequest end");
+		log.traceEnd("doRequest");
 		return resultDto;
 	}
 
@@ -117,11 +110,10 @@ public final class LaubeController implements Serializable {
 	 * @param approvalSystemVisitor approval system visitor
 	 * @return ResultDto
 	 */
-	public final ResultDto doApproval(final ApprovalSystemAcceptor approvalAcceptor,ApprovalSystemVisitor approvalSystemVisitor) {
+	@SuppressWarnings("nls")
+	public final static ResultDto doApproval(final ApprovalSystemAcceptor approvalAcceptor,ApprovalSystemVisitor approvalSystemVisitor) {
 
-		log.info("[workflowEngine] " + "doApproval start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[approvalAcceptor]: " + approvalAcceptor);
+		log.traceStart("doApproval", approvalAcceptor, approvalSystemVisitor);
 
 		ResultDto resultDto = null;
 
@@ -129,22 +121,20 @@ public final class LaubeController implements Serializable {
 			resultDto = approvalAcceptor.accept(approvalSystemVisitor);
 
 		}catch(final LaubeException e){
-			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.info("[workflowEngine] " + "doApproval end");
+			log.traceEnd("doApproval");
 			return resultDto;
 
 		}catch(final Exception e){
-			log.error("[workflowEngine] " + e.getMessage());
 			resultDto = new ResultDto();
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E8001");
-			log.info("[workflowEngine] " + "doApproval end");
+			log.traceEnd("doApproval");
 			return resultDto;
 		}
-		log.info("[workflowEngine] " + "doApproval end");
+		log.traceEnd("doApproval");
 		return resultDto;
 	}
 }

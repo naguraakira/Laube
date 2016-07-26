@@ -4,15 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ActivityDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.dto.RouteDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.RouteModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -36,7 +35,7 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(SpecialRouteModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SpecialRouteModel.class);
 
 	/**
 	 * removal of the special route master (company units)<br>

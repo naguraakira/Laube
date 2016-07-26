@@ -42,6 +42,7 @@ public final class SpecifiedValue implements Serializable {
 	public static final int Special                            = 3;   // 特別
 
 	// party code
+	@SuppressWarnings("nls")
 	public static final String END                             = "E"; // 終了パーティコード
 
 	// connector
@@ -87,10 +88,12 @@ public final class SpecifiedValue implements Serializable {
 	/**
 	 * to manage the encryption password.<br>
 	 */
+	@SuppressWarnings("nls")
 	public static final String CipherPassword = "PocketSoft Co.,Ltd";
 
 	/**
 	 * date format<br>
 	 */
+	@SuppressWarnings("nls")
 	public static final String[] DateFormat =  new String[]{"yyyy-MM-dd", "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss"};
 }

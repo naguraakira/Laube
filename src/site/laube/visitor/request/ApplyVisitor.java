@@ -4,9 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.request.ApplyAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
@@ -22,6 +19,8 @@ import site.laube.model.ApplicationObjectModel;
 import site.laube.model.LaubeModel;
 import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.modelinterface.ApplicationObjectModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
@@ -49,7 +48,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ApplyVisitor.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplyVisitor.class);
 
 	/**
 	 * Do the application work.<br>
@@ -57,11 +56,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public ResultDto visit(final RequestSystemAcceptor requestSystemAcceptor) throws LaubeException {
 
-		log.info("[workflowEngine] " + "visit start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
+		log.traceStart("visit",requestSystemAcceptor);
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -69,7 +67,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		if (LaubeUtility.isEmpty(requestSystemAcceptor)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -79,7 +76,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 		}
 
 		boolean isAutoCommit = false;
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+		if (LaubeProperties.TRUE.equals(LaubeProperties.getValue("isAutoCommit"))){
 			isAutoCommit = true;
 		}else{
 			isAutoCommit = false;
@@ -91,8 +88,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			if (RequestUtility.isEmpty(applyAcceptor)) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
-				log.error("[workflowEngine] " + "[resultDto] " + resultDto.toString());
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -109,11 +104,11 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			final String deputyApplyUserCode = applyAcceptor.getDeputyApplyUserCode();
 			final int applicationStatus = SpecifiedValue.UnderExamination;
 
-			log.debug("[workflowEngine] " + "Find the application form master.");
-			VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
+			log.message("visit","Find the application form master.");
+			resultDto = VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
-				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.info("[workflowEngine] " + "visit end");
+				resultDto.setStatus(false);
+				resultDto.setMessageId("E0001");
 				return resultDto;
 			}
 			ApplicationFormDto applicationFormDto  = (ApplicationFormDto)resultDto.getResultData();
@@ -131,21 +126,18 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			if (check1) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0002");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			if (check2) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0003");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			if (check3) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0007");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -169,7 +161,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			if (!isCheck) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0009");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -198,7 +189,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				}else{
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E0010");
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
@@ -238,20 +228,17 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				resultDto = activityObjectModelInterface.delete(companyCode, applicationNumber);
 				if (!resultDto.isSuccess()) {
 					LaubeModel.connection.rollback();
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
 					LaubeModel.connection.rollback();
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				LaubeModel.connection.rollback();
 				if (!resultDto.isSuccess()) {
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
@@ -266,7 +253,6 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 			if (!resultDto.isSuccess()) {
 				LaubeModel.connection.rollback();
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -279,13 +265,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(applicationNumber);
-			log.debug("[workflowEngine] " + "applicationNumber is " + applicationNumber);
-			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 
 		}catch(final Exception e){
-			log.info("[workflowEngine] " + "visit end");
-			throw new LaubeException(e);
+			throw new LaubeException("visit",e);
 
 		}finally{
 			try {
@@ -294,10 +277,10 @@ public class ApplyVisitor extends RequestSystemVisitor {
 						LaubeModel.connection.close();
 					}
 				}
-				log.info("[workflowEngine] " + "visit end");
+				log.traceEnd("visit",resultDto);
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "visit end");
-				throw new LaubeException(e);
+				log.traceEnd("visit",e);
+				throw new LaubeException("visit",e);
 			}
 		}
 	}
@@ -308,17 +291,16 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @return List<ActivityObjectDto>
 	 * @exception LaubeException
 	 */
-	private final List<ActivityObjectDto> changeTheFirstApproverOfStatus(List<ActivityObjectDto> activityObjectDtoList) {
+	@SuppressWarnings("nls")
+	private final static List<ActivityObjectDto> changeTheFirstApproverOfStatus(List<ActivityObjectDto> activityObjectDtoList) {
 
-		log.info("[workflowEngine] " + "changeTheFirstApproverOfStatus start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
+		log.traceStart("changeTheFirstApproverOfStatus", activityObjectDtoList);
 
 		boolean result = true;
 
 
 		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
-			log.info("[workflowEngine] " + "changeTheFirstApproverOfStatus end");
+			log.traceEnd("changeTheFirstApproverOfStatus");
 			return activityObjectDtoList;
 		}
 
@@ -335,7 +317,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			}
 		}
 
-		log.info("[workflowEngine] " + "changeTheFirstApproverOfStatus end");
+		log.traceEnd("changeTheFirstApproverOfStatus");
 		return activityObjectDtoList;
 	}
 
@@ -345,17 +327,15 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param target
 	 * @return result
 	 */
-	private final boolean isFirstParty(List<ActivityObjectDto> activityObjectDtoList, final ActivityObjectDto target){
+	@SuppressWarnings("nls")
+	private final static boolean isFirstParty(List<ActivityObjectDto> activityObjectDtoList, final ActivityObjectDto target){
 
-		log.info("[workflowEngine] " + "isFirstParty start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
-		log.info("[workflowEngine] " + "target:" + target);
+		log.traceStart("isFirstParty", activityObjectDtoList, target);
 
 		boolean result = true;
 
 		if ((LaubeUtility.isEmpty(activityObjectDtoList))||(LaubeUtility.isEmpty(target))) {
-			log.info("[workflowEngine] " + "isFirstParty end");
+			log.traceEnd("isFirstParty");
 			return false;
 		}
 
@@ -367,7 +347,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				}
 			}
 		}
-		log.info("[workflowEngine] " + "isFirstParty end");
+		log.traceEnd("isFirstParty");
 		return result;
 	}
 
@@ -377,30 +357,28 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	 * @param partyCode
 	 * @return result
 	 */
-	private final boolean setArrivalStatus(List<ActivityObjectDto> activityObjectDtoList, final String partyCode){
+	@SuppressWarnings("nls")
+	private final static boolean setArrivalStatus(List<ActivityObjectDto> activityObjectDtoList, final String partyCode){
 
-		log.info("[workflowEngine] " + "setArrivalStatus start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
-		log.info("[workflowEngine] " + "partyCode:" + partyCode);
+		log.traceStart("setArrivalStatus", activityObjectDtoList, partyCode);
 
 		boolean result = true;
 
 		if ((LaubeUtility.isEmpty(activityObjectDtoList))||(LaubeUtility.isBlank(partyCode))) {
-			log.info("[workflowEngine] " + "setArrivalStatus end");
+			log.traceEnd("setArrivalStatus");
 			return false;
 		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (LaubeUtility.isEmpty(activityObjectDto)){
-				log.info("[workflowEngine] " + "setArrivalStatus end");
+				log.traceEnd("setArrivalStatus");
 				return false;
 			}
 			if (partyCode.equals(activityObjectDto.getPartyCode())) {
 				activityObjectDto.setActivityStatus(SpecifiedValue.Arrival);
 			}
 		}
-		log.info("[workflowEngine] " + "setArrivalStatus end");
+		log.traceEnd("setArrivalStatus");
 		return result;
 	}
 }

@@ -3,10 +3,9 @@ package site.laube.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 
@@ -31,8 +30,11 @@ public final class DbConnectManager {
 	/**
 	 * to manage the log.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(DbConnectManager.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(DbConnectManager.class);
 
+	/**
+	 * connection<br>
+	 */
 	private static Connection connection = null;
 
 	/**
@@ -51,32 +53,31 @@ public final class DbConnectManager {
 	 * @return Connection object
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static Connection getConnection() throws LaubeException {
 
-		log.info("[workflowEngine] " + "getConnection start");
+		log.traceStart("getConnection");
 
 		try {
 			if ((LaubeUtility.isEmpty(connection)) || (connection.isClosed())) {
-				LaubeProperties workflowProperties = LaubeProperties.getInstance();
-				String dbDriver = workflowProperties.getValue("db.driver");
-				String url = workflowProperties.getValue("db.url");
-				String userName = workflowProperties.getValue("db.user");
-				String password =  workflowProperties.getValue("db.password");
+				String dbDriver = LaubeProperties.getValue("db.driver");
+				String url      = LaubeProperties.getValue("db.url");
+				String userName = LaubeProperties.getValue("db.user");
+				String password = LaubeProperties.getValue("db.password");
 
 				try {
 					Class.forName (dbDriver);
 					connection = DriverManager.getConnection(url, userName, password);
 					connection.setAutoCommit(false);
 				} catch (Exception e) {
-					log.info("[workflowEngine] " + "getConnection end");
-					throw new LaubeException(e);
+					throw new LaubeException("getConnection", e);
 				}
 			}
 		} catch (final Exception e) {
 			log.info("[workflowEngine] " + "getConnection end");
-			throw new LaubeException(e);
+			throw new LaubeException("getConnection", e);
 		}
-		log.info("[workflowEngine] " + "getConnection end");
+		log.traceEnd("getConnection");
 		return connection;
 	}
 }

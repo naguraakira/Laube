@@ -95,7 +95,7 @@ public class PartyTransitDto extends RouteDto {
 	 * @return branch item name
 	 */
 	public final String getBranchItemName() {
-		return branchItemName;
+		return this.branchItemName;
 	}
 
 	/**
@@ -127,6 +127,6 @@ public class PartyTransitDto extends RouteDto {
 	 * @return comparison operator
 	 */
 	public final int getComparisonOperator() {
-		return comparisonOperator;
+		return this.comparisonOperator;
 	}
 }

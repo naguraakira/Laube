@@ -21,7 +21,7 @@ public class UserDto extends UnitDto {
 	/**
 	 * to manage the serial version ID.<br>
 	 */
-	private static final long serialVersionUID = 4575225513879036593L;
+//	private static final long serialVersionUID = 4575225513879036593L;
 
 	/**
 	 * to manage the employee number.<br>

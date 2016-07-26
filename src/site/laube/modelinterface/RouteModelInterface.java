@@ -65,7 +65,6 @@ public interface RouteModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("static-method")
 	public abstract boolean isOccupied(final String companyCode, final String routeCode) throws LaubeException;
 
 	/**

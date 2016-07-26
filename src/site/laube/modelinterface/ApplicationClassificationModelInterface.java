@@ -63,7 +63,6 @@ public interface ApplicationClassificationModelInterface {
 	 * @return Application form master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode) throws LaubeException;
 
 	/**
@@ -73,6 +72,5 @@ public interface ApplicationClassificationModelInterface {
 	 * @return Application form master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("nls")
 	public abstract ResultDto findByApplicationClassificationCode(final String companyCode, final String applicationClassificationCode) throws LaubeException;
 }

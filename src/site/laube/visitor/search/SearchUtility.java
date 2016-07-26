@@ -2,12 +2,11 @@ package site.laube.visitor.search;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.search.RouteSearchAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 
@@ -32,50 +31,49 @@ public class SearchUtility {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(SearchUtility.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SearchUtility.class);
 
 	/**
 	 * check of essential items.
 	 * @param routeSearchAcceptor route search acceptor
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
+	@SuppressWarnings({ "nls" })
 	public static final boolean isEmpty(final RouteSearchAcceptor routeSearchAcceptor){
 
-		log.info("[workflowEngine] " + "isEmpty start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "routeSearchAcceptor:" + routeSearchAcceptor);
+		log.traceStart("isEmpty", routeSearchAcceptor);
 
 		if (LaubeUtility.isEmpty(routeSearchAcceptor)) {
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getCompanyCode())) {
-			log.info("[workflowEngine] " + "isEmpty end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplicationFormCode())) {
-			log.info("[workflowEngine] " + "isEmpty end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyCompanyCode())) {
-			log.info("[workflowEngine] " + "isEmpty end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUnitCode())) {
-			log.info("[workflowEngine] " + "isEmpty end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(routeSearchAcceptor.getApplyUserCode())) {
-			log.info("[workflowEngine] " + "isEmpty end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
-		log.info("[workflowEngine] " + "isEmpty end");
+		log.traceEnd("isEmpty");
 		return false;
 	}
 
@@ -84,25 +82,23 @@ public class SearchUtility {
 	 * @param applyUserCode apply user code
 	 * @param routeSearchAcceptor individual route(updates in this method)
 	 */
+	@SuppressWarnings("nls")
 	protected static final void updateIndividualRoute(final String applyUserCode, final RouteSearchAcceptor routeSearchAcceptor) throws LaubeException {
 
-		log.info("[workflowEngine] " + "updateIndividualRoute start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
-		log.info("[workflowEngine] " + "routeSearchAcceptor:" + routeSearchAcceptor);
+		log.traceStart("updateIndividualRoute", applyUserCode, routeSearchAcceptor);
 
 		if (LaubeUtility.isEmpty(routeSearchAcceptor)){
-			log.info("[workflowEngine] " + "updateIndividualRoute end");
+			log.traceEnd("updateIndividualRoute");
 			return;
 		}
 
 		if (LaubeUtility.isEmpty(routeSearchAcceptor.getIndividualRoutes())){
-			log.info("[workflowEngine] " + "updateIndividualRoute end");
+			log.traceEnd("updateIndividualRoute");
 			return;
 		}
 
 		if (LaubeUtility.isBlank(applyUserCode)){
-			log.info("[workflowEngine] " + "updateIndividualRoute end");
+			log.traceEnd("updateIndividualRoute");
 			return;
 		}
 
@@ -113,7 +109,7 @@ public class SearchUtility {
 				}
 			}
 		}
-		log.info("[workflowEngine] " + "updateIndividualRoute end");
+		log.traceEnd("updateIndividualRoute");
 	}
 
 	/**
@@ -121,16 +117,15 @@ public class SearchUtility {
 	 * @param applyUserCode apply user code
 	 * @param routeSearchAcceptor individual route(updates in this method)
 	 */
+	@SuppressWarnings("nls")
 	protected static final boolean isAllSkip(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptorList) throws LaubeException {
 
-		log.info("[workflowEngine] " + "isAllSkip start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "approvalRouteInformationAcceptorList:" + approvalRouteInformationAcceptorList);
+		log.traceStart("isAllSkip", approvalRouteInformationAcceptorList);
 
 		boolean result = true;
 
 		if (LaubeUtility.isEmpty(approvalRouteInformationAcceptorList)){
-			log.info("[workflowEngine] " + "isAllSkip end");
+			log.traceEnd("isAllSkip");
 			return result;
 		}
 
@@ -141,7 +136,7 @@ public class SearchUtility {
 				}
 			}
 		}
-		log.info("[workflowEngine] " + "isAllSkip end");
+		log.traceEnd("isAllSkip");
 		return result;
 	}
 }

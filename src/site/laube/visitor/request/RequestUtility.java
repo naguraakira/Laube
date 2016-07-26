@@ -3,13 +3,12 @@ package site.laube.visitor.request;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 
@@ -34,50 +33,49 @@ public class RequestUtility {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(RequestUtility.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RequestUtility.class);
 
 	/**
 	 * check activity status.<br>
 	 * @param activityObjectDtoList activity Object Dto List
 	 * @return boolean
 	 */
+	@SuppressWarnings("nls")
 	protected static final boolean checkActivityStatus(final List<ActivityObjectDto> activityObjectDtoList) {
 
-		log.info("[workflowEngine] " + "checkActivityStatus start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "activityObjectDtoList:" + activityObjectDtoList);
+		log.traceStart("checkActivityStatus", activityObjectDtoList);
 
 		boolean result = true;
 
 		if (LaubeUtility.isEmpty(activityObjectDtoList)) {
-			log.info("[workflowEngine] " + "checkActivityStatus end");
+			log.traceEnd("checkActivityStatus");
 			return false;
 		}
 
 		for(ActivityObjectDto activityObjectDto : activityObjectDtoList) {
 			if (LaubeUtility.isEmpty(activityObjectDto)) {
-				log.info("[workflowEngine] " + "checkActivityStatus end");
+				log.traceEnd("checkActivityStatus");
 				return false;
 			}
 
 			if (SpecifiedValue.Authorizer_Untreated == activityObjectDto.getActivityStatus()) {
-				log.info("[workflowEngine] " + "checkActivityStatus end");
+				log.traceEnd("checkActivityStatus");
 				return false;
 			}
 
 			if (SpecifiedValue.Arrival == activityObjectDto.getActivityStatus()) {
 				if (SpecifiedValue.FunctionConfirmation != activityObjectDto.getFunction()) {
-					log.info("[workflowEngine] " + "checkActivityStatus end");
+					log.traceEnd("checkActivityStatus");
 					return false;
 				}
 			}
 
 			if (SpecifiedValue.Hold == activityObjectDto.getActivityStatus()) {
-				log.info("[workflowEngine] " + "checkActivityStatus end");
+				log.traceEnd("checkActivityStatus");
 				return false;
 			}
 		}
-		log.info("[workflowEngine] " + "checkActivityStatus end");
+		log.traceEnd("checkActivityStatus");
 		return result;
 	}
 
@@ -86,47 +84,47 @@ public class RequestUtility {
 	 * @param requestSystemAcceptor request System Acceptor
 	 * @return result
 	 */
+	@SuppressWarnings("nls")
 	protected static final boolean isEmpty(final RequestSystemAcceptor requestSystemAcceptor){
 
-		log.info("[workflowEngine] " + "isNull start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
+		log.traceStart("isEmpty", requestSystemAcceptor);
 
 		if (LaubeUtility.isEmpty(requestSystemAcceptor)) {
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getCompanyCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplicationFormCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyDate())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyCompanyCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyUnitCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(requestSystemAcceptor.getApplyUserCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
-		log.info("[workflowEngine] " + "isNull end");
+		log.traceEnd("isEmpty");
 		return false;
 	}
 
@@ -139,17 +137,14 @@ public class RequestUtility {
 	 * @return List<ActivityObjectDto> result
 	 * @exception LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected static final List<ActivityObjectDto> copyToActivityDto(
 			final String companyCode,
 			final String applyUserCode,
 			final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptor
 			) throws LaubeException {
 
-		log.info("[workflowEngine] " + "copyToActivityDto start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "companyCode:" + companyCode);
-		log.info("[workflowEngine] " + "applyUserCode:" + applyUserCode);
-		log.info("[workflowEngine] " + "approvalRouteInformationAcceptor:" + approvalRouteInformationAcceptor);
+		log.traceStart("copyToActivityDto", companyCode, applyUserCode, approvalRouteInformationAcceptor);
 
 		List<ActivityObjectDto> activityObjectDtos = new ArrayList<ActivityObjectDto>();
 
@@ -183,7 +178,7 @@ public class RequestUtility {
 				activityObjectDtos.add(activityObjectDto);
 			}
 		}
-		log.info("[workflowEngine] " + "copyToActivityDto end");
+		log.traceEnd("copyToActivityDto");
 		return activityObjectDtos;
 	}
 
@@ -192,11 +187,10 @@ public class RequestUtility {
 	 * @param approvalRouteInformationAcceptors
 	 * @return result
 	 */
+	@SuppressWarnings("nls")
 	protected static final boolean checkRoute(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors) {
 
-		log.info("[workflowEngine] " + "checkRoute start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
+		log.traceStart("checkRoute", approvalRouteInformationAcceptors);
 
 		boolean result = true;
 		if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptors)){
@@ -218,20 +212,20 @@ public class RequestUtility {
 			for(ApprovalRouteInformationAcceptor route : approvalRouteInformationAcceptors) {
 				if (!LaubeUtility.isEmpty(route)) {
 					keywords.add(route.getPartyCode() + route.getNextPartyCode());
-					log.debug("[workflowEngine] " + "keywords:" + keywords);
+					log.message("checkRoute","keywords:" + keywords);
 					if (!checkNextParty(approvalRouteInformationAcceptors, route.getNextPartyCode(), keywords)) {
-						log.error("[workflowEngine] " + "error next party");
-						log.info("[workflowEngine] " + "checkRoute end");
+						log.crush("checkRoute","error next party");
+						log.traceEnd("checkRoute");
 						return false;
 					}else{
-						log.debug("[workflowEngine] " + "initialize keywords");
+						log.message("checkRoute","initialize keywords");
 						keywords = new ArrayList<String>();
 					}
 				}
 			}
 		}
 
-		log.debug("[workflowEngine] " + "checkRoute end");
+		log.traceEnd("checkRoute");
 		return result;
 	}
 
@@ -244,19 +238,17 @@ public class RequestUtility {
 	@SuppressWarnings({ "nls", "static-method" })
 	private static final boolean checkItem(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final ApprovalRouteInformationAcceptor target) {
 
-		log.info("[workflowEngine] " + "checkItem start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
-		log.info("[workflowEngine] " + "target:" + target);
+		log.traceStart("checkItem", approvalRouteInformationAcceptors, target);
 
 		if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(LaubeUtility.isEmpty(target))) {
+			log.traceEnd("checkItem");
 			return false;
 		}
 
 		// check party code
 		if (LaubeUtility.isBlank(target.getPartyCode())) {
-			log.error("[workflowEngine] " + "error party code");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error party code");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
@@ -267,8 +259,8 @@ public class RequestUtility {
 		final boolean isPartyCodeConnector = isUnspecified || isLogicalSum || isLogicalProduct;
 
 		if (!isPartyCodeConnector) {
-			log.error("[workflowEngine] " + "error party code connector");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error party code connector");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
@@ -279,29 +271,29 @@ public class RequestUtility {
 		final boolean isRouteType       = isIndividualRoute || isCommonRoute || isSpecial;
 
 		if (!isRouteType) {
-			log.error("[workflowEngine] " + "error route type");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error route type");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
 		// check of approval company code
 		if (LaubeUtility.isBlank(target.getApprovalCompanyCode())) {
-			log.error("[workflowEngine] " + "error approval company code");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error approval company code");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
 		// check of approval unit code
 		if (LaubeUtility.isBlank(target.getApprovalUnitCode())) {
-			log.error("[workflowEngine] " + "error approval unit code");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error approval unit code");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
 		// check of approval user code
 		if (LaubeUtility.isBlank(target.getApprovalUserCode())) {
-			log.error("[workflowEngine] " + "error approval user code");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error approval user code");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
@@ -312,21 +304,21 @@ public class RequestUtility {
 		final boolean isDeputy = isDeputyApprovalCompanyCode && isDeputyApprovalUnitCode && isDeputyApprovalUserCode;
 		final boolean isNotDeputy = !isDeputyApprovalCompanyCode && !isDeputyApprovalUnitCode && !isDeputyApprovalUserCode;
 		if (!((isDeputy)||(isNotDeputy))) {
-			log.error("[workflowEngine] " + "error deputy approval");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error deputy approval");
+			log.traceEnd("checkItem");
 			return false;
 		}
 		if (isDeputy) {
 			if (LaubeUtility.isBlank(target.getDeputyApprovalComment())){
-				log.error("[workflowEngine] " + "error deputy comment");
-				log.info("[workflowEngine] " + "checkItem end");
+				log.crush("checkItem","error deputy comment");
+				log.traceEnd("checkItem");
 				return false;
 			}
 		}
 		if (isNotDeputy) {
 			if (!LaubeUtility.isBlank(target.getDeputyApprovalComment())){
-				log.error("[workflowEngine] " + "error deputy comment");
-				log.info("[workflowEngine] " + "checkItem end");
+				log.crush("checkItem","error deputy comment");
+				log.traceEnd("checkItem");
 				return false;
 			}
 		}
@@ -336,22 +328,22 @@ public class RequestUtility {
 		final boolean isFunctionConfirmation  = target.getFunction() == SpecifiedValue.FunctionConfirmation;
 		final boolean isFunction       = isExamination || isFunctionConfirmation;
 		if (!isFunction) {
-			log.error("[workflowEngine] " + "error function");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error function");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
 		// check next party code
 		if (LaubeUtility.isBlank(target.getNextPartyCode())) {
-			log.error("[workflowEngine] " + "error next party code");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error next party code");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
 		// check of party transit code
 		if (LaubeUtility.isBlank(target.getPartyTransitCode())){
-			log.error("[workflowEngine] " + "error party transit code");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error party transit code");
+			log.traceEnd("checkItem");
 			return false;
 		}
 
@@ -361,11 +353,11 @@ public class RequestUtility {
 		isLogicalProduct     = target.getPartyTransitCodeConnector() == SpecifiedValue.LogicalProduct;
 		final boolean isPartyTransitCodeConnector = isUnspecified || isLogicalSum || isLogicalProduct;
 		if (!isPartyTransitCodeConnector) {
-			log.error("[workflowEngine] " + "error party code connector");
-			log.info("[workflowEngine] " + "checkItem end");
+			log.crush("checkItem","error party code connector");
+			log.traceEnd("checkItem");
 			return false;
 		}
-
+		log.traceEnd("checkItem");
 		return true;
 	}
 
@@ -373,19 +365,16 @@ public class RequestUtility {
 	 * check of next party.(recursive processing)
 	 * @param approvalRouteInformationAcceptors
 	 * @param nextPartyCode next party code
-	 * @param keywords
+	 * @param keywords partyCode + nextpartyCode
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
+	@SuppressWarnings("nls")
 	private static final boolean checkNextParty(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final String nextPartyCode, ArrayList<String> keywords) {
 
-		log.info("[workflowEngine] " + "checkNextParty start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "approvalRouteInformationAcceptors:" + approvalRouteInformationAcceptors);
-		log.info("[workflowEngine] " + "nextPartyCode: " + nextPartyCode);
-		log.info("[workflowEngine] " + "keywords:" + keywords);
+		log.traceStart("checkNextParty", approvalRouteInformationAcceptors, nextPartyCode, keywords);
 
 		if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(LaubeUtility.isBlank(nextPartyCode))||(LaubeUtility.isEmpty(keywords))) {
+			log.traceEnd("checkNextParty");
 			return true;
 		}
 
@@ -393,15 +382,15 @@ public class RequestUtility {
 			// discover the next party code
 			if (nextPartyCode.equals(route.getPartyCode())) {
 				if (route.getNextPartyCode().equals(SpecifiedValue.END)) {
-					log.debug("[workflowEngine] " + "success to find the final party");
-					log.info("[workflowEngine] " + "checkNextParty end");
+					log.message("checkNextParty", "success to find the final party");
+					log.traceEnd("checkNextParty");
 					return true;
 				}
 				// if the next party code is known of the party error
 				for(String keyword : keywords) {
 					if ((route.getPartyCode() + route.getNextPartyCode()).equals(keyword)) {
-						log.error("[workflowEngine] " + "already add party code. party code is [" + route.getPartyCode() + route.getNextPartyCode() + "]");
-						log.info("[workflowEngine] " + "checkNextParty end");
+						log.crush("checkNextParty", "already add party code. party code is [" + route.getPartyCode() + route.getNextPartyCode() + "]");
+						log.traceEnd("checkNextParty");
 						return false;
 					}
 				}
@@ -409,15 +398,15 @@ public class RequestUtility {
 
 				boolean result = checkNextParty(approvalRouteInformationAcceptors, route.getNextPartyCode(), keywords);
 				if (!result) {
-					log.error("[workflowEngine] " + "error checkNextParty");
-					log.info("[workflowEngine] " + "checkNextParty end");
+					log.crush("checkNextParty", "error checkNextParty");
+					log.traceEnd("checkNextParty");
 					return false;
 				}else{
-					keywords = new ArrayList<String>();
+					keywords.clear();
 				}
 			}
 		}
-		log.info("[workflowEngine] " + "checkNextParty end");
+		log.traceEnd("checkNextParty");
 		return true;
 	}
 }

@@ -4,9 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.request.DraftAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
@@ -22,6 +19,8 @@ import site.laube.model.ApplicationObjectModel;
 import site.laube.model.LaubeModel;
 import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.modelinterface.ApplicationObjectModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
@@ -49,7 +48,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(DraftVisitor.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(DraftVisitor.class);
 
 	/**
 	 * Do the application work.<br>
@@ -57,11 +56,10 @@ public class DraftVisitor extends RequestSystemVisitor {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public ResultDto visit(final RequestSystemAcceptor requestSystemAcceptor) throws LaubeException {
 
-		log.info("[workflowEngine] " + "visit start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "requestSystemAcceptor:" + requestSystemAcceptor);
+		log.traceStart("visit",requestSystemAcceptor);
 
 		// create a return information.
 		ResultDto resultDto = new ResultDto();
@@ -69,7 +67,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 		if (LaubeUtility.isEmpty(requestSystemAcceptor)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 		}
 
@@ -79,7 +76,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 		}
 
 		boolean isAutoCommit = false;
-		if ("true".equals(LaubeProperties.getInstance().getValue("isAutoCommit"))){
+		if ("true".equals(LaubeProperties.getValue("isAutoCommit"))){
 			isAutoCommit = true;
 		}else{
 			isAutoCommit = false;
@@ -91,7 +88,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 			if (RequestUtility.isEmpty(draftAcceptor)) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0001");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -108,11 +104,11 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final String deputyApplyUserCode = draftAcceptor.getDeputyApplyUserCode();
 			final int applicationStatus = SpecifiedValue.Draft;
 
-			log.debug("[workflowEngine] " + "Find the application form master.");
+			log.message("visit","Find the application form master.");
 			VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
-				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.info("[workflowEngine] " + "visit end");
+				resultDto.setStatus(false);
+				resultDto.setMessageId("E0001");
 				return resultDto;
 			}
 			ApplicationFormDto applicationFormDto  = (ApplicationFormDto)resultDto.getResultData();
@@ -130,21 +126,18 @@ public class DraftVisitor extends RequestSystemVisitor {
 			if (check1) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0002");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			if (check2) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0003");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
 			if (check3) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0007");
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -168,8 +161,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 			if (!isCheck) {
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E0009");
-				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
-				log.info("[workflowEngine] " + "ApplyVisitor.visit() end");
 				return resultDto;
 			}
 
@@ -194,7 +185,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 				}else{
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E0010");
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
@@ -231,20 +221,17 @@ public class DraftVisitor extends RequestSystemVisitor {
 				resultDto = activityObjectModelInterface.delete(companyCode, applicationNumber);
 				if (!resultDto.isSuccess()) {
 					LaubeModel.connection.rollback();
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
 					LaubeModel.connection.rollback();
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
 					LaubeModel.connection.rollback();
-					log.info("[workflowEngine] " + "visit end");
 					return resultDto;
 				}
 			}
@@ -259,7 +246,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 
 			if (!resultDto.isSuccess()) {
 				LaubeModel.connection.rollback();
-				log.info("[workflowEngine] " + "visit end");
 				return resultDto;
 			}
 
@@ -272,13 +258,11 @@ public class DraftVisitor extends RequestSystemVisitor {
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(applicationNumber);
-			log.debug("[workflowEngine] " + "applicationNumber is " + applicationNumber);
-			log.info("[workflowEngine] " + "visit end");
 			return resultDto;
 
 		}catch(final Exception e){
 			log.info("[workflowEngine] " + "visit end");
-			throw new LaubeException(e);
+			throw new LaubeException("visit",e);
 
 		}finally{
 			try {
@@ -287,9 +271,10 @@ public class DraftVisitor extends RequestSystemVisitor {
 						LaubeModel.connection.close();
 					}
 				}
+				log.traceEnd("visit",resultDto);
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "visit end");
-				throw new LaubeException(e);
+				throw new LaubeException("visit",e);
 			}
 		}
 	}

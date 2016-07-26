@@ -4,14 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ApplicationFormRouteDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.ApplicationFormRouteModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -35,7 +34,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ApplicationFormRouteModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationFormRouteModel.class);
 
 	/**
 	 * search of the application form by the root master.<br>
@@ -45,21 +44,18 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	 * @return Application-specific root master entity
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode, final String applicationFormCode, final String unitCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
-		log.info("[workflowEngine] " + "[unitCode]: " + unitCode);
+		log.traceStart("find", companyCode, applicationFormCode, unitCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -85,7 +81,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			sql.append(" and unit_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationFormCode);
@@ -115,7 +111,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 				sql.append(" and unit_code IS NULL");
 				sql.append(";");
 
-				log.debug("[workflowEngine] SQL:" + sql.toString());
+				log.message("find", "[SQL] " + sql.toString());
 				this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 				this.preparedStatement.setString(1, companyCode);
 				this.preparedStatement.setString(2, applicationFormCode);
@@ -123,17 +119,16 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 				this.resultSet = this.preparedStatement.executeQuery();
 
 				if (!this.resultSet.first()) {
-					log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-					log.error("[workflowEngine] " + "[SQL]");
-					log.error("[workflowEngine] " + sql.toString());
-					log.error("[workflowEngine] " + "");
-					log.error("[workflowEngine] " + "[Extraction condition]");
-					log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-					log.error("[workflowEngine] " + "[applicationFormCode]: " + applicationFormCode);
-					log.error("[workflowEngine] " + "[unitCode]: " + unitCode);
+					log.message("find","the record was not found. Please investigate the cause by referring to the following.");
+					log.message("find","[SQL]");
+					log.message("find",sql.toString());
+					log.message("find","");
+					log.message("find","[Extraction condition]");
+					log.message("find","[companyCode]: " + companyCode);
+					log.message("find","[applicationFormCode]: " + applicationFormCode);
+					log.message("find","[unitCode]: " + unitCode);
 					resultDto.setStatus(false);
 					resultDto.setMessageId("E1003");
-					log.info("[workflowEngine] " + "find end");
 					return null;
 				}
 			}
@@ -143,12 +138,10 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find",e);
 
 		} finally {
 			try {
@@ -163,9 +156,9 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				throw new LaubeException("find",e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -176,19 +169,17 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	 * @return Application-specific root master entity
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public final ResultDto findByIndividualRouteCode(final String companyCode, final String individualRouteCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findByIndividualRouteCode start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[individualRouteCode]: " + individualRouteCode);
+		log.traceStart("findByIndividualRouteCode", companyCode, individualRouteCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(individualRouteCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findByIndividualRouteCode end");
+			log.traceEnd("findByIndividualRouteCode");
 			return resultDto;
 		}
 
@@ -213,7 +204,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			sql.append(" and individual_route_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("findByIndividualRouteCode","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, individualRouteCode);
@@ -221,13 +212,13 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[individualRouteCode]: " + individualRouteCode);
+				log.message("findByIndividualRouteCode","The record was not found. Please investigate the cause by referring to the following.");
+				log.message("findByIndividualRouteCode","[SQL]");
+				log.message("findByIndividualRouteCode",sql.toString());
+				log.message("findByIndividualRouteCode","");
+				log.message("findByIndividualRouteCode","[Extraction condition]");
+				log.message("findByIndividualRouteCode","[companyCode]: " + companyCode);
+				log.message("findByIndividualRouteCode","[individualRouteCode]: " + individualRouteCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
 				log.info("[workflowEngine] " + "findByIndividualRouteCode end");
@@ -243,8 +234,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "findByIndividualRouteCode end");
-			throw new LaubeException(e);
+			throw new LaubeException("findByIndividualRouteCode",e);
 
 		} finally {
 			try {
@@ -259,9 +249,9 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "findByIndividualRouteCode end");
-				throw new LaubeException(e);
+				throw new LaubeException("findByIndividualRouteCode",e);
 			}
+			log.traceEnd("findByIndividualRouteCode");
 		}
 	}
 
@@ -272,19 +262,17 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 	 * @return Application-specific root master entity
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public final ResultDto findByCommonRouteCode(final String companyCode, final String commonRouteCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findByCommonRouteCode start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[commonRouteCode]: " + commonRouteCode);
+		log.traceStart("findByCommonRouteCode", companyCode, commonRouteCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(commonRouteCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findByCommonRouteCode end");
+			log.traceEnd("findByCommonRouteCode");
 			return resultDto;
 		}
 
@@ -309,7 +297,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			sql.append(" and common_route_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("findByCommonRouteCode","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, commonRouteCode);
@@ -317,13 +305,13 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[commonRouteCode]: " + commonRouteCode);
+				log.message("findByCommonRouteCode","the record was not found. Please investigate the cause by referring to the following.");
+				log.message("findByCommonRouteCode","[SQL]");
+				log.message("findByCommonRouteCode",sql.toString());
+				log.message("findByCommonRouteCode","");
+				log.message("findByCommonRouteCode","[Extraction condition]");
+				log.message("findByCommonRouteCode","[companyCode]: " + companyCode);
+				log.message("findByCommonRouteCode","[commonRouteCode]: " + commonRouteCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
 				log.info("[workflowEngine] " + "findByCommonRouteCode end");
@@ -339,8 +327,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "findByCommonRouteCode end");
-			throw new LaubeException(e);
+			throw new LaubeException("findByCommonRouteCode",e);
 
 		} finally {
 			try {
@@ -355,9 +342,9 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "findByCommonRouteCode end");
-				throw new LaubeException(e);
+				throw new LaubeException("findByCommonRouteCode",e);
 			}
+			log.traceEnd("findByCommonRouteCode");
 		}
 	}
 }

@@ -10,14 +10,12 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.database.DbConnectManager;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
-import site.laube.utility.LaubeProperties;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -41,7 +39,7 @@ public class LaubeModel {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(LaubeModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeModel.class);
 
 	/**
 	 * to manage the connection.<br>
@@ -64,11 +62,6 @@ public class LaubeModel {
 	protected Statement statement = null;
 
 	/**
-	 * to manage the properties.<br>
-	 */
-	protected LaubeProperties properties = LaubeProperties.getInstance();
-
-	/**
 	 * constractor<br>
 	 * create connection<br>
 	 */
@@ -81,22 +74,23 @@ public class LaubeModel {
 	 *
 	 * @return connection
 	 */
+	@SuppressWarnings("nls")
 	public final Connection getConnection() {
 
-		log.info("[workflowEngine] " + "getConnection start");
+		log.traceStart("getConnection");
 
 		try {
 			if ((LaubeUtility.isEmpty(connection)) || (connection.isClosed())) {
 				connection = DbConnectManager.getConnection();
-				statement = connection.createStatement();
+				this.statement = connection.createStatement();
 			}
 
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "getConnection end");
-			e.printStackTrace();
-		}
+			log.crush("getConnection", e);
 
-		log.info("[workflowEngine] " + "getConnection end");
+		} finally {
+			log.traceEnd("getConnection");
+		}
 		return connection;
 	}
 
@@ -105,16 +99,19 @@ public class LaubeModel {
 	 *
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	public final void commit() throws LaubeException {
+	@SuppressWarnings("nls")
+	public final static void commit() throws LaubeException {
 
-		log.info("[workflowEngine] " + "commit start");
+		log.traceStart("commit");
 
 		try {
 			connection.commit();
-			log.info("[workflowEngine] " + "commit end");
-		} catch(final Exception e){
-			log.info("[workflowEngine] " + "commit end");
-			e.printStackTrace();
+
+		} catch (final Exception e) {
+			log.crush("commit", e);
+
+		} finally {
+			log.traceEnd("commit");
 		}
 	}
 
@@ -126,12 +123,10 @@ public class LaubeModel {
 	 * @return after data
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	public final ArrayList<LaubeDto> conversion(final ResultSet resultSet, LaubeDto workflowDto) throws LaubeException {
+	@SuppressWarnings("nls")
+	public final static ArrayList<LaubeDto> conversion(final ResultSet resultSet, LaubeDto workflowDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "conversion start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[resultSet]: " + resultSet);
-		log.info("[workflowEngine] " + "[workflowDto]: " + workflowDto);
+		log.traceStart("conversion", resultSet, workflowDto);
 
 		final ArrayList<LaubeDto> result = new ArrayList<LaubeDto>();
 
@@ -144,12 +139,13 @@ public class LaubeModel {
 				log.debug("[workflowEngine] " + "[updateWorkflowDto] " + updateWorkflowDto);
 				result.add(updateWorkflowDto);
 			} while (resultSet.next());
+			return result;
+
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "conversion end");
-			throw new LaubeException(e);
+			throw new LaubeException("conversion", e);
+		} finally {
+			log.traceEnd("conversion");
 		}
-		log.info("[workflowEngine] " + "conversion end");
-		return result;
 	}
 
 	/**
@@ -161,12 +157,9 @@ public class LaubeModel {
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
 	@SuppressWarnings({ "static-method", "nls", "boxing" })
-	public final LaubeDto resultSetToDto(final ResultSet resultSet, final LaubeDto workflowDto) throws LaubeException {
+	public final static LaubeDto resultSetToDto(final ResultSet resultSet, final LaubeDto workflowDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "resultSetToDto start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[resultSet]: " + resultSet);
-		log.info("[workflowEngine] " + "[workflowDto]: " + workflowDto);
+		log.traceStart("resultSetToDto", resultSet, workflowDto);
 
 		LaubeDto laubeDto = workflowDto;
 
@@ -209,12 +202,13 @@ public class LaubeModel {
 					method.invoke(laubeDto, resultSet.getString(name));
 				}
 			}
+			return laubeDto;
+
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "resultSetToDto end");
-			throw new LaubeException(e);
+			throw new LaubeException("resultSetToDto", e);
+		} finally {
+			log.traceEnd("resultSetToDto");
 		}
-		log.info("[workflowEngine] " + "resultSetToDto end");
-		return laubeDto;
 	}
 
 	/**
@@ -226,13 +220,9 @@ public class LaubeModel {
 	 * @throws Exception
 	 */
 	@SuppressWarnings({ "static-method", "nls" })
-	protected final boolean checkRequiredItem(ResultDto resultDto, LaubeDto workflowDto, String[] items) throws LaubeException {
+	protected final static boolean checkRequiredItem(ResultDto resultDto, LaubeDto workflowDto, String[] items) throws LaubeException {
 
-		log.info("[workflowEngine] " + "checkRequiredItem start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[resultDto]: " + resultDto);
-		log.info("[workflowEngine] " + "[workflowDto]: " + workflowDto);
-		log.info("[workflowEngine] " + "[items]: " + items);
+		log.traceStart("checkRequiredItem", resultDto, workflowDto, items);
 
 		String getter = null;
 
@@ -252,14 +242,14 @@ public class LaubeModel {
 					log.info("[workflowEngine] " + "checkRequiredItem end" );
 					return false;
 				}
-
 			}
+			return true;
+
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "checkRequiredItem end" );
-			throw new LaubeException(e);
+			throw new LaubeException("checkRequiredItem", e);
+		} finally {
+			log.traceEnd("checkRequiredItem");
 		}
-		log.info("[workflowEngine] " + "checkRequiredItem end" );
-		return true;
 	}
 
 }

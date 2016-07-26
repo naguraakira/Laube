@@ -1,7 +1,7 @@
 package site.laube.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -19,12 +19,12 @@ import org.slf4j.LoggerFactory;
  * limitations under the License.
  */
 
-public class LaubeException extends Exception {
+public final class LaubeException extends Exception {
 
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(LaubeException.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeException.class);
 
 	/**
 	 * sirial version
@@ -32,39 +32,33 @@ public class LaubeException extends Exception {
 	private static final long serialVersionUID = 2314117173345596443L;
 
 	/**
-	 * constractor
-	 * @param e exception
+	 * constractor<br>
+	 * @param traceName trace name
+	 * @param contents contents
 	 */
-	public LaubeException(Exception e) {
-		super(e);
-		log.error("[workflowEngine] " + "Exception occured.");
-		log.error("[workflowEngine] " + "[argument]");
-		log.error("[workflowEngine] " + "e:" + e);
-	}
-
-	/**
-	 * constractor
-	 * @param message message
-	 */
-	public LaubeException(String message) {
-		super(message);
-		log.error("[workflowEngine] " + "Exception occured.");
-		log.error("[workflowEngine] " + "[argument]");
-		log.error("[workflowEngine] " + "message:" + message);
+	public LaubeException(final String traceName, final String contents) {
+		super(contents);
+		log.crush(traceName, contents);
 	}
 
 	/**
 	 * constractor<br>
-	 * The message of the exception "message ID +": "+ Message" to set
-	 * @param messageID message ID
-	 * @param message message
+	 * @param traceName trace name
+	 * @param e exception
 	 */
-	public LaubeException(String messageID, String message) {
-		super(messageID + ":" + message);
-		log.error("[workflowEngine] " + "Exception occured.");
-		log.error("[workflowEngine] " + "[argument]");
-		log.error("[workflowEngine] " + "messageID:" + messageID);
-		log.error("[workflowEngine] " + "message:" + message);
+	public LaubeException(final String traceName, final Exception e) {
+		super(e);
+		log.crush(traceName, e);
 	}
 
+	/**
+	 * constractor<br>
+	 * @param traceName trace name
+	 * @param messageId message id
+	 * @param message message
+	 */
+	public LaubeException(final String traceName, final String messageId, final String message) {
+		super(message);
+		log.crush(traceName, messageId, message);
+	}
 }

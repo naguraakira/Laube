@@ -3,11 +3,10 @@ package site.laube.acceptor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 import site.laube.visitor.ApprovalSystemVisitor;
 
@@ -31,7 +30,7 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ApprovalSystemVisitor.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApprovalSystemAcceptor.class);
 
 	/**
 	 * to manage the company code.<br>

@@ -6,14 +6,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.ActivityObjectModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
 
@@ -38,40 +37,39 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ActivityObjectModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ActivityObjectModel.class);
 
 	/**
 	 * register the activity object.<br>
-	 * @param ActivityObjectDtos activity object
+	 * @param activityObjectDtos activity object
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
-	public ResultDto insert(final List<ActivityObjectDto> ActivityObjectDtos) throws LaubeException {
+	public ResultDto insert(final List<ActivityObjectDto> activityObjectDtos) throws LaubeException {
 
-		log.info("[workflowEngine] " + "insert start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[ActivityObjectDtos]: " + ActivityObjectDtos);
+		log.traceStart("insert", activityObjectDtos);
 
 		ResultDto resultDto = new ResultDto();
 
-		if (LaubeUtility.isEmpty(ActivityObjectDtos)) {
+		if (LaubeUtility.isEmpty(activityObjectDtos)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "insert end");
+			log.traceEnd("insert");
 			return resultDto;
 		}
 
-		for (ActivityObjectDto ActivityObjectDto : ActivityObjectDtos) {
+		for (ActivityObjectDto ActivityObjectDto : activityObjectDtos) {
 			resultDto = insert(ActivityObjectDto);
 			if (!resultDto.isSuccess()){
-				log.info("[workflowEngine] " + "insert end");
+				log.traceEnd("insert");
 				return resultDto;
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "insert end");
+		log.traceEnd("insert");
 		return resultDto;
 	}
 
@@ -85,16 +83,14 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	@Override
 	public final ResultDto insert(final ActivityObjectDto activityObjectDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "insert start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[activityObjectDto]: " + activityObjectDto);
+		log.traceStart("insert", activityObjectDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "insert end");
+			log.traceEnd("insert");
 			return resultDto;
 		}
 
@@ -175,7 +171,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(")");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("insert", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, companyCode);
@@ -202,8 +198,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "insert end");
-			throw new LaubeException(se);
+			throw new LaubeException("insert",se);
 
 		} finally {
 
@@ -219,13 +214,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				}
 
 			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "insert end");
-				throw new LaubeException(e);
+				throw new LaubeException("insert",e);
 			}
+			log.traceEnd("insert");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "insert end");
+		log.traceEnd("insert");
 		return resultDto;
 	}
 
@@ -235,19 +230,18 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto update(final ActivityObjectDto activityObjectDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "update start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[activityObjectDto]: " + activityObjectDto);
+		log.traceStart("update", activityObjectDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "update end");
+			log.traceEnd("update");
 			return resultDto;
 		}
 
@@ -280,7 +274,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(" and approval_user_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("update","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, deputyApprovalCompanyCode);
 			this.preparedStatement.setString( 2, deputyApprovalUserCode);
@@ -296,8 +290,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "update end");
-			throw new LaubeException(se);
+			throw new LaubeException("update",se);
 
 		} finally {
 
@@ -313,12 +306,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				}
 
 			} catch (final Exception e) {
-				throw new LaubeException(e);
+				throw new LaubeException("update",e);
 			}
+			log.traceEnd("update");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "update end");
+		log.traceEnd("update");
 		return resultDto;
 	}
 
@@ -328,19 +322,18 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto updateByArrival(final ActivityObjectDto activityObjectDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "updateByArrival start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[activityObjectDto]: " + activityObjectDto);
+		log.traceStart("updateByArrival", activityObjectDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "updateByArrival end");
+			log.traceEnd("updateByArrival");
 			return resultDto;
 		}
 
@@ -365,7 +358,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(" and approval_user_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("updateByArrival", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setInt   ( 1, activityStatus);
 			this.preparedStatement.setString( 2, approvalUserCode);
@@ -377,8 +370,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "updateByArrival end");
-			throw new LaubeException(se);
+			throw new LaubeException("updateByArrival", se);
 
 		} finally {
 
@@ -394,13 +386,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				}
 
 			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "updateByArrival end");
-				throw new LaubeException(e);
+				throw new LaubeException("updateByArrival", e);
 			}
+			log.traceEnd("updateByArrival");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "updateByArrival end");
+		log.traceEnd("updateByArrival");
 		return resultDto;
 	}
 
@@ -410,19 +402,18 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto updateByAuthorizerApproval(final ActivityObjectDto activityObjectDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "updateByAuthorizerApproval start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[activityObjectDto]: " + activityObjectDto);
+		log.traceStart("updateByAuthorizerApproval", activityObjectDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(activityObjectDto)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.error("[workflowEngine] " + "updateByAuthorizerApproval end");
+			log.traceEnd("updateByAuthorizerApproval");
 			return resultDto;
 		}
 
@@ -471,8 +462,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final SQLException se) {
-			log.info("[workflowEngine] " + "updateByAuthorizerApproval end");
-			throw new LaubeException(se);
+			throw new LaubeException("updateByAuthorizerApproval",se);
 
 		} finally {
 
@@ -488,13 +478,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				}
 
 			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "updateByAuthorizerApproval end");
-				throw new LaubeException(e);
+				throw new LaubeException("updateByAuthorizerApproval",e);
 			}
+			log.traceEnd("updateByAuthorizerApproval");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "updateByAuthorizerApproval end");
+		log.traceEnd("updateByAuthorizerApproval");
 		return resultDto;
 	}
 
@@ -504,35 +494,32 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto delete(final String companyCode, final long applicationNumber) throws LaubeException {
 
-		log.info("[workflowEngine] " + "delete start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
+		log.traceStart("delete", companyCode, applicationNumber);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isEmpty(applicationNumber))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "delete end");
+			log.traceEnd("delete");
 			return resultDto;
 		}
 
 		try {
 			final String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? and application_number = ?;";
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql);
+			log.message("delete", "[SQL] " + sql);
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setLong  (2, applicationNumber);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "delete end");
-			throw new LaubeException(e);
+			throw new LaubeException("delete",e);
 
 		} finally {
 			try {
@@ -547,12 +534,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				}
 
 			} catch (final Exception e) {
-				log.info("[workflowEngine] " + "delete end");
-				throw new LaubeException(e);
+				throw new LaubeException("delete",e);
 			}
+			log.traceEnd("delete");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
+		log.traceEnd("delete");
 		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
 	}
@@ -567,23 +555,18 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: "  + companyCode);
-		log.info("[workflowEngine] " + "[applicationNumber]: "  + applicationNumber);
-		log.info("[workflowEngine] " + "[approvalCompanyCode]: "    + approvalCompanyCode);
-		log.info("[workflowEngine] " + "[approvalUnitCode]: "    + approvalUnitCode);
-		log.info("[workflowEngine] " + "[approvalUserCode]: "    + approvalUserCode);
+		log.traceStart("find", companyCode, applicationNumber, approvalCompanyCode, approvalUnitCode, approvalUserCode, applovalUserStatus);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isEmpty(applicationNumber))||(LaubeUtility.isBlank(approvalCompanyCode))||(LaubeUtility.isBlank(approvalUnitCode))||(LaubeUtility.isBlank(approvalUserCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -625,7 +608,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(" company_code = ? and application_number = ? and approval_company_code = ? and approval_unit_code = ? and approval_user_code = ? and activity_status = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
 
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
@@ -637,14 +620,14 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
-				log.error("[workflowEngine] " + "[approvalUserCode]: " + approvalUserCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", " ");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
+				log.message("find", "[applicationNumber]: " + applicationNumber);
+				log.message("find", "[approvalUserCode]: " + approvalUserCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
 				log.info("[workflowEngine] " + "find end");
@@ -655,12 +638,10 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(result);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find",e);
 
 		} finally {
 			try {
@@ -675,9 +656,9 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				throw new LaubeException("find",e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -695,20 +676,14 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 	@Override
 	public final ResultDto findByArrival(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findByArrival start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: "  + companyCode);
-		log.info("[workflowEngine] " + "[applicationNumber]: "  + applicationNumber);
-		log.info("[workflowEngine] " + "[approvalCompanyCode]: "    + approvalCompanyCode);
-		log.info("[workflowEngine] " + "[approvalUnitCode]: "    + approvalUnitCode);
-		log.info("[workflowEngine] " + "[approvalUserCode]: "    + approvalUserCode);
+		log.traceStart("findByArrival", companyCode, applicationNumber, approvalCompanyCode, approvalUnitCode, approvalUserCode);
 
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isEmpty(applicationNumber))||(LaubeUtility.isBlank(approvalUnitCode))||(LaubeUtility.isBlank(approvalUserCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findByArrival end");
+			log.traceEnd("findByArrival");
 			return resultDto;
 		}
 
@@ -727,8 +702,10 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			return resultDto;
 
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "findByArrival end");
-			throw new LaubeException(e);
+			throw new LaubeException("findByArrival",e);
+
+		} finally {
+			log.traceEnd("findByArrival");
 		}
 	}
 }

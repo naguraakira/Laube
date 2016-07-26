@@ -3,12 +3,11 @@ package site.laube.acceptor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 import site.laube.visitor.RequestSystemVisitor;
 
@@ -33,7 +32,7 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(RequestSystemAcceptor.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RequestSystemAcceptor.class);
 
 	/**
 	 * to manage the state of the company code<br>
@@ -323,10 +322,12 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	 * @return ResultDto
 	 * @exception LaubeException return the exception
 	 */
+	@SuppressWarnings("nls")
 	public final ResultDto accept(final RequestSystemVisitor requestSystemVisitor) throws LaubeException{
 
+		log.traceStart("accept", requestSystemVisitor);
 		ResultDto resultDto = requestSystemVisitor.visit(this);
-		log.debug("[workflowEngine]" + resultDto.toString());
+		log.traceEnd("accept");
 		return resultDto;
 	}
 }

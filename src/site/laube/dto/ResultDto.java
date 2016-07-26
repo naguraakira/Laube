@@ -34,6 +34,7 @@ public final class ResultDto implements Serializable {
 	/**
 	 * constractor
 	 */
+	@SuppressWarnings("nls")
 	public ResultDto(){
 		setStatus(true);
 		this.messageId = "N0001";
@@ -107,7 +108,7 @@ public final class ResultDto implements Serializable {
 	 * @param messageId message id
 	 */
 	private final void setMessage(final String messageId) {
-		this.message = LaubeProperties.getInstance().getValue(messageId);
+		this.message = LaubeProperties.getValue(messageId);
 	}
 
 	/**

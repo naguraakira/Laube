@@ -59,6 +59,11 @@ import site.laube.exception.LaubeException;
 public final class LaubeUtility implements Serializable {
 
 	/**
+	 * to manage the log object.<br>
+	 */
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeUtility.class);
+
+	/**
 	 * To manage the serial version ID.<br>
 	 */
 	private static final long serialVersionUID = -1729825188444472402L;
@@ -71,6 +76,7 @@ public final class LaubeUtility implements Serializable {
 	 */
 	public static final String camelToSnake(final String targetStr) {
 
+		@SuppressWarnings("nls")
 		String convertedStr = targetStr
 			.replaceAll("([A-Z]+)([A-Z][a-z])", "$1_$2")
 			.replaceAll("([a-z])([A-Z])", "$1_$2");
@@ -83,6 +89,7 @@ public final class LaubeUtility implements Serializable {
 	 * @param targetStr Before conversion string
 	 * @return Post-conversion string
 	 */
+	@SuppressWarnings("nls")
 	public static final String snakeToCamel(final String targetStr) {
 
 		Pattern p = Pattern.compile("_([a-z])");
@@ -104,7 +111,10 @@ public final class LaubeUtility implements Serializable {
 	 * @return Encrypted string
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final String doEncryption(final String text) throws LaubeException {
+
+		log.traceStart("doEncryption",text);
 
 		try {
 			PBEKeySpec              pBEKeySpec;
@@ -118,7 +128,7 @@ public final class LaubeUtility implements Serializable {
 			if (StringUtils.isNotEmpty(SpecifiedValue.CipherPassword)) {
 				password = SpecifiedValue.CipherPassword.toCharArray();
 			}else{
-				throw new LaubeException("Password is empty.");
+				throw new LaubeException("doEncryption", "Password is empty.");
 			}
 
 			// Salt value
@@ -150,31 +160,35 @@ public final class LaubeUtility implements Serializable {
 
 			// CODEBASE-64 Encode
 			byte[] encodedBytes = Base64.encodeBase64(ciphertext);
+
 			return new String(encodedBytes, "UTF-8");
 
 		} catch (NoSuchAlgorithmException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (NoSuchPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (InvalidKeyException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (InvalidAlgorithmParameterException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (InvalidKeySpecException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (IllegalBlockSizeException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (BadPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
 
 		} catch (UnsupportedEncodingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doEncryption", e);
+
+		} finally{
+			log.traceEnd("doEncryption");
 		}
 	}
 
@@ -185,7 +199,10 @@ public final class LaubeUtility implements Serializable {
 	 * @return Composite string
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final String doDecryption(final String text) throws LaubeException {
+
+		log.traceStart("doDecryption",text);
 
 		try {
 			char[] password = null;
@@ -193,7 +210,7 @@ public final class LaubeUtility implements Serializable {
 			if (StringUtils.isNotEmpty(SpecifiedValue.CipherPassword)) {
 				password = SpecifiedValue.CipherPassword.toCharArray();
 			}else{
-				throw new LaubeException("Password is empty.");
+				throw new LaubeException("doDecryption","Password is empty.");
 			}
 
 			// Salt value
@@ -223,28 +240,31 @@ public final class LaubeUtility implements Serializable {
 			return new String(output, "UTF-8");
 
 		} catch (final NoSuchAlgorithmException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final NoSuchPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final InvalidKeyException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final InvalidAlgorithmParameterException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final InvalidKeySpecException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final IllegalBlockSizeException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final BadPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
 
 		} catch (final UnsupportedEncodingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("doDecryption",e);
+
+		} finally{
+			log.traceEnd("doDecryption");
 		}
 	}
 
@@ -262,7 +282,10 @@ public final class LaubeUtility implements Serializable {
 	 * It gets the key pair.<br>
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final void getKeyPair() throws LaubeException {
+
+		log.traceStart("getKeyPair");
 
 		try {
 			String ksType = "JKS";
@@ -280,7 +303,10 @@ public final class LaubeUtility implements Serializable {
 			publicKey = certificate.getPublicKey();
 
 		} catch (final KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException | UnrecoverableKeyException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("getKeyPair",e);
+
+		} finally{
+			log.traceEnd("getKeyPair");
 		}
 	}
 
@@ -291,7 +317,10 @@ public final class LaubeUtility implements Serializable {
 	 * @return Encrypted string
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final byte[] encrypt(final String data) throws LaubeException {
+
+		log.traceStart("encrypt");
 
 		Cipher cipher = null;
 
@@ -301,7 +330,10 @@ public final class LaubeUtility implements Serializable {
 			return cipher.doFinal(data.getBytes());
 
 		} catch (final InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("encrypt",e);
+
+		} finally{
+			log.traceEnd("encrypt");
 		}
 	}
 
@@ -312,7 +344,10 @@ public final class LaubeUtility implements Serializable {
 	 * @return omposite string
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final byte[] decrypt(final byte[] data) throws LaubeException {
+
+		log.traceStart("decrypt", data);
 
 		Cipher cipher;
 
@@ -323,16 +358,19 @@ public final class LaubeUtility implements Serializable {
 			return cipher.doFinal(data);
 
 		} catch (final NoSuchAlgorithmException | NoSuchPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("decrypt",e);
 
 		} catch (final InvalidKeyException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("decrypt",e);
 
 		} catch (final IllegalBlockSizeException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("decrypt",e);
 
 		} catch (final BadPaddingException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("decrypt",e);
+
+		} finally{
+			log.traceEnd("decrypt");
 		}
 	}
 
@@ -341,9 +379,14 @@ public final class LaubeUtility implements Serializable {
 	 * @param object object
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "nls" })
 	public static <T> T automaticCast(Object object) {
-	    T castedObject = (T) object;
+
+		log.traceStart("automaticCast", object);
+
+		T castedObject = (T) object;
+
+		log.traceEnd("automaticCast");
 	    return castedObject;
 	}
 
@@ -404,13 +447,16 @@ public final class LaubeUtility implements Serializable {
 	 * @return After conversion of the value
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static final Date parseDate(final String strDate) throws LaubeException {
+
+		log.traceStart("parseDate", strDate);
 
 		try {
 			return DateUtils.parseDate(strDate, SpecifiedValue.DateFormat);
 
 		} catch (final ParseException e) {
-			throw new LaubeException(e);
+			throw new LaubeException("parseDate", e);
 		}
 	}
 

@@ -4,14 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.dto.RoleUserDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.RoleUserModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -35,7 +34,7 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(RoleUserModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RoleUserModel.class);
 
 	/**
 	 * deleting a role by the employee master (role / employee number units)<br>

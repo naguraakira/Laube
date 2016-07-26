@@ -4,14 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.dto.temporary.UserDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.UserModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -35,7 +34,7 @@ public final class UserModel extends LaubeModel implements UserModelInterface {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(UserModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(UserModel.class);
 
 	/**
 	 * search the user master.<br>

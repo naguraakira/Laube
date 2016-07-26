@@ -85,6 +85,6 @@ public class RouteDto extends CompanyDto {
 	 * @return route type
 	 */
 	public final int getRouteType() {
-		return routeType;
+		return this.routeType;
 	}
 }

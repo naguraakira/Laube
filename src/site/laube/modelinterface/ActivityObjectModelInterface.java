@@ -30,7 +30,7 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto insert(final List<ActivityObjectDto> ActivityObjectDtos) throws LaubeException;
 
 	/**
@@ -47,7 +47,7 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto update(final ActivityObjectDto activityObjectDto) throws LaubeException;
 
 	/**
@@ -56,7 +56,7 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto updateByArrival(final ActivityObjectDto activityObjectDto) throws LaubeException;
 
 	/**
@@ -65,7 +65,7 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto updateByAuthorizerApproval(final ActivityObjectDto activityObjectDto) throws LaubeException;
 
 	/**
@@ -75,7 +75,7 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto delete(final String companyCode, final long applicationNumber) throws LaubeException;
 
 	/**
@@ -89,7 +89,7 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto find(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode, final int applovalUserStatus) throws LaubeException;
 
 	/**
@@ -102,6 +102,6 @@ public interface ActivityObjectModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "nls", "boxing" })
+	@SuppressWarnings({ "boxing" })
 	public abstract ResultDto findByArrival(final String companyCode, final long applicationNumber, final String approvalCompanyCode, final String approvalUnitCode, final String approvalUserCode) throws LaubeException;
 }

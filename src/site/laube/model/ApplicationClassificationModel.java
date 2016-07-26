@@ -4,15 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ApplicationClassificationDto;
 import site.laube.dto.ApplicationFormRouteDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.modelinterface.ApplicationClassificationModelInterface;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -36,7 +35,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ApplicationClassificationModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationClassificationModel.class);
 
 	/**
      * delete the application classification master (company unit)<br>
@@ -45,19 +44,18 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
      * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
      */
+	@SuppressWarnings("nls")
 	@Override
     public final ResultDto delete(final String companyCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "delete start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.traceStart("delete", companyCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "delete end");
+			log.traceEnd("delete");
 			return resultDto;
 		}
 
@@ -69,14 +67,13 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(" company_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] SQL:" + sql.toString());
+			log.message("delete", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "delete end");
-			throw new LaubeException(e);
+			throw new LaubeException("delete",e);
 
 		} finally {
 			try {
@@ -91,13 +88,13 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "delete end");
-				throw new LaubeException(e);
+				throw new LaubeException("delete",e);
 			}
+			log.traceEnd("delete");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "delete end");
+		log.traceEnd("delete");
 		return resultDto;
     }
 
@@ -109,20 +106,18 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
      * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
      */
+	@SuppressWarnings("nls")
 	@Override
     public final ResultDto delete(final String companyCode, final String applicationClassificationCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "delete start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[applicationClassificationCode]: " + applicationClassificationCode);
+		log.traceStart("delete", companyCode, applicationClassificationCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "delete end");
+			log.traceEnd("delete");
 			return resultDto;
 		}
 
@@ -135,15 +130,14 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(" and application_classification_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("delete","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationClassificationCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "delete end");
-			throw new LaubeException(e);
+			throw new LaubeException("delete",e);
 
 		} finally {
 			try {
@@ -158,13 +152,13 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "delete end");
-				throw new LaubeException(e);
+				throw new LaubeException("delete",e);
 			}
+			log.traceEnd("delete");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "delete end");
+		log.traceEnd("delete");
 		return resultDto;
     }
 
@@ -174,19 +168,18 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto insert(final ApplicationClassificationDto applicationClassificationDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "insert start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[applicationClassificationDto]: " + applicationClassificationDto);
+		log.traceStart("insert", applicationClassificationDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(applicationClassificationDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "insert end");
+			log.traceEnd("insert");
 			return resultDto;
 		}
 
@@ -215,7 +208,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(")");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("insert","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString(  1, applicationClassificationDto.getCompanyCode());
@@ -227,8 +220,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "insert end");
-			throw new LaubeException(e);
+			throw new LaubeException("insert",e);
 
 		} finally {
 			try {
@@ -243,13 +235,13 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "insert end");
-				throw new LaubeException(e);
+				throw new LaubeException("insert",e);
 			}
+			log.traceEnd("insert");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "insert end");
+		log.traceEnd("insert");
 		return resultDto;
 	}
 
@@ -259,19 +251,18 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto update(final ApplicationClassificationDto applicationClassificationDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "update start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[applicationClassificationDto]: " + applicationClassificationDto);
+		log.traceStart("update", applicationClassificationDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(applicationClassificationDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "update end");
+			log.traceEnd("update");
 			return resultDto;
 		}
 
@@ -288,7 +279,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(" and application_classification_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("update", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString(  1, applicationClassificationDto.getApplicationClassificationName());
@@ -299,21 +290,19 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			int upCnt = this.preparedStatement.executeUpdate();
 
 			if (upCnt != 1) {
-				log.error("[workflowEngine] It failed to update the application classification master.");
-				log.error("[workflowEngine] applicationClassificationName:" + applicationClassificationDto.getApplicationClassificationName());
-				log.error("[workflowEngine] sortOrder:" + applicationClassificationDto.getSortOrder());
-				log.error("[workflowEngine] updateUserId:" + applicationClassificationDto.getUpdateUserId());
-				log.error("[workflowEngine] companyCode:" + applicationClassificationDto.getCompanyCode());
-				log.error("[workflowEngine] gapplicationClassificationCode:" + applicationClassificationDto.getApplicationClassificationCode());
+				log.message("update", "It failed to update the application classification master.");
+				log.message("update", "applicationClassificationName:" + applicationClassificationDto.getApplicationClassificationName());
+				log.message("update", "sortOrder:" + applicationClassificationDto.getSortOrder());
+				log.message("update", "updateUserId:" + applicationClassificationDto.getUpdateUserId());
+				log.message("update", "companyCode:" + applicationClassificationDto.getCompanyCode());
+				log.message("update", "gapplicationClassificationCode:" + applicationClassificationDto.getApplicationClassificationCode());
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "update end");
 				return resultDto;
 			}
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "update end");
-			throw new LaubeException(e);
+			throw new LaubeException("update",e);
 
 		} finally {
 			try {
@@ -328,13 +317,13 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "update end");
-				throw new LaubeException(e);
+				throw new LaubeException("update",e);
 			}
+			log.traceEnd("update");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "update end");
+		log.traceEnd("update");
 		return resultDto;
 	}
 
@@ -348,16 +337,14 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.traceStart("find", companyCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -373,22 +360,21 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(" company_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.message("find","The record was not found. Please investigate the cause by referring to the following.");
+				log.message("find","[SQL]");
+				log.message("find",sql.toString());
+				log.message("find","");
+				log.message("find","[Extraction condition]");
+				log.message("find","[companyCode]: " + companyCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -397,12 +383,11 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find",e);
 
 		} finally {
 			try {
@@ -417,9 +402,9 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				throw new LaubeException("find",e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -434,17 +419,14 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	@Override
 	public final ResultDto findByApplicationClassificationCode(final String companyCode, final String applicationClassificationCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findByApplicationClassificationCode start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[applicationClassificationCode]: " + applicationClassificationCode);
+		log.traceStart("findByApplicationClassificationCode", companyCode, applicationClassificationCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
+			log.traceEnd("findByApplicationClassificationCode");
 			return resultDto;
 		}
 
@@ -461,7 +443,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(" and application_classification_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("findByApplicationClassificationCode","[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationClassificationCode);
@@ -469,16 +451,15 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[applicationClassificationCode]: " + applicationClassificationCode);
+				log.message("findByApplicationClassificationCode","The record was not found. Please investigate the cause by referring to the following.");
+				log.message("findByApplicationClassificationCode","[SQL]");
+				log.message("findByApplicationClassificationCode",sql.toString());
+				log.message("findByApplicationClassificationCode","");
+				log.message("findByApplicationClassificationCode","[Extraction condition]");
+				log.message("findByApplicationClassificationCode","[companyCode]: " + companyCode);
+				log.message("findByApplicationClassificationCode","[applicationClassificationCode]: " + applicationClassificationCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
 				return resultDto;
 			}
 
@@ -487,12 +468,10 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
-			throw new LaubeException(e);
+			throw new LaubeException("findByApplicationClassificationCode",e);
 
 		} finally {
 			try {
@@ -508,8 +487,9 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 
 			} catch (final SQLException e) {
 				log.info("[workflowEngine] " + "findByApplicationClassificationCode end");
-				throw new LaubeException(e);
+				throw new LaubeException("findByApplicationClassificationCode",e);
 			}
+			log.traceEnd("findByApplicationClassificationCode");
 		}
 	}
 
@@ -520,19 +500,17 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 	 * @return Application-specific root master entity
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public final ResultDto findBySpecialRouteCode(final String companyCode, final String specialRouteCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findBySpecialRouteCode start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[specialRouteCode]: " + specialRouteCode);
+		log.traceStart("findBySpecialRouteCode", companyCode, specialRouteCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(specialRouteCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findBySpecialRouteCode end");
+			log.traceEnd("findBySpecialRouteCode");
 			return resultDto;
 		}
 
@@ -555,7 +533,7 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			sql.append(" and common_route_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("findBySpecialRouteCode", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, specialRouteCode);
@@ -563,16 +541,15 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[specialRouteCode]: " + specialRouteCode);
+				log.message("findBySpecialRouteCode", "The record was not found. Please investigate the cause by referring to the following.");
+				log.message("findBySpecialRouteCode", "[SQL]");
+				log.message("findBySpecialRouteCode", sql.toString());
+				log.message("findBySpecialRouteCode", "");
+				log.message("findBySpecialRouteCode", "[Extraction condition]");
+				log.message("findBySpecialRouteCode", "[companyCode]: " + companyCode);
+				log.message("findBySpecialRouteCode", "[specialRouteCode]: " + specialRouteCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "findBySpecialRouteCode end");
 				return null;
 			}
 
@@ -581,12 +558,10 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "findBySpecialRouteCode end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "findBySpecialRouteCode end");
-			throw new LaubeException(e);
+			throw new LaubeException("findBySpecialRouteCode", e);
 
 		} finally {
 			try {
@@ -601,9 +576,9 @@ public final class ApplicationClassificationModel extends LaubeModel implements 
 				}
 
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "findBySpecialRouteCode end");
-				throw new LaubeException(e);
+				throw new LaubeException("findBySpecialRouteCode", e);
 			}
+			log.traceEnd("findBySpecialRouteCode");
 		}
 	}
 }

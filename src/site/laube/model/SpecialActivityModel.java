@@ -1,9 +1,8 @@
 package site.laube.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -26,7 +25,7 @@ public final class SpecialActivityModel extends ActivityModel {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(SpecialActivityModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SpecialActivityModel.class);
 
 	/**
 	 * delete query<br>

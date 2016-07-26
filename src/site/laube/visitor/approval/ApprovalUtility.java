@@ -1,9 +1,8 @@
 package site.laube.visitor.approval;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.acceptor.ApprovalSystemAcceptor;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -27,7 +26,7 @@ public class ApprovalUtility {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(ApprovalUtility.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApprovalUtility.class);
 
 	/**
 	 * check of essential items.

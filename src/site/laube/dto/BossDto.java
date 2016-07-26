@@ -110,7 +110,7 @@ public class BossDto extends UserDto {
 	 * @return boss company code
 	 */
 	public final String getBossCompanyCode() {
-		return bossCompanyCode;
+		return this.bossCompanyCode;
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class BossDto extends UserDto {
 	 * @return boss company name
 	 */
 	public final String getBossCompanyName() {
-		return bossCompanyName;
+		return this.bossCompanyName;
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class BossDto extends UserDto {
 	 * @return boss unit code
 	 */
 	public final String getBossUnitCode() {
-		return bossUnitCode;
+		return this.bossUnitCode;
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class BossDto extends UserDto {
 	 * @return boss unit name
 	 */
 	public final String getBossUnitName() {
-		return bossUnitName;
+		return this.bossUnitName;
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class BossDto extends UserDto {
 	 * @return boss user code
 	 */
 	public final String getBossUserCode() {
-		return bossUserCode;
+		return this.bossUserCode;
 	}
 
 	/**
@@ -190,6 +190,6 @@ public class BossDto extends UserDto {
 	 * @return boss user name
 	 */
 	public final String getBossUserName() {
-		return bossUserName;
+		return this.bossUserName;
 	}
 }

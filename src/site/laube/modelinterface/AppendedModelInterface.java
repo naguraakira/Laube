@@ -64,6 +64,5 @@ public interface AppendedModelInterface {
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("nls")
 	public abstract ResultDto find(final String companyCode, final int applicationNumber) throws LaubeException;
 }

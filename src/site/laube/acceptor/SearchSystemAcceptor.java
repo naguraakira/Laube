@@ -1,10 +1,9 @@
 package site.laube.acceptor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 import site.laube.visitor.SearchSystemVisitor;
 
 /*
@@ -28,7 +27,7 @@ public abstract class SearchSystemAcceptor extends LaubeAcceptor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(SearchSystemAcceptor.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SearchSystemAcceptor.class);
 
 	/**
 	 * to manage the state of the company code<br>
@@ -206,10 +205,12 @@ public abstract class SearchSystemAcceptor extends LaubeAcceptor {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public final ResultDto accept(final SearchSystemVisitor searchSystemVisitor) throws LaubeException{
 
+		log.traceStart("accept", searchSystemVisitor);
 		ResultDto resultDto = searchSystemVisitor.visit(this);
-		log.debug("[workflowEngine]" + resultDto.toString());
+		log.traceEnd("accept");
 		return resultDto;
 	}
 }

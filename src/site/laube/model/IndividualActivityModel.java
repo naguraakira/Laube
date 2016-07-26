@@ -1,9 +1,8 @@
 package site.laube.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import site.laube.exception.LaubeException;
+import site.laube.utility.LaubeLogger;
+import site.laube.utility.LaubeLoggerFactory;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -26,16 +25,17 @@ public final class IndividualActivityModel extends ActivityModel {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static Logger log = LoggerFactory.getLogger(IndividualActivityModel.class);
+	private static LaubeLogger log = LaubeLoggerFactory.getLogger(IndividualActivityModel.class);
 
 	/**
 	 * delete query<br>
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String deleteQuery(){
 
-		log.info("[workflowEngine] " + "deleteQuery start");
+		log.traceStart("deleteQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("DELETE");
@@ -44,8 +44,8 @@ public final class IndividualActivityModel extends ActivityModel {
 		sql.append(" company_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "deleteQuery end");
+		log.message("deleteQuery", sql.toString());
+		log.traceEnd("deleteQuery");
 		return sql.toString();
 	}
 
@@ -54,9 +54,10 @@ public final class IndividualActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String deleteByRouteQuery(){
 
-		log.info("[workflowEngine] " + "deleteByRouteQuery start");
+		log.traceStart("deleteByRouteQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("DELETE");
@@ -66,8 +67,8 @@ public final class IndividualActivityModel extends ActivityModel {
 		sql.append(" and individual_route_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "deleteByRouteQuery end");
+		log.message("deleteByRouteQuery", sql.toString());
+		log.traceEnd("deleteByRouteQuery");
 		return sql.toString();
 	}
 
@@ -76,9 +77,10 @@ public final class IndividualActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String insertQuery(){
 
-		log.info("[workflowEngine] " + "insertQuery start");
+		log.traceStart("insertQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO wkf_individual_activity");
@@ -129,8 +131,8 @@ public final class IndividualActivityModel extends ActivityModel {
 		sql.append(")");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "insertQuery end");
+		log.message("insertQuery", sql.toString());
+		log.traceEnd("insertQuery");
 		return sql.toString();
 	}
 
@@ -139,9 +141,10 @@ public final class IndividualActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String updateQuery(){
 
-		log.info("[workflowEngine] " + "updateQuery start");
+		log.traceStart("updateQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE wkf_individual_activity");
@@ -167,8 +170,8 @@ public final class IndividualActivityModel extends ActivityModel {
 		sql.append(" and activity_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "updateQuery end");
+		log.message("updateQuery", sql.toString());
+		log.traceEnd("updateQuery");
 		return sql.toString();
 	}
 
@@ -177,9 +180,10 @@ public final class IndividualActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String findByRouteQuery(){
 
-		log.info("[workflowEngine] " + "findByRouteQuery start");
+		log.traceStart("findByRouteQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
@@ -214,8 +218,8 @@ public final class IndividualActivityModel extends ActivityModel {
 		sql.append(" ORDER BY company_code asc,activity_code asc");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "findByRouteQuery end");
+		log.message("findByRouteQuery", sql.toString());
+		log.traceEnd("findByRouteQuery");
 		return sql.toString();
 	}
 
@@ -224,9 +228,10 @@ public final class IndividualActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String findByActivityQuery(){
 
-		log.info("[workflowEngine] " + "findByActivityQuery start");
+		log.traceStart("findByActivityQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
@@ -262,8 +267,8 @@ public final class IndividualActivityModel extends ActivityModel {
 		sql.append(" ORDER BY company_code asc,route_code asc,activity_code asc");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "findByActivityQuery end");
+		log.message("findByActivityQuery", sql.toString());
+		log.traceEnd("findByActivityQuery");
 		return sql.toString();
 	}
 }
