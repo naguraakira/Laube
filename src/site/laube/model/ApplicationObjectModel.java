@@ -94,6 +94,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(";");
 
 			log.message("find","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setLong  (2, applicationNumber);
@@ -121,22 +122,13 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("find",e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("find",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("find");
 		}
@@ -220,6 +212,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(";");
 
 			log.message("insert","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, companyCode);
 			this.preparedStatement.setLong  ( 2, reApplicationNumber);
@@ -237,25 +230,16 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			this.preparedStatement.executeUpdate();
 
 		} catch (final ParseException pe) {
-			throw new LaubeException("insert",pe);
+			throw new LaubeException("insert", pe);
 
 		} catch (final SQLException se) {
-			throw new LaubeException("insert",se);
+			throw new LaubeException("insert", se);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("insert",e);
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("insert");
 		}
@@ -323,6 +307,7 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			sql.append(";");
 
 			log.message("update", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, applyCompanyCode);
 			this.preparedStatement.setString( 2, applyUnitCode);
@@ -339,26 +324,16 @@ public final class ApplicationObjectModel extends LaubeModel implements Applicat
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final ParseException pe) {
-			throw new LaubeException("update",pe);
+			throw new LaubeException("update", pe);
 
 		} catch (final SQLException se) {
-			throw new LaubeException("update",se);
+			throw new LaubeException("update", se);
 
 		} finally {
-
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("update",e);
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("update");
 		}

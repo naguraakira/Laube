@@ -35,30 +35,27 @@ public abstract class RouteModel extends LaubeModel {
 	 * @return route master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public static RouteModelInterface factory(final RouteType routeType) throws LaubeException {
 
-		log.info("[workflowEngine] " + "factory Start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[routeType]: " + routeType);
+		log.traceStart("factory", routeType);
 
 		switch(routeType) {
 
 		case IndividualRoute:
-			log.info("[workflowEngine] " + "factory end");
+			log.traceEnd("factory");
 			return new IndividualRouteModel();
 
 		case CommonRoute:
-			log.info("[workflowEngine] " + "factory end");
+			log.traceEnd("factory");
 			return new CommonRouteModel();
 
 		case SpecialRoute:
-			log.info("[workflowEngine] " + "factory end");
+			log.traceEnd("factory");
 			return new SpecialRouteModel();
 
 		default:
-			log.error("[workflowEngine] " + "route type is incorrect. Please check it.[routeType] " + routeType);
-			log.info("[workflowEngine] " + "factory end");
-			throw new LaubeException("[workflowEngine] route type is incorrect. Please check it.[routeType] " + routeType);
+			throw new LaubeException("factory", "[workflowEngine] route type is incorrect. Please check it.[routeType] " + routeType);
 		}
 	}
 }

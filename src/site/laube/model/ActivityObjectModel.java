@@ -172,6 +172,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(";");
 
 			log.message("insert", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, companyCode);
@@ -198,23 +199,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException se) {
-			throw new LaubeException("insert",se);
+			throw new LaubeException("insert", se);
 
 		} finally {
-
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("insert",e);
+				throw new LaubeException("insert", e);
 			}
 			log.traceEnd("insert");
 		}
@@ -275,6 +266,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(";");
 
 			log.message("update","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, deputyApprovalCompanyCode);
 			this.preparedStatement.setString( 2, deputyApprovalUserCode);
@@ -290,23 +282,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final SQLException se) {
-			throw new LaubeException("update",se);
+			throw new LaubeException("update", se);
 
 		} finally {
-
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("update",e);
+				throw new LaubeException("update", e);
 			}
 			log.traceEnd("update");
 		}
@@ -359,6 +341,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(";");
 
 			log.message("updateByArrival", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setInt   ( 1, activityStatus);
 			this.preparedStatement.setString( 2, approvalUserCode);
@@ -373,20 +356,10 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			throw new LaubeException("updateByArrival", se);
 
 		} finally {
-
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("updateByArrival", e);
+				throw new LaubeException("update", e);
 			}
 			log.traceEnd("updateByArrival");
 		}
@@ -447,6 +420,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			sql.append(";");
 
 			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, deputyApprovalCompanyCode);
 			this.preparedStatement.setString( 2, deputyApprovalUserCode);
@@ -462,23 +436,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			resultDto.setResultData(applicationNumber);
 
 		} catch (final SQLException se) {
-			throw new LaubeException("updateByAuthorizerApproval",se);
+			throw new LaubeException("updateByAuthorizerApproval", se);
 
 		} finally {
-
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("updateByAuthorizerApproval",e);
+				throw new LaubeException("updateByAuthorizerApproval", e);
 			}
 			log.traceEnd("updateByAuthorizerApproval");
 		}
@@ -513,35 +477,26 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final String sql = "DELETE FROM wkf_activity_object WHERE company_code = ? and application_number = ?;";
 
 			log.message("delete", "[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setLong  (2, applicationNumber);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("delete",e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
+				closePreparedStatement();
 			} catch (final Exception e) {
-				throw new LaubeException("delete",e);
+				throw new LaubeException("delete", e);
 			}
 			log.traceEnd("delete");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("delete");
-		log.info("[workflowEngine] " + "delete end");
 		return resultDto;
 	}
 
@@ -610,6 +565,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 
 			log.message("find", "[SQL] " + sql.toString());
 
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setLong  (2, applicationNumber);
@@ -641,22 +597,13 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("find",e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("find",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("find");
 		}

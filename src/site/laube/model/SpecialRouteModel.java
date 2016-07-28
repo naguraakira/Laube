@@ -44,9 +44,10 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
-		throw new LaubeException("special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
+		throw new LaubeException("delete", "special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
 	}
 
 	/**
@@ -57,9 +58,10 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto delete(final String companyCode, final String routeCode) throws LaubeException {
-		throw new LaubeException("special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
+		throw new LaubeException("delete", "special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
 	}
 
 	/**
@@ -68,9 +70,10 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto insert(final RouteDto routeDto) throws LaubeException {
-		throw new LaubeException("special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
+		throw new LaubeException("insert", "special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
 	}
 
 	/**
@@ -79,9 +82,10 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto update(final RouteDto routeDto) throws LaubeException {
-		throw new LaubeException("special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
+		throw new LaubeException("update", "special route master the same for the applicant classification master, please if you want to delete is running the deletion of the application classification master model.");
 	}
 
 	/**
@@ -92,51 +96,31 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final boolean isOccupied(final String companyCode, final String routeCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "isOccupied start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
+		log.traceStart("isOccupied", companyCode, routeCode);
 
 		try {
 			final ApplicationClassificationModel applicationClassificationModel = new ApplicationClassificationModel();
 			final ResultDto  resultDto = applicationClassificationModel.findBySpecialRouteCode(companyCode, routeCode);
 
 			if (LaubeUtility.isEmpty(resultDto)){
-				log.info("[workflowEngine] " + "isOccupied end");
-				throw new LaubeException("the record was not found. Please investigate the cause by referring to the following.");
+				throw new LaubeException("isOccupied", "the record was not found. Please investigate the cause by referring to the following.");
 			}else{
 				if (LaubeUtility.isEmpty(resultDto.getResultData())){
-					log.info("[workflowEngine] " + "isOccupied end");
 					return false;
 				}else{
-					log.info("[workflowEngine] " + "isOccupied end");
 					return true;
 				}
 			}
 
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "isOccupied end");
-			throw new LaubeException(e);
+			throw new LaubeException("isOccupied", e);
 
 		} finally {
-			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "isOccupied end");
-				throw new LaubeException(e);
-			}
+			log.traceEnd("isOccupied");
 		}
 	}
 
@@ -146,19 +130,18 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return route master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.traceStart("find", companyCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -175,21 +158,21 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", "");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return null;
 			}
 
@@ -198,29 +181,18 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -231,20 +203,18 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 	 * @return route master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode, final String routeCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: "  + companyCode);
-		log.info("[workflowEngine] " + "[routeCode]: "    + routeCode);
+		log.traceStart("find", companyCode, routeCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -262,23 +232,23 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, routeCode);
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[special_route_code]: " + routeCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", "");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
+				log.message("find", "[special_route_code]: " + routeCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
@@ -286,29 +256,18 @@ public final class SpecialRouteModel extends RouteModel implements RouteModelInt
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(result);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
+			log.traceEnd("find");
 		}
 	}
 }

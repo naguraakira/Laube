@@ -67,27 +67,19 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(";");
 
 			log.message("delete","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("delete",e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("delete",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 		}
 		resultDto.setStatus(true);
@@ -128,29 +120,21 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(" and application_form_code = ?");
 			sql.append(";");
 
-			log.message("delete","[SQL] " + sql.toString());
+			log.message("delete", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationFormCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("delete",e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("delete",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 			log.traceEnd("delete");
 		}
@@ -211,6 +195,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(";");
 
 			log.message("insert", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString(  1, applicationFormDto.getCompanyCode());
@@ -224,22 +209,13 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("insert",e);
+			throw new LaubeException("insert", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("insert",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("insert", e);
 			}
 			log.traceEnd("insert");
 		}
@@ -286,6 +262,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(";");
 
 			log.message("update", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString(  1, applicationFormDto.getApplicationFormName());
@@ -311,22 +288,13 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			}
 
 		} catch (final SQLException e) {
-			throw new LaubeException("update",e);
+			throw new LaubeException("update", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("update",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("update", e);
 			}
 			log.traceEnd("update");
 		}
@@ -374,6 +342,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(";");
 
 			log.message("find","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 
@@ -399,22 +368,13 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("find",e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("find",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("find");
 		}
@@ -463,6 +423,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(";");
 
 			log.message("findByApplicationFormCode", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationFormCode);
@@ -490,22 +451,13 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("findByApplicationFormCode",e);
+			throw new LaubeException("findByApplicationFormCode", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("findByApplicationFormCode",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("findByApplicationFormCode", e);
 			}
 			log.traceEnd("findByApplicationFormCode");
 		}
@@ -550,6 +502,7 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			sql.append(";");
 
 			log.message("findByApplicationClassificationCode","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationClassificationCode);
@@ -578,22 +531,13 @@ public final class ApplicationFormModel extends LaubeModel implements Applicatio
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("findByApplicationClassificationCode",e);
+			throw new LaubeException("findByApplicationClassificationCode", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("findByApplicationClassificationCode",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("findByApplicationClassificationCode", e);
 			}
 			log.traceEnd("findByApplicationClassificationCode");
 		}

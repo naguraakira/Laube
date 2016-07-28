@@ -67,27 +67,19 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(";");
 
 			log.message("delete","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("delete",e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("delete",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 			log.traceEnd("delete");
 		}
@@ -128,29 +120,21 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(" and applicationNumber = ?");
 			sql.append(";");
 
-			log.message("delete","[SQL] " + sql.toString());
+			log.message("delete", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setInt   (2, applicationNumber);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("delete",e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("delete",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 			log.traceEnd("delete");
 		}
@@ -214,6 +198,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(";");
 
 			log.message("insert", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, appendedDto.getCompanyCode());
@@ -227,22 +212,13 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			throw new LaubeException("insert",e);
+			throw new LaubeException("insert", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("insert",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("insert", e);
 			}
 			log.traceEnd("insert");
 		}
@@ -294,6 +270,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(";");
 
 			log.message("update", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString   ( 1, appendedDto.getCompanyCode());
@@ -330,22 +307,13 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			}
 
 		} catch (final SQLException e) {
-			throw new LaubeException("update",e);
+			throw new LaubeException("update", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("update",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("insert", e);
 			}
 			log.traceEnd("update");
 		}
@@ -399,6 +367,7 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 			sql.append(";");
 
 			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setInt   (2, applicationNumber);
@@ -428,18 +397,8 @@ public final class AppendedModel extends LaubeModel implements AppendedModelInte
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
+				closePreparedStatement();
+			} catch (final Exception e) {
 				throw new LaubeException("find", e);
 			}
 			log.traceEnd("find");

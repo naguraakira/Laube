@@ -95,6 +95,45 @@ public class LaubeModel {
 	}
 
 	/**
+	 * close preparedStatement.<br>
+	 */
+	@SuppressWarnings("nls")
+	protected final void closePreparedStatement() {
+
+		log.traceStart("closePreparedStatement");
+
+		try {
+			closeResultSet();
+			if ((!LaubeUtility.isEmpty(this.preparedStatement)) && (!this.preparedStatement.isClosed())) {
+				this.preparedStatement.close();
+				this.preparedStatement = null;
+			}
+		} catch (final Exception e) {
+			log.crush("closePreparedStatement", e);
+		}
+		log.traceEnd("closePreparedStatement");
+	}
+
+	/**
+	 * close resultSet.<br>
+	 */
+	@SuppressWarnings("nls")
+	private final void closeResultSet() {
+
+		log.traceStart("closeResultSet");
+
+		try {
+			if ((!LaubeUtility.isEmpty(this.resultSet)) && (!this.resultSet.isClosed())) {
+				this.resultSet.close();
+				this.resultSet = null;
+			}
+		} catch (final Exception e) {
+			log.crush("closeResultSet", e);
+		}
+		log.traceEnd("closeResultSet");
+	}
+
+	/**
 	 * commit<br>
 	 *
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
@@ -156,7 +195,7 @@ public class LaubeModel {
 	 * @return after data
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings({ "static-method", "nls", "boxing" })
+	@SuppressWarnings({ "nls", "boxing" })
 	public final static LaubeDto resultSetToDto(final ResultSet resultSet, final LaubeDto workflowDto) throws LaubeException {
 
 		log.traceStart("resultSetToDto", resultSet, workflowDto);
@@ -219,7 +258,7 @@ public class LaubeModel {
 	 * @return result
 	 * @throws Exception
 	 */
-	@SuppressWarnings({ "static-method", "nls" })
+	@SuppressWarnings({ "nls" })
 	protected final static boolean checkRequiredItem(ResultDto resultDto, LaubeDto workflowDto, String[] items) throws LaubeException {
 
 		log.traceStart("checkRequiredItem", resultDto, workflowDto, items);

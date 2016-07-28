@@ -43,19 +43,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto delete(final String companyCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "delete start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.traceStart("delete", companyCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "delete end");
+			log.traceEnd("delete");
 			return resultDto;
 		}
 		try {
@@ -66,35 +65,25 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" company_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("delete", "[SQL] " + sql.toString());
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "delete end");
-			throw new LaubeException(e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "delete end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
+			log.traceEnd("delete");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "delete end");
+		log.traceEnd("delete");
 		return resultDto;
     }
 
@@ -106,20 +95,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto delete(final String companyCode, final String routeCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "delete start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
+		log.traceStart("delete", companyCode, routeCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "delete end");
+			log.traceEnd("delete");
 			return resultDto;
 		}
 
@@ -132,36 +119,26 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" and individual_route_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("delete", "[workflowEngine] " + "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, routeCode);
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "delete end");
-			throw new LaubeException(e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "delete end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "delete end");
+		log.traceEnd("delete");
 		return resultDto;
 	}
 
@@ -171,19 +148,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto insert(final RouteDto routeDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "insert start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[routeDto]: " + routeDto);
+		log.traceStart("insert", routeDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(routeDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "insert end");
+			log.traceEnd("insert");
 			return resultDto;
 		}
 
@@ -210,7 +186,8 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(")");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("insert", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString( 1, routeDto.getCompanyCode());
@@ -221,29 +198,19 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "insert end");
-			throw new LaubeException(e);
+			throw new LaubeException("insert",e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "insert end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("insert",e);
 			}
+			log.traceEnd("insert");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "insert end");
+		log.traceEnd("insert");
 		return resultDto;
 	}
 
@@ -253,19 +220,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto update(final RouteDto routeDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "update start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[routeDto]: " + routeDto);
+		log.traceStart("update", routeDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(routeDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "update end");
+			log.traceEnd("update");
 			return resultDto;
 		}
 
@@ -281,7 +247,8 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" and individual_route_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("update", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString( 1, routeDto.getRouteName());
@@ -291,41 +258,30 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			int upCnt = this.preparedStatement.executeUpdate();
 
 			if (upCnt != 1) {
-				log.error("[workflowEngine] it failed to update the application form master.");
-				log.error("[workflowEngine] routeName:" + routeDto.getRouteName());
-				log.error("[workflowEngine] updateUserId:" + routeDto.getUpdateUserId());
-				log.error("[workflowEngine] companyCode:" + routeDto.getCompanyCode());
-				log.error("[workflowEngine] grouteCode:" + routeDto.getRouteCode());
+				log.message("update", "it failed to update the application form master.");
+				log.message("update", "routeName:" + routeDto.getRouteName());
+				log.message("update", "updateUserId:" + routeDto.getUpdateUserId());
+				log.message("update", "companyCode:" + routeDto.getCompanyCode());
+				log.message("update", "grouteCode:" + routeDto.getRouteCode());
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "update end");
 				return resultDto;
 			}
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "update end");
-			throw new LaubeException(e);
+			throw new LaubeException("update", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "update end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("update", e);
 			}
+			log.traceEnd("update");
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "update end");
+		log.traceEnd("update");
 		return resultDto;
 	}
 
@@ -337,52 +293,31 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("static-method")
+	@SuppressWarnings({ "nls" })
 	@Override
 	public final boolean isOccupied(final String companyCode, final String individualRouteCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "isOccupied start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[individualRouteCode]: " + individualRouteCode);
+		log.traceStart("isOccupied", companyCode, individualRouteCode);
 
 		try {
 			final ApplicationFormRouteModel applicationFormRouteModel = new ApplicationFormRouteModel();
 			final ResultDto resultDto = applicationFormRouteModel.findByIndividualRouteCode(companyCode, individualRouteCode);
 
 			if (LaubeUtility.isEmpty(resultDto)){
-				log.info("[workflowEngine] " + "isOccupied end");
-				throw new LaubeException("the record was not found. Please investigate the cause by referring to the following.");
+				throw new LaubeException("isOccupied", "the record was not found. Please investigate the cause by referring to the following.");
 			}else{
 				if (LaubeUtility.isEmpty(resultDto.getResultData())){
-					log.info("[workflowEngine] " + "isOccupied end");
 					return false;
 				}else{
-					log.info("[workflowEngine] " + "isOccupied end");
 					return true;
 				}
 			}
 
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "isOccupied end");
-			throw new LaubeException(e);
+			throw new LaubeException("isOccupied", e);
 
 		} finally {
-			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "isOccupied end");
-				throw new LaubeException(e);
-			}
+			log.traceEnd("isOccupied");
 		}
 	}
 
@@ -392,19 +327,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return route master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
+		log.traceStart("find", companyCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -421,21 +355,21 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", "");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return null;
 			}
 
@@ -444,29 +378,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -477,20 +400,18 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 	 * @return route master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode, final String routeCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[routeCode]: " + routeCode);
+		log.traceStart("find", companyCode, routeCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -508,23 +429,23 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			sql.append(" ORDER BY route_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, routeCode);
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[routeCode]: " + routeCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", "");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
+				log.message("find", "[routeCode]: " + routeCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
@@ -533,29 +454,19 @@ public final class IndividualRouteModel extends RouteModel implements RouteModel
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
 			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
+			log.traceEnd("find");
 		}
 	}
 }

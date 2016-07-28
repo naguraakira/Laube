@@ -47,17 +47,14 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 	@Override
 	public final ResultDto find(final String companyCode, final String unitCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[unitCode]: " + unitCode);
+		log.traceStart("find", companyCode, unitCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -73,7 +70,8 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 			sql.append(" and unit_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, unitCode);
@@ -81,48 +79,35 @@ public final class UnitModel extends LaubeModel implements UnitModelInterface {
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[unitCode]: " + unitCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", "");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
+				log.message("find", "[unitCode]: " + unitCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
 			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new UnitDto());
 
-			log.debug("[workflowEngine] " + "find end");
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find",e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
+			log.traceEnd("find");
 		}
 	}
 }

@@ -32,9 +32,10 @@ public final class SpecialActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String deleteQuery(){
 
-		log.info("[workflowEngine] " + "deleteQuery start");
+		log.traceStart("deleteQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("DELETE");
@@ -43,8 +44,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(" company_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "deleteQuery end");
+		log.message("deleteQuery", "[SQL] " + sql.toString());
+		log.traceEnd("deleteQuery");
 		return sql.toString();
 	}
 
@@ -53,9 +54,10 @@ public final class SpecialActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String deleteByRouteQuery(){
 
-		log.info("[workflowEngine] " + "deleteByRouteQuery start");
+		log.traceStart("deleteByRouteQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("DELETE");
@@ -65,8 +67,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(" and application_classification_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "deleteByRouteQuery end");
+		log.message("deleteByRouteQuery", "[SQL] " + sql.toString());
+		log.traceEnd("deleteByRouteQuery");
 		return sql.toString();
 	}
 
@@ -75,9 +77,10 @@ public final class SpecialActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String insertQuery(){
 
-		log.info("[workflowEngine] " + "insertQuery start");
+		log.traceStart("insertQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO wkf_application_classification_activity");
@@ -128,8 +131,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(")");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "insertQuery end");
+		log.message("insertQuery", "[SQL] " + sql.toString());
+		log.traceEnd("insertQuery");
 		return sql.toString();
 	}
 
@@ -138,9 +141,10 @@ public final class SpecialActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String updateQuery(){
 
-		log.info("[workflowEngine] " + "updateQuery start");
+		log.traceStart("updateQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE wkf_application_classification_activity");
@@ -166,8 +170,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(" and activity_code = ?");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "updateQuery end");
+		log.message("updateQuery", "[SQL] " + sql.toString());
+		log.traceEnd("updateQuery");
 		return sql.toString();
 	}
 
@@ -176,9 +180,10 @@ public final class SpecialActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String findByRouteQuery(){
 
-		log.info("[workflowEngine] " + "findByRouteQuery start");
+		log.traceStart("findByRouteQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
@@ -212,8 +217,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(" ORDER BY company_code asc,activity_code asc");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "findByRouteQuery end");
+		log.message("findByRouteQuery", "[SQL] " + sql.toString());
+		log.traceEnd("findByRouteQuery");
 		return sql.toString();
 	}
 
@@ -222,9 +227,10 @@ public final class SpecialActivityModel extends ActivityModel {
 	 * @return result
 	 * @throws LaubeException
 	 */
+	@SuppressWarnings("nls")
 	protected String findByActivityQuery(){
 
-		log.info("[workflowEngine] " + "findByActivityQuery start");
+		log.traceStart("findByActivityQuery");
 
 		final StringBuffer sql = new StringBuffer();
 		sql.append("SELECT");
@@ -260,8 +266,8 @@ public final class SpecialActivityModel extends ActivityModel {
 		sql.append(" ORDER BY company_code asc,route_code asc,activity_code asc");
 		sql.append(";");
 
-		log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
-		log.info("[workflowEngine] " + "findByActivityQuery end");
+		log.message("findByActivityQuery", "[SQL] " + sql.toString());
+		log.traceEnd("findByActivityQuery");
 		return sql.toString();
 	}
 }

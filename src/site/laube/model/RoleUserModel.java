@@ -45,21 +45,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
     public final ResultDto delete(final String companyCode, final String roleCode, final String userCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "delete start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
-		log.info("[workflowEngine] " + "[userCode]: " + userCode);
+		log.traceStart("delete", companyCode, roleCode, userCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "delete end");
+			log.traceEnd("delete");
 			return resultDto;
 		}
 
@@ -73,7 +70,8 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" and user_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("delete", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, roleCode);
@@ -81,29 +79,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "delete end");
-			throw new LaubeException(e);
+			throw new LaubeException("delete", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "delete end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "delete end");
+		log.traceEnd("delete");
 		return resultDto;
     }
 
@@ -113,19 +100,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto insert(final RoleUserDto roleUserDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "insert start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[roleUserDto]: " + roleUserDto);
+		log.traceStart("insert", roleUserDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(roleUserDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "insert end");
+			log.traceEnd("insert");
 			return resultDto;
 		}
 
@@ -155,7 +141,8 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(")");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("insert", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString( 1, roleUserDto.getCompanyCode());
@@ -167,29 +154,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "insert end");
-			throw new LaubeException(e);
+			throw new LaubeException("insert", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "insert end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("insert", e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "insert end");
+		log.traceEnd("insert");
 		return resultDto;
 	}
 
@@ -199,19 +175,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @return result
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto update(final RoleUserDto roleUserDto) throws LaubeException {
 
-		log.info("[workflowEngine] " + "update start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[roleUserDto]: " + roleUserDto);
+		log.traceStart("update", roleUserDto);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(roleUserDto)){
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "update end");
+			log.traceEnd("update");
 			return resultDto;
 		}
 
@@ -228,7 +203,8 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" and role_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("update", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 
 			this.preparedStatement.setString( 1, roleUserDto.getUnitCode());
@@ -239,29 +215,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.preparedStatement.executeUpdate();
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "update end");
-			throw new LaubeException(e);
+			throw new LaubeException("update", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "update end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("update", e);
 			}
 		}
 		resultDto.setStatus(true);
 		resultDto.setMessageId("N0001");
-		log.info("[workflowEngine] " + "update end");
+		log.traceEnd("update");
 		return resultDto;
 	}
 
@@ -273,21 +238,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @return role user master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto find(final String companyCode, final String roleCode, final String userCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "find start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
-		log.info("[workflowEngine] " + "[userCode]: " + userCode);
+		log.traceStart("find", companyCode, roleCode, userCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "find end");
+			log.traceEnd("find");
 			return resultDto;
 		}
 
@@ -309,7 +271,8 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" and user_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, roleCode);
@@ -317,15 +280,14 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "the record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
+				log.message("find", "the record was not found. Please investigate the cause by referring to the following.");
+				log.message("find", "[SQL]");
+				log.message("find", sql.toString());
+				log.message("find", "");
+				log.message("find", "[Extraction condition]");
+				log.message("find", "[companyCode]: " + companyCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return null;
 			}
 
@@ -334,29 +296,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "find end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
-			throw new LaubeException(e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "find end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
+			log.traceEnd("find");
 		}
 	}
 
@@ -367,20 +318,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @return role user master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto findByUserCode(final String companyCode, final String userCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findByUserCode start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[userCode]: " + userCode);
+		log.traceStart("findByUserCode", companyCode, userCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findByUserCode end");
+			log.traceEnd("findByUserCode");
 			return resultDto;
 		}
 
@@ -402,20 +351,21 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" ORDER BY role_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("findByUserCode", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, userCode);
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[userCode]: " + userCode);
+				log.message("findByUserCode", "The record was not found. Please investigate the cause by referring to the following.");
+				log.message("findByUserCode", "[SQL]");
+				log.message("findByUserCode",  sql.toString());
+				log.message("findByUserCode", "");
+				log.message("findByUserCode", "[Extraction condition]");
+				log.message("findByUserCode", "[companyCode]: " + companyCode);
+				log.message("findByUserCode", "[userCode]: " + userCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
 				log.info("[workflowEngine] " + "findByUserCode end");
@@ -427,29 +377,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "findByUserCode end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "findByUserCode end");
-			throw new LaubeException(e);
+			throw new LaubeException("findByUserCode", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "findByUserCode end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("findByUserCode", e);
 			}
+			log.traceEnd("findByUserCode");
 		}
 	}
 
@@ -460,20 +399,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 	 * @return role user master
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public final ResultDto findByRoleCode(final String companyCode, final String roleCode) throws LaubeException {
 
-		log.info("[workflowEngine] " + "findByRoleCode start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "[companyCode]: " + companyCode);
-		log.info("[workflowEngine] " + "[roleCode]: " + roleCode);
+		log.traceStart("findByRoleCode", companyCode, roleCode);
 
 		final ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(roleCode))) {
 			resultDto.setStatus(false);
 			resultDto.setMessageId("E0001");
-			log.info("[workflowEngine] " + "findByRoleCode end");
+			log.traceEnd("findByRoleCode");
 			return resultDto;
 		}
 
@@ -495,23 +432,23 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			sql.append(" ORDER BY user_code");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("findByRoleCode","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, roleCode);
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[roleCode]: " + roleCode);
+				log.message("findByRoleCode","The record was not found. Please investigate the cause by referring to the following.");
+				log.message("findByRoleCode","[SQL]");
+				log.message("findByRoleCode",sql.toString());
+				log.message("findByRoleCode","");
+				log.message("findByRoleCode","[Extraction condition]");
+				log.message("findByRoleCode","[companyCode]: " + companyCode);
+				log.message("findByRoleCode","[roleCode]: " + roleCode);
 				resultDto.setStatus(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "findByRoleCode end");
 				return null;
 			}
 
@@ -520,29 +457,18 @@ public final class RoleUserModel extends LaubeModel implements RoleUserModelInte
 			resultDto.setStatus(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "findByRoleCode end");
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "findByRoleCode end");
-			throw new LaubeException(e);
+			throw new LaubeException("findByRoleCode", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "findByRoleCode end");
-				throw new LaubeException(e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("findByRoleCode", e);
 			}
+			log.traceEnd("findByRoleCode");
 		}
 	}
 }

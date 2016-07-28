@@ -134,6 +134,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			final String sql = deleteQuery();
 
 			log.info("[workflowEngine] " + "[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.executeUpdate();
@@ -143,17 +144,8 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
+				closePreparedStatement();
+			} catch (final Exception e) {
 				throw new LaubeException("delete", e);
 			}
 		}
@@ -190,6 +182,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			final String sql = deleteByRouteQuery();
 
 			log.message("delete", "[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, routeCode);
@@ -200,17 +193,8 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
+				closePreparedStatement();
+			} catch (final Exception e) {
 				throw new LaubeException("delete", e);
 			}
 		}
@@ -245,6 +229,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			final String sql = insertQuery();
 
 			log.message("insert", "[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql);
 
 			this.preparedStatement.setString( 1, activityDto.getCompanyCode());
@@ -272,18 +257,9 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("insert", e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("delete", e);
 			}
 		}
 		resultDto.setStatus(true);
@@ -317,6 +293,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			final String sql = updateQuery();
 
 			log.message("update", "[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql);
 
 			this.preparedStatement.setString( 1, activityDto.getApprovalCompanyCode());
@@ -346,22 +323,13 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			}
 
 		} catch (final SQLException e) {
-			throw new LaubeException("update",e);
+			throw new LaubeException("update", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("update",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
 		}
 		resultDto.setStatus(true);
@@ -395,6 +363,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 		try {
 			final String sql = findByRouteQuery();
 			log.message("find", "[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, routeCode);
@@ -420,22 +389,13 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("find",e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("find",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("find");
 		}
@@ -468,6 +428,7 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			final String sql = findByActivityQuery();
 
 			log.message("find","[SQL] " + sql);
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, routeCode);
@@ -495,22 +456,13 @@ public abstract class ActivityModel extends LaubeModel implements ActivityModelI
 			return resultDto;
 
 		} catch (final SQLException e) {
-			throw new LaubeException("find",e);
+			throw new LaubeException("find", e);
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("find",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("find", e);
 			}
 			log.traceEnd("find");
 		}

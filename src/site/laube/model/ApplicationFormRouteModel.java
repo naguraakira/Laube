@@ -82,6 +82,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			sql.append(";");
 
 			log.message("find", "[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, applicationFormCode);
@@ -112,6 +113,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 				sql.append(";");
 
 				log.message("find", "[SQL] " + sql.toString());
+				closePreparedStatement();
 				this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 				this.preparedStatement.setString(1, companyCode);
 				this.preparedStatement.setString(2, applicationFormCode);
@@ -145,17 +147,8 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
+				closePreparedStatement();
+			} catch (final Exception e) {
 				throw new LaubeException("find",e);
 			}
 			log.traceEnd("find");
@@ -205,6 +198,7 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			sql.append(";");
 
 			log.message("findByIndividualRouteCode","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, individualRouteCode);
@@ -238,17 +232,8 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
+				closePreparedStatement();
+			} catch (final Exception e) {
 				throw new LaubeException("findByIndividualRouteCode",e);
 			}
 			log.traceEnd("findByIndividualRouteCode");
@@ -298,10 +283,12 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 			sql.append(";");
 
 			log.message("findByCommonRouteCode","[SQL] " + sql.toString());
+			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString(), ResultSet.TYPE_SCROLL_INSENSITIVE , ResultSet.CONCUR_UPDATABLE);
 			this.preparedStatement.setString(1, companyCode);
 			this.preparedStatement.setString(2, commonRouteCode);
 
+			closePreparedStatement();
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
@@ -331,18 +318,9 @@ public final class ApplicationFormRouteModel extends LaubeModel implements Appli
 
 		} finally {
 			try {
-				if (!LaubeUtility.isEmpty(this.resultSet)){
-					this.resultSet.close();
-					this.resultSet = null;
-				}
-
-				if (!LaubeUtility.isEmpty(this.preparedStatement)){
-					this.preparedStatement.close();
-					this.preparedStatement = null;
-				}
-
-			} catch (final SQLException e) {
-				throw new LaubeException("findByCommonRouteCode",e);
+				closePreparedStatement();
+			} catch (final Exception e) {
+				throw new LaubeException("findByIndividualRouteCode",e);
 			}
 			log.traceEnd("findByCommonRouteCode");
 		}
