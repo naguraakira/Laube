@@ -19,4 +19,5 @@ import site.laube.acceptor.ApprovalSystemAcceptor;
  */
 
 public final class ApprovalAcceptor extends ApprovalSystemAcceptor {
+	// no code
 }

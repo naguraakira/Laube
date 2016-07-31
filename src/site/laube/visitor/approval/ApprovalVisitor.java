@@ -54,7 +54,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 	 * @return ResultDto
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("nls")
+	@SuppressWarnings({ "nls", "unchecked" })
 	public ResultDto visit(final ApprovalSystemAcceptor approvalSystemAcceptor) throws LaubeException {
 
 		log.traceStart("visit",approvalSystemAcceptor);
@@ -137,7 +137,15 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					return resultDto;
 				}
 
-				ArrayList<DeputyApprovelDto> deputyApprovelDtos = (ArrayList<DeputyApprovelDto>)resultDto.getResultData();
+				ArrayList<DeputyApprovelDto> deputyApprovelDtos = null;
+
+				if (resultDto.getResultData() instanceof ArrayList){
+					deputyApprovelDtos = (ArrayList<DeputyApprovelDto>)resultDto.getResultData();
+				}else{
+					LaubeModel.connection.rollback();
+					log.crush("visit", "[resultDto] " + resultDto.toString());
+					return resultDto;
+				}
 
 				for (DeputyApprovelDto deputyApprovelDto : deputyApprovelDtos) {
 
@@ -151,7 +159,14 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 						return resultDto;
 					}
 
-					activityObjectDtos = (ArrayList<LaubeDto>)resultDto.getResultData();
+					if (resultDto.getResultData() instanceof ArrayList){
+						activityObjectDtos = (ArrayList<LaubeDto>)resultDto.getResultData();
+					}else{
+						LaubeModel.connection.rollback();
+						log.crush("visit", "[resultDto] " + resultDto.toString());
+						return resultDto;
+					}
+
 					if (activityObjectDtos.size() == 1) {
 						// it gets the approval record.
 						ActivityObjectDto activityObjectDto = (ActivityObjectDto)activityObjectDtos.get(0);
@@ -177,8 +192,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			}
 
 			log.message("visit", "insert the appended object.");
-			if (LaubeUtility.isEmpty(appendFileList)){
-			}else{
+			if (!LaubeUtility.isEmpty(appendFileList)){
 				for (ApprovalSystemAcceptor.AppendFile appendFile : appendFileList) {
 					AppendedDto appendedDto = new AppendedDto();
 					appendedDto.setCompanyCode(companyCode);

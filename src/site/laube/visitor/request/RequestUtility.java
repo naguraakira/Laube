@@ -235,7 +235,7 @@ public class RequestUtility {
 	 * @param target
 	 * @return result
 	 */
-	@SuppressWarnings({ "nls", "static-method" })
+	@SuppressWarnings({ "nls" })
 	private static final boolean checkItem(final List<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors, final ApprovalRouteInformationAcceptor target) {
 
 		log.traceStart("checkItem", approvalRouteInformationAcceptors, target);

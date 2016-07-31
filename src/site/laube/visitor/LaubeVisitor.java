@@ -17,5 +17,6 @@ package site.laube.visitor;
  */
 
 public interface LaubeVisitor {
+	// marker interface
 }
 

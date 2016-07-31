@@ -259,10 +259,12 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	 * @return ResultDto
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
+	@SuppressWarnings("nls")
 	public final ResultDto accept(final ApprovalSystemVisitor approvalSystemVisitor) throws LaubeException{
 
+		log.traceStart("accept", approvalSystemVisitor);
 		ResultDto resultDto = approvalSystemVisitor.visit(this);
-		log.debug("[workflowEngine]" + resultDto.toString());
+		log.traceEnd("accept");
 		return resultDto;
 	}
 }

@@ -31,37 +31,36 @@ public class ApprovalUtility {
 	/**
 	 * check of essential items.
 	 */
+	@SuppressWarnings("nls")
 	protected static final boolean isEmpty(final ApprovalSystemAcceptor approvalSystemAcceptor){
 
-		log.info("[workflowEngine] " + "isNull start");
-		log.info("[workflowEngine] " + "[argument]");
-		log.info("[workflowEngine] " + "approvalSystemAcceptor:" + approvalSystemAcceptor);
+		log.traceStart("isEmpty", approvalSystemAcceptor);
 
 		if (LaubeUtility.isEmpty(approvalSystemAcceptor)) {
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(approvalSystemAcceptor.getApprovalCompanyCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(approvalSystemAcceptor.getApprovalDate())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (LaubeUtility.isBlank(approvalSystemAcceptor.getApprovalUserCode())) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
 		if (approvalSystemAcceptor.getApplicationNumber() == 0) {
-			log.info("[workflowEngine] " + "isNull end");
+			log.traceEnd("isEmpty");
 			return true;
 		}
 
-		log.info("[workflowEngine] " + "isNull end");
+		log.traceEnd("isEmpty");
 		return false;
 	}
 }

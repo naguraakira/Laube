@@ -54,7 +54,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	 * @return ResultDto
 	 * @exception LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("nls")
+	@SuppressWarnings({ "nls", "unchecked" })
 	public ResultDto visit(final SearchSystemAcceptor searchSystemAcceptor) throws LaubeException {
 
 		log.traceStart("visit", searchSystemAcceptor);
