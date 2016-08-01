@@ -11,6 +11,10 @@ import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.ApprovalFunction;
+import site.laube.utility.type.Connector;
+import site.laube.utility.type.RouteType;
+import site.laube.utility.type.UserStatus;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -58,19 +62,19 @@ public class RequestUtility {
 				return false;
 			}
 
-			if (SpecifiedValue.Authorizer_Untreated == activityObjectDto.getActivityStatus()) {
+			if (UserStatus.Authorizer_Untreated.toInt() == activityObjectDto.getActivityStatus()) {
 				log.traceEnd("checkActivityStatus");
 				return false;
 			}
 
-			if (SpecifiedValue.Arrival == activityObjectDto.getActivityStatus()) {
-				if (SpecifiedValue.FunctionConfirmation != activityObjectDto.getFunction()) {
+			if (UserStatus.Arrival.toInt() == activityObjectDto.getActivityStatus()) {
+				if (ApprovalFunction.FunctionConfirmation.toInt() != activityObjectDto.getFunction()) {
 					log.traceEnd("checkActivityStatus");
 					return false;
 				}
 			}
 
-			if (SpecifiedValue.Hold == activityObjectDto.getActivityStatus()) {
+			if (UserStatus.Hold.toInt() == activityObjectDto.getActivityStatus()) {
 				log.traceEnd("checkActivityStatus");
 				return false;
 			}
@@ -171,7 +175,7 @@ public class RequestUtility {
 				activityObjectDto.setPartyTransitCodeConnector(route.getPartyTransitCodeConnector());
 				activityObjectDto.setReachingDate(null);
 				activityObjectDto.setProcessDate(null);
-				activityObjectDto.setActivityStatus(SpecifiedValue.Authorizer_Untreated);
+				activityObjectDto.setActivityStatus(UserStatus.Authorizer_Untreated.toInt());
 				activityObjectDto.setApprovalComment(null);
 				activityObjectDto.setCreateUserId(applyUserCode);
 				activityObjectDto.setUpdateUserId(applyUserCode);
@@ -253,9 +257,9 @@ public class RequestUtility {
 		}
 
 		// check of party code connector
-		boolean isUnspecified        = target.getPartyCodeConnector() == SpecifiedValue.Unspecified;
-		boolean isLogicalSum         = target.getPartyCodeConnector() == SpecifiedValue.LogicalSum;
-		boolean isLogicalProduct     = target.getPartyCodeConnector() == SpecifiedValue.LogicalProduct;
+		boolean isUnspecified        = target.getPartyCodeConnector() == Connector.Unspecified.toInt();
+		boolean isLogicalSum         = target.getPartyCodeConnector() == Connector.LogicalSum.toInt();
+		boolean isLogicalProduct     = target.getPartyCodeConnector() == Connector.LogicalProduct.toInt();
 		final boolean isPartyCodeConnector = isUnspecified || isLogicalSum || isLogicalProduct;
 
 		if (!isPartyCodeConnector) {
@@ -265,9 +269,9 @@ public class RequestUtility {
 		}
 
 		// check of route type
-		final boolean isIndividualRoute = target.getRouteType() == SpecifiedValue.IndividualRoute;
-		final boolean isCommonRoute     = target.getRouteType() == SpecifiedValue.CommonRoute;
-		final boolean isSpecial         = target.getRouteType() == SpecifiedValue.Special;
+		final boolean isIndividualRoute = target.getRouteType() == RouteType.IndividualRoute.toInt();
+		final boolean isCommonRoute     = target.getRouteType() == RouteType.CommonRoute.toInt();
+		final boolean isSpecial         = target.getRouteType() == RouteType.SpecialRoute.toInt();
 		final boolean isRouteType       = isIndividualRoute || isCommonRoute || isSpecial;
 
 		if (!isRouteType) {
@@ -324,8 +328,8 @@ public class RequestUtility {
 		}
 
 		// check of function
-		final boolean isExamination           = target.getFunction() == SpecifiedValue.Examination;
-		final boolean isFunctionConfirmation  = target.getFunction() == SpecifiedValue.FunctionConfirmation;
+		final boolean isExamination           = target.getFunction() == ApprovalFunction.Examination.toInt();
+		final boolean isFunctionConfirmation  = target.getFunction() == ApprovalFunction.FunctionConfirmation.toInt();
 		final boolean isFunction       = isExamination || isFunctionConfirmation;
 		if (!isFunction) {
 			log.crush("checkItem","error function");
@@ -348,9 +352,9 @@ public class RequestUtility {
 		}
 
 		// check of party code connector
-		isUnspecified        = target.getPartyTransitCodeConnector() == SpecifiedValue.Unspecified;
-		isLogicalSum         = target.getPartyTransitCodeConnector() == SpecifiedValue.LogicalSum;
-		isLogicalProduct     = target.getPartyTransitCodeConnector() == SpecifiedValue.LogicalProduct;
+		isUnspecified        = target.getPartyTransitCodeConnector() == Connector.Unspecified.toInt();
+		isLogicalSum         = target.getPartyTransitCodeConnector() == Connector.LogicalSum.toInt();
+		isLogicalProduct     = target.getPartyTransitCodeConnector() == Connector.LogicalProduct.toInt();
 		final boolean isPartyTransitCodeConnector = isUnspecified || isLogicalSum || isLogicalProduct;
 		if (!isPartyTransitCodeConnector) {
 			log.crush("checkItem","error party code connector");

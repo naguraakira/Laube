@@ -23,7 +23,8 @@ import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.RouteFlag;
+import site.laube.utility.type.Status;
 import site.laube.visitor.RequestSystemVisitor;
 import site.laube.visitor.VisitorUtility;
 
@@ -102,7 +103,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final String deputyApplyCompanyCode = draftAcceptor.getDeputyApplyCompanyCode();
 			final String deputyApplyUnitCode = draftAcceptor.getDeputyApplyUnitCode();
 			final String deputyApplyUserCode = draftAcceptor.getDeputyApplyUserCode();
-			final int applicationStatus = SpecifiedValue.Draft;
+			final int applicationStatus = Status.Draft.toInt();
 
 			log.message("visit","Find the application form master.");
 			VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
@@ -119,8 +120,8 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final boolean isIndividualRoutes = (LaubeUtility.isEmpty(individualRoutes))||(individualRoutes.size() == 0);
 			final boolean isCommonRoutes = (LaubeUtility.isEmpty(commonRoutes))||(commonRoutes.size() == 0);
 
-			final boolean check1 = (applicationFormDto.getRouteFlag() == SpecifiedValue.NoIndividualRouteFlag) && (!isIndividualRoutes);
-			final boolean check2 = (applicationFormDto.getRouteFlag() == SpecifiedValue.IndividualRouteFlag) && (isIndividualRoutes);
+			final boolean check1 = (applicationFormDto.getRouteFlag() == RouteFlag.NoIndividualRouteFlag.toInt()) && (!isIndividualRoutes);
+			final boolean check2 = (applicationFormDto.getRouteFlag() == RouteFlag.IndividualRouteFlag.toInt()) && (isIndividualRoutes);
 			final boolean check3 = isIndividualRoutes && isCommonRoutes;
 
 			if (check1) {
@@ -179,7 +180,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 
 			}else{
 
-				if (((ApplicationObjectDto)applicationObjectDtos.get(0)).getApplicationStatus() == SpecifiedValue.Draft) {
+				if (((ApplicationObjectDto)applicationObjectDtos.get(0)).getApplicationStatus() == Status.Draft.toInt()) {
 					isDraft = true;
 
 				}else{
@@ -240,7 +241,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 			boolean isComplete = RequestUtility.checkActivityStatus(activityObjectDtoList);
 
 			if (isComplete){
-				applicationObjectDto.setApplicationStatus(SpecifiedValue.Approved);
+				applicationObjectDto.setApplicationStatus(Status.Approved.toInt());
 				resultDto = applicationObjectModelInterface.update(applicationObjectDto);
 			}
 

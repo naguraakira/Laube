@@ -23,7 +23,9 @@ import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.RouteFlag;
+import site.laube.utility.type.Status;
+import site.laube.utility.type.UserStatus;
 import site.laube.visitor.RequestSystemVisitor;
 import site.laube.visitor.VisitorUtility;
 
@@ -102,7 +104,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			final String deputyApplyCompanyCode = applyAcceptor.getDeputyApplyCompanyCode();
 			final String deputyApplyUnitCode = applyAcceptor.getDeputyApplyUnitCode();
 			final String deputyApplyUserCode = applyAcceptor.getDeputyApplyUserCode();
-			final int applicationStatus = SpecifiedValue.UnderExamination;
+			final int applicationStatus = Status.UnderExamination.toInt();
 
 			log.message("visit","Find the application form master.");
 			resultDto = VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
@@ -119,8 +121,8 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			final boolean isIndividualRoutes = (LaubeUtility.isEmpty(individualRoutes))||(individualRoutes.size() == 0);
 			final boolean isCommonRoutes = (LaubeUtility.isEmpty(commonRoutes))||(commonRoutes.size() == 0);
 
-			final boolean check1 = (SpecifiedValue.NoIndividualRouteFlag == applicationFormDto.getRouteFlag()) && (!isIndividualRoutes);
-			final boolean check2 = (SpecifiedValue.IndividualRouteFlag == applicationFormDto.getRouteFlag()) && (isIndividualRoutes);
+			final boolean check1 = (RouteFlag.NoIndividualRouteFlag.toInt() == applicationFormDto.getRouteFlag()) && (!isIndividualRoutes);
+			final boolean check2 = (RouteFlag.IndividualRouteFlag.toInt() == applicationFormDto.getRouteFlag()) && (isIndividualRoutes);
 			final boolean check3 = isIndividualRoutes && isCommonRoutes;
 
 			if (check1) {
@@ -183,7 +185,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 			}else{
 
-				if (SpecifiedValue.Draft == ((ApplicationObjectDto)applicationObjectDtos.get(0)).getApplicationStatus()) {
+				if (Status.Draft.toInt() == ((ApplicationObjectDto)applicationObjectDtos.get(0)).getApplicationStatus()) {
 					isDraft = true;
 
 				}else{
@@ -247,7 +249,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			boolean isComplete = RequestUtility.checkActivityStatus(activityObjectDtoList);
 
 			if (isComplete){
-				applicationObjectDto.setApplicationStatus(SpecifiedValue.Approved);
+				applicationObjectDto.setApplicationStatus(Status.Approved.toInt());
 				resultDto = applicationObjectModelInterface.update(applicationObjectDto);
 			}
 
@@ -375,7 +377,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				return false;
 			}
 			if (partyCode.equals(activityObjectDto.getPartyCode())) {
-				activityObjectDto.setActivityStatus(SpecifiedValue.Arrival);
+				activityObjectDto.setActivityStatus(UserStatus.Arrival.toInt());
 			}
 		}
 		log.traceEnd("setArrivalStatus");

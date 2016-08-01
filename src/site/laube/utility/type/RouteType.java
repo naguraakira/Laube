@@ -19,17 +19,35 @@ package site.laube.utility.type;
 public enum RouteType {
 
 	/**
+	 * None
+	 */
+	None(0),
+
+	/**
 	 * Individual
 	 */
-	IndividualRoute,
+	IndividualRoute(1),
 
 	/**
 	 * Common
 	 */
-	CommonRoute,
+	CommonRoute(2),
 
 	/**
 	 * Special
 	 */
-	SpecialRoute;
+	SpecialRoute(3);
+
+	private final int value;
+	RouteType(int value) {
+		this.value = value;
+	}
+
+	/**
+	 * change to int<br>
+	 * @return result
+	 */
+	public int toInt() {
+		return this.value;
+	}
 }

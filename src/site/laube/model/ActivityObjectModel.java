@@ -14,7 +14,7 @@ import site.laube.modelinterface.ActivityObjectModelInterface;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.UserStatus;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -320,7 +320,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 		}
 
 		try {
-			final int    activityStatus = SpecifiedValue.Arrival;
+			final int    activityStatus = UserStatus.Arrival.toInt();
 			final String companyCode = activityObjectDto.getCompanyCode();
 			final long applicationNumber = activityObjectDto.getApplicationNumber();
 			final String approvalCompanyCode = activityObjectDto.getApprovalCompanyCode();
@@ -394,7 +394,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			final String deputyApprovalCompanyCode = activityObjectDto.getDeputyApprovalCompanyCode();
 			final String deputyApprovalUserCode = activityObjectDto.getDeputyApprovalUserCode();
 			final String deputyApprovalComment = activityObjectDto.getDeputyApprovalComment();
-			final int    activityStatus = SpecifiedValue.Authorizer_Approval;
+			final int    activityStatus = UserStatus.Authorizer_Approval.toInt();
 			final String approvalComment = activityObjectDto.getApprovalComment();
 			final String companyCode = activityObjectDto.getCompanyCode();
 			final long applicationNumber = activityObjectDto.getApplicationNumber();
@@ -634,7 +634,7 @@ public final class ActivityObjectModel extends LaubeModel implements ActivityObj
 			return resultDto;
 		}
 
-		final int applovalUserStatus = SpecifiedValue.Arrival;
+		final int applovalUserStatus = UserStatus.Arrival.toInt();
 
 		try {
 

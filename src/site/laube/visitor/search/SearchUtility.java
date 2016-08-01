@@ -8,7 +8,7 @@ import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.ApprovalFunction;
 
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
@@ -105,7 +105,7 @@ public class SearchUtility {
 		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : routeSearchAcceptor.getIndividualRoutes()) {
 			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
 				if (applyUserCode.equals(approvalRouteInformationAcceptor.getApprovalUserCode())){
-					approvalRouteInformationAcceptor.setFunction(SpecifiedValue.Skip);
+					approvalRouteInformationAcceptor.setFunction(ApprovalFunction.Skip.toInt());
 				}
 			}
 		}
@@ -131,7 +131,7 @@ public class SearchUtility {
 
 		for (ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor : approvalRouteInformationAcceptorList) {
 			if (!LaubeUtility.isEmpty(approvalRouteInformationAcceptor)){
-				if (SpecifiedValue.Skip != approvalRouteInformationAcceptor.getFunction()){
+				if (ApprovalFunction.Skip.toInt() != approvalRouteInformationAcceptor.getFunction()){
 					result = false;
 				}
 			}

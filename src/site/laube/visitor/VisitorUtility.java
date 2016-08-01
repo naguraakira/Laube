@@ -42,6 +42,8 @@ import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.ApprovalFunction;
+import site.laube.utility.type.Connector;
 import site.laube.utility.type.RouteType;
 
 /*
@@ -500,17 +502,17 @@ public final class VisitorUtility {
 			approvalRouteInformationAcceptor.setDeputyApprovalCompanyCode(null);
 			approvalRouteInformationAcceptor.setDeputyApprovalUnitCode(null);
 			approvalRouteInformationAcceptor.setDeputyApprovalUserCode(null);
-			approvalRouteInformationAcceptor.setFunction(SpecifiedValue.Examination);
+			approvalRouteInformationAcceptor.setFunction(ApprovalFunction.Examination.toInt());
 			approvalRouteInformationAcceptor.setPartyCode("AP" + String.format("%1$08d", (++partyCodeIndex)));
-			approvalRouteInformationAcceptor.setPartyCodeConnector(SpecifiedValue.Unspecified);
+			approvalRouteInformationAcceptor.setPartyCodeConnector(Connector.Unspecified.toInt());
 			if (bossDtos.size() == partyCodeIndex) {
 				approvalRouteInformationAcceptor.setNextPartyCode(SpecifiedValue.END);
 			}else{
 				approvalRouteInformationAcceptor.setNextPartyCode("AP" + String.format("%1$08d", (partyCodeIndex + 1)));
 			}
 			approvalRouteInformationAcceptor.setPartyTransitCode("AT" + String.format("%1$08d", (++partyTransitCodeIndex)));
-			approvalRouteInformationAcceptor.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
-			approvalRouteInformationAcceptor.setRouteType(SpecifiedValue.IndividualRoute);
+			approvalRouteInformationAcceptor.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
+			approvalRouteInformationAcceptor.setRouteType(RouteType.IndividualRoute.toInt());
 			approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
 		}
 		resultDto.setResultData(approvalRouteInformationAcceptors);

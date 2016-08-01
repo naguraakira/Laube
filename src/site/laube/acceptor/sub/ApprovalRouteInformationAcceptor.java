@@ -3,7 +3,6 @@ package site.laube.acceptor.sub;
 import java.io.Serializable;
 
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
 import site.laube.utility.type.RouteType;
 
 /*
@@ -159,15 +158,15 @@ public final class ApprovalRouteInformationAcceptor implements Serializable {
 	public final void setRouteType(final RouteType routeType) {
 
 		if (routeType == RouteType.IndividualRoute) {
-			this.routeType = SpecifiedValue.IndividualRoute;
+			this.routeType = RouteType.IndividualRoute.toInt();
 		}
 
 		if (routeType == RouteType.CommonRoute) {
-			this.routeType = SpecifiedValue.CommonRoute;
+			this.routeType = RouteType.CommonRoute.toInt();
 		}
 
 		if (routeType == RouteType.SpecialRoute) {
-			this.routeType = SpecifiedValue.Special;
+			this.routeType = RouteType.SpecialRoute.toInt();
 		}
 	}
 

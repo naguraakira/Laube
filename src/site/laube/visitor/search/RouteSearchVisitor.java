@@ -20,8 +20,9 @@ import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
-import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.RouteFlag;
 import site.laube.utility.type.RouteType;
+import site.laube.utility.type.ScreenMode;
 import site.laube.visitor.SearchSystemVisitor;
 import site.laube.visitor.VisitorUtility;
 
@@ -210,7 +211,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			}
 
 			// set return information
-			routeSearchAcceptor.setScreenMode(SpecifiedValue.ApplyMode);
+			routeSearchAcceptor.setScreenMode(ScreenMode.ApplyMode.toInt());
 			routeSearchAcceptor.setCompanyCode(companyDto.getCompanyCode());
 			routeSearchAcceptor.setCompanyName(companyDto.getCompanyName());
 			routeSearchAcceptor.setApplicationFormCode(applicationFormDto.getApplicationFormCode());
@@ -251,7 +252,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			log.message("visit", "individualRouteCode:" + individualRouteCode);
 			log.message("visit", "commonRouteCode:" + commonRouteCode);
 
-			if ((SpecifiedValue.IndividualRouteFlag == applicationFormDto.getRouteFlag()) && (!LaubeUtility.isBlank(individualRouteCode))) {
+			if ((RouteFlag.IndividualRouteFlag.toInt() == applicationFormDto.getRouteFlag()) && (!LaubeUtility.isBlank(individualRouteCode))) {
 				log.debug("[workflowEngine] " + "find the individual route master.");
 				resultDto = VisitorUtility.findRoute(applyCompanyCode, individualRouteCode, RouteType.IndividualRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -278,7 +279,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				routeSearchAcceptor.setIndividualRoutes(approvalRouteInformationAcceptors);
 			}
 
-			if (SpecifiedValue.BossRouteFlag == applicationFormDto.getRouteFlag()) {
+			if (RouteFlag.BossRouteFlag.toInt() == applicationFormDto.getRouteFlag()) {
 				log.debug("[workflowEngine] " + "find the boss route master.");
 				resultDto = VisitorUtility.findRoute(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
