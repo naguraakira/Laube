@@ -2,10 +2,9 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.dto.DeputyApprovelDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -380,7 +379,7 @@ public final class DeputyApprovelDao extends LaubeDao implements site.laube.daoi
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
+			final val resultData = conversion(this.resultSet, new DeputyApprovelDto());
 
 			log.debug("[workflowEngine] " + "find end" + "[return value]:" + resultData);
 			resultDto.setSuccess(true);
@@ -470,7 +469,7 @@ public final class DeputyApprovelDao extends LaubeDao implements site.laube.daoi
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new DeputyApprovelDto());
+			final val resultData = conversion(this.resultSet, new DeputyApprovelDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

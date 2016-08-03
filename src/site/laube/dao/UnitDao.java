@@ -2,10 +2,9 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.UnitDaoInterface;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.dto.temporary.UnitDto;
 import site.laube.exception.LaubeException;
@@ -91,7 +90,7 @@ public final class UnitDao extends LaubeDao implements UnitDaoInterface {
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new UnitDto());
+			final val resultData = conversion(this.resultSet, new UnitDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

@@ -2,11 +2,10 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.ActivityDaoInterface;
 import site.laube.dto.ActivityDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -381,7 +380,7 @@ public abstract class ActivityDao extends LaubeDao implements ActivityDaoInterfa
 				resultDto.setMessageId("E1003");
 				return resultDto;
 			}
-			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
+			final val result = conversion(this.resultSet, new ActivityDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -448,7 +447,7 @@ public abstract class ActivityDao extends LaubeDao implements ActivityDaoInterfa
 				resultDto.setMessageId("E1003");
 				return resultDto;
 			}
-			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
+			final val result = conversion(this.resultSet, new ActivityDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

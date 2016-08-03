@@ -6,11 +6,10 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.ApplicationObjectDaoInterface;
 import site.laube.dto.ApplicationObjectDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -114,7 +113,7 @@ public final class ApplicationObjectDao extends LaubeDao implements ApplicationO
 				return resultDto;
 			}
 
-			final  ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationObjectDto());
+			final val resultData = conversion(this.resultSet, new ApplicationObjectDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

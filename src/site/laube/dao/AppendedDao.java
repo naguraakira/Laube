@@ -2,11 +2,10 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.AppendedDaoInterface;
 import site.laube.dto.AppendedDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -387,7 +386,7 @@ public final class AppendedDao extends LaubeDao implements AppendedDaoInterface 
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new AppendedDto());
+			final val resultData = conversion(this.resultSet, new AppendedDto());
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);

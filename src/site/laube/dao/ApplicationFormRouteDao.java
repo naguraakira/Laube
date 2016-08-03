@@ -2,11 +2,10 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.ApplicationFormRouteDaoInterface;
 import site.laube.dto.ApplicationFormRouteDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -135,7 +134,7 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 				}
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
+			final val resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -219,7 +218,7 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
+			final val resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -305,7 +304,7 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 				return null;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
+			final val resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

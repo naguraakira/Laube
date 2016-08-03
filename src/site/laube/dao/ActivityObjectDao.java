@@ -3,12 +3,11 @@ package site.laube.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
+import lombok.val;
 import site.laube.daointerface.ActivityObjectDaoInterface;
 import site.laube.dto.ActivityObjectDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -589,7 +588,7 @@ public final class ActivityObjectDao extends LaubeDao implements ActivityObjectD
 				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
-			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityObjectDto());
+			final val result = conversion(this.resultSet, new ActivityObjectDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

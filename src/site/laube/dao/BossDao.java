@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.BossDaoInterface;
 import site.laube.dto.BossDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -534,7 +534,7 @@ public final class BossDao extends LaubeDao implements BossDaoInterface {
 				}
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new BossDto());
+			final val resultData = conversion(this.resultSet, new BossDto());
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);

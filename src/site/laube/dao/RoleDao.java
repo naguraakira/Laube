@@ -2,10 +2,9 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.RoleDaoInterface;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.dto.RoleDto;
 import site.laube.exception.LaubeException;
@@ -366,7 +365,7 @@ public final class RoleDao extends LaubeDao implements RoleDaoInterface {
 				return resultDto;
 			}
 
-			ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+			final val resultData = conversion(this.resultSet, new RoleDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -437,7 +436,7 @@ public final class RoleDao extends LaubeDao implements RoleDaoInterface {
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+			final val resultData = conversion(this.resultSet, new RoleDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -520,7 +519,7 @@ public final class RoleDao extends LaubeDao implements RoleDaoInterface {
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RoleDto());
+			final val resultData = conversion(this.resultSet, new RoleDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

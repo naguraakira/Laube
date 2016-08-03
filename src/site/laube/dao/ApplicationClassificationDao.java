@@ -2,12 +2,11 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.ApplicationClassificationDaoInterface;
 import site.laube.dto.ApplicationClassificationDto;
 import site.laube.dto.ApplicationFormRouteDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -347,7 +346,7 @@ public final class ApplicationClassificationDao extends LaubeDao implements Appl
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationClassificationDto());
+			final val resultData = conversion(this.resultSet, new ApplicationClassificationDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -424,7 +423,7 @@ public final class ApplicationClassificationDao extends LaubeDao implements Appl
 				return resultDto;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationClassificationDto());
+			final val resultData = conversion(this.resultSet, new ApplicationClassificationDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -505,7 +504,7 @@ public final class ApplicationClassificationDao extends LaubeDao implements Appl
 				return null;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
+			final val resultData = conversion(this.resultSet, new ApplicationFormRouteDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");

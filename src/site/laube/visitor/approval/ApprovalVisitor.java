@@ -2,8 +2,8 @@ package site.laube.visitor.approval;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
+import lombok.val;
 import site.laube.acceptor.ApprovalSystemAcceptor;
 import site.laube.acceptor.approval.ApprovalAcceptor;
 import site.laube.dao.ActivityObjectDao;
@@ -97,7 +97,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			String approvalUnitCode = approvalAcceptor.getApprovalUnitCode();
 			String approvalUserCode = approvalAcceptor.getApprovalUserCode();
 			final String comment = approvalAcceptor.getComment();
-			final List<ApprovalSystemAcceptor.AppendFile> appendFileList = approvalAcceptor.getAppendFileList();
+			final val appendFileList = approvalAcceptor.getAppendFileList();
 
 			log.message("visit", "find the activity object.");
 			ActivityObjectDaoInterface activityObjectModelInterface = new ActivityObjectDao();
@@ -193,7 +193,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 
 			log.message("visit", "insert the appended object.");
 			if (!LaubeUtility.isEmpty(appendFileList)){
-				for (ApprovalSystemAcceptor.AppendFile appendFile : appendFileList) {
+				for (val appendFile : appendFileList) {
 					AppendedDto appendedDto = new AppendedDto();
 					appendedDto.setCompanyCode(companyCode);
 					appendedDto.setApplicationNumber(applicationNumber);

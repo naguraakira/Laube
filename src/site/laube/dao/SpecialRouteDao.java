@@ -2,11 +2,10 @@ package site.laube.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import lombok.val;
 import site.laube.daointerface.RouteDaoInterface;
 import site.laube.dto.ActivityDto;
-import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.dto.RouteDto;
 import site.laube.exception.LaubeException;
@@ -176,7 +175,7 @@ public final class SpecialRouteDao extends RouteDao implements RouteDaoInterface
 				return null;
 			}
 
-			final ArrayList<LaubeDto> resultData = conversion(this.resultSet, new RouteDto());
+			final val resultData = conversion(this.resultSet, new RouteDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
@@ -251,7 +250,7 @@ public final class SpecialRouteDao extends RouteDao implements RouteDaoInterface
 				resultDto.setMessageId("E1003");
 				return resultDto;
 			}
-			final ArrayList<LaubeDto> result = conversion(this.resultSet, new ActivityDto());
+			final val result = conversion(this.resultSet, new ActivityDto());
 
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
