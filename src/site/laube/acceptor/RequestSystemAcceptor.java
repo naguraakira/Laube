@@ -3,6 +3,8 @@ package site.laube.acceptor;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
@@ -26,7 +28,8 @@ import site.laube.visitor.RequestSystemVisitor;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 
 	/**
@@ -100,82 +103,6 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 	private List<ApprovalRouteInformationAcceptor> commonRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
 
 	/**
-	 * set the company code.<br>
-	 * @param companyCode company code
-	 */
-	public final void setCompanyCode(final String companyCode) {
-		this.companyCode = companyCode;
-	}
-
-	/**
-	 * get the company code.<br>
-	 *
-	 * @return company code.
-	 */
-	public final  String getCompanyCode() {
-		return this.companyCode;
-	}
-
-	/**
-	 * set the application number.<br>
-	 * @param applicationNumber application number
-	 */
-	public final void setApplicationNumber(final long applicationNumber) {
-		this.applicationNumber = applicationNumber;
-	}
-
-	/**
-	 * get the application number<br>
-	 *
-	 * @return application number
-	 */
-	public final long getApplicationNumber() {
-		return this.applicationNumber;
-	}
-
-	/**
-	 * set the most recent application number.<br>
-	 * @param reapplicationNumber reapplicationNumber
-	 */
-	public final void setReapplicationNumber(final long reapplicationNumber) {
-		this.reapplicationNumber = reapplicationNumber;
-	}
-
-	/**
-	 * get the most recent application number<br>
-	 *
-	 * @return most recent application number
-	 */
-	public final long getReapplicationNumber() {
-		return this.reapplicationNumber;
-	}
-
-	/**
-	 * set the application code of request.<br>
-	 * @param applicationFormCode application code of request
-	 */
-	public final void setApplicationFormCode(final String applicationFormCode) {
-		this.applicationFormCode = applicationFormCode;
-	}
-
-	/**
-	 * get the application code of request.<br>
-	 *
-	 * @return application code of request
-	 */
-	public final String getApplicationFormCode() {
-		return this.applicationFormCode;
-	}
-
-	/**
-	 * set the date of request.<br>
-	 * @param applyDate date of request
-	 */
-	public final void setApplyDate(final String applyDate) {
-		this.applyDate = applyDate;
-	}
-
-	/**
 	 * get the date of request.<br>
 	 *
 	 * @return date of request
@@ -186,134 +113,6 @@ public abstract class RequestSystemAcceptor extends LaubeAcceptor {
 			this.applyDate = this.applyDate.trim().replace('-', '/');
 		}
 		return this.applyDate;
-	}
-
-	/**
-	 * set the apply company code of request.<br>
-	 * @param applyCompanyCode apply company code of request
-	 */
-	public final void setApplyCompanyCode(final String applyCompanyCode) {
-		this.applyCompanyCode = applyCompanyCode;
-	}
-
-	/**
-	 * get the apply company code of request.<br>
-	 * @return apply company code of request
-	 */
-	public final String getApplyCompanyCode() {
-		return this.applyCompanyCode;
-	}
-
-	/**
-	 * set the department code of request.<br>
-	 * @param applyUnitCode apply unit code
-	 */
-	public final void setApplyUnitCode(final String applyUnitCode) {
-		this.applyUnitCode = applyUnitCode;
-	}
-
-	/**
-	 * get the department code of request.<br>
-	 * @return department code of request
-	 */
-	public final String getApplyUnitCode() {
-		return this.applyUnitCode;
-	}
-
-	/**
-	 * set the employee number of request.<br>
-	 * @param applyUserCode apply user code
-	 */
-	public final void setApplyUserCode(final String applyUserCode) {
-		this.applyUserCode = applyUserCode;
-	}
-
-	/**
-	 * get the employee number of request.<br>
-	 * @return employee number of request
-	 */
-	public final String getApplyUserCode() {
-		return this.applyUserCode;
-	}
-
-	/**
-	 * set the deputy apply company code of request.<br>
-	 * @param deputyApplyCompanyCode deputy apply company code of request
-	 */
-	public final void setDeputyApplyCompanyCode(final String deputyApplyCompanyCode) {
-		this.deputyApplyCompanyCode = deputyApplyCompanyCode;
-	}
-
-	/**
-	 * get the deputy apply company code of request.<br>
-	 * @return deputy apply company code of request
-	 */
-	public final String getDeputyApplyCompanyCode() {
-		return this.deputyApplyCompanyCode;
-	}
-
-	/**
-	 * set the Department code of the proxy applicant of request.<br>
-	 * @param deputyApplyUnitCode deputy apply unit code
-	 */
-	public final void setDeputyApplyUnitCode(final String deputyApplyUnitCode) {
-		this.deputyApplyUnitCode = deputyApplyUnitCode;
-	}
-
-	/**
-	 * get the Department code of the proxy applicant of request.<br>
-	 * @return Department code of the proxy applicant of request
-	 */
-	public final String getDeputyApplyUnitCode() {
-		return this.deputyApplyUnitCode;
-	}
-
-	/**
-	 * set the employee number of the proxy applicant of request.<br>
-	 * @param deputyApplyUserCode deputy apply user code
-	 */
-	public final void setDeputyApplyUserCode(final String deputyApplyUserCode) {
-		this.deputyApplyUserCode = deputyApplyUserCode;
-	}
-
-	/**
-	 * get the employee number of the proxy applicant of request.<br>
-	 * @return employee number of the proxy applicant of request
-	 */
-	public final String getDeputyApplyUserCode() {
-		return this.deputyApplyUserCode;
-	}
-
-	/**
-	 * get the Individual Routes<br>
-	 * @return Individual Routes
-	 */
-	public final List<ApprovalRouteInformationAcceptor> getIndividualRoutes() {
-		return this.individualRoutes;
-	}
-
-	/**
-	 * set the Individual Routes.<br>
-	 * @param individualRoutes Individual Routes
-	 */
-	public final void setIndividualRoutes(List<ApprovalRouteInformationAcceptor> individualRoutes) {
-		this.individualRoutes = individualRoutes;
-	}
-
-	/**
-	 * get the Common Routes.<br>
-	 * @return common Routes
-	 */
-	public final List<ApprovalRouteInformationAcceptor> getCommonRoutes() {
-		return this.commonRoutes;
-	}
-
-	/**
-	 * set the Common Routes.<br>
-	 * @param commonRoutes Common Routes
-	 */
-	public final void setCommonRoutes(List<ApprovalRouteInformationAcceptor> commonRoutes) {
-		this.commonRoutes = commonRoutes;
 	}
 
 	/**

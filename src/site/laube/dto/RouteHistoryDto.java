@@ -1,5 +1,8 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -15,7 +18,8 @@ package site.laube.dto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public final class RouteHistoryDto extends ApplicationObjectDto {
 
 	/**
@@ -27,20 +31,4 @@ public final class RouteHistoryDto extends ApplicationObjectDto {
 	 * to manage the history number.<br>
 	 */
 	private int number;
-
-	/**
-	 * set the history number.<br>
-	 * @param number history number
-	 */
-	public final void setNumber(final int number) {
-		this.number = number;
-	}
-
-	/**
-	 * get the history number.<br>
-	 * @return history number
-	 */
-	public final int getNumber() {
-		return this.number;
-	}
 }

@@ -1,5 +1,7 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.temporary.UserDto;
 
 /*
@@ -17,7 +19,8 @@ import site.laube.dto.temporary.UserDto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public final class NotificationDto extends UserDto {
 
 	/**

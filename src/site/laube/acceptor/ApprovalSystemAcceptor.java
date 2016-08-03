@@ -3,6 +3,8 @@ package site.laube.acceptor;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -25,6 +27,8 @@ import site.laube.visitor.ApprovalSystemVisitor;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@Getter
+@Setter
 public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 
 	/**
@@ -73,46 +77,6 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	private List<AppendFile> appendFileList = new ArrayList<AppendFile>();
 
 	/**
-	 * set the company code.<br>
-	 * @param companyCode company code
-	 */
-	public final void setCompanyCode(final String companyCode) {
-		this.companyCode = companyCode;
-	}
-
-	/**
-	 * get the company code.<br>
-	 * @return company code
-	 */
-	public final String getCompanyCode() {
-		return this.companyCode;
-	}
-
-	/**
-	 * set the application number of approve.<br>
-	 * @param applicationNumber application number of approve
-	 */
-	public final void setApplicationNumber(final long applicationNumber) {
-		this.applicationNumber = applicationNumber;
-	}
-
-	/**
-	 * get the application number of approve.<br>
-	 * @return application number of approve
-	 */
-	public final long getApplicationNumber() {
-		return this.applicationNumber;
-	}
-
-	/**
-	 * set the date of approval.<br>
-	 * @param approvalDate date of approval
-	 */
-	public final void setApprovalDate(final String approvalDate) {
-		this.approvalDate = approvalDate;
-	}
-
-	/**
 	 * get the date of approval.<br>
 	 *
 	 * @return date of approval
@@ -126,88 +90,10 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	}
 
 	/**
-	 * set the company code of approval.<br>
-	 * @param approvalCompanyCode company code of approval
-	 */
-	public final void setApprovalCompanyCode(final String approvalCompanyCode) {
-		this.approvalCompanyCode = approvalCompanyCode;
-	}
-
-	/**
-	 * get the company code of approval.<br>
-	 * @return company code of approval
-	 */
-	public final String getApprovalCompanyCode() {
-		return this.approvalCompanyCode;
-	}
-
-	/**
-	 * set the compunitany code of approval.<br>
-	 * @param approvalUnitCode unit code of approval
-	 */
-	public final void setApprovalUnitCode(final String approvalUnitCode) {
-		this.approvalUnitCode = approvalUnitCode;
-	}
-
-	/**
-	 * get the unit code of approval.<br>
-	 * @return unit code of approval
-	 */
-	public final String getApprovalUnitCode() {
-		return this.approvalUnitCode;
-	}
-
-	/**
-	 * set the employee number of approval.<br>
-	 * @param approvalUserCode employee number of approval
-	 */
-	public final void setApprovalUserCode(final String approvalUserCode) {
-		this.approvalUserCode = approvalUserCode;
-	}
-
-	/**
-	 * get the employee number of approval.<br>
-	 * @return employee number of approval
-	 */
-	public final String getApprovalUserCode() {
-		return this.approvalUserCode;
-	}
-
-	/**
-	 * set the comment of approval.<br>
-	 * @param comment comment of approval
-	 */
-	public final void setComment(final String comment) {
-		this.comment = comment;
-	}
-
-	/**
-	 * get the comment of approval.<br>
-	 * @return comment of approval
-	 */
-	public final String getComment() {
-		return this.comment;
-	}
-
-	/**
-	 * set the attachments of approval.<br>
-	 * @param appendFileList append file list
-	 */
-	public final void setAppendFileList(List<AppendFile> appendFileList) {
-		this.appendFileList = appendFileList;
-	}
-
-	/**
-	 * get the attachments of approval.<br>
-	 * @return appendedList attachments of approval
-	 */
-	public final List<AppendFile> getAppendFileList() {
-		return this.appendFileList;
-	}
-
-	/**
 	 * Inner class for managing the attachment<br>
 	 */
+	@Getter
+	@Setter
 	public final class AppendFile {
 
 		/**
@@ -219,38 +105,6 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 		 * to manage the path of attachments.<br>
 		 */
 		private String path = null;
-
-		/**
-		 * set the approval number of attachments.<br>
-		 * @param approvalNumber approval number
-		 */
-		public final void setApprovalNumber(final int approvalNumber) {
-			this.approvalNumber = approvalNumber;
-		}
-
-		/**
-		 * get the approval number of attachments.<br>
-		 * @return approval number number of attachments
-		 */
-		public final int getApprovalNumber() {
-			return this.approvalNumber;
-		}
-
-		/**
-		 * set the path of attachments.<br>
-		 * @param path path of attachments.
-		 */
-		public final void setPath(final String path) {
-			this.path = path;
-		}
-
-		/**
-		 * get the path of attachments.<br>
-		 * @return path path of attachments.
-		 */
-		public final String getPath() {
-			return this.path;
-		}
 	}
 
 	/**

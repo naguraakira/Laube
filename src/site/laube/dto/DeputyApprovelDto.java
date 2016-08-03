@@ -1,5 +1,7 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.temporary.UserDto;
 
 /*
@@ -17,7 +19,8 @@ import site.laube.dto.temporary.UserDto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public final class DeputyApprovelDto extends UserDto {
 
 	/**
@@ -49,84 +52,4 @@ public final class DeputyApprovelDto extends UserDto {
 	 * to manage the deputy contents. <br>
 	 */
 	private String deputyContents;
-
-	/**
-	 * set the deputy approverl company code.<br>
-	 * @param deputyApproverlCompanyCode deputy approverl company code
-	 */
-	public final void setDeputyApproverlCompanyCode(final String deputyApproverlCompanyCode) {
-		this.deputyApproverlCompanyCode = deputyApproverlCompanyCode;
-	}
-
-	/**
-	 * get the deputy approverl company code.<br>
-	 * @return deputy approverl company code
-	 */
-	public final String getDeputyApproverlCompanyCode() {
-		return this.deputyApproverlCompanyCode;
-	}
-
-	/**
-	 * set the deputy approverl unit code.<br>
-	 * @param deputyApproverlUnitCode deputy approverl unit code
-	 */
-	public final void setDeputyApproverlUnitCode(final String deputyApproverlUnitCode) {
-		this.deputyApproverlUnitCode = deputyApproverlUnitCode;
-	}
-
-	/**
-	 * get the deputy approverl unit code.<br>
-	 * @return deputy approverl unit code
-	 */
-	public final String getDeputyApproverlUnitCode() {
-		return this.deputyApproverlUnitCode;
-	}
-
-	/**
-	 * set the deputy approverl user code.<br>
-	 * @param deputyApproverlUserCode deputy approverl user code
-	 */
-	public final void setDeputyApproverlUserCode(final String deputyApproverlUserCode) {
-		this.deputyApproverlUserCode = deputyApproverlUserCode;
-	}
-
-	/**
-	 * get the deputy approverl user code.<br>
-	 * @return deputy approverl user code
-	 */
-	public final String getDeputyApproverlUserCode() {
-		return this.deputyApproverlUserCode;
-	}
-
-	/**
-	 * set the deputy approverl user name.<br>
-	 * @param deputyApproverlUserName deputy approverl user name
-	 */
-	public final void setDeputyApproverlUserName(final String deputyApproverlUserName) {
-		this.deputyApproverlUserName = deputyApproverlUserName;
-	}
-
-	/**
-	 * get the deputy approverl user name.<br>
-	 * @return deputy approverl user name
-	 */
-	public final String getDeputyApproverlUserName() {
-		return this.deputyApproverlUserName;
-	}
-
-	/**
-	 * set the deputy approverl contents.<br>
-	 * @param deputyContents deputy contents
-	 */
-	public final void setDeputyContents(final String deputyContents) {
-		this.deputyContents = deputyContents;
-	}
-
-	/**
-	 * get the deputy approverl contents.<br>
-	 * @return deputy approverl contents
-	 */
-	public final String getDeputyContents() {
-		return this.deputyContents;
-	}
 }

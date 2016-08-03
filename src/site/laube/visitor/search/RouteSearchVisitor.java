@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.acceptor.search.RouteSearchAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.dao.LaubeDao;
 import site.laube.database.DbConnectManager;
 import site.laube.dto.ApplicationClassificationDto;
 import site.laube.dto.ApplicationFormDto;
@@ -15,7 +16,6 @@ import site.laube.dto.temporary.CompanyDto;
 import site.laube.dto.temporary.UnitDto;
 import site.laube.dto.temporary.UserDto;
 import site.laube.exception.LaubeException;
-import site.laube.model.LaubeModel;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
@@ -64,7 +64,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(searchSystemAcceptor)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("visit");
 			return resultDto;
@@ -88,7 +88,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			boolean isNull = SearchUtility.isEmpty(routeSearchAcceptor);
 
 			if (isNull) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0001");
 				return resultDto;
 			}
@@ -266,13 +266,13 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				if (object instanceof ArrayList){
 					approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)object;
 				}else{
-					resultDto.setStatus(false);
+					resultDto.setSuccess(false);
 					resultDto.setMessageId("E1002");
 					return resultDto;
 				}
 
 				if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
-					resultDto.setStatus(false);
+					resultDto.setSuccess(false);
 					resultDto.setMessageId("E1002");
 					return resultDto;
 				}
@@ -293,7 +293,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				if (object instanceof ArrayList){
 					approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)object;
 				}else{
-					resultDto.setStatus(false);
+					resultDto.setSuccess(false);
 					resultDto.setMessageId("E1002");
 					return resultDto;
 				}
@@ -307,7 +307,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 					}
 
 					if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
-						resultDto.setStatus(false);
+						resultDto.setSuccess(false);
 						resultDto.setMessageId("E1002");
 						return resultDto;
 					}
@@ -315,7 +315,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 				}else{
 					if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
-						resultDto.setStatus(false);
+						resultDto.setSuccess(false);
 						resultDto.setMessageId("E1002");
 						return resultDto;
 					}
@@ -369,14 +369,14 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 				ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = (ArrayList<ApprovalRouteInformationAcceptor>)resultDto.getResultData();;
 				if ((LaubeUtility.isEmpty(approvalRouteInformationAcceptors))||(approvalRouteInformationAcceptors.size() < 1)) {
-					resultDto.setStatus(false);
+					resultDto.setSuccess(false);
 					resultDto.setMessageId("E1002");
 					return resultDto;
 				}
 				routeSearchAcceptor.setCommonRoutes(approvalRouteInformationAcceptors);
 			}
 
-			resultDto.setStatus(true);
+			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(routeSearchAcceptor);
 			return resultDto;
@@ -387,8 +387,8 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 		}finally{
 			try {
 				if (isAutoCommit){
-					if (!LaubeUtility.isEmpty(LaubeModel.connection)){
-						LaubeModel.connection.close();
+					if (!LaubeUtility.isEmpty(LaubeDao.connection)){
+						LaubeDao.connection.close();
 					}
 				}
 			} catch (final SQLException e) {

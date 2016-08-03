@@ -1,5 +1,7 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.temporary.UserDto;
 
 /*
@@ -17,7 +19,8 @@ import site.laube.dto.temporary.UserDto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class BossDto extends UserDto {
 
 	/**
@@ -64,132 +67,4 @@ public class BossDto extends UserDto {
 	 * to manage the employee name of immediate supervisor.<br>
 	 */
 	private String bossUserName;
-
-	/**
-	 * set the application code.<br>
-	 * @param applicationFormCode application form code
-	 */
-	public final void setApplicationFormCode(String applicationFormCode) {
-		this.applicationFormCode = applicationFormCode;
-	}
-
-	/**
-	 * get the application code.<br>
-	 * @return application form code
-	 */
-	public final String getApplicationFormCode() {
-		return this.applicationFormCode;
-	}
-
-	/**
-	 * set the application form name.<br>
-	 * @param applicationFormName application form name
-	 */
-	public final void setApplicationFormName(final String applicationFormName) {
-		this.applicationFormName = applicationFormName;
-	}
-
-	/**
-	 * get the application form name.<br>
-	 * @return application form name
-	 */
-	public final String getApplicationFormName() {
-		return this.applicationFormName;
-	}
-
-	/**
-	 * set the company code of the immediate supervisor.<br>
-	 * @param bossCompanyCode boss company code
-	 */
-	public final void setBossCompanyCode(String bossCompanyCode) {
-		this.bossCompanyCode = bossCompanyCode;
-	}
-
-	/**
-	 * get the company code of the immediate supervisor.<br>
-	 * @return boss company code
-	 */
-	public final String getBossCompanyCode() {
-		return this.bossCompanyCode;
-	}
-
-	/**
-	 * set the company name of the immediate supervisor.<br>
-	 * @param bossCompanyName boss company name
-	 */
-	public final void setBossCompanyName(String bossCompanyName) {
-		this.bossCompanyName = bossCompanyName;
-	}
-
-	/**
-	 * get the company name of the immediate supervisor.<br>
-	 * @return boss company name
-	 */
-	public final String getBossCompanyName() {
-		return this.bossCompanyName;
-	}
-
-	/**
-	 * set the department code of the immediate supervisor.<br>
-	 * @param bossUnitCode boss unit code
-	 */
-	public final void setBossUnitCode(String bossUnitCode) {
-		this.bossUnitCode = bossUnitCode;
-	}
-
-	/**
-	 * get the department code of the immediate supervisor.<br>
-	 * @return boss unit code
-	 */
-	public final String getBossUnitCode() {
-		return this.bossUnitCode;
-	}
-
-	/**
-	 * set the department name of the immediate supervisor.<br>
-	 * @param bossUnitName boss unit name
-	 */
-	public final void setBossUnitName(String bossUnitName) {
-		this.bossUnitName = bossUnitName;
-	}
-
-	/**
-	 * get the department name of the immediate supervisor.<br>
-	 * @return boss unit name
-	 */
-	public final String getBossUnitName() {
-		return this.bossUnitName;
-	}
-
-	/**
-	 * set the employee number of the immediate supervisor.<br>
-	 * @param bossUserCode boss user code
-	 */
-	public final void setBossUserCode(String bossUserCode) {
-		this.bossUserCode = bossUserCode;
-	}
-
-	/**
-	 * get the employee number of the immediate supervisor.<br>
-	 * @return boss user code
-	 */
-	public final String getBossUserCode() {
-		return this.bossUserCode;
-	}
-
-	/**
-	 * set the employee name of the immediate supervisor.<br>
-	 * @param bossUserName boss user name
-	 */
-	public final void setBossUserName(String bossUserName) {
-		this.bossUserName = bossUserName;
-	}
-
-	/**
-	 * get the employee name of the immediate supervisor.<br>
-	 * @return boss user name
-	 */
-	public final String getBossUserName() {
-		return this.bossUserName;
-	}
 }

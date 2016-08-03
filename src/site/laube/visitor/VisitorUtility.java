@@ -5,6 +5,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.dao.ActivityDao;
+import site.laube.dao.ApplicationClassificationDao;
+import site.laube.dao.ApplicationFormDao;
+import site.laube.dao.ApplicationFormRouteDao;
+import site.laube.dao.BossDao;
+import site.laube.dao.CompanyDao;
+import site.laube.dao.DeputyApprovelDao;
+import site.laube.dao.RoleUserDao;
+import site.laube.dao.UnitDao;
+import site.laube.dao.UserDao;
+import site.laube.daointerface.ActivityDaoInterface;
+import site.laube.daointerface.ApplicationClassificationDaoInterface;
+import site.laube.daointerface.ApplicationFormDaoInterface;
+import site.laube.daointerface.ApplicationFormRouteDaoInterface;
+import site.laube.daointerface.BossDaoInterface;
+import site.laube.daointerface.CompanyDaoInterface;
+import site.laube.daointerface.DeputyApprovelDaoInterface;
+import site.laube.daointerface.RoleUserDaoInterface;
+import site.laube.daointerface.UnitDaoInterface;
+import site.laube.daointerface.UserDaoInterface;
 import site.laube.dto.ActivityDto;
 import site.laube.dto.ApplicationClassificationDto;
 import site.laube.dto.ApplicationFormDto;
@@ -17,26 +37,6 @@ import site.laube.dto.temporary.CompanyDto;
 import site.laube.dto.temporary.UnitDto;
 import site.laube.dto.temporary.UserDto;
 import site.laube.exception.LaubeException;
-import site.laube.model.ActivityModel;
-import site.laube.model.ApplicationClassificationModel;
-import site.laube.model.ApplicationFormModel;
-import site.laube.model.ApplicationFormRouteModel;
-import site.laube.model.BossModel;
-import site.laube.model.CompanyModel;
-import site.laube.model.DeputyApprovelModel;
-import site.laube.model.RoleUserModel;
-import site.laube.model.UnitModel;
-import site.laube.model.UserModel;
-import site.laube.modelinterface.ActivityModelInterface;
-import site.laube.modelinterface.ApplicationClassificationModelInterface;
-import site.laube.modelinterface.ApplicationFormModelInterface;
-import site.laube.modelinterface.ApplicationFormRouteModelInterface;
-import site.laube.modelinterface.BossModelInterface;
-import site.laube.modelinterface.CompanyModelInterface;
-import site.laube.modelinterface.DeputyApprovelModelInterface;
-import site.laube.modelinterface.RoleUserModelInterface;
-import site.laube.modelinterface.UnitModelInterface;
-import site.laube.modelinterface.UserModelInterface;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
@@ -147,13 +147,13 @@ public final class VisitorUtility {
 		ResultDto resultDto  = new ResultDto();
 
 		if (LaubeUtility.isBlank(companyCode)) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findCompany");
 			return resultDto;
 		}
 
-		final CompanyModelInterface companyModelInterface = new CompanyModel();
+		final CompanyDaoInterface companyModelInterface = new CompanyDao();
 		resultDto = companyModelInterface.find(companyCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.traceEnd("findCompany");
@@ -164,7 +164,7 @@ public final class VisitorUtility {
 
 		CompanyDto companyDto = (CompanyDto)companyDtos.get(0);
 		resultDto.setResultData(companyDto);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findCompany");
 		return resultDto;
@@ -185,13 +185,13 @@ public final class VisitorUtility {
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(unitCode))) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findCompany");
 			return resultDto;
 		}
 
-		final UnitModelInterface unitModelInterface = new UnitModel();
+		final UnitDaoInterface unitModelInterface = new UnitDao();
 		resultDto = unitModelInterface.find(companyCode, unitCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.traceEnd("findCompany");
@@ -202,7 +202,7 @@ public final class VisitorUtility {
 
 		UnitDto applyUnitDto = (UnitDto)unitDtos.get(0);
 		resultDto.setResultData(applyUnitDto);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findCompany");
 		return resultDto;
@@ -223,13 +223,13 @@ public final class VisitorUtility {
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(userCode))) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findUser");
 			return resultDto;
 		}
 
-		final UserModelInterface userModelInterface = new UserModel();
+		final UserDaoInterface userModelInterface = new UserDao();
 		resultDto = userModelInterface.find(companyCode, userCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.traceEnd("findUser");
@@ -240,7 +240,7 @@ public final class VisitorUtility {
 
 		UserDto userDto = (UserDto)userDtos.get(0);
 		resultDto.setResultData(userDto);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findUser");
 		return resultDto;
@@ -261,13 +261,13 @@ public final class VisitorUtility {
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findApplicationForm");
 			return resultDto;
 		}
 
-		final ApplicationFormModelInterface applicationFormModelInterface = new ApplicationFormModel();
+		final ApplicationFormDaoInterface applicationFormModelInterface = new ApplicationFormDao();
 		resultDto = applicationFormModelInterface.findByApplicationFormCode(companyCode, applicationFormCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.traceEnd("findApplicationForm");
@@ -278,7 +278,7 @@ public final class VisitorUtility {
 
 		ApplicationFormDto applicationFormDto = (ApplicationFormDto)applicationFormDtos.get(0);
 		resultDto.setResultData(applicationFormDto);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findApplicationForm");
 		return resultDto;
@@ -300,13 +300,13 @@ public final class VisitorUtility {
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationFormCode))||(LaubeUtility.isBlank(unitCode))) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findApplicationFormRoute");
 			return resultDto;
 		}
 
-		final ApplicationFormRouteModelInterface applicationFormRouteModelInterface = new ApplicationFormRouteModel();
+		final ApplicationFormRouteDaoInterface applicationFormRouteModelInterface = new ApplicationFormRouteDao();
 		resultDto = applicationFormRouteModelInterface.find(companyCode, applicationFormCode, unitCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.traceEnd("findApplicationFormRoute");
@@ -316,7 +316,7 @@ public final class VisitorUtility {
 		ArrayList<LaubeDto> applicationFormRouteDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
 
 		ApplicationFormRouteDto applicationFormRouteDto = (ApplicationFormRouteDto)applicationFormRouteDtos.get(0);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		resultDto.setResultData(applicationFormRouteDto);
 		log.traceEnd("findApplicationFormRoute");
@@ -338,13 +338,13 @@ public final class VisitorUtility {
 		ResultDto resultDto  = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(applicationClassificationCode))) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findApplicationClassification");
 			return resultDto;
 		}
 
-		final ApplicationClassificationModelInterface applicationClassificationModelInterfaces = new ApplicationClassificationModel();
+		final ApplicationClassificationDaoInterface applicationClassificationModelInterfaces = new ApplicationClassificationDao();
 		resultDto = applicationClassificationModelInterfaces.findByApplicationClassificationCode(companyCode, applicationClassificationCode);
 		if (LaubeUtility.isEmpty(resultDto)) {
 			log.traceEnd("findApplicationClassification");
@@ -355,7 +355,7 @@ public final class VisitorUtility {
 
 		ApplicationClassificationDto applicationClassificationDto = (ApplicationClassificationDto)ApplicationClassificationDtos.get(0);
 		resultDto.setResultData(applicationClassificationDto);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findApplicationClassification");
 		return resultDto;
@@ -377,7 +377,7 @@ public final class VisitorUtility {
 		ResultDto resultDto = new ResultDto();
 
 		if ((LaubeUtility.isBlank(companyCode))||(LaubeUtility.isBlank(routeCode))||(LaubeUtility.isEmpty(routeType))) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("findRoute");
 			return resultDto;
@@ -385,11 +385,11 @@ public final class VisitorUtility {
 
 		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
 
-		final ActivityModelInterface activityModelInterface = ActivityModel.factory(routeType);
+		final ActivityDaoInterface activityModelInterface = ActivityDao.factory(routeType);
 		resultDto = activityModelInterface.find(companyCode, routeCode);
 		ArrayList<ActivityDto> activityDtos = (ArrayList<ActivityDto>)(resultDto.getResultData());
 
-		final RoleUserModelInterface RoleUserModelInterface = new RoleUserModel();
+		final RoleUserDaoInterface RoleUserModelInterface = new RoleUserDao();
 
 		for (ActivityDto activityDto : activityDtos) {
 
@@ -418,7 +418,7 @@ public final class VisitorUtility {
 					approvalRouteInformationAcceptor.setPartyCodeConnector(activityDto.getPartyCodeConnector());
 					approvalRouteInformationAcceptor.setPartyTransitCode(activityDto.getPartyTransitCode());
 					approvalRouteInformationAcceptor.setPartyTransitCodeConnector(activityDto.getPartyTransitCodeConnector());
-					approvalRouteInformationAcceptor.setRouteType(routeType);
+					approvalRouteInformationAcceptor.setRouteType(routeType.toInt());
 					approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
 				}
 
@@ -437,12 +437,12 @@ public final class VisitorUtility {
 				approvalRouteInformationAcceptor.setPartyCodeConnector(activityDto.getPartyCodeConnector());
 				approvalRouteInformationAcceptor.setPartyTransitCode(activityDto.getPartyTransitCode());
 				approvalRouteInformationAcceptor.setPartyTransitCodeConnector(activityDto.getPartyTransitCodeConnector());
-				approvalRouteInformationAcceptor.setRouteType(routeType);
+				approvalRouteInformationAcceptor.setRouteType(routeType.toInt());
 				approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
 			}
 		}
 		resultDto.setResultData(approvalRouteInformationAcceptors);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findRoute");
 		return resultDto;
@@ -466,7 +466,7 @@ public final class VisitorUtility {
 
 		log.traceStart("findRoute", applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 
-		final BossModelInterface bossModelInterface = new BossModel();
+		final BossDaoInterface bossModelInterface = new BossDao();
 		ResultDto resultDto = bossModelInterface.findByChainOfResposibility(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 		ArrayList<ApprovalRouteInformationAcceptor> approvalRouteInformationAcceptors = new ArrayList<ApprovalRouteInformationAcceptor>();
 		if (LaubeUtility.isEmpty(resultDto)) {
@@ -481,7 +481,7 @@ public final class VisitorUtility {
 		ArrayList<BossDto> bossDtos = (ArrayList<BossDto>)resultDto.getResultData();
 
 		if ((LaubeUtility.isEmpty(bossDtos))||(bossDtos.size() < 1)) {
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E1002");
 			log.traceEnd("findRoute");
 			return resultDto;
@@ -516,7 +516,7 @@ public final class VisitorUtility {
 			approvalRouteInformationAcceptors.add(approvalRouteInformationAcceptor);
 		}
 		resultDto.setResultData(approvalRouteInformationAcceptors);
-		resultDto.setStatus(true);
+		resultDto.setSuccess(true);
 		resultDto.setMessageId("N0001");
 		log.traceEnd("findRoute");
 		return resultDto;
@@ -537,20 +537,20 @@ public final class VisitorUtility {
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(companyCode)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("getDeputyApprovalList");
 			return resultDto;
 		}
 
 		if (LaubeUtility.isEmpty(approvalUserCode)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("getDeputyApprovalList");
 			return resultDto;
 		}
 
-		final DeputyApprovelModelInterface deputyApprovelModelInterface = new DeputyApprovelModel();
+		final DeputyApprovelDaoInterface deputyApprovelModelInterface = new DeputyApprovelDao();
 		resultDto = deputyApprovelModelInterface.find(companyCode, approvalUserCode);
 
 		if (!resultDto.isSuccess()) {
@@ -576,14 +576,14 @@ public final class VisitorUtility {
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(companyCode)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("circulatedNextApprover");
 			return resultDto;
 		}
 
 		if (LaubeUtility.isEmpty(applicationNumber)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("circulatedNextApprover");
 			return resultDto;
@@ -604,7 +604,7 @@ public final class VisitorUtility {
 
 		if (!resultDto.isSuccess()) {
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E1999");
 			log.traceEnd("circulatedNextApprover");
 			return resultDto;

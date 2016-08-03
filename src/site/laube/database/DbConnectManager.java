@@ -3,6 +3,15 @@ package site.laube.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import javax.sql.DataSource;
+
+import org.seasar.doma.jdbc.DomaAbstractConfig;
+import org.seasar.doma.jdbc.SimpleDataSource;
+import org.seasar.doma.jdbc.dialect.Dialect;
+import org.seasar.doma.jdbc.dialect.H2Dialect;
+import org.seasar.doma.jdbc.tx.LocalTransaction;
+import org.seasar.doma.jdbc.tx.LocalTransactionalDataSource;
+
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
@@ -25,7 +34,7 @@ import site.laube.utility.LaubeUtility;
  * limitations under the License.
  */
 
-public final class DbConnectManager {
+public final class DbConnectManager extends DomaAbstractConfig {
 
 	/**
 	 * to manage the log.<br>
@@ -36,6 +45,47 @@ public final class DbConnectManager {
 	 * connection<br>
 	 */
 	private static Connection connection = null;
+
+    protected static final LocalTransactionalDataSource dataSource = createDataSource();
+    protected static final Dialect dialect = new H2Dialect();
+
+    /**
+     *
+     */
+    @Override
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public Dialect getDialect() {
+        return dialect;
+    }
+
+    /**
+     *
+     */
+    protected static LocalTransactionalDataSource createDataSource() {
+        SimpleDataSource dataSource = new SimpleDataSource();
+		String url      = LaubeProperties.getValue("db.url"); //$NON-NLS-1$
+		String userName = LaubeProperties.getValue("db.user"); //$NON-NLS-1$
+		String password = LaubeProperties.getValue("db.password"); //$NON-NLS-1$
+        dataSource.setUrl(url);
+        dataSource.setUser(userName);
+        dataSource.setPassword(password);
+        return new LocalTransactionalDataSource(dataSource);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static LocalTransaction getLocalTransaction() {
+        return dataSource.getLocalTransaction(defaultJdbcLogger);
+    }
 
 	/**
 	 * It sets the generated connection object.<br>
@@ -53,31 +103,30 @@ public final class DbConnectManager {
 	 * @return Connection object
 	 * @throws LaubeException please properly handle because it is impossible to continue exception.
 	 */
-	@SuppressWarnings("nls")
 	public static Connection getConnection() throws LaubeException {
 
-		log.traceStart("getConnection");
+		log.traceStart("getConnection"); //$NON-NLS-1$
 
 		try {
 			if ((LaubeUtility.isEmpty(connection)) || (connection.isClosed())) {
-				String dbDriver = LaubeProperties.getValue("db.driver");
-				String url      = LaubeProperties.getValue("db.url");
-				String userName = LaubeProperties.getValue("db.user");
-				String password = LaubeProperties.getValue("db.password");
+				String dbDriver = LaubeProperties.getValue("db.driver"); //$NON-NLS-1$
+				String url      = LaubeProperties.getValue("db.url"); //$NON-NLS-1$
+				String userName = LaubeProperties.getValue("db.user"); //$NON-NLS-1$
+				String password = LaubeProperties.getValue("db.password"); //$NON-NLS-1$
 
 				try {
 					Class.forName (dbDriver);
 					connection = DriverManager.getConnection(url, userName, password);
 					connection.setAutoCommit(false);
 				} catch (Exception e) {
-					throw new LaubeException("getConnection", e);
+					throw new LaubeException("getConnection", e); //$NON-NLS-1$
 				}
 			}
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "getConnection end");
-			throw new LaubeException("getConnection", e);
+			log.info("[workflowEngine] " + "getConnection end"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new LaubeException("getConnection", e); //$NON-NLS-1$
 		}
-		log.traceEnd("getConnection");
+		log.traceEnd("getConnection"); //$NON-NLS-1$
 		return connection;
 	}
 }

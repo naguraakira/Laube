@@ -1,5 +1,8 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -15,7 +18,8 @@ package site.laube.dto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class PartyDto extends PartyTransitDto {
 
 	/**
@@ -32,36 +36,4 @@ public class PartyDto extends PartyTransitDto {
 	 * to manage the partyCodeConnector.<br>
 	 */
 	private int partyCodeConnector;
-
-	/**
-	 * set the party code.<br>
-	 * @param partyCode party code
-	 */
-	public final void setPartyCode(final String partyCode) {
-		this.partyCode = partyCode;
-	}
-
-	/**
-	 * get the party code.<br>
-	 * @return party code
-	 */
-	public final String getPartyCode() {
-		return this.partyCode;
-	}
-
-	/**
-	 * set the partyCodeConnector.<br>
-	 * @param partyCodeConnector party Code Connector
-	 */
-	public final void setPartyCodeConnector(final int partyCodeConnector) {
-		this.partyCodeConnector = partyCodeConnector;
-	}
-
-	/**
-	 * get the partyCodeConnector.<br>
-	 * @return partyCodeConnector
-	 */
-	public final int getPartyCodeConnector() {
-		return this.partyCodeConnector;
-	}
 }

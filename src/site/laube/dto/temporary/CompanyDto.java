@@ -1,5 +1,7 @@
 package site.laube.dto.temporary;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.LaubeDto;
 import site.laube.utility.LaubeUtility;
 
@@ -18,7 +20,8 @@ import site.laube.utility.LaubeUtility;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class CompanyDto extends LaubeDto {
 
 	/**
@@ -35,39 +38,6 @@ public class CompanyDto extends LaubeDto {
 	 * To manage the company name.<br>
 	 */
 	private String companyName;
-
-	/**
-	 * set the company code.<br>
-	 * @param companyCode Company Code
-	 */
-	public final void setCompanyCode(final String companyCode) {
-		this.companyCode = companyCode;
-	}
-
-	/**
-	 * get the company code.<br>
-	 * @return company code
-	 */
-	public final String getCompanyCode() {
-		return this.companyCode;
-	}
-
-	/**
-	 * set the company name.<br>
-	 * @param companyName company name
-	 */
-	public final void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	/**
-	 * get the company name.<br>
-	 *
-	 * @return company name
-	 */
-	public final String getCompanyName() {
-		return this.companyName;
-	}
 
 	/**
 	 * All the items in the class will be returned.<br>

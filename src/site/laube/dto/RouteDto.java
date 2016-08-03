@@ -1,5 +1,7 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.temporary.CompanyDto;
 
 /*
@@ -17,7 +19,8 @@ import site.laube.dto.temporary.CompanyDto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class RouteDto extends CompanyDto {
 
 	/**
@@ -39,52 +42,4 @@ public class RouteDto extends CompanyDto {
 	 * to manage the route type.<br>
 	 */
 	private int routeType;
-
-	/**
-	 * set the route code.<br>
-	 * @param routeCode route code
-	 */
-	public final void setRouteCode(final String routeCode) {
-		this.routeCode = routeCode;
-	}
-
-	/**
-	 * get the route code.<br>
-	 * @return route code
-	 */
-	public final String getRouteCode() {
-		return this.routeCode;
-	}
-
-	/**
-	 * set the route name.<br>
-	 * @param routeName route name
-	 */
-	public final void setRouteName(final String routeName) {
-		this.routeName = routeName;
-	}
-
-	/**
-	 * get the route name.<br>
-	 * @return route name
-	 */
-	public final String getRouteName() {
-		return this.routeName;
-	}
-
-	/**
-	 * set the route type.<br>
-	 * @param routeType route type
-	 */
-	public final void setRouteType(int routeType) {
-		this.routeType = routeType;
-	}
-
-	/**
-	 * get the route type.<br>
-	 * @return route type
-	 */
-	public final int getRouteType() {
-		return this.routeType;
-	}
 }

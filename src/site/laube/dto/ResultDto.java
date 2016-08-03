@@ -3,6 +3,8 @@ package site.laube.dto;
 import java.io.Serializable;
 import java.sql.Connection;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.utility.LaubeProperties;
 import site.laube.utility.LaubeUtility;
 
@@ -21,12 +23,13 @@ import site.laube.utility.LaubeUtility;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public final class ResultDto implements Serializable {
 
 	private static final long serialVersionUID = 2824047883202335433L;
 	private Connection connection = null;
-	private boolean status;
+	private boolean success;
 	private String messageId = null;
 	private String message = null;
 	private Object resultData;
@@ -36,51 +39,9 @@ public final class ResultDto implements Serializable {
 	 */
 	@SuppressWarnings("nls")
 	public ResultDto(){
-		setStatus(true);
+		setSuccess(true);
 		this.messageId = "N0001";
 		setMessage(this.messageId);
-	}
-
-	/**
-	 * set the Connection.<br>
-	 * @param connection Connection
-	 */
-	public final void setConnection(Connection connection){
-		this.connection = connection;
-	}
-
-	/**
-	 * get the Connection.<br>
-	 * @return Connection
-	 */
-	public final Connection getConnection(){
-		return this.connection;
-	}
-
-	/**
-	 * set the status.<br>
-	 * @param status status
-	 */
-	public final void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	/**
-	 * get the status.<br>
-	 *
-	 * @return status
-	 */
-	public final boolean isSuccess() {
-		return this.status;
-	}
-
-	/**
-	 * get the message id.<br>
-	 *
-	 * @return message id
-	 */
-	public final String getMessageId() {
-		return this.messageId;
 	}
 
 	/**
@@ -95,37 +56,11 @@ public final class ResultDto implements Serializable {
 	}
 
 	/**
-	 * get the message.<br>
-	 *
-	 * @return message
-	 */
-	public final String getMessage() {
-		return this.message;
-	}
-
-	/**
 	 * set the message.<br>
 	 * @param messageId message id
 	 */
 	private final void setMessage(final String messageId) {
 		this.message = LaubeProperties.getValue(messageId);
-	}
-
-	/**
-	 * get the result data.<br>
-	 *
-	 * @return result data
-	 */
-	public final Object getResultData() {
-		return this.resultData;
-	}
-
-	/**
-	 * set the result data.<br>
-	 * @param resultData result data
-	 */
-	public final void setResultData(final Object resultData) {
-		this.resultData = resultData;
 	}
 
 	/**

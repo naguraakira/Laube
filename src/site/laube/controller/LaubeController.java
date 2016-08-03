@@ -54,14 +54,14 @@ public final class LaubeController implements Serializable {
 
 		}catch(final LaubeException e){
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E8001");
 			log.traceEnd("doSearch");
 			return resultDto;
 
 		}catch(final Exception e){
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E8001");
 			log.traceEnd("doSearch");
 			return resultDto;
@@ -88,14 +88,14 @@ public final class LaubeController implements Serializable {
 
 		}catch(final LaubeException e){
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E8001");
 			log.traceEnd("doRequest");
 			return resultDto;
 
 		}catch(final Exception e){
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E8001");
 			log.traceEnd("doRequest");
 			return resultDto;
@@ -122,14 +122,14 @@ public final class LaubeController implements Serializable {
 
 		}catch(final LaubeException e){
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E8001");
 			log.traceEnd("doApproval");
 			return resultDto;
 
 		}catch(final Exception e){
 			resultDto = new ResultDto();
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E8001");
 			log.traceEnd("doApproval");
 			return resultDto;

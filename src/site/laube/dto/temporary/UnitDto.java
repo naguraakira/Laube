@@ -1,5 +1,8 @@
 package site.laube.dto.temporary;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -15,7 +18,8 @@ package site.laube.dto.temporary;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class UnitDto extends CompanyDto {
 
 	/**
@@ -42,70 +46,4 @@ public class UnitDto extends CompanyDto {
 	 * to manage the manager name.<br>
 	 */
 	private String managerName;
-
-	/**
-	 * set the unit code.<br>
-	 * @param unitCode unit code
-	 */
-	public final void setUnitCode(final String unitCode) {
-		this.unitCode = unitCode;
-	}
-
-	/**
-	 * get the unit code.<br>
-	 * @return unit code
-	 */
-	public final String getUnitCode() {
-		return this.unitCode;
-	}
-
-	/**
-	 * set the unit name.<br>
-	 * @param unitName unit name
-	 */
-	public final void setUnitName(String unitName) {
-		this.unitName = unitName;
-	}
-
-	/**
-	 * get the unit name.<br>
-	 *
-	 * @return unit name
-	 */
-	public final String getUnitName() {
-		return this.unitName;
-	}
-
-	/**
-	 * set the manager code.<br>
-	 * @param managerCode manager code
-	 */
-	public final void setManagerCode(final String managerCode) {
-		this.managerCode = managerCode;
-	}
-
-	/**
-	 * get the manager code.<br>
-	 * @return manager code
-	 */
-	public final String getManagerCode() {
-		return this.managerCode;
-	}
-
-	/**
-	 * set the manager name.<br>
-	 * @param managerName manager name
-	 */
-	public final void setManagerName(String managerName) {
-		this.managerName = managerName;
-	}
-
-	/**
-	 * get the manager name.<br>
-	 *
-	 * @return manager name
-	 */
-	public final String getManagerName() {
-		return this.managerName;
-	}
 }

@@ -1,5 +1,8 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -15,7 +18,8 @@ package site.laube.dto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public final class RoleUserDto extends RoleDto {
 
 	/**
@@ -42,68 +46,4 @@ public final class RoleUserDto extends RoleDto {
 	 * to manage the user name.<br>
 	 */
 	private String userName;
-
-	/**
-	 * set the unit code.<br>
-	 * @param unitCode unit code
-	 */
-	public final void setUnitCode(final String unitCode) {
-		this.unitCode = unitCode;
-	}
-
-	/**
-	 * get the unit code.<br>
-	 * @return unit code
-	 */
-	public final String getUnitCode() {
-		return this.unitCode;
-	}
-
-	/**
-	 * set the unit name.<br>
-	 * @param unitName unit name
-	 */
-	public final void setUnitName(String unitName) {
-		this.unitName = unitName;
-	}
-
-	/**
-	 * get the unit name.<br>
-	 * @return unit name
-	 */
-	public final String getUnitName() {
-		return this.unitName;
-	}
-
-	/**
-	 * set the user code.<br>
-	 * @param userCode user code
-	 */
-	public final void setUserCode(final String userCode) {
-		this.userCode = userCode;
-	}
-
-	/**
-	 * get the user code.<br>
-	 * @return user code
-	 */
-	public final String getUserCode() {
-		return this.userCode;
-	}
-
-	/**
-	 * set the user name.<br>
-	 * @param userName user name
-	 */
-	public final void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	/**
-	 * get the user name.<br>
-	 * @return user name
-	 */
-	public final String getUserName() {
-		return this.userName;
-	}
 }

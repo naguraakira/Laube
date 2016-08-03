@@ -2,6 +2,8 @@ package site.laube.acceptor;
 
 import java.sql.Connection;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.utility.LaubeUtility;
 
 /*
@@ -19,29 +21,14 @@ import site.laube.utility.LaubeUtility;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public abstract class LaubeAcceptor {
 
 	/**
 	 * connection<br>
 	 */
 	private Connection connection = null;
-
-	/**
-	 * set connection<br>
-	 * @param connection connection
-	 */
-	public final void setConnection(final Connection connection){
-		this.connection = connection;
-	}
-
-	/**
-	 * get connection<br>
-	 * @return connection
-	 */
-	public final Connection getConnection(){
-		return this.connection;
-	}
 
 	/**
 	 * All the items in the class will be returned.<br>

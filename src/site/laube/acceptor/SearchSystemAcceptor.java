@@ -1,5 +1,7 @@
 package site.laube.acceptor;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
@@ -21,7 +23,8 @@ import site.laube.visitor.SearchSystemVisitor;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public abstract class SearchSystemAcceptor extends LaubeAcceptor {
 
 	/**
@@ -68,136 +71,6 @@ public abstract class SearchSystemAcceptor extends LaubeAcceptor {
 	 * to manage the employee number of the proxy applicant of request.<br>
 	 */
 	private String deputyApplyUserCode;
-
-	/**
-	 * set the company code.<br>
-	 * @param companyCode company code
-	 */
-	public final void setCompanyCode(final String companyCode) {
-		this.companyCode = companyCode;
-	}
-
-	/**
-	 * get the company code.<br>
-	 *
-	 * @return company code.
-	 */
-	public final  String getCompanyCode() {
-		return this.companyCode;
-	}
-
-	/**
-	 * set the application code of request.<br>
-	 * @param applicationFormCode application code of request
-	 */
-	public final void setApplicationFormCode(final String applicationFormCode) {
-		this.applicationFormCode = applicationFormCode;
-	}
-
-	/**
-	 * get the application code of request.<br>
-	 *
-	 * @return application code of request
-	 */
-	public final String getApplicationFormCode() {
-		return this.applicationFormCode;
-	}
-
-	/**
-	 * set the apply company code of request.<br>
-	 * @param applyCompanyCode apply company code of request
-	 */
-	public final void setApplyCompanyCode(final String applyCompanyCode) {
-		this.applyCompanyCode = applyCompanyCode;
-	}
-
-	/**
-	 * get the apply company code of request.<br>
-	 * @return apply company code of request
-	 */
-	public final String getApplyCompanyCode() {
-		return this.applyCompanyCode;
-	}
-
-	/**
-	 * set the apply unit code.<br>
-	 * @param applyUnitCode apply unit code
-	 */
-	public final void setApplyUnitCode(final String applyUnitCode) {
-		this.applyUnitCode = applyUnitCode;
-	}
-
-	/**
-	 * get the apply unit code.<br>
-	 * @return apply unit code
-	 */
-	public final String getApplyUnitCode() {
-		return this.applyUnitCode;
-	}
-
-	/**
-	 * set the apply user code.<br>
-	 * @param applyUserCode apply user code
-	 */
-	public final void setApplyUserCode(final String applyUserCode) {
-		this.applyUserCode = applyUserCode;
-	}
-
-	/**
-	 * get the apply user code.<br>
-	 * @return apply user code
-	 */
-	public final String getApplyUserCode() {
-		return this.applyUserCode;
-	}
-
-	/**
-	 * set the deputy apply company code of request.<br>
-	 * @param deputyApplyCompanyCode deputy apply company code of request
-	 */
-	public final void setDeputyApplyCompanyCode(final String deputyApplyCompanyCode) {
-		this.deputyApplyCompanyCode = deputyApplyCompanyCode;
-	}
-
-	/**
-	 * get the deputy apply company code of request.<br>
-	 * @return deputy apply company code of request
-	 */
-	public final String getDeputyApplyCompanyCode() {
-		return this.deputyApplyCompanyCode;
-	}
-
-	/**
-	 * set the deputy apply unit code.<br>
-	 * @param deputyApplyUnitCode deputy apply unit code
-	 */
-	public final void setDeputyApplyUnitCode(final String deputyApplyUnitCode) {
-		this.deputyApplyUnitCode = deputyApplyUnitCode;
-	}
-
-	/**
-	 * get the deputy apply unit code.<br>
-	 * @return deputy apply unit code
-	 */
-	public final String getDeputyApplyUnitCode() {
-		return this.deputyApplyUnitCode;
-	}
-
-	/**
-	 * set the deputy apply user code.<br>
-	 * @param deputyApplyUserCode deputy apply user code
-	 */
-	public final void setDeputyApplyUserCode(final String deputyApplyUserCode) {
-		this.deputyApplyUserCode = deputyApplyUserCode;
-	}
-
-	/**
-	 * get the deputy apply user code.<br>
-	 * @return deputy apply user code
-	 */
-	public final String getDeputyApplyUserCode() {
-		return this.deputyApplyUserCode;
-	}
 
 	/**
 	 * accept

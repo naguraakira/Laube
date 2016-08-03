@@ -6,6 +6,11 @@ import java.util.List;
 
 import site.laube.acceptor.ApprovalSystemAcceptor;
 import site.laube.acceptor.approval.ApprovalAcceptor;
+import site.laube.dao.ActivityObjectDao;
+import site.laube.dao.AppendedDao;
+import site.laube.dao.LaubeDao;
+import site.laube.daointerface.ActivityObjectDaoInterface;
+import site.laube.daointerface.AppendedDaoInterface;
 import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.AppendedDto;
@@ -13,11 +18,6 @@ import site.laube.dto.DeputyApprovelDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
-import site.laube.model.ActivityObjectModel;
-import site.laube.model.AppendedModel;
-import site.laube.model.LaubeModel;
-import site.laube.modelinterface.ActivityObjectModelInterface;
-import site.laube.modelinterface.AppendedModelInterface;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
@@ -63,7 +63,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(approvalSystemAcceptor)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			log.traceEnd("visit");
 			return resultDto;
@@ -85,7 +85,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 
 		try{
 			if (ApprovalUtility.isEmpty(approvalAcceptor)) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0001");
 				log.crush("visit", resultDto.toString());
 				return resultDto;
@@ -100,12 +100,12 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			final List<ApprovalSystemAcceptor.AppendFile> appendFileList = approvalAcceptor.getAppendFileList();
 
 			log.message("visit", "find the activity object.");
-			ActivityObjectModelInterface activityObjectModelInterface = new ActivityObjectModel();
+			ActivityObjectDaoInterface activityObjectModelInterface = new ActivityObjectDao();
 			resultDto = activityObjectModelInterface.findByArrival(companyCode, applicationNumber, approvalCompanyCode, approvalUnitCode, approvalUserCode);
 
 			if (LaubeUtility.isEmpty(resultDto)) {
 				resultDto = new ResultDto();
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E1006");
 				log.crush("visit", "[resultDto] " + resultDto.toString());
 				return resultDto;
@@ -120,9 +120,9 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 				if (LaubeUtility.isEmpty(resultDto)) {
-					LaubeModel.connection.rollback();
+					LaubeDao.connection.rollback();
 					resultDto = new ResultDto();
-					resultDto.setStatus(false);
+					resultDto.setSuccess(false);
 					resultDto.setMessageId("E1005");
 					log.crush("visit", "[resultDto] " + resultDto.toString());
 					return resultDto;
@@ -132,7 +132,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				resultDto = VisitorUtility.getDeputyApprovalList(approvalCompanyCode, approvalUserCode);
 
 				if (LaubeUtility.isEmpty(resultDto)) {
-					LaubeModel.connection.rollback();
+					LaubeDao.connection.rollback();
 					log.crush("visit", "[resultDto] " + resultDto.toString());
 					return resultDto;
 				}
@@ -142,7 +142,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				if (resultDto.getResultData() instanceof ArrayList){
 					deputyApprovelDtos = (ArrayList<DeputyApprovelDto>)resultDto.getResultData();
 				}else{
-					LaubeModel.connection.rollback();
+					LaubeDao.connection.rollback();
 					log.crush("visit", "[resultDto] " + resultDto.toString());
 					return resultDto;
 				}
@@ -150,11 +150,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				for (DeputyApprovelDto deputyApprovelDto : deputyApprovelDtos) {
 
 					log.message("visit", "find the activity object.");
-					activityObjectModelInterface = new ActivityObjectModel();
+					activityObjectModelInterface = new ActivityObjectDao();
 					resultDto = activityObjectModelInterface.findByArrival(companyCode, applicationNumber, deputyApprovelDto.getCompanyCode(), deputyApprovelDto.getUnitCode(), deputyApprovelDto.getUserCode());
 
 					if (LaubeUtility.isEmpty(resultDto)) {
-						LaubeModel.connection.rollback();
+						LaubeDao.connection.rollback();
 						log.crush("visit", "[resultDto] " + resultDto.toString());
 						return resultDto;
 					}
@@ -162,7 +162,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					if (resultDto.getResultData() instanceof ArrayList){
 						activityObjectDtos = (ArrayList<LaubeDto>)resultDto.getResultData();
 					}else{
-						LaubeModel.connection.rollback();
+						LaubeDao.connection.rollback();
 						log.crush("visit", "[resultDto] " + resultDto.toString());
 						return resultDto;
 					}
@@ -178,7 +178,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 						resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 						if (LaubeUtility.isEmpty(resultDto)) {
-							LaubeModel.connection.rollback();
+							LaubeDao.connection.rollback();
 							log.crush("visit", "[resultDto] " + resultDto.toString());
 							return resultDto;
 						}
@@ -201,11 +201,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					appendedDto.setApprovalUnitCode(approvalUnitCode);
 					appendedDto.setApprovalUserCode(approvalUserCode);
 					appendedDto.setApprovalPath(appendFile.getPath());
-					final AppendedModelInterface appendedModelInterface = new AppendedModel();
+					final AppendedDaoInterface appendedModelInterface = new AppendedDao();
 					resultDto = appendedModelInterface.insert(appendedDto);
 
 					if (LaubeUtility.isEmpty(resultDto)) {
-						LaubeModel.connection.rollback();
+						LaubeDao.connection.rollback();
 						log.crush("visit", "[resultDto] " + resultDto.toString());
 						return resultDto;
 					}
@@ -215,18 +215,18 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			resultDto = VisitorUtility.circulatedNextApprover(companyCode, applicationNumber);
 
 			if (LaubeUtility.isEmpty(resultDto)) {
-				LaubeModel.connection.rollback();
+				LaubeDao.connection.rollback();
 				log.crush("visit", "[resultDto] " + resultDto.toString());
 				return resultDto;
 			}
 
 			if (isAutoCommit){
-				LaubeModel.connection.commit();
+				LaubeDao.connection.commit();
 			}else{
-				resultDto.setConnection(LaubeModel.connection);
+				resultDto.setConnection(LaubeDao.connection);
 			}
 
-			resultDto.setStatus(true);
+			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(applicationNumber);
 			return resultDto;
@@ -238,8 +238,8 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 		}finally{
 			try {
 				if (isAutoCommit){
-					if (!LaubeUtility.isEmpty(LaubeModel.connection)){
-						LaubeModel.connection.close();
+					if (!LaubeUtility.isEmpty(LaubeDao.connection)){
+						LaubeDao.connection.close();
 					}
 				}
 				log.traceEnd("visit", resultDto);

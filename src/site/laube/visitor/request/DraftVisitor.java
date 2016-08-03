@@ -7,6 +7,11 @@ import java.util.List;
 import site.laube.acceptor.RequestSystemAcceptor;
 import site.laube.acceptor.request.DraftAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
+import site.laube.dao.ActivityObjectDao;
+import site.laube.dao.ApplicationObjectDao;
+import site.laube.dao.LaubeDao;
+import site.laube.daointerface.ActivityObjectDaoInterface;
+import site.laube.daointerface.ApplicationObjectDaoInterface;
 import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.ApplicationFormDto;
@@ -14,11 +19,6 @@ import site.laube.dto.ApplicationObjectDto;
 import site.laube.dto.LaubeDto;
 import site.laube.dto.ResultDto;
 import site.laube.exception.LaubeException;
-import site.laube.model.ActivityObjectModel;
-import site.laube.model.ApplicationObjectModel;
-import site.laube.model.LaubeModel;
-import site.laube.modelinterface.ActivityObjectModelInterface;
-import site.laube.modelinterface.ApplicationObjectModelInterface;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
 import site.laube.utility.LaubeProperties;
@@ -66,7 +66,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 		ResultDto resultDto = new ResultDto();
 
 		if (LaubeUtility.isEmpty(requestSystemAcceptor)){
-			resultDto.setStatus(false);
+			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			return resultDto;
 		}
@@ -87,7 +87,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 
 		try{
 			if (RequestUtility.isEmpty(draftAcceptor)) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0001");
 				return resultDto;
 			}
@@ -108,7 +108,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 			log.message("visit","Find the application form master.");
 			VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0001");
 				return resultDto;
 			}
@@ -125,19 +125,19 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final boolean check3 = isIndividualRoutes && isCommonRoutes;
 
 			if (check1) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0002");
 				return resultDto;
 			}
 
 			if (check2) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0003");
 				return resultDto;
 			}
 
 			if (check3) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0007");
 				return resultDto;
 			}
@@ -160,12 +160,12 @@ public class DraftVisitor extends RequestSystemVisitor {
 			boolean isCheck = RequestUtility.checkRoute(approvalRouteInformationAcceptor);
 
 			if (!isCheck) {
-				resultDto.setStatus(false);
+				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0009");
 				return resultDto;
 			}
 
-			final ApplicationObjectModelInterface applicationObjectModelInterface = new ApplicationObjectModel();
+			final ApplicationObjectDaoInterface applicationObjectModelInterface = new ApplicationObjectDao();
 
 			if (applicationNumber != 0) {
 				resultDto = applicationObjectModelInterface.find(draftAcceptor.getCompanyCode(), draftAcceptor.getApplicationNumber());
@@ -184,7 +184,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 					isDraft = true;
 
 				}else{
-					resultDto.setStatus(false);
+					resultDto.setSuccess(false);
 					resultDto.setMessageId("E0010");
 					return resultDto;
 				}
@@ -216,23 +216,23 @@ public class DraftVisitor extends RequestSystemVisitor {
 			// create Activity Object
 			List<ActivityObjectDto> activityObjectDtoList = RequestUtility.copyToActivityDto(companyCode, applyUserCode, approvalRouteInformationAcceptor);
 
-			ActivityObjectModelInterface activityObjectModelInterface = new ActivityObjectModel();
+			ActivityObjectDaoInterface activityObjectModelInterface = new ActivityObjectDao();
 
 			if (isDraft){
 				resultDto = activityObjectModelInterface.delete(companyCode, applicationNumber);
 				if (!resultDto.isSuccess()) {
-					LaubeModel.connection.rollback();
+					LaubeDao.connection.rollback();
 					return resultDto;
 				}
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
-					LaubeModel.connection.rollback();
+					LaubeDao.connection.rollback();
 					return resultDto;
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
-					LaubeModel.connection.rollback();
+					LaubeDao.connection.rollback();
 					return resultDto;
 				}
 			}
@@ -246,17 +246,17 @@ public class DraftVisitor extends RequestSystemVisitor {
 			}
 
 			if (!resultDto.isSuccess()) {
-				LaubeModel.connection.rollback();
+				LaubeDao.connection.rollback();
 				return resultDto;
 			}
 
 			if (isAutoCommit){
-				LaubeModel.connection.commit();
+				LaubeDao.connection.commit();
 			}else{
-				resultDto.setConnection(LaubeModel.connection);
+				resultDto.setConnection(LaubeDao.connection);
 			}
 
-			resultDto.setStatus(true);
+			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(applicationNumber);
 			return resultDto;
@@ -268,8 +268,8 @@ public class DraftVisitor extends RequestSystemVisitor {
 		}finally{
 			try {
 				if (isAutoCommit){
-					if (!LaubeUtility.isEmpty(LaubeModel.connection)){
-						LaubeModel.connection.close();
+					if (!LaubeUtility.isEmpty(LaubeDao.connection)){
+						LaubeDao.connection.close();
 					}
 				}
 				log.traceEnd("visit",resultDto);

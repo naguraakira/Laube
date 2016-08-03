@@ -1,5 +1,8 @@
 package site.laube.dto.temporary;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /*
  * Copyright (c) 2016, Ryuta Miki All Rights Reserved.
  *
@@ -15,13 +18,14 @@ package site.laube.dto.temporary;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class UserDto extends UnitDto {
 
 	/**
 	 * to manage the serial version ID.<br>
 	 */
-//	private static final long serialVersionUID = 4575225513879036593L;
+	private static final long serialVersionUID = 4575225513879036593L;
 
 	/**
 	 * to manage the employee number.<br>
@@ -32,37 +36,4 @@ public class UserDto extends UnitDto {
 	 * to manage the employee name.<br>
 	 */
 	private String userName;
-
-	/**
-	 * set the employee number.<br>
-	 * @param userCode employee number
-	 */
-	public final void setUserCode(final String userCode) {
-		this.userCode = userCode;
-	}
-
-	/**
-	 * get the employee number.<br>
-	 * @return employee number
-	 */
-	public final String getUserCode() {
-		return this.userCode;
-	}
-
-	/**
-	 * set the employee name.<br>
-	 * @param userName employee name
-	 */
-	public final void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	/**
-	 * get the employee name.<br>
-	 *
-	 * @return employee name
-	 */
-	public final String getUserName() {
-		return this.userName;
-	}
 }

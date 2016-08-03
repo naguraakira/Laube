@@ -1,5 +1,7 @@
 package site.laube.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import site.laube.dto.temporary.CompanyDto;
 
 /*
@@ -17,7 +19,8 @@ import site.laube.dto.temporary.CompanyDto;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+@Getter
+@Setter
 public class RoleDto extends CompanyDto {
 
 	/**
@@ -39,47 +42,4 @@ public class RoleDto extends CompanyDto {
 	 * to manage number of registered employees<br>
 	 */
 	private int count;
-
-	/**
-	 * set the role code.<br>
-	 * @param roleCode role code
-	 */
-	public final void setRoleCode(final String roleCode) {
-		this.roleCode = roleCode;
-	}
-
-	/**
-	 * get the role code.<br>
-	 *
-	 * @return role code
-	 */
-	public final String getRoleCode() {
-		return this.roleCode;
-	}
-
-	/**
-	 * set the role name.<br>
-	 * @param roleName role name
-	 */
-	public final void setRoleName(final String roleName) {
-		this.roleName = roleName;
-	}
-
-	/**
-	 * get the role name.<br>
-	 *
-	 * @return role name
-	 */
-	public final String getRoleName() {
-		return this.roleName;
-	}
-
-	/**
-	 * get the number of registered employees.<br>
-	 *
-	 * @return number of registered employees
-	 */
-	public final int getCount() {
-		return this.count;
-	}
 }
