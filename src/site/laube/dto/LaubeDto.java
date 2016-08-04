@@ -3,8 +3,6 @@ package site.laube.dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.seasar.doma.Id;
-
 import lombok.Getter;
 import lombok.Setter;
 import site.laube.utility.LaubeUtility;
@@ -36,7 +34,6 @@ public class LaubeDto implements Serializable {
 	/**
 	 * to manage the sarogate key. <br>
 	 */
-	@Id
 	private int id;
 
 	/**

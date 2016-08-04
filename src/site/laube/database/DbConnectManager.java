@@ -3,15 +3,6 @@ package site.laube.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import javax.sql.DataSource;
-
-import org.seasar.doma.jdbc.DomaAbstractConfig;
-import org.seasar.doma.jdbc.SimpleDataSource;
-import org.seasar.doma.jdbc.dialect.Dialect;
-import org.seasar.doma.jdbc.dialect.H2Dialect;
-import org.seasar.doma.jdbc.tx.LocalTransaction;
-import org.seasar.doma.jdbc.tx.LocalTransactionalDataSource;
-
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
@@ -34,7 +25,7 @@ import site.laube.utility.LaubeUtility;
  * limitations under the License.
  */
 
-public final class DbConnectManager extends DomaAbstractConfig {
+public final class DbConnectManager {
 
 	/**
 	 * to manage the log.<br>
@@ -45,47 +36,6 @@ public final class DbConnectManager extends DomaAbstractConfig {
 	 * connection<br>
 	 */
 	private static Connection connection = null;
-
-    protected static final LocalTransactionalDataSource dataSource = createDataSource();
-    protected static final Dialect dialect = new H2Dialect();
-
-    /**
-     *
-     */
-    @Override
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    /**
-     *
-     */
-    @Override
-    public Dialect getDialect() {
-        return dialect;
-    }
-
-    /**
-     *
-     */
-    protected static LocalTransactionalDataSource createDataSource() {
-        SimpleDataSource dataSource = new SimpleDataSource();
-		String url      = LaubeProperties.getValue("db.url"); //$NON-NLS-1$
-		String userName = LaubeProperties.getValue("db.user"); //$NON-NLS-1$
-		String password = LaubeProperties.getValue("db.password"); //$NON-NLS-1$
-        dataSource.setUrl(url);
-        dataSource.setUser(userName);
-        dataSource.setPassword(password);
-        return new LocalTransactionalDataSource(dataSource);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public static LocalTransaction getLocalTransaction() {
-        return dataSource.getLocalTransaction(defaultJdbcLogger);
-    }
 
 	/**
 	 * It sets the generated connection object.<br>

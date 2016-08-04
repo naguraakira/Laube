@@ -19,5 +19,5 @@ import site.laube.acceptor.RequestSystemAcceptor;
  */
 
 public final class DraftAcceptor extends RequestSystemAcceptor {
-	// no ode
+	// no code
 }

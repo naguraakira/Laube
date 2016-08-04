@@ -19,5 +19,5 @@ import site.laube.acceptor.RequestSystemAcceptor;
  */
 
 public final class ApplyAcceptor extends RequestSystemAcceptor {
-	// no ncode
+	// no code
 }

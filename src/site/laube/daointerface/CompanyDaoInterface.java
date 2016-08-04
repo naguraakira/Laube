@@ -18,24 +18,7 @@ import site.laube.exception.LaubeException;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//@Dao(config = DbConnectManager.class)
 public interface CompanyDaoInterface {
-//
-//	/**
-//	 *
-//	 * @param rId		
-//	 * @return
-//	 */
-//   @Select
-//   CompanyDto selectById(Integer rId);
-//
-//   /**
-//    *
-//    * @param CompanyDto
-//    * @return
-//    */
-//   @Update
-//   int update(CompanyDto companyDto);
 
 	/**
 	 * Search the company master.<br>
