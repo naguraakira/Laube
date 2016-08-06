@@ -33,7 +33,7 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationFormRouteDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApplicationFormRouteDao.class));
 
 	/**
 	 * search of the application form by the root master.<br>
@@ -214,7 +214,6 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 				log.message("findByIndividualRouteCode","[individualRouteCode]: " + individualRouteCode);
 				resultDto.setSuccess(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "findByIndividualRouteCode end");
 				return null;
 			}
 
@@ -223,7 +222,6 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "findByIndividualRouteCode end");
 			return resultDto;
 
 		} catch (final SQLException e) {
@@ -300,7 +298,6 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 				log.message("findByCommonRouteCode","[commonRouteCode]: " + commonRouteCode);
 				resultDto.setSuccess(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "findByCommonRouteCode end");
 				return null;
 			}
 
@@ -309,7 +306,6 @@ public final class ApplicationFormRouteDao extends LaubeDao implements Applicati
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
-			log.info("[workflowEngine] " + "findByCommonRouteCode end");
 			return resultDto;
 
 		} catch (final SQLException e) {

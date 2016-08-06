@@ -2,6 +2,7 @@ package site.laube.utility;
 
 import java.io.Serializable;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /*
@@ -24,7 +25,7 @@ public final class LaubeLoggerFactory implements Serializable {
 
 	// Wrapper class of org.slf4j.LoggerFactory
 
-	public static final LaubeLogger getLogger(Class<?> clazz) {
-		return (LaubeLogger)LoggerFactory.getLogger(clazz);
+	public static final Logger getLogger(Class<?> clazz) {
+		return LoggerFactory.getLogger(clazz);
 	}
 }

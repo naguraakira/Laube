@@ -21,7 +21,7 @@
   </appender>
 
   <root>
-    <priority value ="DEBUG" />
+    <priority value ="TRACE" />
     <appender-ref ref="STDOUT"/>
     <appender-ref ref="FILE"/>
   </root>

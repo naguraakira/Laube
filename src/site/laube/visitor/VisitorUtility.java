@@ -67,7 +67,7 @@ public final class VisitorUtility {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(VisitorUtility.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(VisitorUtility.class));
 
 	/**
 	 * commit.<br>

@@ -37,7 +37,7 @@ public final class ApplicationObjectDao extends LaubeDao implements ApplicationO
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationObjectDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApplicationObjectDao.class));
 
 	/**
 	 * search the application object.<br>
@@ -175,7 +175,7 @@ public final class ApplicationObjectDao extends LaubeDao implements ApplicationO
 
 			final  StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO wkf_application_object(");
-			sql.append(",company_code");
+			sql.append(" company_code");
 			sql.append(",reapplication_number");
 			sql.append(",application_form_code");
 			sql.append(",apply_company_code");

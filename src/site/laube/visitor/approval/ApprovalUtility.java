@@ -26,7 +26,7 @@ public class ApprovalUtility {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApprovalUtility.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApprovalUtility.class));
 
 	/**
 	 * check of essential items.

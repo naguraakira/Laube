@@ -47,7 +47,7 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RouteSearchVisitor.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(RouteSearchVisitor.class));
 
 	/**
 	 * Do the application work.<br>
@@ -105,7 +105,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			log.message("visit", "find the company master.");
 			resultDto = VisitorUtility.findCompany(companyCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
-				log.error("[workflowEngine] " + "[resultDto]" + resultDto.toString());
 				return resultDto;
 			}
 
@@ -178,8 +177,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			UserDto deputyApplyUserDto = null;
 
 			if (!isNotDeputy) {
-
-				log.debug("[workflowEngine] " + "find the company master.");
 				deputyApplyCompanyDto = null;
 				resultDto = VisitorUtility.findCompany(deputyApplyCompanyCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -189,7 +186,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 				deputyApplyCompanyDto = (CompanyDto)resultDto.getResultData();
 
-				log.debug("[workflowEngine] " + "find the unit master.");
 				deputyApplyUnitDto = null;
 				resultDto = VisitorUtility.findUnit(deputyApplyCompanyCode, deputyApplyUnitCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -199,7 +195,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 
 				deputyApplyUnitDto = (UnitDto)resultDto.getResultData();
 
-				log.debug("[workflowEngine] " + "find the user master.");
 				deputyApplyUserDto = null;
 				resultDto = VisitorUtility.findUser(deputyApplyCompanyCode, deputyApplyUserCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
@@ -253,7 +248,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			log.message("visit", "commonRouteCode:" + commonRouteCode);
 
 			if ((RouteFlag.IndividualRouteFlag.toInt() == applicationFormDto.getRouteFlag()) && (!LaubeUtility.isBlank(individualRouteCode))) {
-				log.debug("[workflowEngine] " + "find the individual route master.");
 				resultDto = VisitorUtility.findRoute(applyCompanyCode, individualRouteCode, RouteType.IndividualRoute);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.crush("visit", "[resultDto]" + resultDto.toString());
@@ -280,7 +274,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			}
 
 			if (RouteFlag.BossRouteFlag.toInt() == applicationFormDto.getRouteFlag()) {
-				log.debug("[workflowEngine] " + "find the boss route master.");
 				resultDto = VisitorUtility.findRoute(applyCompanyCode, applyUnitCode, applyUserCode, applicationFormCode);
 				if (LaubeUtility.isEmpty(resultDto)) {
 					log.crush("visit", "[resultDto]" + resultDto.toString());
@@ -299,7 +292,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 				}
 
 				if (resultDto.getMessageId().equals("N0002")) {
-					log.debug("[workflowEngine] " + "find the special route master.");
 					resultDto = VisitorUtility.findRoute(applyCompanyCode,applicationClassificationDto.getApplicationClassificationCode(), RouteType.SpecialRoute);
 					if (LaubeUtility.isEmpty(resultDto)) {
 						log.crush("visit", "[resultDto]" + resultDto.toString());

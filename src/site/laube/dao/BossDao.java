@@ -34,7 +34,7 @@ public final class BossDao extends LaubeDao implements BossDaoInterface {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(BossDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(BossDao.class));
 
 	/**
 	 * delete the boss master<br>

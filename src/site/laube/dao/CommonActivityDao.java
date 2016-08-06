@@ -1,6 +1,5 @@
 package site.laube.dao;
 
-import site.laube.dao.ActivityDao;
 import site.laube.exception.LaubeException;
 import site.laube.utility.LaubeLogger;
 import site.laube.utility.LaubeLoggerFactory;
@@ -26,7 +25,7 @@ public final class CommonActivityDao extends ActivityDao {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(CommonActivityDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(CommonActivityDao.class));
 
 	/**
 	 * delete query<br>

@@ -50,7 +50,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplyVisitor.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApplyVisitor.class));
 
 	/**
 	 * Do the application work.<br>

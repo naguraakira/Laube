@@ -33,7 +33,7 @@ public final class CommonRouteDao extends RouteDao implements RouteDaoInterface 
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(CommonRouteDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(CommonRouteDao.class));
 
 	/**
 	 * removal of the common route master (company units)<br>

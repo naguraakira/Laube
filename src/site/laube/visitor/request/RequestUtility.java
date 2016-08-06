@@ -37,7 +37,7 @@ public class RequestUtility {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RequestUtility.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(RequestUtility.class));
 
 	/**
 	 * check activity status.<br>

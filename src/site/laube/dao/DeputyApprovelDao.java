@@ -32,7 +32,7 @@ public final class DeputyApprovelDao extends LaubeDao implements site.laube.daoi
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(DeputyApprovelDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(DeputyApprovelDao.class));
 
 	/**
 	 * delete the deputy approval master.<br>
@@ -289,7 +289,6 @@ public final class DeputyApprovelDao extends LaubeDao implements site.laube.daoi
 			}
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "update end");
 			throw new LaubeException("update", e);
 
 		} finally {
@@ -375,13 +374,11 @@ public final class DeputyApprovelDao extends LaubeDao implements site.laube.daoi
 				log.message("find", "[userCode]: " + userCode);
 				resultDto.setSuccess(true);
 				resultDto.setMessageId("N0001");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 
 			final val resultData = conversion(this.resultSet, new DeputyApprovelDto());
 
-			log.debug("[workflowEngine] " + "find end" + "[return value]:" + resultData);
 			resultDto.setSuccess(true);
 			resultDto.setMessageId("N0001");
 			resultDto.setResultData(resultData);
@@ -465,7 +462,6 @@ public final class DeputyApprovelDao extends LaubeDao implements site.laube.daoi
 				log.message("find", "[deputyApproverlUserCode]: " + deputyApproverlUserCode);
 				resultDto.setSuccess(true);
 				resultDto.setMessageId("N0001");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 

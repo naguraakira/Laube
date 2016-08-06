@@ -33,7 +33,7 @@ public final class UserDao extends LaubeDao implements UserDaoInterface {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(UserDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(UserDao.class));
 
 	/**
 	 * search the user master.<br>

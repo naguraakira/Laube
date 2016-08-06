@@ -33,7 +33,7 @@ public final class IndividualRouteDao extends RouteDao implements RouteDaoInterf
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(IndividualRouteDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(IndividualRouteDao.class));
 
 	/**
 	 * removal of the individual route master (company units)<br>
@@ -456,7 +456,6 @@ public final class IndividualRouteDao extends RouteDao implements RouteDaoInterf
 			return resultDto;
 
 		} catch (final SQLException e) {
-			log.info("[workflowEngine] " + "find end");
 			throw new LaubeException("find", e);
 
 		} finally {

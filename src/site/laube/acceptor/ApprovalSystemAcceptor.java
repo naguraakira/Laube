@@ -34,7 +34,7 @@ public abstract class ApprovalSystemAcceptor extends LaubeAcceptor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApprovalSystemAcceptor.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApprovalSystemAcceptor.class));
 
 	/**
 	 * to manage the company code.<br>

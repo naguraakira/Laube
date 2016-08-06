@@ -34,7 +34,7 @@ public abstract class ActivityDao extends LaubeDao implements ActivityDaoInterfa
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ActivityDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ActivityDao.class));
 
 	/**
 	 * it returns the route model class.<br>
@@ -132,7 +132,7 @@ public abstract class ActivityDao extends LaubeDao implements ActivityDaoInterfa
 		try {
 			final String sql = deleteQuery();
 
-			log.info("[workflowEngine] " + "[SQL] " + sql);
+			log.message("delete", "[SQL] " + sql);
 			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql);
 			this.preparedStatement.setString(1, companyCode);

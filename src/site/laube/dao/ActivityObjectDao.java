@@ -36,7 +36,7 @@ public final class ActivityObjectDao extends LaubeDao implements ActivityObjectD
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ActivityObjectDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ActivityObjectDao.class));
 
 	/**
 	 * register the activity object.<br>
@@ -418,7 +418,7 @@ public final class ActivityObjectDao extends LaubeDao implements ActivityObjectD
 			sql.append(" and approval_user_code = ?");
 			sql.append(";");
 
-			log.debug("[workflowEngine] " + "[SQL] " + sql.toString());
+			log.message("updateByAuthorizerApproval", "[SQL] " + sql.toString());
 			closePreparedStatement();
 			this.preparedStatement = connection.prepareStatement(sql.toString());
 			this.preparedStatement.setString( 1, deputyApprovalCompanyCode);
@@ -585,7 +585,6 @@ public final class ActivityObjectDao extends LaubeDao implements ActivityObjectD
 				log.message("find", "[approvalUserCode]: " + approvalUserCode);
 				resultDto.setSuccess(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 			final val result = conversion(this.resultSet, new ActivityObjectDto());
@@ -640,11 +639,9 @@ public final class ActivityObjectDao extends LaubeDao implements ActivityObjectD
 			resultDto = this.find(companyCode, applicationNumber, approvalCompanyCode,  approvalUnitCode, approvalUserCode, applovalUserStatus);
 
 			if (!resultDto.isSuccess()){
-				log.info("[workflowEngine] " + "findByArrival end");
 				return resultDto;
 			}
 
-			log.info("[workflowEngine] " + "findByArrival end");
 			return resultDto;
 
 		} catch (final Exception e) {

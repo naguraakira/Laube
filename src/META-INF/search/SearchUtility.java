@@ -31,7 +31,7 @@ public class SearchUtility {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SearchUtility.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(SearchUtility.class));
 
 	/**
 	 * check of essential items.

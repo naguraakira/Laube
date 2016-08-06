@@ -24,7 +24,7 @@ public final class LaubeException extends Exception {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeException.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(LaubeException.class));
 
 	/**
 	 * sirial version

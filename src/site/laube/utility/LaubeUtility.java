@@ -61,7 +61,7 @@ public final class LaubeUtility implements Serializable {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeUtility.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(LaubeUtility.class));
 
 	/**
 	 * To manage the serial version ID.<br>

@@ -30,7 +30,7 @@ public abstract class SearchSystemAcceptor extends LaubeAcceptor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SearchSystemAcceptor.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(SearchSystemAcceptor.class));
 
 	/**
 	 * to manage the state of the company code<br>

@@ -25,7 +25,7 @@ public final class SpecialActivityDao extends ActivityDao {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SpecialActivityDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(SpecialActivityDao.class));
 
 	/**
 	 * delete query<br>

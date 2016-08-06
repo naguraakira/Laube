@@ -34,7 +34,7 @@ public final class SpecialRouteDao extends RouteDao implements RouteDaoInterface
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(SpecialRouteDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(SpecialRouteDao.class));
 
 	/**
 	 * removal of the special route master (company units)<br>

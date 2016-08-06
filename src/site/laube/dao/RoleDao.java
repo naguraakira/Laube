@@ -33,7 +33,7 @@ public final class RoleDao extends LaubeDao implements RoleDaoInterface {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RoleDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(RoleDao.class));
 
 	/**
 	 * delete role master (company units)<br>
@@ -432,7 +432,6 @@ public final class RoleDao extends LaubeDao implements RoleDaoInterface {
 				log.message("findByRoleCode", "[roleCode]: " + roleCode);
 				resultDto.setSuccess(true);
 				resultDto.setMessageId("N0001");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 

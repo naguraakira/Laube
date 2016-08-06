@@ -33,7 +33,7 @@ public final class ApplicationFormDao extends LaubeDao implements ApplicationFor
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationFormDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApplicationFormDao.class));
 
 	/**
 	 * delete the application form master (company unit)<br>

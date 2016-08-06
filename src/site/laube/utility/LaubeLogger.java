@@ -17,7 +17,13 @@ import org.slf4j.Logger;
  * limitations under the License.
  */
 
-public abstract class LaubeLogger implements Logger {
+public class LaubeLogger{
+
+	private Logger logger = null;
+
+	public LaubeLogger(Logger logger) {
+		this.logger = logger;
+	}
 
 	@SuppressWarnings("nls")
 	private final String crownName = "[workflowEngine] ";
@@ -39,9 +45,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName){
 
 		if (LaubeUtility.isBlank(traceName)){
-			debug(this.crownName + this.unknown + this.space + this.start);
+			this.logger.debug(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			debug(this.crownName + traceName + this.space + this.start);
+			this.logger.debug(this.crownName + traceName + this.space + this.start);
 		}
 	}
 
@@ -53,12 +59,12 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName, final Object o1){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.start);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			trace(this.crownName + traceName + this.space + this.start);
+			this.logger.trace(this.crownName + traceName + this.space + this.start);
 		}
-		debug(this.crownName + this.argument);
-		debug(this.crownName + o1);
+		this.logger.debug(this.crownName + this.argument);
+		this.logger.debug(this.crownName + o1);
 	}
 
 	/**
@@ -70,13 +76,13 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName, final Object o1, final Object o2){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.start);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			trace(this.crownName + traceName + this.space + this.start);
+			this.logger.trace(this.crownName + traceName + this.space + this.start);
 		}
-		debug(this.crownName + this.argument);
-		debug(this.crownName + o1);
-		debug(this.crownName + o2);
+		this.logger.debug(this.crownName + this.argument);
+		this.logger.debug(this.crownName + o1);
+		this.logger.debug(this.crownName + o2);
 	}
 
 	/**
@@ -89,14 +95,14 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName, final Object o1, final Object o2, final Object o3){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.start);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			trace(this.crownName + traceName + this.space + this.start);
+			this.logger.trace(this.crownName + traceName + this.space + this.start);
 		}
-		debug(this.crownName + this.argument);
-		debug(this.crownName + o1);
-		debug(this.crownName + o2);
-		debug(this.crownName + o3);
+		this.logger.debug(this.crownName + this.argument);
+		this.logger.debug(this.crownName + o1);
+		this.logger.debug(this.crownName + o2);
+		this.logger.debug(this.crownName + o3);
 	}
 
 	/**
@@ -110,15 +116,15 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName, final Object o1, final Object o2, final Object o3, final Object o4){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.start);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			trace(this.crownName + traceName + this.space + this.start);
+			this.logger.trace(this.crownName + traceName + this.space + this.start);
 		}
-		debug(this.crownName + this.argument);
-		debug(this.crownName + o1);
-		debug(this.crownName + o2);
-		debug(this.crownName + o3);
-		debug(this.crownName + o4);
+		this.logger.debug(this.crownName + this.argument);
+		this.logger.debug(this.crownName + o1);
+		this.logger.debug(this.crownName + o2);
+		this.logger.debug(this.crownName + o3);
+		this.logger.debug(this.crownName + o4);
 	}
 
 	/**
@@ -133,16 +139,16 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName, final Object o1, final Object o2, final Object o3, final Object o4, final Object o5){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.start);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			trace(this.crownName + traceName + this.space + this.start);
+			this.logger.trace(this.crownName + traceName + this.space + this.start);
 		}
-		debug(this.crownName + this.argument);
-		debug(this.crownName + o1);
-		debug(this.crownName + o2);
-		debug(this.crownName + o3);
-		debug(this.crownName + o4);
-		debug(this.crownName + o5);
+		this.logger.debug(this.crownName + this.argument);
+		this.logger.debug(this.crownName + o1);
+		this.logger.debug(this.crownName + o2);
+		this.logger.debug(this.crownName + o3);
+		this.logger.debug(this.crownName + o4);
+		this.logger.debug(this.crownName + o5);
 	}
 
 	/**
@@ -158,17 +164,17 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceStart(final String traceName, final Object o1, final Object o2, final Object o3, final Object o4, final Object o5, final Object o6){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.start);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.start);
 		}else{
-			trace(this.crownName + traceName + this.space + this.start);
+			this.logger.trace(this.crownName + traceName + this.space + this.start);
 		}
-		debug(this.crownName + this.argument);
-		debug(this.crownName + o1);
-		debug(this.crownName + o2);
-		debug(this.crownName + o3);
-		debug(this.crownName + o4);
-		debug(this.crownName + o5);
-		debug(this.crownName + o6);
+		this.logger.debug(this.crownName + this.argument);
+		this.logger.debug(this.crownName + o1);
+		this.logger.debug(this.crownName + o2);
+		this.logger.debug(this.crownName + o3);
+		this.logger.debug(this.crownName + o4);
+		this.logger.debug(this.crownName + o5);
+		this.logger.debug(this.crownName + o6);
 	}
 
 	/**
@@ -178,9 +184,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void traceEnd(final String traceName){
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.end);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.end);
 		}else{
-			trace(this.crownName + traceName + this.space + this.end);
+			this.logger.trace(this.crownName + traceName + this.space + this.end);
 		}
 	}
 
@@ -191,12 +197,12 @@ public abstract class LaubeLogger implements Logger {
 	 */
 	public final void traceEnd(final String traceName, final Object o1){
 
-		debug(this.crownName + o1);
+		this.logger.debug(this.crownName + o1);
 
 		if (LaubeUtility.isBlank(traceName)){
-			trace(this.crownName + this.unknown + this.space + this.end);
+			this.logger.trace(this.crownName + this.unknown + this.space + this.end);
 		}else{
-			trace(this.crownName + traceName + this.space + this.end);
+			this.logger.trace(this.crownName + traceName + this.space + this.end);
 		}
 	}
 
@@ -208,9 +214,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void message(final String traceName, final String contents){
 
 		if (LaubeUtility.isBlank(traceName)){
-			debug(this.crownName + this.unknown + this.space + contents);
+			this.logger.debug(this.crownName + this.unknown + this.space + contents);
 		}else{
-			debug(this.crownName + traceName + this.space  + contents);
+			this.logger.debug(this.crownName + traceName + this.space  + contents);
 		}
 
 	}
@@ -223,9 +229,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void information(final String traceName, final String contents){
 
 		if (LaubeUtility.isBlank(traceName)){
-			info(this.crownName + this.unknown + this.space + contents);
+			this.logger.info(this.crownName + this.unknown + this.space + contents);
 		}else{
-			info(this.crownName + traceName + this.space  + contents);
+			this.logger.info(this.crownName + traceName + this.space  + contents);
 		}
 	}
 
@@ -237,9 +243,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void crush(final String traceName, final String contents){
 
 		if (LaubeUtility.isBlank(traceName)){
-			error(this.crownName + this.unknown + this.space + contents);
+			this.logger.error(this.crownName + this.unknown + this.space + contents);
 		}else{
-			error(this.crownName + traceName + this.space  + contents);
+			this.logger.error(this.crownName + traceName + this.space  + contents);
 		}
 	}
 
@@ -252,9 +258,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void crush(final String traceName, final String messageId, final String message){
 
 		if (LaubeUtility.isBlank(traceName)){
-			error(this.crownName + this.unknown + this.space  + messageId + this.space + message);
+			this.logger.error(this.crownName + this.unknown + this.space  + messageId + this.space + message);
 		}else{
-			error(this.crownName + traceName + this.space  + messageId + this.space + message);
+			this.logger.error(this.crownName + traceName + this.space  + messageId + this.space + message);
 		}
 	}
 
@@ -266,9 +272,9 @@ public abstract class LaubeLogger implements Logger {
 	public final void crush(final String traceName, final Exception e){
 
 		if (LaubeUtility.isBlank(traceName)){
-			error(this.crownName + this.unknown + this.space  + e);
+			this.logger.error(this.crownName + this.unknown + this.space  + e);
 		}else{
-			error(this.crownName + traceName + this.space  + e);
+			this.logger.error(this.crownName + traceName + this.space  + e);
 		}
 	}
 }

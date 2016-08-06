@@ -33,7 +33,7 @@ public final class CompanyDao extends LaubeDao implements CompanyDaoInterface {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(CompanyDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(CompanyDao.class));
 
 	/**
 	 * search the company master.<br>

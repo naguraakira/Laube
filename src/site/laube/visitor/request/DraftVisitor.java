@@ -49,7 +49,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 	/**
 	 * To manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(DraftVisitor.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(DraftVisitor.class));
 
 	/**
 	 * Do the application work.<br>
@@ -262,7 +262,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 			return resultDto;
 
 		}catch(final Exception e){
-			log.info("[workflowEngine] " + "visit end");
 			throw new LaubeException("visit",e);
 
 		}finally{
@@ -274,7 +273,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 				}
 				log.traceEnd("visit",resultDto);
 			} catch (final SQLException e) {
-				log.info("[workflowEngine] " + "visit end");
 				throw new LaubeException("visit",e);
 			}
 		}

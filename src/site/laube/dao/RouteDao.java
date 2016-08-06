@@ -27,7 +27,7 @@ public abstract class RouteDao extends LaubeDao {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(RouteDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(RouteDao.class));
 
 	/**
 	 * it returns the root model class.<br>

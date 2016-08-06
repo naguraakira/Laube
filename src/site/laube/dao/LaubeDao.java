@@ -39,7 +39,7 @@ public class LaubeDao {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(LaubeDao.class));
 
 	/**
 	 * to manage the connection.<br>
@@ -175,7 +175,6 @@ public class LaubeDao {
 				if (LaubeUtility.isEmpty(updateWorkflowDto)){
 					break;
 				}
-				log.debug("[workflowEngine] " + "[updateWorkflowDto] " + updateWorkflowDto);
 				result.add(updateWorkflowDto);
 			} while (resultSet.next());
 			return result;
@@ -217,8 +216,6 @@ public class LaubeDao {
 				count++;
 				String camelName = LaubeUtility.snakeToCamel(name);
 				String setter = "set" + camelName.substring(0, 1).toUpperCase() + camelName.substring(1);
-
-				log.debug("[workflowEngine] setter = " + setter);
 
 				int type = resultSetMetaData.getColumnType(count);
 				if (Types.INTEGER == type) {
@@ -278,7 +275,6 @@ public class LaubeDao {
 				if (LaubeUtility.isEmpty(obj)){
 					resultDto.setSuccess(false);
 					resultDto.setMessageId("E0019");
-					log.info("[workflowEngine] " + "checkRequiredItem end" );
 					return false;
 				}
 			}

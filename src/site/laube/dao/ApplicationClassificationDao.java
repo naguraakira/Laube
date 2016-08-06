@@ -34,7 +34,7 @@ public final class ApplicationClassificationDao extends LaubeDao implements Appl
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(ApplicationClassificationDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(ApplicationClassificationDao.class));
 
 	/**
      * delete the application classification master (company unit)<br>

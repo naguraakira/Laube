@@ -33,7 +33,7 @@ public final class UnitDao extends LaubeDao implements UnitDaoInterface {
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(UnitDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(UnitDao.class));
 
 	/**
 	 * search the unit master.<br>

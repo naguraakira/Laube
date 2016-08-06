@@ -33,7 +33,7 @@ public final class AppendedDao extends LaubeDao implements AppendedDaoInterface 
 	/**
 	 * to manage the log object.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(AppendedDao.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(AppendedDao.class));
 
 	/**
 	 * delete the appended object<br>
@@ -373,16 +373,15 @@ public final class AppendedDao extends LaubeDao implements AppendedDaoInterface 
 			this.resultSet = this.preparedStatement.executeQuery();
 
 			if (!this.resultSet.first()) {
-				log.error("[workflowEngine] " + "The record was not found. Please investigate the cause by referring to the following.");
-				log.error("[workflowEngine] " + "[SQL]");
-				log.error("[workflowEngine] " + sql.toString());
-				log.error("[workflowEngine] " + "");
-				log.error("[workflowEngine] " + "[Extraction condition]");
-				log.error("[workflowEngine] " + "[companyCode]: " + companyCode);
-				log.error("[workflowEngine] " + "[applicationNumber]: " + applicationNumber);
+				log.message("find","The record was not found. Please investigate the cause by referring to the following.");
+				log.message("find","[SQL]");
+				log.message("find",sql.toString());
+				log.message("find","");
+				log.message("find","[Extraction condition]");
+				log.message("find","[companyCode]: " + companyCode);
+				log.message("find", "[applicationNumber]: " + applicationNumber);
 				resultDto.setSuccess(false);
 				resultDto.setMessageId("E1003");
-				log.info("[workflowEngine] " + "find end");
 				return resultDto;
 			}
 

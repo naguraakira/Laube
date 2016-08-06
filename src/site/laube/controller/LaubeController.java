@@ -34,7 +34,7 @@ public final class LaubeController implements Serializable {
 	/**
 	 * to manage the log.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(LaubeController.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(LaubeController.class));
 
 	/**
 	 * Make the application-based processing.<br>

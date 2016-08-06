@@ -30,7 +30,7 @@ public final class DbConnectManager {
 	/**
 	 * to manage the log.<br>
 	 */
-	private static LaubeLogger log = LaubeLoggerFactory.getLogger(DbConnectManager.class);
+	private static LaubeLogger log = new LaubeLogger(LaubeLoggerFactory.getLogger(DbConnectManager.class));
 
 	/**
 	 * connection<br>
@@ -73,7 +73,6 @@ public final class DbConnectManager {
 				}
 			}
 		} catch (final Exception e) {
-			log.info("[workflowEngine] " + "getConnection end"); //$NON-NLS-1$ //$NON-NLS-2$
 			throw new LaubeException("getConnection", e); //$NON-NLS-1$
 		}
 		log.traceEnd("getConnection"); //$NON-NLS-1$
