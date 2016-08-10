@@ -155,6 +155,48 @@ public class LaubeDao {
 	}
 
 	/**
+	 * rollback<br>
+	 *
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
+	 */
+	@SuppressWarnings("nls")
+	public final static void rollback() throws LaubeException {
+
+		log.traceStart("rollback");
+
+		try {
+			connection.rollback();
+
+		} catch (final Exception e) {
+			log.crush("rollback", e);
+
+		} finally {
+			log.traceEnd("rollback");
+		}
+	}
+
+	/**
+	 * close<br>
+	 *
+	 * @throws LaubeException please properly handle because it is impossible to continue exception.
+	 */
+	@SuppressWarnings("nls")
+	public final static void close() throws LaubeException {
+
+		log.traceStart("colse");
+
+		try {
+			connection.close();
+
+		} catch (final Exception e) {
+			log.crush("close", e);
+
+		} finally {
+			log.traceEnd("close");
+		}
+	}
+
+	/**
 	 * set ResultSet to Dto.<br>
 	 *
 	 * @param resultSet ResultSet

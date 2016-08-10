@@ -1,6 +1,5 @@
 package site.laube.visitor.approval;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import lombok.val;
@@ -120,7 +119,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 				if (LaubeUtility.isEmpty(resultDto)) {
-					LaubeDao.connection.rollback();
+					LaubeDao.rollback();
 					resultDto = new ResultDto();
 					resultDto.setSuccess(false);
 					resultDto.setMessageId("E1005");
@@ -132,7 +131,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				resultDto = VisitorUtility.getDeputyApprovalList(approvalCompanyCode, approvalUserCode);
 
 				if (LaubeUtility.isEmpty(resultDto)) {
-					LaubeDao.connection.rollback();
+					LaubeDao.rollback();
 					log.crush("visit", "[resultDto] " + resultDto.toString());
 					return resultDto;
 				}
@@ -142,7 +141,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 				if (resultDto.getResultData() instanceof ArrayList){
 					deputyApprovelDtos = (ArrayList<DeputyApprovelDto>)resultDto.getResultData();
 				}else{
-					LaubeDao.connection.rollback();
+					LaubeDao.rollback();
 					log.crush("visit", "[resultDto] " + resultDto.toString());
 					return resultDto;
 				}
@@ -154,7 +153,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					resultDto = activityObjectModelInterface.findByArrival(companyCode, applicationNumber, deputyApprovelDto.getCompanyCode(), deputyApprovelDto.getUnitCode(), deputyApprovelDto.getUserCode());
 
 					if (LaubeUtility.isEmpty(resultDto)) {
-						LaubeDao.connection.rollback();
+						LaubeDao.rollback();
 						log.crush("visit", "[resultDto] " + resultDto.toString());
 						return resultDto;
 					}
@@ -162,7 +161,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					if (resultDto.getResultData() instanceof ArrayList){
 						activityObjectDtos = (ArrayList<LaubeDto>)resultDto.getResultData();
 					}else{
-						LaubeDao.connection.rollback();
+						LaubeDao.rollback();
 						log.crush("visit", "[resultDto] " + resultDto.toString());
 						return resultDto;
 					}
@@ -178,7 +177,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 						resultDto = activityObjectModelInterface.updateByAuthorizerApproval(activityObjectDto);
 
 						if (LaubeUtility.isEmpty(resultDto)) {
-							LaubeDao.connection.rollback();
+							LaubeDao.rollback();
 							log.crush("visit", "[resultDto] " + resultDto.toString());
 							return resultDto;
 						}
@@ -205,7 +204,7 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					resultDto = appendedModelInterface.insert(appendedDto);
 
 					if (LaubeUtility.isEmpty(resultDto)) {
-						LaubeDao.connection.rollback();
+						LaubeDao.rollback();
 						log.crush("visit", "[resultDto] " + resultDto.toString());
 						return resultDto;
 					}
@@ -215,13 +214,13 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			resultDto = VisitorUtility.circulatedNextApprover(companyCode, applicationNumber);
 
 			if (LaubeUtility.isEmpty(resultDto)) {
-				LaubeDao.connection.rollback();
+				LaubeDao.rollback();
 				log.crush("visit", "[resultDto] " + resultDto.toString());
 				return resultDto;
 			}
 
 			if (isAutoCommit){
-				LaubeDao.connection.commit();
+				LaubeDao.commit();
 			}else{
 				resultDto.setConnection(LaubeDao.connection);
 			}
@@ -239,11 +238,11 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			try {
 				if (isAutoCommit){
 					if (!LaubeUtility.isEmpty(LaubeDao.connection)){
-						LaubeDao.connection.close();
+						LaubeDao.close();
 					}
 				}
 				log.traceEnd("visit", resultDto);
-			} catch (final SQLException e) {
+			} catch (final Exception e) {
 				log.traceEnd("visit", resultDto);
 				throw new LaubeException("visit", e);
 			}

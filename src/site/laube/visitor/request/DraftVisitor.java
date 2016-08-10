@@ -1,6 +1,5 @@
 package site.laube.visitor.request;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -221,18 +220,18 @@ public class DraftVisitor extends RequestSystemVisitor {
 			if (isDraft){
 				resultDto = activityObjectModelInterface.delete(companyCode, applicationNumber);
 				if (!resultDto.isSuccess()) {
-					LaubeDao.connection.rollback();
+					LaubeDao.rollback();
 					return resultDto;
 				}
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
-					LaubeDao.connection.rollback();
+					LaubeDao.rollback();
 					return resultDto;
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
 				if (!resultDto.isSuccess()) {
-					LaubeDao.connection.rollback();
+					LaubeDao.rollback();
 					return resultDto;
 				}
 			}
@@ -246,12 +245,12 @@ public class DraftVisitor extends RequestSystemVisitor {
 			}
 
 			if (!resultDto.isSuccess()) {
-				LaubeDao.connection.rollback();
+				LaubeDao.rollback();
 				return resultDto;
 			}
 
 			if (isAutoCommit){
-				LaubeDao.connection.commit();
+				LaubeDao.commit();
 			}else{
 				resultDto.setConnection(LaubeDao.connection);
 			}
@@ -268,11 +267,11 @@ public class DraftVisitor extends RequestSystemVisitor {
 			try {
 				if (isAutoCommit){
 					if (!LaubeUtility.isEmpty(LaubeDao.connection)){
-						LaubeDao.connection.close();
+						LaubeDao.close();
 					}
 				}
 				log.traceEnd("visit",resultDto);
-			} catch (final SQLException e) {
+			} catch (final Exception e) {
 				throw new LaubeException("visit",e);
 			}
 		}
