@@ -46,7 +46,7 @@ public final class ActivityObjectDao extends LaubeDao implements ActivityObjectD
 	 */
 	@SuppressWarnings("nls")
 	@Override
-	public ResultDto insert(final List<ActivityObjectDto> activityObjectDtos) throws LaubeException {
+	public final ResultDto insert(final List<ActivityObjectDto> activityObjectDtos) throws LaubeException {
 
 		log.traceStart("insert", activityObjectDtos);
 
