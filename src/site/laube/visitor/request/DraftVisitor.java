@@ -11,7 +11,6 @@ import site.laube.dao.ApplicationObjectDao;
 import site.laube.dao.LaubeDao;
 import site.laube.daointerface.ActivityObjectDaoInterface;
 import site.laube.daointerface.ApplicationObjectDaoInterface;
-import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.ApplicationFormDto;
 import site.laube.dto.ApplicationObjectDto;
@@ -68,11 +67,6 @@ public class DraftVisitor extends RequestSystemVisitor {
 			resultDto.setSuccess(false);
 			resultDto.setMessageId("E0001");
 			return resultDto;
-		}
-
-		// be sure to set this when you reuse a single connection.
-		if (!LaubeUtility.isEmpty(requestSystemAcceptor.getConnection())){
-			DbConnectManager.setConnection(requestSystemAcceptor.getConnection());
 		}
 
 		boolean isAutoCommit = false;

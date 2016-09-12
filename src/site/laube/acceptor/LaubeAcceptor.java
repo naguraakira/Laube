@@ -1,7 +1,5 @@
 package site.laube.acceptor;
 
-import java.sql.Connection;
-
 import lombok.Getter;
 import lombok.Setter;
 import site.laube.utility.LaubeUtility;
@@ -24,11 +22,6 @@ import site.laube.utility.LaubeUtility;
 @Getter
 @Setter
 public abstract class LaubeAcceptor {
-
-	/**
-	 * connection<br>
-	 */
-	private Connection connection = null;
 
 	/**
 	 * All the items in the class will be returned.<br>

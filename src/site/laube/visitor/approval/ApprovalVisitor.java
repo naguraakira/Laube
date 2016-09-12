@@ -10,7 +10,6 @@ import site.laube.dao.AppendedDao;
 import site.laube.dao.LaubeDao;
 import site.laube.daointerface.ActivityObjectDaoInterface;
 import site.laube.daointerface.AppendedDaoInterface;
-import site.laube.database.DbConnectManager;
 import site.laube.dto.ActivityObjectDto;
 import site.laube.dto.AppendedDto;
 import site.laube.dto.DeputyApprovelDto;
@@ -66,11 +65,6 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			resultDto.setMessageId("E0001");
 			log.traceEnd("visit");
 			return resultDto;
-		}
-
-		// be sure to set this when you reuse a single connection.
-		if (!LaubeUtility.isEmpty(approvalSystemAcceptor.getConnection())){
-			DbConnectManager.setConnection(approvalSystemAcceptor.getConnection());
 		}
 
 		boolean isAutoCommit = false;
