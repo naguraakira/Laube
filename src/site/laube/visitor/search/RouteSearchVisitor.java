@@ -7,7 +7,6 @@ import site.laube.acceptor.SearchSystemAcceptor;
 import site.laube.acceptor.search.RouteSearchAcceptor;
 import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.dao.LaubeDao;
-import site.laube.database.DbConnectManager;
 import site.laube.dto.ApplicationClassificationDto;
 import site.laube.dto.ApplicationFormDto;
 import site.laube.dto.ApplicationFormRouteDto;
@@ -68,11 +67,6 @@ public class RouteSearchVisitor extends SearchSystemVisitor {
 			resultDto.setMessageId("E0001");
 			log.traceEnd("visit");
 			return resultDto;
-		}
-
-		// be sure to set this when you reuse a single connection.
-		if (!LaubeUtility.isEmpty(searchSystemAcceptor.getConnection())){
-			DbConnectManager.setConnection(searchSystemAcceptor.getConnection());
 		}
 
 		boolean isAutoCommit = false;
