@@ -238,8 +238,8 @@ public class ApplyVisitor extends RequestSystemVisitor {
 				}
 			}else{
 				resultDto = activityObjectModelInterface.insert(activityObjectDtoList);
-				LaubeDao.rollback();
 				if (!resultDto.isSuccess()) {
+					LaubeDao.rollback();
 					return resultDto;
 				}
 			}
