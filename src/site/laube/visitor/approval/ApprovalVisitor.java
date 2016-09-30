@@ -225,7 +225,8 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 			return resultDto;
 
 		}catch(final Exception e){
-			log.traceEnd("visit", resultDto);
+			resultDto.setSuccess(false);
+			resultDto.setMessageId("E1999");
 			throw new LaubeException("visit", e);
 
 		}finally{

@@ -20,6 +20,9 @@ import site.laube.acceptor.sub.ApprovalRouteInformationAcceptor;
 import site.laube.controller.LaubeController;
 import site.laube.dto.ResultDto;
 import site.laube.utility.SpecifiedValue;
+import site.laube.utility.type.ApprovalFunction;
+import site.laube.utility.type.Connector;
+import site.laube.utility.type.RouteType;
 import site.laube.visitor.RequestSystemVisitor;
 import site.laube.visitor.request.ApplyVisitor;
 import site.laube.visitor.request.DraftVisitor;
@@ -38,18 +41,22 @@ public class ApplyVisitorTest004 {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		// no code
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		// no code
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		// no code
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		// no code
 	}
 
 	@Test
@@ -60,12 +67,12 @@ public class ApplyVisitorTest004 {
 		RequestSystemVisitor requestSystemVisitor = new DraftVisitor();
 
 		try {
-			requestSystemAcceptor.setCompanyCode("PS");
-			requestSystemAcceptor.setApplicationFormCode("FORM001");
-			requestSystemAcceptor.setApplyDate("2016/02/10");
-			requestSystemAcceptor.setApplyCompanyCode("PS");
-			requestSystemAcceptor.setApplyUnitCode("UNIT001");
-			requestSystemAcceptor.setApplyUserCode("90001");
+			requestSystemAcceptor.setCompanyCode("PS"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplicationFormCode("FORM001"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyDate("2016/02/10"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyCompanyCode("PS"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyUnitCode("UNIT001"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyUserCode("USER001"); //$NON-NLS-1$
 
 			List<ApprovalRouteInformationAcceptor> individualRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
 			List<ApprovalRouteInformationAcceptor> commonRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
@@ -73,112 +80,112 @@ public class ApplyVisitorTest004 {
 
 			// 個別ルート　第一承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("1");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.IndividualRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER001");
+			route.setPartyCode("1"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.IndividualRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER0001"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("2");
-			route.setPartyTransitCode("T2");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("2"); //$NON-NLS-1$
+			route.setPartyTransitCode("T2"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			individualRoutes.add(route);
 
 			// 個別ルート　第二承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("2");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.IndividualRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER002");
+			route.setPartyCode("2"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.IndividualRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER0002"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("3");
-			route.setPartyTransitCode("T3");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("3"); //$NON-NLS-1$
+			route.setPartyTransitCode("T3"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			individualRoutes.add(route);
 
 			// 個別ルート　第三承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("3");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.IndividualRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER003");
+			route.setPartyCode("3"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.IndividualRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER0003"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("4");
-			route.setPartyTransitCode("T4");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("4"); //$NON-NLS-1$
+			route.setPartyTransitCode("T4"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			individualRoutes.add(route);
 
 			// 共通ルート　第一承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("4");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.CommonRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER004");
+			route.setPartyCode("4"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.CommonRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER0004"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("5");
-			route.setPartyTransitCode("T5");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("5"); //$NON-NLS-1$
+			route.setPartyTransitCode("T5"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			commonRoutes.add(route);
 
 			// 共通ルート　第二承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("5");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.CommonRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER005");
+			route.setPartyCode("5"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.CommonRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER0005"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
 			route.setNextPartyCode(SpecifiedValue.END);
-			route.setPartyTransitCode("T6");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setPartyTransitCode("T6"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			commonRoutes.add(route);
 
 			requestSystemAcceptor.setIndividualRoutes(individualRoutes);
 			requestSystemAcceptor.setCommonRoutes(commonRoutes);
 			ResultDto result = LaubeController.doRequest(requestSystemAcceptor, requestSystemVisitor);
+			log.debug("-----------");
 			assertTrue(result.isSuccess());
 
 			Object o = result.getResultData();
 			int applicationNumber = (int)o;
-
 			// 下書きしたものを申請します。
 			requestSystemAcceptor = new ApplyAcceptor();
 			requestSystemVisitor = new ApplyVisitor();
 			requestSystemAcceptor.setApplicationNumber(applicationNumber);
-			requestSystemAcceptor.setCompanyCode("PS");
-			requestSystemAcceptor.setApplicationFormCode("FORM001");
-			requestSystemAcceptor.setApplyDate("2016/02/10");
-			requestSystemAcceptor.setApplyCompanyCode("PS");
-			requestSystemAcceptor.setApplyUnitCode("UNIT001");
-			requestSystemAcceptor.setApplyUserCode("USER001");
+			requestSystemAcceptor.setCompanyCode("PS"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplicationFormCode("FORM001"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyDate("2016/02/10"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyCompanyCode("PS"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyUnitCode("UNIT001"); //$NON-NLS-1$
+			requestSystemAcceptor.setApplyUserCode("USER001"); //$NON-NLS-1$
 
 			individualRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
 			commonRoutes = new ArrayList<ApprovalRouteInformationAcceptor>();
@@ -186,92 +193,92 @@ public class ApplyVisitorTest004 {
 
 			// 個別ルート　第一承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("1");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.IndividualRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER001");
+			route.setPartyCode("1"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.IndividualRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER001"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("2");
-			route.setPartyTransitCode("T2");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("2"); //$NON-NLS-1$
+			route.setPartyTransitCode("T2"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			individualRoutes.add(route);
 
 			// 個別ルート　第二承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("2");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.IndividualRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER002");
+			route.setPartyCode("2"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.IndividualRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER002"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("3");
-			route.setPartyTransitCode("T3");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("3"); //$NON-NLS-1$
+			route.setPartyTransitCode("T3"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			individualRoutes.add(route);
 
 			// 個別ルート　第三承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("3");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.IndividualRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER003");
+			route.setPartyCode("3"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.IndividualRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER003"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("4");
-			route.setPartyTransitCode("T4");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("4"); //$NON-NLS-1$
+			route.setPartyTransitCode("T4"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			individualRoutes.add(route);
 
 			// 共通ルート　第一承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("4");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.CommonRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER004");
+			route.setPartyCode("4"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.CommonRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER004"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
-			route.setNextPartyCode("5");
-			route.setPartyTransitCode("T5");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setNextPartyCode("5"); //$NON-NLS-1$
+			route.setPartyTransitCode("T5"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			commonRoutes.add(route);
 
 			// 共通ルート　第二承認者
 			route = new ApprovalRouteInformationAcceptor();
-			route.setPartyCode("5");
-			route.setPartyCodeConnector(SpecifiedValue.Unspecified);
-			route.setRouteType(SpecifiedValue.CommonRoute);
-			route.setApprovalCompanyCode("PS");
-			route.setApprovalUnitCode("UNIT001");
-			route.setApprovalUserCode("USER005");
+			route.setPartyCode("5"); //$NON-NLS-1$
+			route.setPartyCodeConnector(Connector.Unspecified.toInt());
+			route.setRouteType(RouteType.CommonRoute.toInt());
+			route.setApprovalCompanyCode("PS"); //$NON-NLS-1$
+			route.setApprovalUnitCode("UNIT001"); //$NON-NLS-1$
+			route.setApprovalUserCode("USER005"); //$NON-NLS-1$
 			route.setDeputyApprovalCompanyCode(null);
 			route.setDeputyApprovalUnitCode(null);
 			route.setDeputyApprovalUserCode(null);
-			route.setFunction(SpecifiedValue.Examination);
+			route.setFunction(ApprovalFunction.Examination.toInt());
 			route.setDeputyApprovalComment(null);
 			route.setNextPartyCode(SpecifiedValue.END);
-			route.setPartyTransitCode("T6");
-			route.setPartyTransitCodeConnector(SpecifiedValue.Unspecified);
+			route.setPartyTransitCode("T6"); //$NON-NLS-1$
+			route.setPartyTransitCodeConnector(Connector.Unspecified.toInt());
 			commonRoutes.add(route);
 
 			requestSystemAcceptor.setIndividualRoutes(individualRoutes);

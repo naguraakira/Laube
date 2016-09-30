@@ -70,7 +70,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 		}
 
 		boolean isAutoCommit = false;
-		if ("true".equals(LaubeProperties.getValue("isAutoCommit"))){
+		if (LaubeProperties.TRUE.equals(LaubeProperties.getValue("isAutoCommit"))){
 			isAutoCommit = true;
 		}else{
 			isAutoCommit = false;
@@ -99,7 +99,7 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final int applicationStatus = Status.Draft.toInt();
 
 			log.message("visit","Find the application form master.");
-			VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
+			resultDto = VisitorUtility.findApplicationForm(applyCompanyCode, applicationFormCode);
 			if (LaubeUtility.isEmpty(resultDto)) {
 				resultDto.setSuccess(false);
 				resultDto.setMessageId("E0001");
@@ -113,8 +113,8 @@ public class DraftVisitor extends RequestSystemVisitor {
 			final boolean isIndividualRoutes = (LaubeUtility.isEmpty(individualRoutes))||(individualRoutes.size() == 0);
 			final boolean isCommonRoutes = (LaubeUtility.isEmpty(commonRoutes))||(commonRoutes.size() == 0);
 
-			final boolean check1 = (applicationFormDto.getRouteFlag() == RouteFlag.NoIndividualRouteFlag.toInt()) && (!isIndividualRoutes);
-			final boolean check2 = (applicationFormDto.getRouteFlag() == RouteFlag.IndividualRouteFlag.toInt()) && (isIndividualRoutes);
+			final boolean check1 = (RouteFlag.NoIndividualRouteFlag.toInt() == applicationFormDto.getRouteFlag()) && (!isIndividualRoutes);
+			final boolean check2 = (RouteFlag.IndividualRouteFlag.toInt() == applicationFormDto.getRouteFlag()) && (isIndividualRoutes);
 			final boolean check3 = isIndividualRoutes && isCommonRoutes;
 
 			if (check1) {
@@ -165,7 +165,11 @@ public class DraftVisitor extends RequestSystemVisitor {
 			}
 
 			Object object = resultDto.getResultData();
-			ArrayList<LaubeDto> applicationObjectDtos = LaubeUtility.automaticCast(object);
+			ArrayList<LaubeDto> applicationObjectDtos = null;
+
+			if (object instanceof ArrayList){
+				applicationObjectDtos = LaubeUtility.automaticCast(object);
+			}
 
 			boolean isDraft = false;
 			if ((applicationNumber == 0)||(LaubeUtility.isEmpty(applicationObjectDtos))) {
@@ -255,6 +259,8 @@ public class DraftVisitor extends RequestSystemVisitor {
 			return resultDto;
 
 		}catch(final Exception e){
+			resultDto.setSuccess(false);
+			resultDto.setMessageId("E1999");
 			throw new LaubeException("visit",e);
 
 		}finally{

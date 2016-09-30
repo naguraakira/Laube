@@ -274,7 +274,7 @@ public final class VisitorUtility {
 			return resultDto;
 		}
 
-		ArrayList<LaubeDto> applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();;
+		ArrayList<LaubeDto> applicationFormDtos = (ArrayList<LaubeDto>)resultDto.getResultData();
 
 		ApplicationFormDto applicationFormDto = (ApplicationFormDto)applicationFormDtos.get(0);
 		resultDto.setResultData(applicationFormDto);

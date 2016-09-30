@@ -178,7 +178,7 @@ public class ApplyVisitor extends RequestSystemVisitor {
 
 			}else{
 
-				if (Status.Draft.toInt() == ((ApplicationObjectDto)applicationObjectDtos.get(0)).getApplicationStatus()) {
+				if (((ApplicationObjectDto)applicationObjectDtos.get(0)).getApplicationStatus() == Status.Draft.toInt()) {
 					isDraft = true;
 
 				}else{
@@ -263,6 +263,8 @@ public class ApplyVisitor extends RequestSystemVisitor {
 			return resultDto;
 
 		}catch(final Exception e){
+			resultDto.setSuccess(false);
+			resultDto.setMessageId("E1999");
 			throw new LaubeException("visit",e);
 
 		}finally{
