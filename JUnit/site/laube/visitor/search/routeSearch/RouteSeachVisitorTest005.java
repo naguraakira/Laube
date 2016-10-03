@@ -57,10 +57,10 @@ public class RouteSeachVisitorTest005 {
 
 		try {
 			searchSystemAcceptor.setCompanyCode("PS");
-			searchSystemAcceptor.setApplicationFormCode("F001");
+			searchSystemAcceptor.setApplicationFormCode("FORM001");
 			searchSystemAcceptor.setApplyCompanyCode("PS");
-			searchSystemAcceptor.setApplyUnitCode("U001");
-			searchSystemAcceptor.setApplyUserCode("90003");
+			searchSystemAcceptor.setApplyUnitCode("UNIT001");
+			searchSystemAcceptor.setApplyUserCode("USER001");
 			searchSystemAcceptor.setDeputyApplyCompanyCode(null);
 			searchSystemAcceptor.setDeputyApplyUnitCode(null);
 			searchSystemAcceptor.setDeputyApplyUserCode(null);
@@ -78,34 +78,33 @@ public class RouteSeachVisitorTest005 {
 
 
 			ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor = individualRouts.get(0);
-			assertEquals("PS","AA");
-			assertEquals("U001",approvalRouteInformationAcceptor.getApprovalUnitCode());
-			assertEquals("80001",approvalRouteInformationAcceptor.getApprovalUserCode());
+			assertEquals("UNIT001",approvalRouteInformationAcceptor.getApprovalUnitCode());
+			assertEquals("USER002",approvalRouteInformationAcceptor.getApprovalUserCode());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalComment());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalCompanyCode());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalUnitCode());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalUserCode());
 			assertEquals(1,approvalRouteInformationAcceptor.getFunction());
-			assertEquals("S02",approvalRouteInformationAcceptor.getNextPartyCode());
-			assertEquals("S01",approvalRouteInformationAcceptor.getPartyCode());
+			assertEquals("P02",approvalRouteInformationAcceptor.getNextPartyCode());
+			assertEquals("P01",approvalRouteInformationAcceptor.getPartyCode());
 			assertEquals(0,approvalRouteInformationAcceptor.getPartyCodeConnector());
-			assertEquals("S01",approvalRouteInformationAcceptor.getPartyTransitCode());
+			assertEquals("T01",approvalRouteInformationAcceptor.getPartyTransitCode());
 			assertEquals(0,approvalRouteInformationAcceptor.getPartyTransitCodeConnector());
 			assertEquals(1,approvalRouteInformationAcceptor.getRouteType());
 
 			approvalRouteInformationAcceptor = individualRouts.get(1);
 			assertEquals("PS",approvalRouteInformationAcceptor.getApprovalCompanyCode());
-			assertEquals("U001",approvalRouteInformationAcceptor.getApprovalUnitCode());
-			assertEquals("80001",approvalRouteInformationAcceptor.getApprovalUserCode());
+			assertEquals("UNIT001",approvalRouteInformationAcceptor.getApprovalUnitCode());
+			assertEquals("USER003",approvalRouteInformationAcceptor.getApprovalUserCode());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalComment());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalCompanyCode());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalUnitCode());
 			assertEquals(null,approvalRouteInformationAcceptor.getDeputyApprovalUserCode());
 			assertEquals(1,approvalRouteInformationAcceptor.getFunction());
-			assertEquals("S01",approvalRouteInformationAcceptor.getNextPartyCode());
-			assertEquals("003",approvalRouteInformationAcceptor.getPartyCode());
+			assertEquals("E",approvalRouteInformationAcceptor.getNextPartyCode());
+			assertEquals("P02",approvalRouteInformationAcceptor.getPartyCode());
 			assertEquals(0,approvalRouteInformationAcceptor.getPartyCodeConnector());
-			assertEquals("002",approvalRouteInformationAcceptor.getPartyTransitCode());
+			assertEquals("T01",approvalRouteInformationAcceptor.getPartyTransitCode());
 			assertEquals(0,approvalRouteInformationAcceptor.getPartyTransitCodeConnector());
 			assertEquals(1,approvalRouteInformationAcceptor.getRouteType());
 
@@ -115,11 +114,11 @@ public class RouteSeachVisitorTest005 {
 
 
 			List<ApprovalRouteInformationAcceptor> commonRouts = routeSearchAcceptor.getCommonRoutes();
-			assertEquals(1,commonRouts.size());
+			assertEquals(0,commonRouts.size());
 			ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor1 = commonRouts.get(0);
 			assertEquals("PS",approvalRouteInformationAcceptor1.getApprovalCompanyCode());
-			assertEquals("U001",approvalRouteInformationAcceptor1.getApprovalUnitCode());
-			assertEquals("90001",approvalRouteInformationAcceptor1.getApprovalUserCode());
+			assertEquals("UNIT001",approvalRouteInformationAcceptor1.getApprovalUnitCode());
+			assertEquals("USER001",approvalRouteInformationAcceptor1.getApprovalUserCode());
 			assertEquals(null,approvalRouteInformationAcceptor1.getDeputyApprovalComment());
 			assertEquals(null,approvalRouteInformationAcceptor1.getDeputyApprovalCompanyCode());
 			assertEquals(null,approvalRouteInformationAcceptor1.getDeputyApprovalUnitCode());

@@ -57,10 +57,10 @@ public class RouteSeachVisitorTest004 {
 
 		try {
 			searchSystemAcceptor.setCompanyCode("PS");
-			searchSystemAcceptor.setApplicationFormCode("F003");
+			searchSystemAcceptor.setApplicationFormCode("FORM001");
 			searchSystemAcceptor.setApplyCompanyCode("PS");
-			searchSystemAcceptor.setApplyUnitCode("U001");
-			searchSystemAcceptor.setApplyUserCode("90001");
+			searchSystemAcceptor.setApplyUnitCode("UNIT001");
+			searchSystemAcceptor.setApplyUserCode("USER001");
 			searchSystemAcceptor.setDeputyApplyCompanyCode(null);
 			searchSystemAcceptor.setDeputyApplyUnitCode(null);
 			searchSystemAcceptor.setDeputyApplyUserCode(null);
@@ -72,14 +72,14 @@ public class RouteSeachVisitorTest004 {
 			RouteSearchAcceptor routeSearchAcceptor = (RouteSearchAcceptor)o;
 			List<ApprovalRouteInformationAcceptor> individualRouts = routeSearchAcceptor.getIndividualRoutes();
 
-			assertEquals(0,individualRouts.size());
+			assertEquals(2,individualRouts.size());
 
 			List<ApprovalRouteInformationAcceptor> commonRouts = routeSearchAcceptor.getCommonRoutes();
-			assertEquals(1,commonRouts.size());
+			assertEquals(0,commonRouts.size());
 			ApprovalRouteInformationAcceptor approvalRouteInformationAcceptor1 = commonRouts.get(0);
 			assertEquals("PS",approvalRouteInformationAcceptor1.getApprovalCompanyCode());
-			assertEquals("U001",approvalRouteInformationAcceptor1.getApprovalUnitCode());
-			assertEquals("90001",approvalRouteInformationAcceptor1.getApprovalUserCode());
+			assertEquals("UNIT001",approvalRouteInformationAcceptor1.getApprovalUnitCode());
+			assertEquals("USER001",approvalRouteInformationAcceptor1.getApprovalUserCode());
 			assertEquals(null,approvalRouteInformationAcceptor1.getDeputyApprovalComment());
 			assertEquals(null,approvalRouteInformationAcceptor1.getDeputyApprovalCompanyCode());
 			assertEquals(null,approvalRouteInformationAcceptor1.getDeputyApprovalUnitCode());
