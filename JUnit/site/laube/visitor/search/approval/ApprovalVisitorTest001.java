@@ -54,7 +54,7 @@ public class ApprovalVisitorTest001 {
 
 		try {
 			approvalSystemAcceptor.setCompanyCode("PS");
-			approvalSystemAcceptor.setApplicationNumber(1);
+			approvalSystemAcceptor.setApplicationNumber(16);
 			approvalSystemAcceptor.setApprovalDate("2016/06/08");
 			approvalSystemAcceptor.setApprovalCompanyCode("PS");
 			approvalSystemAcceptor.setApprovalUnitCode("UNIT001");
