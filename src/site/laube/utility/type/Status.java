@@ -19,37 +19,37 @@ package site.laube.utility.type;
 public enum Status {
 
 	/**
-	 * Draft
+	 * Draft / 下書き
 	 */
 	Draft(0),
 
 	/**
-	 * UnderExamination
+	 * UnderExamination / 審査中
 	 */
 	UnderExamination(1),
 
 	/**
-	 * Remand
+	 * Remand / 保留
 	 */
 	Remand(2),
 
 	/**
-	 * Pullback
+	 * Pullback / 引き戻し
 	 */
 	Pullback(3),
 
 	/**
-	 * Withdrawal
+	 * Withdrawal / 差し戻し
 	 */
 	Withdrawal(4),
 
 	/**
-	 * Denial
+	 * Denial / 否認
 	 */
 	Denial(5),
 
 	/**
-	 * Approved
+	 * Approved / 承認
 	 */
 	Approved(6);
 

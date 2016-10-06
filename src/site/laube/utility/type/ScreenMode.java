@@ -19,22 +19,22 @@ package site.laube.utility.type;
 public enum ScreenMode {
 
 	/**
-	 * ApplyMode
+	 * ApplyMode / 申請モード
 	 */
 	ApplyMode(1),
 
 	/**
-	 * ApprovalMode
+	 * ApprovalMode / 承認モード
 	 */
 	ApprovalMode(2),
 
 	/**
-	 * ConfirmationMode
+	 * ConfirmationMode / 確認モード
 	 */
 	ConfirmationMode(3),
 
 	/**
-	 * SeeMode
+	 * SeeMode / 参照モード
 	 */
 	SeeMode(4);
 

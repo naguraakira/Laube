@@ -19,32 +19,32 @@ package site.laube.utility.type;
 public enum ComparisonOperator {
 
 	/**
-	 * Smaller
+	 * Smaller / より小さい
 	 */
 	Smaller(1),
 
 	/**
-	 * Same
+	 * Same / 等しい
 	 */
 	Same(2),
 
 	/**
-	 * Unequal
+	 * Unequal / 等しくない
 	 */
 	Unequal(3),
 
 	/**
-	 * TheFollowing
+	 * TheFollowing / 以下
 	 */
 	TheFollowing(4),
 
 	/**
-	 * OrMore
+	 * OrMore / 以上
 	 */
 	OrMore(5),
 
 	/**
-	 * LargerThan
+	 * LargerThan / より大きい
 	 */
 	LargerThan(6);
 

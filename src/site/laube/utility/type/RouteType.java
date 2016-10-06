@@ -19,22 +19,22 @@ package site.laube.utility.type;
 public enum RouteType {
 
 	/**
-	 * None
+	 * None / なし
 	 */
 	None(0),
 
 	/**
-	 * Individual
+	 * Individual / 個別ルート
 	 */
 	IndividualRoute(1),
 
 	/**
-	 * Common
+	 * Common / 共通ルート
 	 */
 	CommonRoute(2),
 
 	/**
-	 * Special
+	 * Special / 特別ルート
 	 */
 	SpecialRoute(3);
 

@@ -204,6 +204,25 @@ public class ApprovalVisitor extends ApprovalSystemVisitor {
 					}
 				}
 			}
+
+			// 並列承認の確認(承認したレコード以外について更新)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// 次の承認者を更新
 			log.message("visit", "circulated to the next approver.");
 			resultDto = VisitorUtility.circulatedNextApprover(companyCode, applicationNumber);
 

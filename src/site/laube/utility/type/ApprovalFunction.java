@@ -19,22 +19,22 @@ package site.laube.utility.type;
 public enum ApprovalFunction {
 
 	/**
-	 * InitialState
+	 * InitialState / 初期値
 	 */
 	InitialState(0),
 
 	/**
-	 * Examination
+	 * Examination / 審査
 	 */
 	Examination(1),
 
 	/**
-	 * FunctionConfirmation
+	 * FunctionConfirmation / 確認
 	 */
 	FunctionConfirmation(2),
 
 	/**
-	 * Skip
+	 * Skip / 読み飛ばし
 	 */
 	Skip(9);
 

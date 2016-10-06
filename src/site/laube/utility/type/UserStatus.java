@@ -19,47 +19,47 @@ package site.laube.utility.type;
 public enum UserStatus {
 
 	/**
-	 * Authorizer_Untreated
+	 * Authorizer_Untreated / 未処理
 	 */
 	Authorizer_Untreated(0),
 
 	/**
-	 * Arrival
+	 * Arrival / 到着
 	 */
 	Arrival(1),
 
 	/**
-	 * Hold
+	 * Hold / 保留
 	 */
 	Hold(2),
 
 	/**
-	 * Authorizer_AnticipatingApproval
+	 * Authorizer_AnticipatingApproval / 先取り承認
 	 */
 	Authorizer_AnticipatingApproval(3),
 
 	/**
-	 * Authorizer_HikeApproval
+	 * Authorizer_HikeApproval / 引き上げ承認
 	 */
 	Authorizer_HikeApproval(4),
 
 	/**
-	 * Authorizer_AutomaticApproval
+	 * Authorizer_AutomaticApproval / 自動承認
 	 */
 	Authorizer_AutomaticApproval(5),
 
 	/**
-	 * Authorizer_Denial
+	 * Authorizer_Denial / 否認
 	 */
 	Authorizer_Denial(6),
 
 	/**
-	 * Authorizer_Approval
+	 * Authorizer_Approval / 承認
 	 */
 	Authorizer_Approval(7),
 
 	/**
-	 * Authorizer_Confirmation
+	 * Authorizer_Confirmation / 確認
 	 */
 	Authorizer_Confirmation(8);
 

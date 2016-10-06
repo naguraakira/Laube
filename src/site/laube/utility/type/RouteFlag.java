@@ -19,17 +19,17 @@ package site.laube.utility.type;
 public enum RouteFlag {
 
 	/**
-	 * IndividualRouteFlag
+	 * IndividualRouteFlag / 個別ルート
 	 */
 	IndividualRouteFlag(1),
 
 	/**
-	 * BossRouteFlag
+	 * BossRouteFlag / 上司ルート
 	 */
 	BossRouteFlag(2),
 
 	/**
-	 * NoIndividualRouteFlag
+	 * NoIndividualRouteFlag / 個別ルートなし
 	 */
 	NoIndividualRouteFlag(3);
 

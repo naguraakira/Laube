@@ -19,22 +19,22 @@ package site.laube.utility.type;
 public enum Connector {
 
 	/**
-	 * Unspecified
+	 * Unspecified / 未定義
 	 */
 	Unspecified(0),
 
 	/**
-	 * LogicalSum
+	 * LogicalSum / 論理和
 	 */
 	LogicalSum(1),
 
 	/**
-	 * LogicalProduct
+	 * LogicalProduct / 論理積
 	 */
 	LogicalProduct(2),
 
 	/**
-	 * Majority
+	 * Majority / 多数
 	 */
 	Majority(3);
 
